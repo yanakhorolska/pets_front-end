@@ -2,6 +2,7 @@
   "name": "pets_front-end",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yanakhorolska.github.io/pets_front-end/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
