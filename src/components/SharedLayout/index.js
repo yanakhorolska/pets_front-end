@@ -1,1 +1,1 @@
-export { default } from './SharedLayout';
+export { SharedLayout, ColorModeContext } from './SharedLayout';
