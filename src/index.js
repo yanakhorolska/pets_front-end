@@ -4,12 +4,14 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import { App } from './components/App';
+import { StyledEngineProvider } from '@mui/material';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <StyledEngineProvider injectFirst>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </StyledEngineProvider>
   </React.StrictMode>
 );

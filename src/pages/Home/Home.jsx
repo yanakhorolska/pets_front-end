@@ -1,5 +1,13 @@
+import ColorMode from 'components/ColorMode';
+
 const Home = () => {
-  return <div>home</div>;
+  return (
+    <>
+      {/* Для примера */}
+      <ColorMode />
+      <div>home</div>
+    </>
+  );
 };
 
 export default Home;
