@@ -8,8 +8,6 @@ const ColorMode = () => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
-  console.log(colorMode);
-
   return (
     <IconButton
       sx={{ ml: 1, color: 'text.primary' }}
