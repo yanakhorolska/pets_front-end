@@ -11,6 +11,40 @@ const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
 });
 
+const getDesignTokens = mode => ({
+  palette: {
+    mode,
+    ...(mode === 'light'
+      ? {
+          primary: {
+            main: '#F59256',
+          },
+          accent: {
+            main: '#FF6101',
+          },
+        }
+      : {
+          primary: {
+            main: '#F59256',
+          },
+          accent: {
+            main: '#FF6101',
+          },
+        }),
+    colors: {
+      white: '#ffffff',
+      black: '#111111',
+    },
+    breakpoints: {
+      values: {
+        mobile: 0,
+        tablet: 768,
+        desktop: 1280,
+      },
+    },
+  },
+});
+
 const SharedLayout = () => {
   const [mode, setMode] = React.useState('light');
 
@@ -23,15 +57,7 @@ const SharedLayout = () => {
     []
   );
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode]
-  );
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>

@@ -8,7 +8,7 @@ import { StyledEngineProvider } from '@mui/material';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-      <BrowserRouter basename="/pets_front-end/">
+      <BrowserRouter basename="/pets_front-end">
         <App />
       </BrowserRouter>
     </StyledEngineProvider>
