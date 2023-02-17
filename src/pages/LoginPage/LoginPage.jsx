@@ -1,5 +1,31 @@
+import { useLogInUserMutation } from 'redux/authApi';
+import { useDispatch } from 'react-redux';
+import { setUser } from 'redux/authSlice';
+
 const LoginPage = () => {
-  return <div>LoginPage</div>;
+  // const [logInUser, { status }] = useLogInUserMutation();
+  const [logInUser] = useLogInUserMutation();
+  const dispatch = useDispatch();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const values = {
+      email: form.elements.email.value,
+      password: form.elements.password.value,
+    };
+    const user = await logInUser(values).unwrap();
+    dispatch(setUser(user));
+  };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input name="email" type="email" placeholder="email" />
+        <input name="password" type="password" placeholder="password" />
+        <button type="submit">login</button>
+      </form>
+    </div>
+  );
 };
 
 export default LoginPage;
