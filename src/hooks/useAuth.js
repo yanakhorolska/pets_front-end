@@ -1,9 +1,9 @@
 export const useAuth = () => {
-  const isLoggedIn = true;
+  const isLogged = true;
   const isRefreshing = true;
 
   return {
-    isLoggedIn,
+    isLogged,
     isRefreshing,
   };
 };
