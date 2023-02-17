@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { SharedLayout } from 'components/SharedLayout';
-import PrivateRoutes from 'components/PrivateRoutes';
+import PrivateRoutes from './PrivateRoutes';
+import PublicRoutes from './PublicRotes';
 
 const Home = lazy(() => import('pages/Home'));
 const NewsPage = lazy(() => import('pages/NewsPage'));
@@ -33,9 +34,11 @@ export const App = () => {
               </Route>
             </Route>
             <Route path="/friends" element={<OurFriendsPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route element={<PrivateRoutes component={<UserPage />} />}>
+            <Route element={<PublicRoutes restricted />}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
+            <Route element={<PrivateRoutes />}>
               <Route path="/user" element={<UserPage />} />
             </Route>
           </Route>
