@@ -1,6 +1,6 @@
 import { useGetNewsQuery } from 'redux/newsSlice';
 
-export const NewsPage = () => {
+const NewsPage = () => {
   const { data, error, isLoading } = useGetNewsQuery('bulbasaur');
 
   if (!data) {
