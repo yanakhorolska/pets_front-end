@@ -1,5 +1,5 @@
 export const useAuth = () => {
-  const isLogged = true;
+  const isLogged = false;
   const isRefreshing = true;
 
   return {

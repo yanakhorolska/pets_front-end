@@ -1,1 +1,1 @@
-export const selectors = {};
+export const getToken = state => state.auth.token;
