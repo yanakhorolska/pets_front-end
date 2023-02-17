@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { setUser } from 'redux/authSlice';
 
 const LoginPage = () => {
-  const [logInUser, { status }] = useLogInUserMutation();
+  // const [logInUser, { status }] = useLogInUserMutation();
+  const [logInUser] = useLogInUserMutation();
   const dispatch = useDispatch();
 
   const handleSubmit = async e => {
