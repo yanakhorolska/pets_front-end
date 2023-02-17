@@ -1,8 +1,9 @@
 import ColorMode from 'components/ColorMode';
 import { OrangeButton } from 'components/CustomComponents/Buttons/Buttons';
 import Box from '@mui/material/Box';
-import { AvatarUser } from 'components/CustomComponents/Avatars/Avatars';
 import BasicModal from 'components/CustomComponents/Modal/Modal.jsx'
+import {UserCard} from '../../components/CustomComponents/PetCard/Card';
+import { NewsCard } from 'components/CustomComponents/NewsCard/NewsCard';
 
 
 const Home = () => {
@@ -23,9 +24,9 @@ const Home = () => {
         <OrangeButton variant="outlined" color="primary">
           Outlined button
         </OrangeButton>
-        <AvatarUser />
-        <BasicModal>
-        </BasicModal>
+        <BasicModal />
+        <UserCard/>
+        <NewsCard />
       </Box>
     </>
   );
