@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/pets_front-end/static/css/main.7113bd09.css",
-    "main.js": "/pets_front-end/static/js/main.ffe1b72a.js",
-    "static/js/150.51c32eb9.chunk.js": "/pets_front-end/static/js/150.51c32eb9.chunk.js",
+    "main.js": "/pets_front-end/static/js/main.80969912.js",
+    "static/js/604.983fcf5a.chunk.js": "/pets_front-end/static/js/604.983fcf5a.chunk.js",
     "static/js/755.efcef12c.chunk.js": "/pets_front-end/static/js/755.efcef12c.chunk.js",
     "static/js/833.842be118.chunk.js": "/pets_front-end/static/js/833.842be118.chunk.js",
     "static/js/369.961133b2.chunk.js": "/pets_front-end/static/js/369.961133b2.chunk.js",
@@ -10,11 +10,11 @@
     "static/js/644.cebbda6e.chunk.js": "/pets_front-end/static/js/644.cebbda6e.chunk.js",
     "static/js/860.47a4b7ae.chunk.js": "/pets_front-end/static/js/860.47a4b7ae.chunk.js",
     "static/js/216.214cda24.chunk.js": "/pets_front-end/static/js/216.214cda24.chunk.js",
-    "static/js/320.1e8d23c1.chunk.js": "/pets_front-end/static/js/320.1e8d23c1.chunk.js",
+    "static/js/481.a4729cfd.chunk.js": "/pets_front-end/static/js/481.a4729cfd.chunk.js",
     "index.html": "/pets_front-end/index.html",
     "main.7113bd09.css.map": "/pets_front-end/static/css/main.7113bd09.css.map",
-    "main.ffe1b72a.js.map": "/pets_front-end/static/js/main.ffe1b72a.js.map",
-    "150.51c32eb9.chunk.js.map": "/pets_front-end/static/js/150.51c32eb9.chunk.js.map",
+    "main.80969912.js.map": "/pets_front-end/static/js/main.80969912.js.map",
+    "604.983fcf5a.chunk.js.map": "/pets_front-end/static/js/604.983fcf5a.chunk.js.map",
     "755.efcef12c.chunk.js.map": "/pets_front-end/static/js/755.efcef12c.chunk.js.map",
     "833.842be118.chunk.js.map": "/pets_front-end/static/js/833.842be118.chunk.js.map",
     "369.961133b2.chunk.js.map": "/pets_front-end/static/js/369.961133b2.chunk.js.map",
@@ -22,10 +22,10 @@
     "644.cebbda6e.chunk.js.map": "/pets_front-end/static/js/644.cebbda6e.chunk.js.map",
     "860.47a4b7ae.chunk.js.map": "/pets_front-end/static/js/860.47a4b7ae.chunk.js.map",
     "216.214cda24.chunk.js.map": "/pets_front-end/static/js/216.214cda24.chunk.js.map",
-    "320.1e8d23c1.chunk.js.map": "/pets_front-end/static/js/320.1e8d23c1.chunk.js.map"
+    "481.a4729cfd.chunk.js.map": "/pets_front-end/static/js/481.a4729cfd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7113bd09.css",
-    "static/js/main.ffe1b72a.js"
+    "static/js/main.80969912.js"
   ]
 }
