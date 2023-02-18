@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import ColorMode from 'components/ColorMode';
 
 //import Avatar from '@mui/material/Avatar';
 //import Button from '@mui/material/Button';
@@ -106,6 +107,7 @@ const Home = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            <ColorMode />
             <Tooltip title="Open settings">
               <IconButton>
                 <OrangeButton color="primary">
