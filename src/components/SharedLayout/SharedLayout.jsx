@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import Header from '../Header/Header';
 
 const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
@@ -64,7 +65,7 @@ const SharedLayout = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-          <div>layout</div>
+          <Header />
           <Suspense fallback={<></>}>
             <Outlet />
           </Suspense>
