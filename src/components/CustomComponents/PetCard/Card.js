@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import { OrangeButton } from "../Buttons/Buttons";
 import {CardMedia } from "../../../../node_modules/@mui/material/index";
 
-export function UserCard() {
+export function PetCard() {
     return (
         <Card sx={{
             width: 288,

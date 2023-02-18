@@ -1,10 +1,10 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Box} from "../../../../node_modules/@mui/material/index";
+import { Box, Link} from "../../../../node_modules/@mui/material/index";
 
 
-export function NewsCard() {
+export const NewsCard = ({ title, description, date, url }) => {
     return (
         <Box sx={{
             width:396,
@@ -25,13 +25,17 @@ export function NewsCard() {
             }}>
                 <CardContent sx={{p: 0}}>
                     <Typography variant="h5" component="div" sx={{m:1.5,fontSize:28, fontWeight:'bold' }}>
-                        Title{ }
+                    {title}title
                     </Typography>
                     <Typography sx={{ mb: 1.5, ml:1.5 }}>
-                        Description{}
+                    {description}description
                     </Typography>
-                    </CardContent>
-                </Card>
+                    <Typography sx={{ mb: 1.5, ml:1.5 }}>
+                    {date}date
+                    </Typography>
+                    <Link href={url}>Read more</Link>
+                </CardContent>
+            </Card>
         </Box>
     );
 }
