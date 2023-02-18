@@ -22,7 +22,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import '@fontsource/manrope';
 const pages = ['News', 'Find pet', 'Our friends'];
 
-const Home = () => {
+const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = event => {
@@ -127,4 +127,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Header;
