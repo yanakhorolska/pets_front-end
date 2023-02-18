@@ -25,15 +25,20 @@ export const NewsCard = ({ title, description, date, url }) => {
             }}>
                 <CardContent sx={{p: 0}}>
                     <Typography variant="h5" component="div" sx={{m:1.5,fontSize:28, fontWeight:'bold' }}>
-                    {title}title
+                        {/* {title} */}
+                        title
                     </Typography>
                     <Typography sx={{ mb: 1.5, ml:1.5 }}>
-                    {description}description
+                        {/* {description} */}
+                        description
                     </Typography>
                     <Typography sx={{ mb: 1.5, ml:1.5 }}>
-                    {date}date
+                        {/* {date} */}
+                        date
                     </Typography>
-                    <Link href={url}>Read more</Link>
+                    <Link
+                        // href={url}
+                    >Read more</Link>
                 </CardContent>
             </Card>
         </Box>
