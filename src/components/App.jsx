@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { SharedLayout } from 'components/SharedLayout';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRotes';
 // import { useDispatch, useSelector } from 'react-redux';
