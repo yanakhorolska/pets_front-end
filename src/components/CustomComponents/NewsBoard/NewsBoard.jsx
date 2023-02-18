@@ -1,4 +1,5 @@
 import { NewsCard } from "../NewsCard/NewsCard";
+import { Box } from "../../../../node_modules/@mui/material/index";
 
 export const NewsBoard = ({ events }) => {
     return (
