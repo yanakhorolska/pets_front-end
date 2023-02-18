@@ -1,8 +1,9 @@
 {
   "files": {
     "main.css": "/pets_front-end/static/css/main.7113bd09.css",
-    "main.js": "/pets_front-end/static/js/main.80969912.js",
-    "static/js/604.983fcf5a.chunk.js": "/pets_front-end/static/js/604.983fcf5a.chunk.js",
+    "main.js": "/pets_front-end/static/js/main.e06639d3.js",
+    "static/css/320.d8ca9bfc.chunk.css": "/pets_front-end/static/css/320.d8ca9bfc.chunk.css",
+    "static/js/320.1cdeeb52.chunk.js": "/pets_front-end/static/js/320.1cdeeb52.chunk.js",
     "static/js/755.efcef12c.chunk.js": "/pets_front-end/static/js/755.efcef12c.chunk.js",
     "static/js/833.842be118.chunk.js": "/pets_front-end/static/js/833.842be118.chunk.js",
     "static/js/369.961133b2.chunk.js": "/pets_front-end/static/js/369.961133b2.chunk.js",
@@ -10,11 +11,19 @@
     "static/js/644.cebbda6e.chunk.js": "/pets_front-end/static/js/644.cebbda6e.chunk.js",
     "static/js/860.47a4b7ae.chunk.js": "/pets_front-end/static/js/860.47a4b7ae.chunk.js",
     "static/js/216.214cda24.chunk.js": "/pets_front-end/static/js/216.214cda24.chunk.js",
-    "static/js/481.a4729cfd.chunk.js": "/pets_front-end/static/js/481.a4729cfd.chunk.js",
+    "static/js/47.43a0bbd5.chunk.js": "/pets_front-end/static/js/47.43a0bbd5.chunk.js",
+    "static/media/manrope-all-400-normal.woff": "/pets_front-end/static/media/manrope-all-400-normal.29812aea39915b828ff1.woff",
+    "static/media/manrope-latin-400-normal.woff2": "/pets_front-end/static/media/manrope-latin-400-normal.2cfae0fb4662deefa552.woff2",
+    "static/media/manrope-latin-ext-400-normal.woff2": "/pets_front-end/static/media/manrope-latin-ext-400-normal.9408d54f42fd8adee645.woff2",
+    "static/media/manrope-cyrillic-400-normal.woff2": "/pets_front-end/static/media/manrope-cyrillic-400-normal.18b8749c8a2e81c91aa3.woff2",
+    "static/media/manrope-greek-400-normal.woff2": "/pets_front-end/static/media/manrope-greek-400-normal.d9fa2c702d76a9760e1b.woff2",
+    "static/media/manrope-vietnamese-400-normal.woff2": "/pets_front-end/static/media/manrope-vietnamese-400-normal.4bb1be8af765fce74e9b.woff2",
+    "static/media/manrope-cyrillic-ext-400-normal.woff2": "/pets_front-end/static/media/manrope-cyrillic-ext-400-normal.a26a46564e052e1282fa.woff2",
     "index.html": "/pets_front-end/index.html",
     "main.7113bd09.css.map": "/pets_front-end/static/css/main.7113bd09.css.map",
-    "main.80969912.js.map": "/pets_front-end/static/js/main.80969912.js.map",
-    "604.983fcf5a.chunk.js.map": "/pets_front-end/static/js/604.983fcf5a.chunk.js.map",
+    "main.e06639d3.js.map": "/pets_front-end/static/js/main.e06639d3.js.map",
+    "320.d8ca9bfc.chunk.css.map": "/pets_front-end/static/css/320.d8ca9bfc.chunk.css.map",
+    "320.1cdeeb52.chunk.js.map": "/pets_front-end/static/js/320.1cdeeb52.chunk.js.map",
     "755.efcef12c.chunk.js.map": "/pets_front-end/static/js/755.efcef12c.chunk.js.map",
     "833.842be118.chunk.js.map": "/pets_front-end/static/js/833.842be118.chunk.js.map",
     "369.961133b2.chunk.js.map": "/pets_front-end/static/js/369.961133b2.chunk.js.map",
@@ -22,10 +31,10 @@
     "644.cebbda6e.chunk.js.map": "/pets_front-end/static/js/644.cebbda6e.chunk.js.map",
     "860.47a4b7ae.chunk.js.map": "/pets_front-end/static/js/860.47a4b7ae.chunk.js.map",
     "216.214cda24.chunk.js.map": "/pets_front-end/static/js/216.214cda24.chunk.js.map",
-    "481.a4729cfd.chunk.js.map": "/pets_front-end/static/js/481.a4729cfd.chunk.js.map"
+    "47.43a0bbd5.chunk.js.map": "/pets_front-end/static/js/47.43a0bbd5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7113bd09.css",
-    "static/js/main.80969912.js"
+    "static/js/main.e06639d3.js"
   ]
 }
