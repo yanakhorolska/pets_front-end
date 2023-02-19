@@ -1,18 +1,21 @@
-import { styled } from '@mui/material/styles';
-import { Typography } from '@mui/material/index';
+import styled from '@emotion/styled'
 
-export const Logo = styled(Typography)(({ theme }) => ({
-  
-    color: theme.palette.colors.black,
-    fontFamily: 'Poppins',
-    fontWeight: 700,
-    fontSize: '32px',
-    letterSpacing: '0.07em',
-    lineHeight:'0.66',
-    textDecoration: 'none',
-    marginRight:'80px'
 
- 
-}));
-  
-
+export const Logo = styled.h1`
+    font-family: 'Poppins';
+    font-size: 28px;
+    text-decoration: none; 
+    font-weight: 700;
+   
+    line-height: 0.66;
+    letter-spacing: 0.07em;
+    color:#111111;
+   
+    @media (min-width:768px){
+        font-size: 32px;
+    }
+    @media (min-width:1280px){
+        margin-right: 80px;
+        
+    }
+`;
