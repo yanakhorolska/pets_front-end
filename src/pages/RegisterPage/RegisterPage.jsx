@@ -7,7 +7,7 @@ const RegisterPage = () => {
       // className={s.container}
     >
       <AuthForm
-        // title={t('registration.title')}
+        title='Registration'
       />
     </div>
   );

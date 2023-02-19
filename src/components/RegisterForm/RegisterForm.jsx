@@ -4,13 +4,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-// import s from './RegisterForm.module.scss';
+import { RegisterError, RegisterErrorLast } from './RegisterFormStyled';
 
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegisterUserMutation();
   const [loginUser] = useLogInUserMutation();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -28,74 +28,35 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .email
-        // t('validation.email')
-        ()
-        .min(
-          5
-          // t('validation.emailMin')
-        )
-        .max(
-          40
-          // t('validation.emailMax')
-        )
-        .required
-        // t('validation.required')
-        (),
+        .email('Invalid email address')
+        .min(5, 'Email must include more tnan 5 characters')
+        .max(40, 'Email must be less tnan 40 characters')
+        .required('This is a required field'),
       password: Yup.string()
-        .min(
-          6
-          //   t('validation.passwordMin')
-        )
-        .max(
-          40
-          //   t('validation.passwordMax')
-        )
-        .required
-        // t('validation.required')
-        (),
+        .min(6, 'Password must include more tnan 6 characters')
+        .max(40, 'Password must be less tnan 40 characters')
+        .required('This is a required field'),
       confirm_password: Yup.string()
         .oneOf(
-          [Yup.ref('password'), null]
-          //   t('validation.notMatchPasswords')
+          [Yup.ref('password'), null],
+          "Password and confirm password don't match"
         )
         .required('This is a required field'),
       name: Yup.string()
-        .min(
-          2
-          //   t('validation.nameMin')
-        )
-        .max(
-          20
-          //   t('validation.nameMax')
-        )
-        .required
-        // t('validation.required')
-        (),
+        .min(2, 'Name must include more tnan 2 characters')
+        .max(20, 'Name must be less tnan 20 characters')
+        .required('This is a required field'),
       city: Yup.string()
-        .min(
-          2
-          //   t('validation.cityMin')
-        )
-        .max(
-          30
-          //   t('validation.cityMax')
-        )
-        .required
-        // t('validation.required')
-        (),
+        .min(2, 'City must include more tnan 2 characters')
+        .max(30, 'City must be less tnan 30 characters')
+        .required('This is a required field'),
       phone: Yup.string()
         .matches(
-          /^\+380\d{9}/
-          //   t('validation.phone')
+          /^\+380\d{9}/,
+          'Please, enter the phone number in the following way: +380XXXXXXXXX'
         )
-        .length(
-          13
-          //   t('validation.phoneLength')
-        )
-        .required
-        // t('validation.required')
-        (),
+        .length(13, 'Phone must include 13 characters')
+        .required('This is a required field'),
     }),
   });
 
@@ -144,8 +105,8 @@ const RegisterForm = () => {
         city,
         phone,
       }).unwrap();
-        const user = await loginUser({ email, password }).unwrap();
-        dispatch(setCredentials(user));
+      const user = await loginUser({ email, password }).unwrap();
+      dispatch(setCredentials(user));
     } catch (error) {
       alert(error.data.message);
     }
@@ -165,11 +126,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={email}
             />
-            <p
-            //   className={s.error}
-            >
+            <RegisterError>
               {formik.touched.email && emailError && emailError}
-            </p>
+            </RegisterError>
             <input
               //   className={s.input}
               type="password"
@@ -181,11 +140,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={password}
             />
-            <p
-            //   className={s.error}
-            >
+            <RegisterError>
               {formik.touched.password && passwordError && passwordError}
-            </p>
+            </RegisterError>
             <input
               //   className={s.input}
               type="password"
@@ -195,11 +152,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={confirm_password}
             />
-            <p
-            //   className={s['error--last']}
-            >
+            <RegisterErrorLast>
               {formik.touched.confirm_password && confirmError && confirmError}
-            </p>
+            </RegisterErrorLast>
           </>
         )}
         {page === 2 && (
@@ -213,11 +168,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={name}
             />
-            <p
-            //   className={s.error}
-            >
+            <RegisterError>
               {formik.touched.name && nameError && nameError}
-            </p>
+            </RegisterError>
             <input
               //   className={s.input}
               type="text"
@@ -227,11 +180,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={city}
             />
-            <p
-            //   className={s.error}
-            >
+            <RegisterError>
               {formik.touched.city && cityError && cityError}
-            </p>
+            </RegisterError>
             <input
               //   className={s.input}
               type="tel"
@@ -241,11 +192,9 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={phone}
             />
-            <p
-            //   className={s['error--last']}
-            >
+            <RegisterErrorLast>
               {formik.touched.phone && phoneError && phoneError}
-            </p>
+            </RegisterErrorLast>
             <button
               //   className={`${s.button} ${s.accent}`}
               type="submit"

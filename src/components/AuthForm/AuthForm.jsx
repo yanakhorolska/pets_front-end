@@ -1,37 +1,33 @@
 import { Link, useLocation } from 'react-router-dom';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
-// import s from './AuthForm.module.scss';
+import {
+  AuthContainer,
+  AuthTitle,
+  AuthQuestion,
+  AuthLink,
+} from './AuthFormStyled';
 
 const AuthForm = ({ title }) => {
   const { pathname } = useLocation();
 
-
   return (
-    <div
-      // className={s.container}
-    >
-      <h2
-        // className={s.title}
-      >{title}</h2>
+    <AuthContainer>
+      <AuthTitle>{title}</AuthTitle>
       {pathname === '/login' && <LoginForm />}
       {pathname === '/register' && <RegisterForm />}
-      <p
-        // className={s.question}
-      >
-        {pathname === '/register'
-          // ? t('registration.linkDescr')
-          // : t('login.linkDescr')
-        }
-        &nbsp;
-      </p>
-      <Link
-        to={pathname === '/register' ? '/login' : '/register'}
-        // className={s.link}
-      >
-        {/* {pathname === '/register' ? t('registration.link') : t('login.link')} */}
-      </Link>
-    </div>
+      <AuthQuestion>
+          {pathname === '/register'
+            ? 'Already have an account?'
+            : "Don't have an account?"}
+          &nbsp;
+      </AuthQuestion>
+      <AuthLink>
+        <Link to={pathname === '/register' ? '/login' : '/register'}>
+          {pathname === '/register' ? 'Login' : 'Register'}
+        </Link>
+      </AuthLink>
+    </AuthContainer>
   );
 };
 

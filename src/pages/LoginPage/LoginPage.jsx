@@ -7,7 +7,7 @@ const LoginPage = () => {
       // className={s.container}
     >
       <AuthForm
-        // title={t('login.title')}
+        title="Login"
       />
     </div>
   );

@@ -3,8 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-
-// import s from './LoginForm.module.scss';
+import { LoginError, LoginErrorLast, LoginInput, LoginButton } from "./LoginFormStyled"
 
 const LoginForm = () => {
   const [loginUser] = useLogInUserMutation();
@@ -58,8 +57,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onFormSubmit}>
-      <input
-        // className={s.input}
+      <LoginInput
         type="email"
         name="email"
         placeholder="Email"
@@ -67,13 +65,10 @@ const LoginForm = () => {
         onBlur={formik.handleBlur}
         value={email}
       />
-      <p
-      //   className={s.error}
-      >
+      <LoginError>
         {formik.touched.email && emailError && emailError}
-      </p>
-      <input
-        // className={s.input}
+        </LoginError>
+      <LoginInput
         type="password"
         name="password"
         placeholder="Password"
@@ -83,18 +78,13 @@ const LoginForm = () => {
         onBlur={formik.handleBlur}
         value={password}
       />
-      <p
-      //   className={s['error--last']}
-      >
+      <LoginErrorLast>
         {formik.touched.password && passwordError && passwordError}
-      </p>
-      <button
-        //   className={`${s.button} ${s.accent}`}
-        type="submit"
-      >
+      </LoginErrorLast>
+      <LoginButton type="submit">
         Login
-      </button>
-    </form>
+        </LoginButton>
+      </form>
   );
 };
 

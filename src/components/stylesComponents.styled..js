@@ -47,4 +47,4 @@ export const MainHeader = styled('h1')`
   }
 `;
 
-export const SearchField = styled('input')``;
+// export const SearchField = styled('input')``;
