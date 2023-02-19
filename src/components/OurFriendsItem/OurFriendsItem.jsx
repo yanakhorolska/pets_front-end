@@ -10,7 +10,7 @@ import {
     ContactsLink,
   NoInfo
 } from './OurFriendsItemStyled';
-// import { WorkTimePopUp } from "../WorkTimePopUp/WorkTimePopUp"
+import { WorkTimePopUp } from "../WorkTimePopUp/WorkTimePopUp"
 
 export const OurFriendsItem = ({ friendsData }) => {
     const { title, url, addressUrl, imageUrl,
@@ -31,8 +31,8 @@ export const OurFriendsItem = ({ friendsData }) => {
               <ContactsList>
                   <div>
                       <ContactsWrap component="span">Time:</ContactsWrap>
-            {!workDays || workDays.length === 0 ? <NoInfo component="span">No information</NoInfo> : <p>Some info</p>}
-              {/* // <WorkTimePopUp workDays={workDays} />}  */}
+            {!workDays || workDays.length === 0 ? <NoInfo component="span">No information</NoInfo> : 
+              <WorkTimePopUp workDays={workDays} />} 
                   </div>
                   <div>
                       <ContactsWrap component="span">Address:</ContactsWrap>

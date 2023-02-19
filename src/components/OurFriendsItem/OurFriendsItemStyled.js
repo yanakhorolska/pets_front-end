@@ -6,7 +6,7 @@ export const FriendsItem = styled.li`
   width: 80%;
   text-align: center;
   padding: 15px;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.color.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   flex-wrap: wrap;
@@ -28,12 +28,12 @@ export const ItemTitle = styled.a`
   font-size: 12px;
   line-height: 1.33;
   font-weight: 700;
-  color: ${theme.colors.accent};
+  color: ${theme.color.accent};
   &:hover {
-    color: ${theme.colors.hoverBtn};
+    color: ${theme.color.hoverBtn};
   }
   &:focus {
-    color: ${theme.colors.hoverBtn};
+    color: ${theme.color.hoverBtn};
   }
   text-align: center;
   text-decoration: underline;
@@ -97,10 +97,10 @@ export const ContactsWrap = styled.div`
 export const ContactsLink = styled.a`
   color: inherit;
   &:hover {
-    color: ${theme.colors.accent};
+    color: ${theme.color.accent};
   }
   &:focus {
-    color: ${theme.colors.accent};
+    color: ${theme.color.accent};
   }
   text-decoration: underline;
   text-decoration-style: solid;
@@ -108,5 +108,5 @@ export const ContactsLink = styled.a`
 `;
 
 export const NoInfo = styled.span`
-  color: ${theme.colors.greyText};
+  color: ${theme.color.greyText};
 `;
