@@ -20,6 +20,7 @@ export const Link = styled(NavLink)`
     line-height: 0.74;
     letter-spacing: 0.04em;
     color:#111111;
+    cursor: pointer;
     &.active {
     text-decoration-line: underline;
     color: #F59256;
