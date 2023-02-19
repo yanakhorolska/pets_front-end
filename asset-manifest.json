@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/pets_front-end/static/css/main.ccec855e.css",
-    "main.js": "/pets_front-end/static/js/main.90f56d9d.js",
-    "static/js/859.a1bd3e0a.chunk.js": "/pets_front-end/static/js/859.a1bd3e0a.chunk.js",
+    "main.css": "/pets_front-end/static/css/main.7113bd09.css",
+    "main.js": "/pets_front-end/static/js/main.7eaa6638.js",
+    "static/js/859.2a7a7c25.chunk.js": "/pets_front-end/static/js/859.2a7a7c25.chunk.js",
     "static/js/755.efcef12c.chunk.js": "/pets_front-end/static/js/755.efcef12c.chunk.js",
     "static/js/833.842be118.chunk.js": "/pets_front-end/static/js/833.842be118.chunk.js",
     "static/js/369.961133b2.chunk.js": "/pets_front-end/static/js/369.961133b2.chunk.js",
@@ -10,17 +10,10 @@
     "static/js/644.cebbda6e.chunk.js": "/pets_front-end/static/js/644.cebbda6e.chunk.js",
     "static/js/860.47a4b7ae.chunk.js": "/pets_front-end/static/js/860.47a4b7ae.chunk.js",
     "static/js/216.214cda24.chunk.js": "/pets_front-end/static/js/216.214cda24.chunk.js",
-    "static/media/manrope-all-400-normal.woff": "/pets_front-end/static/media/manrope-all-400-normal.29812aea39915b828ff1.woff",
-    "static/media/manrope-latin-400-normal.woff2": "/pets_front-end/static/media/manrope-latin-400-normal.2cfae0fb4662deefa552.woff2",
-    "static/media/manrope-latin-ext-400-normal.woff2": "/pets_front-end/static/media/manrope-latin-ext-400-normal.9408d54f42fd8adee645.woff2",
-    "static/media/manrope-cyrillic-400-normal.woff2": "/pets_front-end/static/media/manrope-cyrillic-400-normal.18b8749c8a2e81c91aa3.woff2",
-    "static/media/manrope-greek-400-normal.woff2": "/pets_front-end/static/media/manrope-greek-400-normal.d9fa2c702d76a9760e1b.woff2",
-    "static/media/manrope-vietnamese-400-normal.woff2": "/pets_front-end/static/media/manrope-vietnamese-400-normal.4bb1be8af765fce74e9b.woff2",
-    "static/media/manrope-cyrillic-ext-400-normal.woff2": "/pets_front-end/static/media/manrope-cyrillic-ext-400-normal.a26a46564e052e1282fa.woff2",
     "index.html": "/pets_front-end/index.html",
-    "main.ccec855e.css.map": "/pets_front-end/static/css/main.ccec855e.css.map",
-    "main.90f56d9d.js.map": "/pets_front-end/static/js/main.90f56d9d.js.map",
-    "859.a1bd3e0a.chunk.js.map": "/pets_front-end/static/js/859.a1bd3e0a.chunk.js.map",
+    "main.7113bd09.css.map": "/pets_front-end/static/css/main.7113bd09.css.map",
+    "main.7eaa6638.js.map": "/pets_front-end/static/js/main.7eaa6638.js.map",
+    "859.2a7a7c25.chunk.js.map": "/pets_front-end/static/js/859.2a7a7c25.chunk.js.map",
     "755.efcef12c.chunk.js.map": "/pets_front-end/static/js/755.efcef12c.chunk.js.map",
     "833.842be118.chunk.js.map": "/pets_front-end/static/js/833.842be118.chunk.js.map",
     "369.961133b2.chunk.js.map": "/pets_front-end/static/js/369.961133b2.chunk.js.map",
@@ -30,7 +23,7 @@
     "216.214cda24.chunk.js.map": "/pets_front-end/static/js/216.214cda24.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ccec855e.css",
-    "static/js/main.90f56d9d.js"
+    "static/css/main.7113bd09.css",
+    "static/js/main.7eaa6638.js"
   ]
 }
