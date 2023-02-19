@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "https://yanakhorolska.github.io/pets_front-end/",
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@fontsource/manrope": "^4.5.13",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.9",
