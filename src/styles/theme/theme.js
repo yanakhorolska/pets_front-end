@@ -1,5 +1,5 @@
 export const theme = {
-    colors: {
+    color: {
         black: "#000",
         white: "#fff",
         background: "#FDF7F2",
@@ -23,7 +23,7 @@ export const theme = {
         inputModal: "rgba(245, 146, 86, 0.5)",
     },
 
-    space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
+    space: [0, 2, 4, 8, 16, 32, 44, 64, 128, 256],
 
     fonts: {
         body: "Manrope', sans-serif",
@@ -67,5 +67,19 @@ export const theme = {
         tabletDesktop: "(min-width: 768px)",
         desktop: "(min-width: 1280px)",
     },
+
+    display: {
+        flex: "flex",
+        box:"box",
+    },
+
+    textAlign: {
+        center:"center"
+    },
+
+    position: {
+        a: "absolute",
+        r:"relative",
+    }
 };
 
