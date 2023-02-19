@@ -105,7 +105,6 @@ const Header = () => {
               </MenuItem>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <ColorMode />
             <Tooltip title="Open settings">
