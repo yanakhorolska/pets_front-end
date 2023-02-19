@@ -1,14 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { showAlertMessage } from '../../utils/showMessages';
-import { loginUser } from '../../redux/auth/authOperations';
-import { getAuthError } from '../../redux/auth/authSelectors';
+import { useLogInUserMutation } from 'redux/authApi';
+import { setCredentials } from 'redux/authSlice';
+
 // import s from './LoginForm.module.scss';
 
 const LoginForm = () => {
-  const error = useSelector(getAuthError);
+  const [loginUser] = useLogInUserMutation();
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -23,42 +22,38 @@ const LoginForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-      .email("Invalid email address")
-      .min(5, "Email must include more tnan 5 characters")
-      .max(40, "Email must be less tnan 40 characters")
-      .required("This is a required field"),
-    password: Yup.string()
-      .min(6, "Password must include more tnan 6 characters")
-      .max(40, "Password must be less tnan 40 characters")
-      .required("This is a required field"),
-  }),
+        .email('Invalid email address')
+        .min(5, 'Email must include more tnan 5 characters')
+        .max(40, 'Email must be less tnan 40 characters')
+        .required('This is a required field'),
+      password: Yup.string()
+        .min(6, 'Password must include more tnan 6 characters')
+        .max(40, 'Password must be less tnan 40 characters')
+        .required('This is a required field'),
+    }),
   });
-
-  useEffect(() => {
-    if (!error) return;
-    showAlertMessage(error);
-  }, [error]);
 
   const { email, password } = formik.values;
   const { email: emailError, password: passwordError } = formik.errors;
 
-  const onFormSubmit = e => {
+  const onFormSubmit = async e => {
     e.preventDefault();
 
     if (email === '' || password === '') {
-      showAlertMessage("Input all required fields");
+      alert('Input all required fields');
       return;
     }
     if (passwordError || emailError) {
-      showAlertMessage("Input all fields in the necessary format");
+      alert('Input all fields in the necessary format');
       return;
     }
-    dispatch(
-      loginUser({
-        email,
-        password,
-      })
-    );
+
+    try {
+      const user = await loginUser({ email, password }).unwrap();
+      dispatch(setCredentials(user));
+    } catch (error) {
+      alert(error.data.message);
+    }
   };
 
   return (
@@ -67,36 +62,37 @@ const LoginForm = () => {
         // className={s.input}
         type="email"
         name="email"
-        // placeholder={`*${t('login.placeholders.email')}`}
+        placeholder="Email"
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={email}
       />
-          <p
-            //   className={s.error}
-          >
+      <p
+      //   className={s.error}
+      >
         {formik.touched.email && emailError && emailError}
       </p>
       <input
         // className={s.input}
         type="password"
         name="password"
-        // placeholder={`*${t('login.placeholders.password')}`}
+        placeholder="Password"
         onChange={event => {
           formik.setFieldValue('password', event.target.value.trim());
         }}
         onBlur={formik.handleBlur}
         value={password}
       />
-          <p
-            //   className={s['error--last']}
-          >
+      <p
+      //   className={s['error--last']}
+      >
         {formik.touched.password && passwordError && passwordError}
       </p>
-          <button
-            //   className={`${s.button} ${s.accent}`}
-              type="submit">
-        {/* {t('login.button')} */}
+      <button
+        //   className={`${s.button} ${s.accent}`}
+        type="submit"
+      >
+        Login
       </button>
     </form>
   );

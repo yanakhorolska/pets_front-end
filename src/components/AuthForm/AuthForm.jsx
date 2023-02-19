@@ -1,21 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAuthError } from '../../redux/auth/authSelectors';
-import { changeError } from '../../redux/auth/authSlice';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 // import s from './AuthForm.module.scss';
 
 const AuthForm = ({ title }) => {
   const { pathname } = useLocation();
-  const error = useSelector(getAuthError);
-  const dispatch = useDispatch();
 
-  const onLinkClick = e => {
-    if (error) {
-      dispatch(changeError());
-    }
-  };
 
   return (
     <div
@@ -38,7 +28,6 @@ const AuthForm = ({ title }) => {
       <Link
         to={pathname === '/register' ? '/login' : '/register'}
         // className={s.link}
-        onClick={onLinkClick}
       >
         {/* {pathname === '/register' ? t('registration.link') : t('login.link')} */}
       </Link>
