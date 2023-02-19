@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://pets-back-end.vercel.app/api';
-// https://care-pets-backend.goit.global
 
 const savedToken = {
   set(token) {
