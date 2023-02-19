@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/216.214cda24.chunk.js","mappings":"+KAIA,EAJ8B,WAC5B,OAAO,kDACR,C","sources":["components/NoticesCategoriesList/NoticesCategoriesList.jsx"],"sourcesContent":["const NoticesCategoriesList = () => {\n  return <div>NoticesCategoriesList</div>;\n};\n\nexport default NoticesCategoriesList;\n"],"names":[],"sourceRoot":""}

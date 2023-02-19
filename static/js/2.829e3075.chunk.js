@@ -1,0 +1,1 @@
+(self.webpackChunkpets_front_end=self.webpackChunkpets_front_end||[]).push([[2],{8227:function(){},2002:function(n,e,t){"use strict";t.r(e),t.d(e,{default:function(){return f.a}});var u=t(8227),f=t.n(u)}}]);

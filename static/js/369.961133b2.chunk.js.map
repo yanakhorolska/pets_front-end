@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/369.961133b2.chunk.js","mappings":"+KAQA,EARoB,WAClB,OACE,+BACE,0CAGL,C","sources":["pages/NoticesPage/NoticesPage.jsx"],"sourcesContent":["const NoticesPage = () => {\n  return (\n    <>\n      <div>NoticesPage</div>\n    </>\n  );\n};\n\nexport default NoticesPage;\n"],"names":[],"sourceRoot":""}
