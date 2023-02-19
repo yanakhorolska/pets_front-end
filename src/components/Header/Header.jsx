@@ -1,41 +1,42 @@
 import * as React from 'react';
 
-import { Logos } from 'components/Logo/logo';
-import { OrangeButton } from 'components/CustomComponents/Buttons/Buttons';
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import { Link as RouterLink } from 'react-router-dom';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import ColorMode from 'components/ColorMode';
+// import { Logos } from 'components/Logo/logo';
+// import { OrangeButton } from 'components/CustomComponents/Buttons/Buttons';
+// import Box from '@mui/material/Box';
+// import AppBar from '@mui/material/AppBar';
+// import { Link as RouterLink } from 'react-router-dom';
+// import Toolbar from '@mui/material/Toolbar';
+// import IconButton from '@mui/material/IconButton';
+// import Typography from '@mui/material/Typography';
+// import Menu from '@mui/material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import ColorMode from 'components/ColorMode';
 
 //import Avatar from '@mui/material/Avatar';
 //import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+// import Tooltip from '@mui/material/Tooltip';
+// import MenuItem from '@mui/material/MenuItem';
 
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+// import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
-import '@fontsource/manrope';
-const pages = ['News', 'Find pet', 'Our friends'];
+// import '@fontsource/manrope';
+// const pages = ['News', 'Find pet', 'Our friends'];
 
 const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const handleOpenNavMenu = event => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = event => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = () => {
+  //   setAnchorElNav(null);
+  // };
 
   return (
     <>
-      <AppBar
+      <p>header</p>
+      {/* <AppBar
         sx={{
           bgcolor: 'transparent',
         }}
@@ -122,7 +123,7 @@ const Header = () => {
             </Tooltip>
           </Box>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
     </>
   );
 };
