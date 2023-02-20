@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { LoginError, LoginErrorLast, LoginInput, LoginButton } from "./LoginFormStyled"
+import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "./LoginFormStyled"
 
 const LoginForm = () => {
   const [loginUser] = useLogInUserMutation();
@@ -22,12 +22,10 @@ const LoginForm = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email('Invalid email address')
-        .min(5, 'Email must include more tnan 5 characters')
-        .max(40, 'Email must be less tnan 40 characters')
         .required('This is a required field'),
       password: Yup.string()
-        .min(6, 'Password must include more tnan 6 characters')
-        .max(40, 'Password must be less tnan 40 characters')
+        .min(7, 'Password must include more tnan 7 characters')
+        .max(32, 'Password must be less tnan 32 characters')
         .required('This is a required field'),
     }),
   });
@@ -57,7 +55,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onFormSubmit}>
-      <LoginInput
+      <AuthInput
         type="email"
         name="email"
         placeholder="Email"
@@ -65,10 +63,10 @@ const LoginForm = () => {
         onBlur={formik.handleBlur}
         value={email}
       />
-      <LoginError>
+      <AuthError>
         {formik.touched.email && emailError && emailError}
-        </LoginError>
-      <LoginInput
+        </AuthError>
+      <AuthInput
         type="password"
         name="password"
         placeholder="Password"
@@ -78,12 +76,12 @@ const LoginForm = () => {
         onBlur={formik.handleBlur}
         value={password}
       />
-      <LoginErrorLast>
+      <AuthErrorLast>
         {formik.touched.password && passwordError && passwordError}
-      </LoginErrorLast>
-      <LoginButton type="submit">
+      </AuthErrorLast>
+      <AuthButton type="submit" page={1} last={true}>
         Login
-        </LoginButton>
+        </AuthButton>
       </form>
   );
 };

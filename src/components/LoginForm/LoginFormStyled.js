@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginError = styled.p`
+export const AuthError = styled.p`
   height: 20px;
   text-align: left;
   font-size: 10px;
@@ -10,7 +10,7 @@ export const LoginError = styled.p`
   padding: 5px 15px;
 `;
 
-export const LoginErrorLast = styled.p`
+export const AuthErrorLast = styled.p`
   height: 20px;
   text-align: left;
   font-size: 10px;
@@ -21,7 +21,7 @@ export const LoginErrorLast = styled.p`
   margin-bottom: 20px;
 `;
 
-export const LoginInput = styled.input`
+export const AuthInput = styled.input`
   width: 100%;
   font-size: 14px;
   line-height: 1.36;
@@ -39,7 +39,7 @@ export const LoginInput = styled.input`
   }
 `;
 
-export const LoginButton = styled.button`
+export const AuthButton = styled.button`
   display: block;
   width: 100%;
   font-family: 'Manrope Medium';
@@ -47,13 +47,14 @@ export const LoginButton = styled.button`
   line-height: 1.35;
   letter-spacing: 0.04em;
 
-  border: 2px solid #f59256;
   border-radius: 40px;
   cursor: pointer;
 
   padding-top: 6px;
   padding-bottom: 5px;
-  margin-bottom: 40px;
-  background-color: #f59256;
-  color: #fff;
+
+  background-color: ${props => (props.page === 1 ? '#f59256' : '#fff')};
+  color: ${props => (props.page === 1 ? '#fff' : '#000')};
+  border: ${props => (props.page === 1 ? 'none' : '2px solid #f59256')};
+  margin-bottom: ${props => (props.last ? '40px' : '16px')};
 `;

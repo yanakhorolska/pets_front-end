@@ -4,8 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { RegisterError, RegisterErrorLast } from './RegisterFormStyled';
-
+import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../LoginForm/LoginFormStyled"
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegisterUserMutation();
@@ -29,12 +28,10 @@ const RegisterForm = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email('Invalid email address')
-        .min(5, 'Email must include more tnan 5 characters')
-        .max(40, 'Email must be less tnan 40 characters')
         .required('This is a required field'),
       password: Yup.string()
-        .min(6, 'Password must include more tnan 6 characters')
-        .max(40, 'Password must be less tnan 40 characters')
+        .min(7, 'Password must include more tnan 7 characters')
+        .max(32, 'Password must be less tnan 32 characters')
         .required('This is a required field'),
       confirm_password: Yup.string()
         .oneOf(
@@ -43,12 +40,16 @@ const RegisterForm = () => {
         )
         .required('This is a required field'),
       name: Yup.string()
-        .min(2, 'Name must include more tnan 2 characters')
-        .max(20, 'Name must be less tnan 20 characters')
+        .matches(
+          /[A-Za-z]+/,
+          'Please, enter only latin letters'
+        )
         .required('This is a required field'),
       city: Yup.string()
-        .min(2, 'City must include more tnan 2 characters')
-        .max(30, 'City must be less tnan 30 characters')
+        .matches(
+          /[A-Za-z]+, [A-Za-z]+/,
+          'Please, enter the data in format "region, city"'
+        )
         .required('This is a required field'),
       phone: Yup.string()
         .matches(
@@ -117,8 +118,7 @@ const RegisterForm = () => {
       <form onSubmit={onFormSubmit}>
         {page === 1 && (
           <>
-            <input
-              //   className={s.input}
+            <AuthInput
               type="email"
               name="email"
               placeholder="Email"
@@ -126,11 +126,10 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={email}
             />
-            <RegisterError>
+            <AuthError>
               {formik.touched.email && emailError && emailError}
-            </RegisterError>
-            <input
-              //   className={s.input}
+            </AuthError>
+            <AuthInput
               type="password"
               name="password"
               placeholder="Password"
@@ -140,11 +139,10 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={password}
             />
-            <RegisterError>
+            <AuthError>
               {formik.touched.password && passwordError && passwordError}
-            </RegisterError>
-            <input
-              //   className={s.input}
+            </AuthError>
+            <AuthInput
               type="password"
               name="confirm_password"
               placeholder="Confirm Password"
@@ -152,15 +150,14 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={confirm_password}
             />
-            <RegisterErrorLast>
+            <AuthErrorLast>
               {formik.touched.confirm_password && confirmError && confirmError}
-            </RegisterErrorLast>
+            </AuthErrorLast>
           </>
         )}
         {page === 2 && (
           <>
-            <input
-              //   className={s.input}
+            <AuthInput
               type="text"
               name="name"
               placeholder="Name"
@@ -168,11 +165,10 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={name}
             />
-            <RegisterError>
+            <AuthError>
               {formik.touched.name && nameError && nameError}
-            </RegisterError>
-            <input
-              //   className={s.input}
+            </AuthError>
+            <AuthInput
               type="text"
               name="city"
               placeholder="City"
@@ -180,11 +176,10 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={city}
             />
-            <RegisterError>
+            <AuthError>
               {formik.touched.city && cityError && cityError}
-            </RegisterError>
-            <input
-              //   className={s.input}
+            </AuthError>
+            <AuthInput
               type="tel"
               name="phone"
               placeholder="Mobile phone"
@@ -192,24 +187,22 @@ const RegisterForm = () => {
               onBlur={formik.handleBlur}
               value={phone}
             />
-            <RegisterErrorLast>
+            <AuthErrorLast>
               {formik.touched.phone && phoneError && phoneError}
-            </RegisterErrorLast>
-            <button
-              //   className={`${s.button} ${s.accent}`}
+            </AuthErrorLast>
+            <AuthButton page = {1} last={false}
               type="submit"
             >
               Register
-            </button>
+            </AuthButton>
           </>
         )}
-        <button
-          //   className={`${s['button--last']} ${page === 1 && s.accent}`}
+        <AuthButton page={page} last={true}
           type="button"
           onClick={onPageChange}
         >
           {page === 1 ? 'Next' : 'Back'}
-        </button>
+        </AuthButton>
       </form>
     </>
   );
