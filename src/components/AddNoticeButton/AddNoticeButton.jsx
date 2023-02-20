@@ -1,49 +1,39 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
-// тут мав би бути імпорт глобальної  модалки (ModalAddsPet). Хто її робить?
-
-// тут треба прописати імпорт хука ЮзМодал.(наприклад, import { useModal } from 'hooks';) Хто її пише?
-
-// export const getIsLogged = state => state.auth.isLogged;
+import ModalWindow from 'components/ModalWindow';
+import { useAuth } from 'hooks/useAuth';
+import React, { useCallback, useState } from 'react';
+import { AddNoticeStyled } from './AddNoticeButton.styled';
 
 const AddNoticeButton = () => {
-  const isLogged = useSelector(state => state.auth.isLogged);
-  const navigate = useNavigate();
+  const isLoggedIn = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // logic of opening and closing modal window
-
-  //   const { isModalOpen, closeModal, toggleModal } = useModal();
-
-  const buttonSwitch = () => {
-    if (isLogged) {
-      //   toggleModal(); логіка перемикання модалки
-      return;
-    } else {
-      navigate('/login');
-      alert('Please login first');
-      return;
-    }
-  };
-
-  // --- example how modal window will be render --- //
-
-  //   {
-  //     isModalOpen && (
-  //       <ModalGlobalEl onCloseModal={closeModal}>
-  //         {<ModalAddNotice onCloseModal={closeModal} />}
-  //       </ModalGlobalEl>
-  //     );
-  //   }
+  const toggleModal = useCallback(() => {
+    setIsModalOpen(prevState => {
+      setIsModalOpen(!prevState);
+    });
+  }, []);
 
   return (
     <>
-      <div>
-        <button type="button" onClick={buttonSwitch}>
+      {isLoggedIn && (
+        <AddNoticeStyled
+          type="button"
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
           Add pet
-        </button>
-      </div>
+        </AddNoticeStyled>
+      )}
+      {isModalOpen && (
+        <ModalWindow onClose={toggleModal}>
+          <div
+            style={{ width: '100px', height: '50px', backgroundColor: 'white' }}
+          >
+            MODAL WINDOW TEST
+          </div>
+        </ModalWindow>
+      )}
     </>
   );
 };
