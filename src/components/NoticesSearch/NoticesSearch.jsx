@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import SearchInput from 'styles/Inputs/SearchInput/SearchInput';
 
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
@@ -28,16 +29,18 @@ const NoticesSearch = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
+        <SearchInput
           name="findpet"
           type="text"
           value={query}
           placeholder="Search"
           onChange={handleInput}
         />
-        <button type="submit"></button>
+        <button type="submit">Search</button>
         {query !== '' && (
-          <button type="submit" onClick={handleResetQuery}></button>
+          <button type="submit" onClick={handleResetQuery}>
+            Clear query
+          </button>
         )}
       </form>
     </>
