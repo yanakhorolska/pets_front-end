@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../../styles/theme/theme';
 
 export const AuthError = styled.p`
   height: 20px;
