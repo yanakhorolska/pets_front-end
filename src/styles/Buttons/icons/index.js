@@ -8,6 +8,7 @@ import { ReactComponent as Edit } from './edit.svg';
 import { ReactComponent as Close } from './close.svg';
 import { ReactComponent as CheckMark } from './checkMark.svg';
 import { ReactComponent as Search } from './search.svg';
+import { ReactComponent as Add } from './add.svg';
 
 const Icon = {
   Heart,
@@ -20,6 +21,7 @@ const Icon = {
   Close,
   CheckMark,
   Search,
+  Add,
 };
 
 export default Icon;

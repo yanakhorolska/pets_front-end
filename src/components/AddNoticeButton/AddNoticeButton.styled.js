@@ -15,4 +15,12 @@ const AddNoticeStyled = styled.button`
   transition: transform 250ms ease-out;
 `;
 
-export { AddNoticeStyled };
+const AddButtonTitle = styled.span``;
+
+const AddButtonWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
+export { AddNoticeStyled, AddButtonTitle, AddButtonWrapper };
