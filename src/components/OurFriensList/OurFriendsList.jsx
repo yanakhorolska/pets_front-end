@@ -3,12 +3,13 @@ import { useGetFriendsQuery } from "../../redux/ourFriendsApi"
 import {OurFriendsItem} from "../OurFriendsItem/OurFriendsItem"
 export const OurFriendsList = () => {
 
-    const {  data, isError, isLoading } = useGetFriendsQuery();
-  
+    const { data , isError, isLoading } = useGetFriendsQuery();
+    console.log(data)
     return (
 
         <>
-            {isLoading ? <div> Loading ... </div> : null}  
+            {isLoading ? <div> Loading ... </div> : null} 
+            {isError ? <div>An error occured</div> : null}
             {!isLoading && !isError && data.length > 0 ?
                 <FriendsList>
                     {data.map((friendsData) =>

@@ -4,8 +4,7 @@
   "private": true,
   "homepage": "https://yanakhorolska.github.io/pets_front-end/",
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
+    "@emotion/react": "^11.10.5",
     "@fontsource/manrope": "^4.5.13",
     "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.9",
@@ -15,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.3",
     "modern-normalize": "^1.1.0",
+    "num-words": "^1.2.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-hook-form": "^7.43.1",
