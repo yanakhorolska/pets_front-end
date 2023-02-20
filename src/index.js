@@ -8,7 +8,8 @@ import { store, persistor } from './redux/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
-import { theme } from './styles/theme/theme';
+import { getMode } from './styles/theme/theme';
+import { mode } from './components/ToggleButton/ToggleButton';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/pets_front-end">
           <Provider store={store}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={getMode(mode)}>
               <App />
             </ThemeProvider>
           </Provider>
