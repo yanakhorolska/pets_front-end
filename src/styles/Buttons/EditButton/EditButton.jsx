@@ -1,11 +1,10 @@
-import { EditBtn, EditIcon } from "./EditButton.styled";
-import "./EditButton.css";
+import { EditBtn } from './EditButton.styled';
+import Icon from '../icons/index';
 
-export const EditButton = ({onClick }) => {
+export const EditButton = ({ onClick }) => {
   return (
     <EditBtn onClick={onClick}>
-      <EditIcon />
+      <Icon.Edit />
     </EditBtn>
   );
 };
-
