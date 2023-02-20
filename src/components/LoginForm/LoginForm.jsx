@@ -79,7 +79,7 @@ const LoginForm = () => {
       <AuthErrorLast>
         {formik.touched.password && passwordError && passwordError}
       </AuthErrorLast>
-      <AuthButton type="submit" page={1} last={true}>
+      <AuthButton type="submit" accent={true} last={true}>
         Login
         </AuthButton>
       </form>

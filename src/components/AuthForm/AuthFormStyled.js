@@ -11,7 +11,7 @@ export const AuthContainer = styled.div`
   @media (min-width: 768px) {
     width: 608px;
     top: 114px;
-    background-color: #fff;
+    background-color: ${p => p.theme.color.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     padding: 60px 80px;
@@ -29,7 +29,7 @@ export const AuthTitle = styled.h2`
   line-height: 1.38;
 
   letter-spacing: 0.04em;
-  color: #111111;
+  color: ${p => p.theme.color.text};
   margin-bottom: 40px;
 
   @media (min-width: 768px) {
@@ -45,7 +45,7 @@ export const AuthQuestion = styled.p`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
-  color: rgba(17, 17, 17, 0.6);
+  color: ${p => p.theme.color.greyTransp};
 `;
 
 export const AuthLink = styled('Link')`
@@ -54,5 +54,5 @@ export const AuthLink = styled('Link')`
   line-height: 1.33;
   letter-spacing: 0.04em;
   text-decoration-line: underline;
-  color: #3091eb;
+  color: ${p => p.theme.color.textRegister};
 `;

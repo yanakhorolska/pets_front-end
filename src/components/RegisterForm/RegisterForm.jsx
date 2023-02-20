@@ -41,8 +41,8 @@ const RegisterForm = () => {
         .required('This is a required field'),
       name: Yup.string()
         .matches(
-          /[A-Za-z]+/,
-          'Please, enter only latin letters'
+          /[A-Za-zА-Яа-я]+/,
+          'Please, enter only letters'
         )
         .required('This is a required field'),
       city: Yup.string()
@@ -190,14 +190,14 @@ const RegisterForm = () => {
             <AuthErrorLast>
               {formik.touched.phone && phoneError && phoneError}
             </AuthErrorLast>
-            <AuthButton page = {1} last={false}
+            <AuthButton accent = {true} last={false}
               type="submit"
             >
               Register
             </AuthButton>
           </>
         )}
-        <AuthButton page={page} last={true}
+        <AuthButton accent={page === 1 ? true : false} last={true}
           type="button"
           onClick={onPageChange}
         >
