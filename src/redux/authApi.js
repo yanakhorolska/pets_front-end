@@ -28,7 +28,8 @@ export const authApi = createApi({
       }),
     }),
     getUser: builder.query({
-      query: query => `/users/current${query}`,
+      query: (token) => `/users/current`,
+      transformResponse: response => response.data
     }),
   }),
 });
