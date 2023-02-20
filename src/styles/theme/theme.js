@@ -4,21 +4,17 @@ export const theme = {
     white: '#fff',
     background: '#FDF7F2',
     accent: '#F59256',
-
     logo: '#111111',
-
     text: '#111111',
+    textLight: '#111321',
     primaryText: '#111111',
     navBarText: '#181C27',
     searchText: '#535353',
     textRegister: '#3091EB',
     primaryBtnText: '#111111',
     secondatyBtnText: '#FFFFFF',
-
     hoverBtn: '#FF6101',
-
     shadowCard: 'rgba(49, 21, 4, 0.07)',
-
     greyTransp: 'rgba(17, 17, 17, 0.6)',
     inputModal: 'rgba(245, 146, 86, 0.5)',
   },
@@ -46,6 +42,14 @@ export const theme = {
     },
     m: {
       auto: '0 auto',
+      xxs: '12px',
+      xs: '16px',
+      s: '28px',
+      m: '32px',
+      l: '40px',
+      xl: '42px',
+      xxl: '60px',
+      xxxl: '90px',
     },
   },
 
@@ -88,6 +92,12 @@ export const theme = {
       round: '50%',
     },
   },
+  backgroundSize: {
+    cover: 'cover',
+  },
+  backgroundRepeat: {
+    no: 'no-repeat',
+  },
   sizes: {
     width: {
       max: '100%',
@@ -102,6 +112,7 @@ export const theme = {
     height: {
       max: '100%',
       auto: 'auto',
+      maxScreen: '100vh',
     },
     top: {
       zero: '0',
