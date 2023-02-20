@@ -1,4 +1,4 @@
-import { SearchInputStyled, Box } from './SearchInput.styled';
+import { SearchInputStyled, Box, Button } from './SearchInput.styled';
 import Icon from '../../Buttons/icons/index';
 
 const SearchInput = ({ name, type, value, placeholder, onChange }) => {
@@ -11,7 +11,9 @@ const SearchInput = ({ name, type, value, placeholder, onChange }) => {
         placeholder={placeholder}
         onChange={onChange}
       />
-      <Icon.Search style={{ position: 'absolute', top: 8, right: 15 }} />
+      <Button type="submit">
+        <Icon.Search style={{ position: 'absolute', top: 10, right: 20 }} />
+      </Button>
     </Box>
   );
 };
