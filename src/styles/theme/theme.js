@@ -2,11 +2,11 @@ export const getMode = mode => {
   const theme = {
     color: {
       mode,
-      ...(mode === 'light'
+      ...(mode === 'dark'
         ? {
             black: '#000',
             white: '#fff',
-            background: '#FDF7F2',
+            background: '#111111',
             accent: '#F59256',
             logo: '#111111',
             text: '#111111',
@@ -25,7 +25,7 @@ export const getMode = mode => {
         : {
             black: '#000',
             white: '#fff',
-            background: '#111111',
+            background: '#FDF7F2',
             accent: '#F59256',
             logo: '#111111',
             text: '#111111',
