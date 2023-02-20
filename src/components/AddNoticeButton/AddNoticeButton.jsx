@@ -1,20 +1,39 @@
-import React from 'react';
-// import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-
-// import { useModal } from 'hooks';
-// import Modal from 'components/Modal';
-
-// import { ModalAddUserNotice } from 'components/ModalAddUserNotice';
+import ModalWindow from 'components/ModalWindow';
+import { useAuth } from 'hooks/useAuth';
+import React, { useCallback, useState } from 'react';
+import { AddNoticeStyled } from './AddNoticeButton.styled';
 
 const AddNoticeButton = () => {
-  //   const isLogged = useSelector(state => state.users.isLogged);
+  const isLoggedIn = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = useCallback(() => {
+    setIsModalOpen(prevState => {
+      setIsModalOpen(!prevState);
+    });
+  }, []);
 
   return (
     <>
-      <div>
-        <button type="button">Add pet</button>
-      </div>
+      {isLoggedIn && (
+        <AddNoticeStyled
+          type="button"
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          Add pet
+        </AddNoticeStyled>
+      )}
+      {isModalOpen && (
+        <ModalWindow onClose={toggleModal}>
+          <div
+            style={{ width: '100px', height: '50px', backgroundColor: 'white' }}
+          >
+            MODAL WINDOW TEST
+          </div>
+        </ModalWindow>
+      )}
     </>
   );
 };
