@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { theme } from '../../styles/theme/theme';
 
 export const FriendsItem = styled.li`
   min-height: 200px;
   width: 80%;
   text-align: center;
   padding: 15px;
-  background-color: ${theme.color.white};
+  background-color: ${p => p.theme.color.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   flex-wrap: wrap;
@@ -28,12 +27,12 @@ export const ItemTitle = styled.a`
   font-size: 12px;
   line-height: 1.33;
   font-weight: 700;
-  color: ${theme.color.accent};
+  color: ${p => p.theme.color.accent};
   &:hover {
-    color: ${theme.color.hoverBtn};
+    color: ${p => p.theme.color.hoverBtn};
   }
   &:focus {
-    color: ${theme.color.hoverBtn};
+    color: ${p => p.theme.color.hoverBtn};
   }
   text-align: center;
   text-decoration: underline;
@@ -97,10 +96,10 @@ export const ContactsWrap = styled.div`
 export const ContactsLink = styled.a`
   color: inherit;
   &:hover {
-    color: ${theme.color.accent};
+    color: ${p => p.theme.color.accent};
   }
   &:focus {
-    color: ${theme.color.accent};
+    color: ${p => p.theme.color.accent};
   }
   text-decoration: underline;
   text-decoration-style: solid;
@@ -108,5 +107,5 @@ export const ContactsLink = styled.a`
 `;
 
 export const NoInfo = styled.span`
-  color: ${theme.color.greyText};
+  color: ${p => p.theme.color.greyText};
 `;
