@@ -6,6 +6,7 @@ import Nav from '../Nav/Nav';
 import UserNav from '../UserNav/UserNav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import { useAuth } from 'hooks/useAuth';
+import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 const Header = () => {
   const { isLoggedIn } = useAuth();
   return (
@@ -13,6 +14,7 @@ const Header = () => {
       <HeadNav>
         <Logotype />
         <Nav />
+        <ToggleButton />
       </HeadNav>
       {isLoggedIn ? <UserNav /> : <AuthNav />}
     </Head>
