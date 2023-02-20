@@ -3,7 +3,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
 
 const ToggleButton = () => {
-  const currentTheme = localStorage.getItem('data-theme');
   const setDarkMode = () => {
     localStorage.setItem('data-theme', 'dark');
   };
@@ -11,10 +10,12 @@ const ToggleButton = () => {
   const setLightMode = () => {
     localStorage.setItem('data-theme', 'light');
   };
+
+  const currentTheme = localStorage.getItem('data-theme');
   const onClick = () => {
-    if (currentTheme === 'light') {
+    if (currentTheme === 'light' || !currentTheme) {
       setDarkMode();
-    } else if (currentTheme === 'dark') {
+    } else if (currentTheme === 'dark' || !currentTheme) {
       setLightMode();
     }
     window.location.reload();
