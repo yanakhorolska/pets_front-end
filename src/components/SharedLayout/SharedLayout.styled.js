@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Layout = styled('div')`
-  background-color: #fdf7f2;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100vh;
+  background-color: ${p => p.theme.color.background};
+  background-size: ${p => p.theme.backgroundSize.cover};
+  background-repeat: ${p => p.theme.backgroundRepeat.no};
+  min-height: ${p => p.theme.sizes.height.maxScreen};
 `;

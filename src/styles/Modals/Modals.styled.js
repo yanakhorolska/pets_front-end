@@ -1,46 +1,47 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Backdrop = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(17, 17, 17, 0.6);
-    opacity: 1;
-    transition: opacity 250ms cubic - bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
+  position: ${p => p.theme.position.f};
+  top: ${p => p.theme.sizes.top.zero};
+  left: ${p => p.theme.sizes.left.zero};
+  width: ${p => p.theme.sizes.width.max};
+  height: ${p => p.theme.sizes.height.max};
+  background: ${p => p.theme.color.greyTransp};
+  opacity: ${p => p.theme.opacity.one};
+  transition: ${p => p.theme.transition.backdrop};
+  backdrop-filter: ${p => p.theme.backdropFilter.blur};
 `;
 
 export const Modal = styled.div`
-    padding: 40px 20px;
-    background-color: white;
-    border-radius: 20px;
-    width: 280px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    height: auto;
-    @media (min-width: 768px) {
-        width: 608px;
-        padding: 40px 80px;
-    }
+  padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
+  background-color: ${p => p.theme.color.white};
+  border-radius: ${p => p.theme.radii.borderRadius.inputModal};
+  width: ${p => p.theme.sizes.width.modalS};
+  position: ${p => p.theme.position.a};
+  top: ${p => p.theme.sizes.top.half};
+  left: ${p => p.theme.sizes.left.half};
+  transform: ${p => p.theme.transform.modal};
+  transition: ${p => p.theme.transition.modal};
+  height: ${p => p.theme.sizes.height.auto};
+  @media (min-width: 768px) {
+    width: ${p => p.theme.sizes.width.modalM};
+    padding: 40px 80px;
+  }
 `;
 export const ModalLearnMore = styled.div`
-    padding: 60px 20px 40px;
-    background-color: white;
-    border-radius: 20px;
-    width: 280px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    height: auto;
-    @media (min-width: 768px) {
-        width: 704px;
-        padding: 32px 20px;
-    }
+  padding: 60px 20px 40px;
+  background-color: ${p => p.theme.color.white};
+  border-radius: ${p => p.theme.radii.borderRadius.inputModal};
+  width: ${p => p.theme.sizes.width.modalS};
+  position: ${p => p.theme.position.a};
+  top: ${p => p.theme.sizes.top.half};
+  left: ${p => p.theme.sizes.left.half};
+  transform: ${p => p.theme.transform.modal};
+  transition: ${p => p.theme.transition.modal};
+  height: auto;
+  @media (min-width: 768px) {
+    width: ${p => p.theme.sizes.width.modalM2};
+    padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.s} 2
+      ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
+  }
 `;
