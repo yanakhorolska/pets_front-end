@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../styles/theme/theme';
 
 export const AuthError = styled.p`
   height: 20px;
@@ -53,8 +54,11 @@ export const AuthButton = styled.button`
   padding-top: 10px;
   padding-bottom: 10px;
 
-  background-color: ${props => (props.accent ? '#f59256' : '#fff')};
-  color: ${props => (props.accent ? '#fff' : '#000')};
-  border: ${props => (props.accent ? 'none' : '2px solid #f59256')};
+  background-color: ${props =>
+    props.accent ? props.theme.color.accent : props.theme.color.white};
+  color: ${props =>
+    props.accent ? props.theme.color.white : props.theme.color.black};
+  border: ${props =>
+    props.accent ? 'none' : `2px solid ${props.theme.color.accent}`};
   margin-bottom: ${props => (props.last ? '40px' : '16px')};
 `;
