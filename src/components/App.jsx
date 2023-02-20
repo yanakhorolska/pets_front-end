@@ -33,11 +33,6 @@ export const App = () => {
   //   dispatch(setCurrentUser(data));
   // }, [data, dispatch]);
 
-  const currentTheme = localStorage.getItem('data-theme');
-  if (!currentTheme) {
-    localStorage.setItem('data-theme', 'light');
-  }
-
   return (
     <>
       <Suspense>
