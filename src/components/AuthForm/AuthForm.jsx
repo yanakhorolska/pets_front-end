@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 import {
@@ -22,10 +22,10 @@ const AuthForm = ({ title }) => {
             : "Don't have an account?"}
           &nbsp;
       </AuthQuestion>
-      <AuthLink>
-        <Link to={pathname === '/register' ? '/login' : '/register'}>
+      <AuthLink to={pathname === '/register' ? '/login' : '/register'}>
+        {/* <Link to={pathname === '/register' ? '/login' : '/register'}> */}
           {pathname === '/register' ? 'Login' : 'Register'}
-        </Link>
+        {/* </Link> */}
       </AuthLink>
     </AuthContainer>
   );
