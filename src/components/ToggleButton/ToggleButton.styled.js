@@ -1,20 +1,15 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  width: 50px;
-  height: 50px;
-  background: none;
-  border: none;
-  padding: 0;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  width: ${p => p.theme.sizes.width.icon};
+  height: ${p => p.theme.sizes.height.icon};
+  background: ${p => p.theme.color.none};
+  border: ${p => p.theme.borders.none};
+  padding: ${p => p.theme.space.p.zero};
+  border-radius: ${p => p.theme.radii.borderRadius.half};
   cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  outline-offset: 5px;
   & > svg {
     inline-size: 100%;
     block-size: 100%;
-    stroke-linecap: round;
   }
 `;
