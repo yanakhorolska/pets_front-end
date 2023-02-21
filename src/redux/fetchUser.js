@@ -36,10 +36,11 @@ export const userApi = createApi({
       transformResponse: response => response.data
     }),
     logOut: builder.mutation({
-      query: () => ({
+      query: (token) => ({
         url: '/auth/logout',
-        method: 'GET',
+        method: 'POST',
       }),
+      invalidatesTags: ['User'],
     }),
     forgotPassword: builder.mutation({
       query: ({ email }) => ({
