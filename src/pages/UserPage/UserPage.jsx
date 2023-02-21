@@ -10,12 +10,12 @@ import LogoutButton from "components/LogoutButton/LogoutButton"
 
 const UserPage = () => {
   const token = useSelector(getToken);
-
+ console.log(token)
   const dispatch = useDispatch();
   const { data, isLoading } = useGetUserQuery(token);
 
-  const user = { data };
-  console.log("data", data)
+  const user = { ...data, token };
+  console.log("data from back", user)
 
   useEffect(() => {
     if (!isLoading) {
@@ -23,7 +23,7 @@ const UserPage = () => {
     }
   });
   const currentUser = useSelector(getUser);
-  console.log('CurrentUser', currentUser);
+  console.log('CurrentUser from userState', currentUser);
 
     return (
     <div>

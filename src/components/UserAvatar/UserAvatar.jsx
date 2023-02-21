@@ -1,45 +1,45 @@
-import React from 'react'
-import { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getUserAvatarUrl} from 'redux/selectors';
+import { useUpdateUserAvatarMutation } from '../../redux/fetchUser';
 // import { useDispatch } from 'react-redux';
-// import { useGetCurrentUserQuery } from "../../redux/fetchUser.js"
-// import { setUser } from 'redux/user/userSlice';
+// import { setAvatarUrl } from '../../redux/authSlice';
 
 const UserAvatar = () => {
-  // const { data } = useGetCurrentUserQuery();
-  // // const [currentUser] = useGetCurrentUserQuery();
-  const [avatar, setAvatar] = useState(null)
+  const avatarUrl = useSelector(getUserAvatarUrl);
+  console.log(avatarUrl)
   // const dispatch = useDispatch();
+  const [updateAvatar] = useUpdateUserAvatarMutation();
 
-//  console.log(data)
+  
 
   function handleAvatarChange(event) {
-    // const user = currentUser().unwrap();
-    // console.log(user)
-
-// dispatch(setUser(user))
-    setAvatar(URL.createObjectURL(event.target.files[0]));
+    const file = event.target.files[0];
+const newAvatarUrl = updateAvatar(file).unwrap()
+  console.log("NEW", newAvatarUrl)
+   
+  
+      
+    
+  
+    
   }
 
   return (
     <div>
-      {avatar ? (
-        <img src={avatar} alt="User Avatar" />
-      ) : (
-        <div>
-          <label htmlFor="avatar-upload">Upload Avatar</label>
-          <input
-            id="avatar-upload"
-            type="file"
-            accept="image/*"
-            onChange={handleAvatarChange}
-          />
-        </div>
-      )}
+      <img src={avatarUrl} alt="Заглушка" />
+
+      <div>
+        <label htmlFor="avatar-upload">Upload Avatar</label>
+        <input
+          id="avatar-upload"
+          type="file"
+          accept="image/*"
+          onChange={handleAvatarChange}
+        />
+      </div>
     </div>
   );
-}
+};
 
-  
-
-export default UserAvatar
-
+export default UserAvatar;
