@@ -11,6 +11,7 @@ import { ReactComponent as Search } from './search.svg';
 import { ReactComponent as Add } from './add.svg';
 import { ReactComponent as Sun } from './sun.svg';
 import { ReactComponent as Moon } from './moon.svg';
+import { ReactComponent as FatClose } from './fatclose.svg';
 
 const Icon = {
   Heart,
@@ -26,6 +27,7 @@ const Icon = {
   Add,
   Sun,
   Moon,
+  FatClose,
 };
 
 export default Icon;
