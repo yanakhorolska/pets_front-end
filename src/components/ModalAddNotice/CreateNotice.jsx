@@ -1,8 +1,9 @@
 import { ModalCreateNotice } from './CreateNotice.styled';
 // import * as Yup from 'yup';
 import { useFormik } from 'formik';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+// import { useAddNoticeMutation } from 'redux/fetchNotice';
 
 // const addNoticeSchema = Yup.object()
 //   .shape({
@@ -18,10 +19,12 @@ import { useState } from 'react';
 //   .required();
 
 const CreateNotice = ({ onClose }) => {
-  // const location = useLocation();
-  // console.log(location);
+  const location = useLocation();
+  const isSell = location.pathname.includes('sell');
 
   const [pageNumber, setPageNumber] = useState(1);
+
+  // const [addNotice, { isLoading }] = useAddNoticeMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -36,8 +39,9 @@ const CreateNotice = ({ onClose }) => {
       comment: '',
     },
     //validationSchema: addNoticeSchema,
-    onSubmit: values => {
-      console.log(JSON.stringify(values, null, 2));
+    onSubmit: async values => {
+      console.log(values);
+      //await addNotice(values);
     },
   });
 
@@ -119,15 +123,17 @@ const CreateNotice = ({ onClose }) => {
               onChange={formik.handleChange}
             ></input>
           </label>
-          <label>
-            Price:
-            <input
-              type="number"
-              name="price"
-              placeholder="Type price"
-              onChange={formik.handleChange}
-            ></input>
-          </label>
+          {isSell && (
+            <label>
+              Price:
+              <input
+                type="number"
+                name="price"
+                placeholder="Type price"
+                onChange={formik.handleChange}
+              ></input>
+            </label>
+          )}
           <label>
             Load the pet's image:
             <input
