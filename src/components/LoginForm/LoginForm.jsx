@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "./LoginFormStyled"
+import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "./LoginForm.styled"
 
 const LoginForm = () => {
   const [loginUser] = useLogInUserMutation();

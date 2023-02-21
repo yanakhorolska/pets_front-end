@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../LoginForm/LoginFormStyled"
+import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../LoginForm/LoginForm.styled"
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegisterUserMutation();

@@ -23,9 +23,7 @@ const AuthForm = ({ title }) => {
           &nbsp;
       </AuthQuestion>
       <AuthLink to={pathname === '/register' ? '/login' : '/register'}>
-        {/* <Link to={pathname === '/register' ? '/login' : '/register'}> */}
           {pathname === '/register' ? 'Login' : 'Register'}
-        {/* </Link> */}
       </AuthLink>
     </AuthContainer>
   );

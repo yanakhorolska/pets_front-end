@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const AuthContainer = styled.div`
   width: 280px;
@@ -48,11 +49,11 @@ export const AuthQuestion = styled.p`
   color: ${p => p.theme.color.greyTransp};
 `;
 
-export const AuthLink = styled('Link)`
+export const AuthLink = styled(Link)`
   display: inline-block;
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.04em;
   text-decoration-line: underline;
-  color: ${p => p.theme.color.greyTransp};
+  color: ${p => p.theme.color.textRegister};
 `;
