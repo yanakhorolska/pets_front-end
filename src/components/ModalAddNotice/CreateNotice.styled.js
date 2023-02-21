@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ModalCreateNotice = styled.div`
-  padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
+  padding: 20px 20px 40px 20px;
   background-color: ${p => p.theme.color.white};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   width: ${p => p.theme.sizes.width.modalS};
@@ -11,8 +11,12 @@ const ModalCreateNotice = styled.div`
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
   height: ${p => p.theme.sizes.height.auto};
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.sizes.width.modalM};
+    padding: 40px 80px;
+  }
+  @media ${p => p.theme.media.desktop} {
+    width: ${p => p.theme.sizes.width.modalM2};
     padding: 40px 80px;
   }
 `;
