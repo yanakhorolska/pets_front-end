@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { Link } from './authNav.styled';
+
+import { RoundLink } from './authNav.styled';
 const AuthNav = () => {
   return (
     <div>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Registration</Link>
+      <RoundLink style={{ color: '#FFFFFF' }} to="/login">
+        Login
+      </RoundLink>
+      <RoundLink style={{ background: '#FFFFFF' }} to="/register">
+        Registration
+      </RoundLink>
     </div>
   );
 };
