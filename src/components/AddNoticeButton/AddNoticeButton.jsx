@@ -2,11 +2,12 @@ import CreateNotice from 'components/ModalAddNotice/CreateNotice';
 import ModalWindow from 'components/ModalWindow';
 import { useAuth } from 'hooks/useAuth';
 import React, { useCallback, useState } from 'react';
-import Icon from 'styles/Buttons/icons/index';
+// import Icon from 'styles/Buttons/icons/index';
 import {
   AddButtonTitle,
   AddButtonWrapper,
   AddNoticeStyled,
+  StyledIconAdd,
 } from './AddNoticeButton.styled';
 
 const AddNoticeButton = () => {
@@ -30,7 +31,7 @@ const AddNoticeButton = () => {
               setIsModalOpen(true);
             }}
           >
-            <Icon.Add />
+            <StyledIconAdd />
           </AddNoticeStyled>
         </AddButtonWrapper>
       )}
