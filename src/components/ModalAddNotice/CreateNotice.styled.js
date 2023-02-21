@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const ModalCreateNotice = styled.div`
+const ModalCreateNotice = styled.form`
+  display: flex;
+  flex-direction: column;
   padding: 20px 20px 40px 20px;
   background-color: ${p => p.theme.color.white};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
