@@ -18,9 +18,14 @@ const AddNoticeStyled = styled.button`
 const AddButtonTitle = styled.span``;
 
 const AddButtonWrapper = styled.div`
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  position: fixed;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    position: absolute;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
 `;
 
 export { AddNoticeStyled, AddButtonTitle, AddButtonWrapper };
