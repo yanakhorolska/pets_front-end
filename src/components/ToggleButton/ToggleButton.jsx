@@ -1,6 +1,5 @@
 import { Button } from './ToggleButton.styled';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import ModeNightIcon from '@mui/icons-material/ModeNight';
+import Icon from '../../styles/Buttons/icons';
 
 const ToggleButton = () => {
   const setDarkMode = () => {
@@ -23,10 +22,10 @@ const ToggleButton = () => {
 
   return (
     <Button onClick={onClick}>
-      {currentTheme === 'light' ? (
-        <LightModeIcon />
+      {currentTheme === 'dark' ? (
+        <Icon.Moon style={{ fill: '#F59256' }} />
       ) : (
-        <ModeNightIcon sx={{ color: 'white' }} />
+        <Icon.Sun style={{ fill: '#F59256' }} />
       )}
     </Button>
   );
