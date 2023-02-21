@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { RoundLink } from 'components/AuthNav/authNav.styled';
 const UserNav = () => {
-  return <Link to="/user"> Account</Link>;
+  return <RoundLink to="/user"> Account</RoundLink>;
 };
 export default UserNav;
