@@ -5,6 +5,7 @@ const Nav = () => {
       <Link to="/news">News</Link>
       <Link to="/notices">Find pet</Link>
       <Link to="/friends">Our friends</Link>
+      <Link to="/tempUser">User Temp</Link>
     </List>
   );
 };
