@@ -96,8 +96,8 @@ export const getMode = mode => {
     },
 
     fontWeights: {
-      default: 400,
-      heading: 500,
+      default: 500,
+      light: 400,
       bold: 700,
     },
 
@@ -107,9 +107,22 @@ export const getMode = mode => {
     },
 
     borders: {
-      none: 'none',
-      normal: '1px solid',
-      inputModal: '2px solid',
+      mode,
+      ...(mode === 'dark'
+        ? {
+            none: 'none',
+            normal: '1px solid',
+            inputModal: '2px solid',
+            inputBorder: '1px solid rgba(245, 146, 86, 0.5)',
+            buttonWhite: '2px solid #F59256;',
+          }
+        : {
+            none: 'none',
+            normal: '1px solid',
+            inputModal: '2px solid',
+            inputBorder: 'none',
+            buttonWhite: '2px solid #F59256;',
+          }),
     },
     radii: {
       borderRadius: {
@@ -165,6 +178,8 @@ export const getMode = mode => {
     display: {
       flex: 'flex',
       box: 'box',
+      inlineB: 'inline-block',
+      none: 'none',
     },
 
     textAlign: {
@@ -178,6 +193,14 @@ export const getMode = mode => {
     },
     flexDirection: {
       col: 'column',
+    },
+    shadows: {
+      mode,
+      ...(mode === 'dark'
+        ? {
+            boxShadow: '0px 0px 10px 0px rgba(255, 255, 255, 1)',
+          }
+        : { boxShadow: '7px 4px 14px rgba(0, 0, 0, 0.11)' }),
     },
   };
   return theme;
