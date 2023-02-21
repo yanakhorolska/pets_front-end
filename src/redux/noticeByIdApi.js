@@ -1,17 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const ourFriendsApi = createApi({
-  reducerPath: 'friends',
+export const noticeByIdApi = createApi({
+  reducerPath: 'Notice',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-back-end.vercel.app/api',
   }),
 
   endpoints: builder => ({
-    getFriends: builder.query({
-      query: () => `/friends`,
+    getNoticeById: builder.query({
+      query: id => `/notices/${id}`,
       transformResponse: response => response.data,
     }),
+    providesTags: ['Notice'],
   }),
 });
 
-export const { useGetFriendsQuery } = ourFriendsApi;
+export const { useGetNoticeByIdQuery } = noticeByIdApi;
