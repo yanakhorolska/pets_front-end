@@ -14,7 +14,8 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const { data, isLoading } = useGetUserQuery(token);
 
-  const user = { ...data };
+  const user = { data };
+  console.log("data", data)
 
   useEffect(() => {
     if (!isLoading) {

@@ -22,7 +22,6 @@ const authSlice = createSlice({
       state.isLogged = true;
     },
     setUser: (state, action) => {
-
       // state.user = action.payload;
       state.user.name = action.payload.name;
       state.user.email = action.payload.email;
@@ -31,12 +30,16 @@ const authSlice = createSlice({
       state.user.birthday = action.payload.birthday;
       state.user.avatarUrl = action.payload.avatarUrl;
 
-      // state.token = action.payload.token;
+      state.token = action.payload.token;
       state.isLogged = true;
     },
+    setLogoutUser: (state, action) => {
+      state.token = "";
+      state.isLogged = false;
+    }
   },
 });
 
-export const { setUser, setCredentials } = authSlice.actions;
+export const { setUser, setCredentials, setLogoutUser } = authSlice.actions;
 
 export default authSlice.reducer;

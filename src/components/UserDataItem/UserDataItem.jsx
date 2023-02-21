@@ -1,58 +1,53 @@
-import React from 'react'
-import { Formik, Form, Field } from 'formik'
+import React from 'react';
+import { Formik, Form, Field } from 'formik';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from 'redux/selectors';
+import {useUpdateUserMutation} from '../../redux/fetchUser'
+import { setUser } from 'redux/authSlice';
 
-const inintualValues = {
-    username: "Max",
-}
 
 const UserDataItem = () => {
-    const handleSubmit = (values, action) => {
-        console.log(values)
-    };
-    return (
-        
-      <div>
-          <Formik inintualValues={inintualValues} onSubmit={handleSubmit}>
-              <Form>
-                <label htmlFor="username">Name
-                  <Field id="username" name="username" type="text" />
-                 
-                    </label>  
-                     <button type="button">EditInput</button>
-                  <button type="submit">Submit</button>
-              </Form>
-              
-      </Formik>
-                 {/* <form>
-              <label htmlFor="email">Email
-                  <input id="email"></input>
-                  <button type="button">EditInput</button>
-                  <button type="submit">Submit</button>
-              </label>
-      </form>
-      <form>
-              <label htmlFor="birthday">Birthday
-                  <input id="birthday"></input>
-                  <button type="button">EditInput</button>
-                  <button type="submit">Submit</button>
-              </label>
-      </form>
-      <form>
-              <label htmlFor="phone">phone
-                  <input id="phone"></input>
-                  <button type="button">EditInput</button>
-                  <button type="submit">Submit</button>
-              </label>
-      </form>
-      <form>
-              <label htmlFor="city">city
-                  <input id="city"></input>
-                  <button type="button">EditInput</button>
-                  <button type="submit">Submit</button>
-              </label>
-          </form> */}
-    </div>
-  )
-}
+  const user = useSelector(getUser);
+    const [disabled, setDisabled] = useState(true);
+    const [updateUser] = useUpdateUserMutation()
+    const dispatch = useDispatch()
 
-export default UserDataItem
+  const initialValues = {
+    name: `${user.name}`,
+  };
+
+    const handleSubmit = async (values) => {
+    //   e.preventDefault()
+        if (!disabled) ;
+        const user = await updateUser(values.name).unwrap();
+      dispatch(setUser(user));
+  };
+
+  return (
+    <div>
+      <Formik initialValues={{ name: `${initialValues.name}` }} onSubmit={handleSubmit}>
+        <Form>
+          <label htmlFor="name">
+            name
+            <Field
+              name="name"
+              type="text"
+            //   value={initialValues.name}
+              id="name"
+              disabled={disabled}
+            />
+          </label>
+          <button type="submit" disabled={disabled}>
+            Submit
+          </button>
+          <button type="button" onClick={() => setDisabled(!disabled)}>
+            Edit
+          </button>
+        </Form>
+      </Formik>
+    </div>
+  );
+};
+
+export default UserDataItem;

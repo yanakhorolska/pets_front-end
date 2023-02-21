@@ -5,7 +5,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-back-end.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().users.token;
+      const token = getState().auth.token;
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -37,7 +37,7 @@ export const userApi = createApi({
     }),
     logOut: builder.mutation({
       query: (token) => ({
-        url: '/auth/logout',
+        url: '/users/logout',
         method: 'POST',
       }),
       invalidatesTags: ['User'],
@@ -58,7 +58,7 @@ export const userApi = createApi({
     }),
     updateUser: builder.mutation({
       query: payload => ({
-        url: '/user/current',
+        url: '/users/update',
         method: 'PATCH',
         body: payload,
       }),
@@ -66,7 +66,7 @@ export const userApi = createApi({
     }),
     updateUserAvatar: builder.mutation({
       query: payload => ({
-        url: 'user/current/avatar',
+        url: 'users/current/avatar',
         method: 'PATCH',
         body: payload,
       }),
