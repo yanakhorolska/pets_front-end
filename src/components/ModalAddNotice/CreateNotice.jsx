@@ -13,6 +13,7 @@ import {
   InputImage,
   InputImageWrapper,
   InputImageLabel,
+  StyledIconAdd,
 } from './CreateNotice.styled';
 // import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -190,7 +191,6 @@ const CreateNotice = ({ onClose }) => {
                 type="file"
                 name="imageUrl"
                 accept="image/*"
-                //onChange={formik.handleChange} нет эффекта
                 onChange={event => {
                   formik.setFieldValue(
                     'imageUrl',
@@ -199,7 +199,11 @@ const CreateNotice = ({ onClose }) => {
                   loadFile(event);
                 }}
               />
-              <img id="preview" src="" alt="preview" />
+              {formik.values.imageUrl ? (
+                <img id="preview" src="" alt="preview" />
+              ) : (
+                <StyledIconAdd />
+              )}
             </InputImageWrapper>
           </InputImageLabel>
           <InputLabel>

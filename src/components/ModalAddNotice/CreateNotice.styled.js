@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Icon from './svg/index';
 
 const ModalCreateNotice = styled.form`
   display: flex;
@@ -104,15 +105,26 @@ const InputImage = styled.input`
 `;
 
 const InputImageWrapper = styled.div`
+  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 140px;
   height: 140px;
   border: ${p => p.theme.borders.inputBorder};
   background: ${p => p.theme.color.background};
   border-radius: 20px;
+  overflow: hidden;
   & > img {
     object-fit: contain;
   }
+`;
+
+const StyledIconAdd = styled(Icon.Add)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export {
@@ -131,4 +143,5 @@ export {
   InputImage,
   InputImageWrapper,
   InputImageLabel,
+  StyledIconAdd,
 };
