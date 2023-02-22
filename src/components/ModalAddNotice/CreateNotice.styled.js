@@ -93,6 +93,28 @@ const ButtonsWrapper = styled.div`
   width: 380px;
 `;
 
+const InputImageLabel = styled(InputLabel)`
+  width: fit-content;
+`;
+
+const InputImage = styled.input`
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+`;
+
+const InputImageWrapper = styled.div`
+  display: flex;
+  width: 140px;
+  height: 140px;
+  border: ${p => p.theme.borders.inputBorder};
+  background: ${p => p.theme.color.background};
+  border-radius: 20px;
+  & > img {
+    object-fit: contain;
+  }
+`;
+
 export {
   //
   FormTitle,
@@ -106,4 +128,7 @@ export {
   InputStyled,
   CommentInput,
   ButtonsWrapper,
+  InputImage,
+  InputImageWrapper,
+  InputImageLabel,
 };
