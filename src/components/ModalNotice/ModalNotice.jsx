@@ -22,7 +22,7 @@ import {
   AddButton,
 } from './ModalNotice.styled';
 
-const ModalNotice = (onClose, id) => {
+const ModalNotice = ({ onClose, id }) => {
   const isLoggedIn = useAuth();
   const { data, isError, isLoading } = useGetNoticeByIdQuery(id);
   console.log(data);
