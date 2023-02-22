@@ -8,7 +8,8 @@ import {
   ContactsList,
   ContactsWrap,
     ContactsLink,
-  NoInfo
+  NoInfo,
+  Wrap
 } from './OurFriendsItemStyled';
 import { WorkTimePopUp } from "../WorkTimePopUp/WorkTimePopUp"
 
@@ -29,13 +30,13 @@ export const OurFriendsItem = ({ friendsData }) => {
                       width="110" /> 
               </FriendsImgBox> 
               <ContactsList>
-                  <div>
-                      <ContactsWrap component="span">Time:</ContactsWrap>
-            {!workDays || workDays.length === 0 ? <NoInfo component="span">No information</NoInfo> : 
+                  <Wrap>
+                      <ContactsWrap >Time:</ContactsWrap>
+            {!workDays || workDays.length === 0 ? <NoInfo>-------------</NoInfo> : 
               <WorkTimePopUp workDays={workDays} />} 
-                  </div>
+                  </Wrap>
                   <div>
-                      <ContactsWrap component="span">Address:</ContactsWrap>
+                      <ContactsWrap >Address:</ContactsWrap>
                       {addressUrl && address ? (
               <ContactsLink
                 href={addressUrl}
@@ -48,25 +49,25 @@ export const OurFriendsItem = ({ friendsData }) => {
                       
                       {!addressUrl && address ? address : null}
                        {!addressUrl && !address ? (
-              <NoInfo  component= "span">No information</NoInfo>
+              <NoInfo>-------------</NoInfo>
             ) : null}
                   </div>
 
                   <div>
-                      <ContactsWrap component="span">Email:</ContactsWrap>
+                      <ContactsWrap>Email:</ContactsWrap>
                        {email ? (
               <ContactsLink href={`mailto:${email}`}>{email}</ContactsLink>
             ) : (
-              <NoInfo component= "span">No information</NoInfo>
+              <NoInfo>-------------</NoInfo>
             )}
                   </div>
 
                   <div>
-                      <ContactsWrap component="span">Phone:</ContactsWrap>
+                      <ContactsWrap >Phone:</ContactsWrap>
                       {phone ? (
               <ContactsLink href={`tel:${phone}`}>{phone}</ContactsLink>
             ) : (
-              <NoInfo component= "span">No information</NoInfo>
+              <NoInfo>-------------</NoInfo>
             )}
                   </div> 
               </ContactsList>
