@@ -6,7 +6,8 @@ import { LearnMoreButton } from 'styles/Buttons/index';
 
 import { useAuth } from 'hooks/useAuth';
 
-const LearnMoreButtonComponent = id => {
+const LearnMoreButtonComponent = ({ id }) => {
+  console.log(id, 'id');
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   console.log(isModalOpen);
