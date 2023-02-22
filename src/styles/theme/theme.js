@@ -171,6 +171,7 @@ export const getMode = mode => {
     media: {
       mobileMax: '(max-width: 319px)',
       mobileMin: '(min-width: 320px)',
+      tabletMin: '(max-width: 767px)',
       tablet: '(max-width: 1279px) and (min-width: 768px)',
       tabletDesktop: '(min-width: 768px)',
       desktop: '(min-width: 1280px)',
