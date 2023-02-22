@@ -5,6 +5,7 @@ import { newsApi } from './newsSlice.js';
 import authReducer from './authSlice';
 import { authApi } from './authApi.js';
 import { ourFriendsApi } from './ourFriendsApi';
+import { fetchNotice } from './fetchNotice';
 
 import {
   persistReducer,
@@ -29,13 +30,19 @@ export const store = configureStore({
     auth: persistReducer(persistConfig, authReducer),
     [newsApi.reducerPath]: newsApi.reducer,
     [ourFriendsApi.reducerPath]: ourFriendsApi.reducer,
+    [fetchNotice.reducerPath]: fetchNotice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(newsApi.middleware, authApi.middleware, ourFriendsApi.middleware),
+    }).concat(
+      newsApi.middleware,
+      authApi.middleware,
+      ourFriendsApi.middleware,
+      fetchNotice.middleware
+    ),
 });
 
 export const persistor = persistStore(store);
