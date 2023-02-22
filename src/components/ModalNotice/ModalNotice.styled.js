@@ -5,22 +5,22 @@ export const ModalBox = styled.div`
   top: ${p => p.theme.sizes.top.half};
   left: ${p => p.theme.sizes.left.half};
 
-  display: flex;
-  flex-direction: column;
+  display: ${p => p.theme.display.flex};
+  flex-direction: ${p => p.theme.flexDirection.col};
 
   padding: 60px 20px 40px 20px;
-  width: 280px;
+  width: ${p => p.theme.sizes.width.modalS};
 
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: ${p => p.theme.radii.borderRadius.inputModal};
 
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
 
   @media ${p => p.theme.media.tabletDesktop} {
-    width: 704px;
+    width: ${p => p.theme.sizes.width.modalM2};
     padding: 32px 20px;
-    border-radius: 40px;
+    border-radius: ${p => p.theme.radii.borderRadius.btn};
   }
 `;
 
@@ -32,6 +32,8 @@ export const ModalBox = styled.div`
 //   width: 34px;
 //   height: 34px;
 // `;
+
+// ${p => p.theme};
 
 export const PetPhoto = styled.img`
   width: 240px;
