@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/pets_front-end/static/css/main.bda7d3b6.css",
-    "main.js": "/pets_front-end/static/js/main.553245a4.js",
+    "main.js": "/pets_front-end/static/js/main.37a0dc7b.js",
     "static/js/390.26922370.chunk.js": "/pets_front-end/static/js/390.26922370.chunk.js",
     "static/js/755.efcef12c.chunk.js": "/pets_front-end/static/js/755.efcef12c.chunk.js",
     "static/js/115.53d0d90e.chunk.js": "/pets_front-end/static/js/115.53d0d90e.chunk.js",
-    "static/js/423.8c5a9b0e.chunk.js": "/pets_front-end/static/js/423.8c5a9b0e.chunk.js",
+    "static/js/708.3e8b584c.chunk.js": "/pets_front-end/static/js/708.3e8b584c.chunk.js",
     "static/js/175.784c7e59.chunk.js": "/pets_front-end/static/js/175.784c7e59.chunk.js",
     "static/js/644.fc5d9217.chunk.js": "/pets_front-end/static/js/644.fc5d9217.chunk.js",
     "static/js/860.47a4b7ae.chunk.js": "/pets_front-end/static/js/860.47a4b7ae.chunk.js",
@@ -16,11 +16,13 @@
     "static/media/home-waves-tab-1x.png": "/pets_front-end/static/media/home-waves-tab-1x.29ce4ac6194bfa4f22bf.png",
     "static/media/home-waves-desk-1x.png": "/pets_front-end/static/media/home-waves-desk-1x.79ceb94fe53aecac4434.png",
     "static/media/home-waves-mob-1x.png": "/pets_front-end/static/media/home-waves-mob-1x.1a993fde0bdbf67539bb.png",
+    "static/media/male.svg": "/pets_front-end/static/media/male.9524d7e988d81d6afc13d0a46c71a141.svg",
+    "static/media/female.svg": "/pets_front-end/static/media/female.b32b5f6cbba9b4c9c9b57269bc1de196.svg",
     "static/media/sun.svg": "/pets_front-end/static/media/sun.29de3adfabb511d842700be27663db1d.svg",
     "static/media/trash.svg": "/pets_front-end/static/media/trash.f5e42675285d7810855317f4735b887e.svg",
     "static/media/camera.svg": "/pets_front-end/static/media/camera.db2ca0d546e6c96a95fee06926e6fec0.svg",
-    "index.html": "/pets_front-end/index.html",
     "static/media/close.svg": "/pets_front-end/static/media/close.c4768d3ffd2da9de396b91fdb7772ff4.svg",
+    "index.html": "/pets_front-end/index.html",
     "static/media/edit.svg": "/pets_front-end/static/media/edit.f8cf5139917163f291dcc1e31afdcbe5.svg",
     "static/media/moon.svg": "/pets_front-end/static/media/moon.9310d82327aaa79108d825a8b7a787a7.svg",
     "static/media/heart.svg": "/pets_front-end/static/media/heart.4f8d06da7e8d70223490103271ed2711.svg",
@@ -29,14 +31,15 @@
     "static/media/fatclose.svg": "/pets_front-end/static/media/fatclose.03dc02709e485bcc76520953b32b65db.svg",
     "static/media/search.svg": "/pets_front-end/static/media/search.b93608a17af3cfabc43a2713583ac19e.svg",
     "static/media/checkMark.svg": "/pets_front-end/static/media/checkMark.2958a766165b7e23a5ad81940a6e3a93.svg",
+    "static/media/add_image.svg": "/pets_front-end/static/media/add_image.9f786ed981f4b92af3198fc3ef48e5a0.svg",
     "static/media/burger.svg": "/pets_front-end/static/media/burger.d5b0e5383e0ee6ce15fd5ea05cbb6107.svg",
     "static/media/add.svg": "/pets_front-end/static/media/add.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.bda7d3b6.css.map": "/pets_front-end/static/css/main.bda7d3b6.css.map",
-    "main.553245a4.js.map": "/pets_front-end/static/js/main.553245a4.js.map",
+    "main.37a0dc7b.js.map": "/pets_front-end/static/js/main.37a0dc7b.js.map",
     "390.26922370.chunk.js.map": "/pets_front-end/static/js/390.26922370.chunk.js.map",
     "755.efcef12c.chunk.js.map": "/pets_front-end/static/js/755.efcef12c.chunk.js.map",
     "115.53d0d90e.chunk.js.map": "/pets_front-end/static/js/115.53d0d90e.chunk.js.map",
-    "423.8c5a9b0e.chunk.js.map": "/pets_front-end/static/js/423.8c5a9b0e.chunk.js.map",
+    "708.3e8b584c.chunk.js.map": "/pets_front-end/static/js/708.3e8b584c.chunk.js.map",
     "175.784c7e59.chunk.js.map": "/pets_front-end/static/js/175.784c7e59.chunk.js.map",
     "644.fc5d9217.chunk.js.map": "/pets_front-end/static/js/644.fc5d9217.chunk.js.map",
     "860.47a4b7ae.chunk.js.map": "/pets_front-end/static/js/860.47a4b7ae.chunk.js.map",
@@ -46,6 +49,6 @@
   },
   "entrypoints": [
     "static/css/main.bda7d3b6.css",
-    "static/js/main.553245a4.js"
+    "static/js/main.37a0dc7b.js"
   ]
 }
