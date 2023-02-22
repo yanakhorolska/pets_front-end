@@ -59,6 +59,12 @@ const InputStyled = styled.input`
   border-radius: ${p => p.theme.radii.borderRadius.btn};
 `;
 
+const CommentInput = styled(InputStyled)`
+  height: 110px;
+  border-radius: 20px;
+  resize: none;
+`;
+
 const StyledStar = styled.span`
   color: ${p => p.theme.color.accent};
   font-size: ${p => p.theme.fontSizes.l};
@@ -66,7 +72,7 @@ const StyledStar = styled.span`
 
 const RadioGroupSex = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 80px;
 `;
 
 const RadioSex = styled.input`
@@ -80,6 +86,13 @@ const RadioLabel = styled.label`
     p.children[1].props.checked ? p.theme.color.accent : p.theme.color.black};
 `;
 
+const ButtonsWrapper = styled.div`
+  display: flex;
+  margin: 0 auto;
+  gap: 20px;
+  width: 380px;
+`;
+
 export {
   //
   FormTitle,
@@ -91,4 +104,6 @@ export {
   StyledStar,
   InputLabel,
   InputStyled,
+  CommentInput,
+  ButtonsWrapper,
 };
