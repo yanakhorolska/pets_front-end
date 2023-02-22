@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
 import { Loader } from 'components/Loader/Loader';
-import { CloseButton } from 'styles/Buttons/index';
+// import { CloseButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import { NavLink } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import { useAuth } from 'hooks/useAuth';
 
 import {
   ModalBox,
-  CloseBox,
+  // CloseBox,
   PetPhoto,
   Category,
   ColumnBox,
@@ -27,6 +27,7 @@ const ModalNotice = (onClose, id) => {
   const { data, isError, isLoading } = useGetNoticeByIdQuery(id);
   console.log(data);
   console.log(onClose);
+  console.log(isError);
 
   if (!data) {
     console.log('empty');
@@ -44,7 +45,7 @@ const ModalNotice = (onClose, id) => {
     price,
     imageUrl,
     comment,
-    owner,
+    // owner,
     email,
     phone,
   } = data;
