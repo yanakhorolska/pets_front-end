@@ -41,6 +41,7 @@ const CreateNotice = ({ onClose }) => {
   const isSell = location.pathname.includes('sell');
 
   const [pageNumber, setPageNumber] = useState(1);
+  const [imageSrc, setImageSrc] = useState('');
 
   // const [addNotice, { isLoading }] = useAddNoticeMutation();
 
@@ -63,6 +64,11 @@ const CreateNotice = ({ onClose }) => {
     },
   });
 
+  const onInputImageChange = event => {
+    formik.setFieldValue('imageUrl', event.currentTarget.files[0]);
+    loadFile(event);
+  };
+
   const loadFile = event => {
     if (!event.target.files.length) {
       return;
@@ -70,8 +76,7 @@ const CreateNotice = ({ onClose }) => {
 
     const reader = new FileReader();
     reader.onload = () => {
-      const output = document.getElementById('preview');
-      output.src = reader.result;
+      setImageSrc(reader.result);
     };
     reader.readAsDataURL(event.target.files[0]);
   };
@@ -191,18 +196,12 @@ const CreateNotice = ({ onClose }) => {
                 type="file"
                 name="imageUrl"
                 accept="image/*"
-                onChange={event => {
-                  formik.setFieldValue(
-                    'imageUrl',
-                    event.currentTarget.files[0]
-                  );
-                  loadFile(event);
-                }}
+                onChange={onInputImageChange}
               />
-              {formik.values.imageUrl ? (
-                <img id="preview" src="" alt="preview" />
+              {imageSrc ? (
+                <img id="preview" src={imageSrc} alt="preview" />
               ) : (
-                <StyledIconAdd />
+                <StyledIconAdd visible={formik.values.imageUrl === ''} />
               )}
             </InputImageWrapper>
           </InputImageLabel>
