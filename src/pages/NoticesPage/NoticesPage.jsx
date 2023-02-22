@@ -3,8 +3,6 @@ import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
-// import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
-// import AddNoticeButton from 'components/Notices/AddNoticeButton';
 
 // import { Outlet } from 'react-router-dom/dist';
 
