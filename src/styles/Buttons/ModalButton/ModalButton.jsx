@@ -1,11 +1,6 @@
-import { ModalBtn } from "./ModalButton.styled";
+import { ModalBtn } from './ModalButton.styled';
 
-export const ModalButton = ({ onClick, text}) => {
-  return (
-    <ModalBtn onClick={onClick}>
-      {text}
-    </ModalBtn>
-  );
+export const ModalButton = props => {
+  const { children, ...otherProps } = props;
+  return <ModalBtn {...otherProps}>{children}</ModalBtn>;
 };
-
-

@@ -8,12 +8,15 @@ import {
   StyledStar,
   InputLabel,
   InputStyled,
+  CommentInput,
+  ButtonsWrapper,
 } from './CreateNotice.styled';
 // import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import Icon from './svg/index';
+import { ModalButton, NextButton } from 'styles/Buttons/index';
 // import { useAddNoticeMutation } from 'redux/fetchNotice';
 
 // const addNoticeSchema = Yup.object()
@@ -131,7 +134,7 @@ const CreateNotice = ({ onClose }) => {
               />
               Female
             </RadioLabel>
-            <div>Picked {formik.values.sex}</div>
+            Picked {formik.values.sex}
           </RadioGroupSex>
           <InputLabel>
             <span>
@@ -167,45 +170,35 @@ const CreateNotice = ({ onClose }) => {
           </InputLabel>
           <InputLabel>
             <span>Comments:</span>
-            <InputStyled
+            <CommentInput
+              as="textarea"
               type="text"
               name="comment"
               placeholder="Type comment"
               onChange={formik.handleChange}
-            ></InputStyled>
+            ></CommentInput>
           </InputLabel>
         </FormPageWrapper>
       )}
-      <div>
-        {pageNumber === 1 && (
-          <>
-            <button type="button" onClick={onClose}>
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setPageNumber(2);
-              }}
-            >
-              Next
-            </button>
-          </>
-        )}
-        {pageNumber === 2 && (
-          <>
-            <button
-              type="button"
-              onClick={() => {
-                setPageNumber(1);
-              }}
-            >
-              Back
-            </button>
-            <button type="submit">Submit</button>
-          </>
-        )}
-      </div>
+
+      {pageNumber === 1 && (
+        <ButtonsWrapper>
+          <ModalButton type="button" onClick={onClose}>
+            Cancel
+          </ModalButton>
+          <NextButton type="button" onClick={() => setPageNumber(2)}>
+            Next
+          </NextButton>
+        </ButtonsWrapper>
+      )}
+      {pageNumber === 2 && (
+        <ButtonsWrapper>
+          <ModalButton type="button" onClick={() => setPageNumber(1)}>
+            Back
+          </ModalButton>
+          <NextButton type="submit">Done</NextButton>
+        </ButtonsWrapper>
+      )}
     </ModalCreateNotice>
   );
 };

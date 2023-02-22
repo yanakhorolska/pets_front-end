@@ -1,10 +1,6 @@
-import PropTypes from "prop-types";
-import { NextBtn } from "./NextButton.styled";
+import { NextBtn } from './NextButton.styled';
 
-export const NextButton = ({ onClick }) => {
-  return <NextBtn onClick={onClick}>Next</NextBtn>;
-};
-
-NextButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+export const NextButton = props => {
+  const { children, ...otherProps } = props;
+  return <NextBtn {...otherProps}>{children}</NextBtn>;
 };
