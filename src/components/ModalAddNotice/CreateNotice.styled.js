@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Icon from './svg/index';
 
 const ModalCreateNotice = styled.form`
   display: flex;
@@ -93,6 +94,40 @@ const ButtonsWrapper = styled.div`
   width: 380px;
 `;
 
+const InputImageLabel = styled(InputLabel)`
+  width: fit-content;
+`;
+
+const InputImage = styled.input`
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+`;
+
+const InputImageWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border: ${p => p.theme.borders.inputBorder};
+  background: ${p => p.theme.color.background};
+  border-radius: 20px;
+  overflow: hidden;
+  & > img {
+    object-fit: contain;
+  }
+`;
+
+const StyledIconAdd = styled(Icon.Add)`
+  opacity: ${p => (p.visible === 'true' ? 1 : 0)};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export {
   //
   FormTitle,
@@ -106,4 +141,8 @@ export {
   InputStyled,
   CommentInput,
   ButtonsWrapper,
+  InputImage,
+  InputImageWrapper,
+  InputImageLabel,
+  StyledIconAdd,
 };

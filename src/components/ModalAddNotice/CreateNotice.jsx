@@ -10,6 +10,10 @@ import {
   InputStyled,
   CommentInput,
   ButtonsWrapper,
+  InputImage,
+  InputImageWrapper,
+  InputImageLabel,
+  StyledIconAdd,
 } from './CreateNotice.styled';
 // import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -37,6 +41,7 @@ const CreateNotice = ({ onClose }) => {
   const isSell = location.pathname.includes('sell');
 
   const [pageNumber, setPageNumber] = useState(1);
+  const [imageSrc, setImageSrc] = useState('');
 
   // const [addNotice, { isLoading }] = useAddNoticeMutation();
 
@@ -44,7 +49,7 @@ const CreateNotice = ({ onClose }) => {
     initialValues: {
       title: '',
       petName: '',
-      dateOfBirth: Date.now(),
+      dateOfBirth: 0,
       breed: '',
       sex: 'male',
       location: '',
@@ -58,6 +63,23 @@ const CreateNotice = ({ onClose }) => {
       //await addNotice(values);
     },
   });
+
+  const onInputImageChange = event => {
+    formik.setFieldValue('imageUrl', event.currentTarget.files[0]);
+    loadFile(event);
+  };
+
+  const loadFile = event => {
+    if (!event.target.files.length) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImageSrc(reader.result);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 
   return (
     <ModalCreateNotice onSubmit={formik.handleSubmit}>
@@ -74,6 +96,7 @@ const CreateNotice = ({ onClose }) => {
               name="title"
               placeholder="Type title of ad"
               onChange={formik.handleChange}
+              value={formik.values.title}
             ></InputStyled>
           </InputLabel>
           <InputLabel>
@@ -83,6 +106,7 @@ const CreateNotice = ({ onClose }) => {
               name="petName"
               placeholder="Type name pet"
               onChange={formik.handleChange}
+              value={formik.values.petName}
             ></InputStyled>
           </InputLabel>
           <InputLabel>
@@ -92,6 +116,7 @@ const CreateNotice = ({ onClose }) => {
               name="dateOfBirth"
               placeholder="Type date of birth"
               onChange={formik.handleChange}
+              value={formik.values.dateOfBirth}
             ></InputStyled>
           </InputLabel>
           <InputLabel>
@@ -101,6 +126,7 @@ const CreateNotice = ({ onClose }) => {
               name="breed"
               placeholder="Type breed"
               onChange={formik.handleChange}
+              value={formik.values.breed}
             ></InputStyled>
           </InputLabel>
         </FormPageWrapper>
@@ -145,6 +171,7 @@ const CreateNotice = ({ onClose }) => {
               name="location"
               placeholder="Type location"
               onChange={formik.handleChange}
+              value={formik.values.location}
             ></InputStyled>
           </InputLabel>
           {isSell && (
@@ -157,17 +184,29 @@ const CreateNotice = ({ onClose }) => {
                 name="price"
                 placeholder="Type price"
                 onChange={formik.handleChange}
+                value={formik.values.price}
               ></InputStyled>
             </InputLabel>
           )}
-          <InputLabel>
+          <InputImageLabel>
             <span>Load the pet's image</span>
-            <input
-              type="file"
-              name="imageUrl"
-              onChange={formik.handleChange}
-            ></input>
-          </InputLabel>
+            <InputImageWrapper>
+              <InputImage
+                id="imageUrl"
+                type="file"
+                name="imageUrl"
+                accept="image/*"
+                onChange={onInputImageChange}
+              />
+              {imageSrc ? (
+                <img id="preview" src={imageSrc} alt="preview" />
+              ) : (
+                <StyledIconAdd
+                  visible={(formik.values.imageUrl === '').toString()}
+                />
+              )}
+            </InputImageWrapper>
+          </InputImageLabel>
           <InputLabel>
             <span>Comments:</span>
             <CommentInput
@@ -176,6 +215,7 @@ const CreateNotice = ({ onClose }) => {
               name="comment"
               placeholder="Type comment"
               onChange={formik.handleChange}
+              value={formik.values.comment}
             ></CommentInput>
           </InputLabel>
         </FormPageWrapper>
