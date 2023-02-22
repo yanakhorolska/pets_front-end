@@ -4,17 +4,17 @@ import styled from "styled-components";
 export const Head = styled("header")`
  
     width: 100%;
-
+    padding-top:16px;
     display: flex;
     flex-diracion:row;
     
     align-items: center;
     justify-content: space-between;
      @media (min-width: 768px){
-   
+      padding-top:24px;
     }
       @media (min-width: 1280px){
-          
+          padding-top:20px;
     }
 `;
 
