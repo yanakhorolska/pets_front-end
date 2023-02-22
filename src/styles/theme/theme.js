@@ -98,6 +98,7 @@ export const getMode = mode => {
     fontWeights: {
       default: 500,
       light: 400,
+      semiBold: 600,
       bold: 700,
     },
 
@@ -120,7 +121,7 @@ export const getMode = mode => {
             none: 'none',
             normal: '1px solid',
             inputModal: '2px solid',
-            inputBorder: 'none',
+            inputBorder: '1px solid rgba(245, 146, 86, 0.5)',
             buttonWhite: '2px solid #F59256;',
           }),
     },

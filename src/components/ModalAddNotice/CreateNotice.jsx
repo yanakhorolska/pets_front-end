@@ -1,8 +1,19 @@
-import { ModalCreateNotice } from './CreateNotice.styled';
+import {
+  FormPageWrapper,
+  FormTitle,
+  ModalCreateNotice,
+  RadioGroupSex,
+  RadioLabel,
+  RadioSex,
+  StyledStar,
+  InputLabel,
+  InputStyled,
+} from './CreateNotice.styled';
 // import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import Icon from './svg/index';
 // import { useAddNoticeMutation } from 'redux/fetchNotice';
 
 // const addNoticeSchema = Yup.object()
@@ -47,53 +58,60 @@ const CreateNotice = ({ onClose }) => {
 
   return (
     <ModalCreateNotice onSubmit={formik.handleSubmit}>
-      <h3>Add pet</h3>
+      <FormTitle>Add pet</FormTitle>
 
       {pageNumber === 1 ? (
-        <>
-          <label>
-            Title of ad
-            <input
+        <FormPageWrapper>
+          <InputLabel>
+            <span>
+              Title of ad<StyledStar>*</StyledStar>
+            </span>
+            <InputStyled
               type="text"
               name="title"
               placeholder="Type title of ad"
               onChange={formik.handleChange}
-            ></input>
-          </label>
-          <label>
-            Name pet
-            <input
+            ></InputStyled>
+          </InputLabel>
+          <InputLabel>
+            <span>Name pet:</span>
+            <InputStyled
               type="text"
               name="petName"
               placeholder="Type name pet"
               onChange={formik.handleChange}
-            ></input>
-          </label>
-          <label>
-            Date of birth
-            <input
+            ></InputStyled>
+          </InputLabel>
+          <InputLabel>
+            <span>Date of birth</span>
+            <InputStyled
               type="date"
               name="dateOfBirth"
               placeholder="Type date of birth"
               onChange={formik.handleChange}
-            ></input>
-          </label>
-          <label>
-            Breed:
-            <input
+            ></InputStyled>
+          </InputLabel>
+          <InputLabel>
+            <span>Breed</span>
+            <InputStyled
               type="text"
               name="breed"
               placeholder="Type breed"
               onChange={formik.handleChange}
-            ></input>
-          </label>
-        </>
+            ></InputStyled>
+          </InputLabel>
+        </FormPageWrapper>
       ) : (
-        <>
-          <div role="group" aria-labelledby="radio-sex-group">
-            The sex*:
-            <label>
-              <input
+        <FormPageWrapper>
+          <InputLabel>
+            <span>
+              The sex<StyledStar>*</StyledStar>
+            </span>
+          </InputLabel>
+          <RadioGroupSex role="group" aria-labelledby="radio-sex-group">
+            <RadioLabel>
+              <Icon.Male />
+              <RadioSex
                 type="radio"
                 name="sex"
                 value="male"
@@ -101,9 +119,10 @@ const CreateNotice = ({ onClose }) => {
                 onChange={formik.handleChange}
               />
               Male
-            </label>
-            <label>
-              <input
+            </RadioLabel>
+            <RadioLabel>
+              <Icon.Female />
+              <RadioSex
                 type="radio"
                 name="sex"
                 value="female"
@@ -111,47 +130,51 @@ const CreateNotice = ({ onClose }) => {
                 onChange={formik.handleChange}
               />
               Female
-            </label>
-            <div>Picked: {formik.values.sex}</div>
-          </div>
-          <label>
-            Location:
-            <input
+            </RadioLabel>
+            <div>Picked {formik.values.sex}</div>
+          </RadioGroupSex>
+          <InputLabel>
+            <span>
+              Location<StyledStar>*</StyledStar>:
+            </span>
+            <InputStyled
               type="text"
               name="location"
               placeholder="Type location"
               onChange={formik.handleChange}
-            ></input>
-          </label>
+            ></InputStyled>
+          </InputLabel>
           {isSell && (
-            <label>
-              Price:
-              <input
+            <InputLabel>
+              <span>
+                Price<StyledStar>*</StyledStar>:
+              </span>
+              <InputStyled
                 type="number"
                 name="price"
                 placeholder="Type price"
                 onChange={formik.handleChange}
-              ></input>
-            </label>
+              ></InputStyled>
+            </InputLabel>
           )}
-          <label>
-            Load the pet's image:
+          <InputLabel>
+            <span>Load the pet's image</span>
             <input
               type="file"
               name="imageUrl"
               onChange={formik.handleChange}
             ></input>
-          </label>
-          <label>
-            Comments:
-            <input
+          </InputLabel>
+          <InputLabel>
+            <span>Comments:</span>
+            <InputStyled
               type="text"
               name="comment"
               placeholder="Type comment"
               onChange={formik.handleChange}
-            ></input>
-          </label>
-        </>
+            ></InputStyled>
+          </InputLabel>
+        </FormPageWrapper>
       )}
       <div>
         {pageNumber === 1 && (
