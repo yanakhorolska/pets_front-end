@@ -98,6 +98,7 @@ export const getMode = mode => {
     fontWeights: {
       default: 500,
       light: 400,
+      semiBold: 600,
       bold: 700,
     },
 

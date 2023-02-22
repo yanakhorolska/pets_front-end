@@ -22,4 +22,61 @@ const ModalCreateNotice = styled.form`
     padding: 40px 80px;
   }
 `;
-export { ModalCreateNotice };
+
+const FormTitle = styled.h3`
+  margin: 0 auto;
+  font-size: ${p => p.theme.fontSizes.xl};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+`;
+
+const FormPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  gap: 10px;
+`;
+
+const InputLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-weight: ${p => p.theme.fontWeights.default};
+  font-size: ${p => p.theme.fontSizes.l};
+  line-height: 26px;
+  color: ${p => p.theme.color.black};
+`;
+
+const StyledStar = styled.span`
+  color: ${p => p.theme.color.accent};
+
+  font-size: ${p => p.theme.fontSizes.l};
+`;
+
+const RadioGroupSex = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const RadioSex = styled.input`
+  display: none;
+`;
+
+const RadioLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  color: ${p =>
+    p.children[1].props.checked ? p.theme.color.accent : p.theme.color.black};
+`;
+
+export {
+  //
+  FormTitle,
+  ModalCreateNotice,
+  RadioLabel,
+  RadioSex,
+  RadioGroupSex,
+  FormPageWrapper,
+  StyledStar,
+  InputLabel,
+};
