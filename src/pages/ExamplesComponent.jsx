@@ -1,7 +1,7 @@
-// import AddButton from 'components/AddButton';
+import AddButton from 'components/AddButton';
 // import AddPetButton from 'components/AddPetButton/AddPetButton';
 import Box from 'components/Box';
-// import ModalAddsPet from 'components/ModalAddsPet';
+import ModalAddsPet from 'components/ModalAddsPet';
 
 const ExamplesComponent = () => {
   return (
@@ -22,9 +22,9 @@ const ExamplesComponent = () => {
           flexGrow="1"
         >
           <Box> My pets </Box>
-          {/* <AddButton>
-            <ModalAddsPet />
-          </AddButton> */}
+          <AddButton isVisible={true} component={ModalAddsPet} />
+            
+          {/* </AddButton> */}
         </Box>
       </Box>
     </Box>

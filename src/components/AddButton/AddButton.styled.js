@@ -57,8 +57,8 @@ const StyledIconAdd = styled(Icon.Add)`
   width: 22px;
   height: 22px;
   position: absolute;
-  // top: 10px;
-  // left: 30px;
+  top: 10px;
+  left: 30px;
 
   @media ${p => p.theme.media.tabletDesktop} {
     position: relative;
