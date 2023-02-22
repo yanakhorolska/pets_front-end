@@ -1,9 +1,7 @@
 import React from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
-import {
-  useGetNoticeQuery 
-} from 'redux/fetchNotice';
+import { useGetNoticeQuery } from 'redux/fetchNotice';
 
 const NoticesCategoriesList = () => {
   const [searchParams] = useSearchParams();
@@ -33,13 +31,21 @@ const NoticesCategoriesList = () => {
 
   //дата.мап і відправити кожен елемент масиву
 
-  console.log(petsList);
-
-  return (
-    <div>
-      <NoticeCategoryItem />
-    </div>
-  );
+  if (petsList !== undefined) {
+    const pets = Object.entries(petsList);
+    console.log(pets.length);
+    pets.map(pet => <NoticeCategoryItem key={pet[1]._id} pet={pet} />);
+    return pets.map(pet => (
+      <NoticeCategoryItem
+        breed={pet[1].breed}
+        location={pet[1].location}
+        age={pet[1].age.months}
+        price={pet[1].price}
+        category={pet[1].category}
+        key={pet[1].id}
+      />
+    ));
+  }
 };
 
 export default NoticesCategoriesList;
