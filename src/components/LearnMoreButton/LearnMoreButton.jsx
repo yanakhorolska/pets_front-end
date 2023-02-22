@@ -1,28 +1,40 @@
-// import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-// import ModalWindow from 'components/ModalWindow/ModalWindow';
-// import ModalNotice from 'components/ModalNotice/ModalNotice';
+import ModalWindow from 'components/ModalWindow/ModalWindow';
+import ModalNotice from 'components/ModalNotice/ModalNotice';
+import { LearnMoreButton } from 'styles/Buttons/index';
 
-// import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 
-// const LearnMoreButton = id => {
-//   const [isModalOpen, setIsModalOpen] = useState(false);
+const LearnMoreButtonComponent = () => {
+  const isLoggedIn = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-//   const toggleModal = useCallback(() => {
-//     setIsModalOpen(prevState => {
-//       setIsModalOpen(!prevState);
-//     });
-//   }, []);
+  const toggleModal = useCallback(() => {
+    setIsModalOpen(prevState => {
+      setIsModalOpen(!prevState);
+    });
+  }, []);
 
-//   return (
-//     <>
-//       {isModalOpen && (
-//         <ModalWindow onClose={toggleModal}>
-//           <ModalNotice />
-//         </ModalWindow>
-//       )}
-//     </>
-//   );
-// };
+  return (
+    <>
+      {isLoggedIn && (
+        <LearnMoreButton
+          type="button"
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          Learn more
+        </LearnMoreButton>
+      )}
+      {isModalOpen && (
+        <ModalWindow onClose={toggleModal}>
+          <ModalNotice onClose={toggleModal} />
+        </ModalWindow>
+      )}
+    </>
+  );
+};
 
-// export default LearnMoreButton;
+export default LearnMoreButtonComponent;

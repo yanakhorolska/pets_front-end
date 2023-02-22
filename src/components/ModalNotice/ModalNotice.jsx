@@ -1,59 +1,136 @@
-// import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
+import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
+import { Loader } from 'components/Loader/Loader';
+import { CloseButton } from 'styles/Buttons/index';
+import Icon from 'styles/Buttons/icons/index';
 
-// const ModalNotice = () => {
-//   const { data, isError, isLoading } = useGetNoticeByIdQuery(
-//     '63f4d76951b8df42bda200c2'
-//   );
-//   console.log(data);
+import {
+  ModalBox,
+  CloseBox,
+  PetPhoto,
+  Category,
+  ColumnBox,
+  PhotoBox,
+  Descriptions,
+  TitleCard,
+  Text,
+  ButtonBox,
+  ContactButton,
+  AddButton,
+} from './ModalNotice.styled';
 
-//   if (!data && data === undefined) {
-//     console.log('empty');
-//     return;
-//   }
+const ModalNotice = onClose => {
+  const { data, isError, isLoading } = useGetNoticeByIdQuery(
+    '63f4d76951b8df42bda200c2'
+  );
+  console.log(data);
+  console.log(isLoading);
 
-//   const {
-//     title,
-//     category,
-//     petName,
-//     dateOfBirth,
-//     breed,
-//     sex,
-//     location,
-//     price,
-//     imageUrl,
-//     comment,
-//     owner,
-//     email,
-//     phone,
-//   } = data;
+  if (!data) {
+    console.log('empty');
+    return;
+  }
 
-//   //to do empty data responce
-//   // to do empty comments
+  const {
+    title,
+    category,
+    petName,
+    dateOfBirth,
+    breed,
+    sex,
+    location,
+    price,
+    imageUrl,
+    comment,
+    owner,
+    email,
+    phone,
+  } = data;
 
-//   return (
-//     <>
-//       {isLoading ? <div> Loading ... </div> : null}
-//       {!isLoading && !isError ? (
-//         <div>
-//           modal
-//           <div>
-//             <img src={imageUrl} alt="photoPets" />
-//             <p>{category}</p>
-//           </div>
-//           <h3>{title}</h3>
-//           <p>Name: {petName}</p>
-//           <p>Birthday: {dateOfBirth}</p>
-//           <p>Breed: {breed}</p>
-//           <p>Place: {location}</p>
-//           <p>The sex: {sex}</p>
-//           <a href="mailto:nowhere@mozilla.org">Email: {email}</a>
-//           <br />
-//           <a href="tel:+49.157.0156">Phone: {phone}</a>
-//           <p>Comments: {comment}</p>
-//         </div>
-//       ) : null}
-//     </>
-//   );
-// };
+  return (
+    <>
+      {isLoading ? (
+        <ModalBox>
+          <Loader />
+        </ModalBox>
+      ) : (
+        <ModalBox>
+          {/* <CloseBox>
+            <CloseButton
+              onClose={onClose}
+              className={null}
+              style={{
+                position: 'absolute',
+                top: 23,
+                right: 23,
+                width: 34,
+                height: 34,
+              }}
+            />
+          </CloseBox> */}
+          <ColumnBox>
+            <PhotoBox>
+              <PetPhoto src={imageUrl} alt="photoPets" />
+              <Category>{category}</Category>
+            </PhotoBox>
+            <Descriptions>
+              <li>
+                <TitleCard>{title}</TitleCard>
+              </li>
+              <li>
+                <p>
+                  <b>Name:</b> {petName}
+                </p>
+              </li>
+              <li>
+                <p>
+                  <b>Birthday:</b> {dateOfBirth}
+                </p>
+              </li>
+              <li>
+                <p>
+                  <b>Breed:</b> {breed}
+                </p>
+              </li>
+              <li>
+                <p>
+                  <b>Place: </b>
+                  {location}
+                </p>
+              </li>
+              <li>
+                <p>
+                  <b>The sex:</b> {sex}
+                </p>
+              </li>
+              <li>
+                <a href="mailto:nowhere@mozilla.org">
+                  <b>Email:</b> {email}
+                </a>
+              </li>
+              <li>
+                <a href="tel:+49.157.0156">
+                  <b>Phone:</b> {phone}
+                </a>
+              </li>
+            </Descriptions>
+          </ColumnBox>
+          <Text>
+            <b>Comments:</b> {comment}
+          </Text>
+          <ButtonBox>
+            <li>
+              <ContactButton type="button">Contact</ContactButton>
+            </li>
+            <li>
+              <AddButton type="button">
+                Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
+              </AddButton>
+            </li>
+          </ButtonBox>
+        </ModalBox>
+      )}
+    </>
+  );
+};
 
-// export default ModalNotice;
+export default ModalNotice;

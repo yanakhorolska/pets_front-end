@@ -8,7 +8,7 @@ export const FriendsList = styled.ul`
   max-width: 500px;
   margin: 0 auto;
   list-style-type: none;
-
+padding-top: 40px;
   @media (min-width: 768px) {
         justify-content: space-evenly
     gap: 32px;
