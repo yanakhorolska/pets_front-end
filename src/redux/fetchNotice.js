@@ -5,7 +5,7 @@ export const noticeApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-back-end.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().users.token;
+      const token = getState().auth.token;
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -31,7 +31,7 @@ export const noticeApi = createApi({
     }),
     addNotice: builder.mutation({
       query: payload => ({
-        url: '/notice/add',
+        url: `/notices/category/${payload.category}`,
         method: 'POST',
         body: payload,
       }),
