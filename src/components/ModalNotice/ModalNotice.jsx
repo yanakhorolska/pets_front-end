@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
 import { Loader } from 'components/Loader/Loader';
 // import { CloseButton } from 'styles/Buttons/index';
@@ -153,11 +153,10 @@ const ModalNotice = (onClose, id) => {
 
 export default ModalNotice;
 
-{
-  /* {/* <CloseBox>
+/* {/* <CloseBox>
             <CloseButton
               onClose={onClose} */
-}
+
 // className={null}
 // style={{
 //   position: 'absolute',
