@@ -1,28 +1,34 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const noticeApi = createApi({
+export const fetchNotice = createApi({
   reducerPath: 'noticeApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-back-end.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
+      if (getState().users !== undefined) {
+        const token = getState().users.token;
+        if (token) {
+          headers.set('Authorization', `Bearer ${token}`);
+        }
+        return headers;
+      } else {
+        return '';
       }
-      return headers;
     },
   }),
   tagTypes: ['UserNotice', 'Notice', 'Favorites'],
   endpoints: builder => ({
     getUserNotices: builder.query({
-      query: () => '/user/notices',
+      query: () => '/notices',
       providesTags: ['UserNotice'],
     }),
     getNotice: builder.query({
       query: ({ category, search = '' }) => ({
-        url: `/notice/category/${category}?search=${search}`,
+        url: `/notices/${category}?search=${search}`,
+
         method: 'GET',
       }),
+      transformResponse: response => response.data,
       providesTags: ['Notice'],
     }),
     getNoticeByWord: builder.query({
@@ -75,4 +81,4 @@ export const {
   useGetNoticeFavoritesQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
-} = noticeApi;
+} = fetchNotice;

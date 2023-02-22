@@ -5,6 +5,7 @@ import { newsApi } from './newsSlice.js';
 import authReducer from './authSlice';
 import { authApi } from './authApi.js';
 import { ourFriendsApi } from './ourFriendsApi';
+import { fetchNotice } from './fetchNotice';
 import { noticeByIdApi } from './noticeByIdApi';
 import { noticeApi } from './fetchNotice';
 import {
@@ -30,6 +31,7 @@ export const store = configureStore({
     auth: persistReducer(persistConfig, authReducer),
     [newsApi.reducerPath]: newsApi.reducer,
     [ourFriendsApi.reducerPath]: ourFriendsApi.reducer,
+    [fetchNotice.reducerPath]: fetchNotice.reducer,
     [noticeByIdApi.reducerPath]: noticeByIdApi.reducer,
     [noticeApi.reducerPath]: noticeApi.reducer,
   },
@@ -43,7 +45,8 @@ export const store = configureStore({
       authApi.middleware,
       ourFriendsApi.middleware,
       noticeByIdApi.middleware,
-      noticeApi.middleware
+      noticeApi.middleware,
+      fetchNotice.middleware,
     ),
 });
 

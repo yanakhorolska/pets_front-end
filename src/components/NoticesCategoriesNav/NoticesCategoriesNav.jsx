@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { getIsLogged } from 'redux/selectors';
+import { AnchorElem } from 'styles/Buttons/Anchor/Anchor';
 
 const link = [
   { to: '/notices/lost-found', text: 'Lost/Found' },
@@ -23,10 +24,8 @@ const NoticesCategoriesNav = () => {
     <div>
       <ul>
         {link.map(el => (
-          <li key={el.to}>
-            <NavLink to={el.to}>
-              <span>{el.text}</span>
-            </NavLink>
+          <li style={{ display: 'inline-block' }} key={el.to}>
+            <AnchorElem el={el} />
           </li>
         ))}
         {isLogged &&
