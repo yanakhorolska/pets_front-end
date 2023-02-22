@@ -38,13 +38,13 @@ const FormPageWrapper = styled.div`
   flex-direction: column;
   margin-top: 40px;
   margin-bottom: 40px;
-  gap: 28px;
+  gap: 20px;
 `;
 
 const InputLabel = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  /* gap: 12px; */
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 26px;
@@ -53,6 +53,7 @@ const InputLabel = styled.label`
 
 const InputStyled = styled.input`
   padding: 10px 16px;
+  margin-top: 12px;
   font-size: ${p => p.theme.fontSizes.s};
   height: ${p => p.theme.fontSizes.xxl};
   background: ${p => p.theme.color.background};
@@ -74,6 +75,7 @@ const StyledStar = styled.span`
 const RadioGroupSex = styled.div`
   display: flex;
   gap: 80px;
+  margin-bottom: 12px;
 `;
 
 const RadioSex = styled.input`
@@ -111,6 +113,7 @@ const InputImageWrapper = styled.div`
   justify-content: center;
   width: 140px;
   height: 140px;
+  margin-top: 12px;
   border: ${p => p.theme.borders.inputBorder};
   background: ${p => p.theme.color.background};
   border-radius: 20px;
@@ -126,6 +129,17 @@ const StyledIconAdd = styled(Icon.Add)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const FieldError = styled.p`
+  height: 20px;
+  /* text-align: left; */
+  font-size: 10px;
+  /* line-height: 12px; */
+  color: ${p => p.theme.color.accent};
+  /* letter-spacing: 0.04em; */
+  /* padding: 5px 15px; */
+  margin-left: 15px;
 `;
 
 export {
@@ -145,4 +159,5 @@ export {
   InputImageWrapper,
   InputImageLabel,
   StyledIconAdd,
+  FieldError,
 };

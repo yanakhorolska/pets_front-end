@@ -14,27 +14,31 @@ import {
   InputImageWrapper,
   InputImageLabel,
   StyledIconAdd,
+  FieldError,
 } from './CreateNotice.styled';
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, NextButton } from 'styles/Buttons/index';
-// import { useAddNoticeMutation } from 'redux/fetchNotice';
+import { useAddNoticeMutation } from 'redux/fetchNotice';
 
-// const addNoticeSchema = Yup.object()
-//   .shape({
-//     title: Yup.string().min(2, 'Too Short!').max(100).required('Required'),
-//     petName: Yup.string().min(2, 'Too Short!').max(50).required('Required'),
-//     dateOfBirth: Yup.date().required('Required'),
-//     breed: Yup.string().required('Required'),
-//     sex: Yup.string().oneOf(['male', 'female']).required('Required'),
-//     location: Yup.string().required('Required'),
-//     price: Yup.number().min(0).max(100000),
-//     comment: Yup.string().max(200),
-//   })
-//   .required();
+const addNoticeSchema = Yup.object()
+  .shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .max(100, 'Too long!')
+      .required('Title is required field'),
+    petName: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
+    dateOfBirth: Yup.date().max(new Date(), "You can't be born in the future!"),
+    breed: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
+    sex: Yup.string().oneOf(['male', 'female']).required('Required'),
+    location: Yup.string().required('Location is required field'),
+    price: Yup.number().min(0).max(100000),
+    comment: Yup.string().max(200, 'Too long!'),
+  })
+  .required();
 
 const CreateNotice = ({ onClose }) => {
   const location = useLocation();
@@ -43,13 +47,13 @@ const CreateNotice = ({ onClose }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [imageSrc, setImageSrc] = useState('');
 
-  // const [addNotice, { isLoading }] = useAddNoticeMutation();
+  const [addNotice] = useAddNoticeMutation();
 
   const formik = useFormik({
     initialValues: {
       title: '',
       petName: '',
-      dateOfBirth: 0,
+      dateOfBirth: '',
       breed: '',
       sex: 'male',
       location: '',
@@ -57,12 +61,24 @@ const CreateNotice = ({ onClose }) => {
       imageUrl: '',
       comment: '',
     },
-    //validationSchema: addNoticeSchema,
+    validationSchema: addNoticeSchema,
     onSubmit: async values => {
       console.log(values);
-      //await addNotice(values);
+      values.category = 'lostFound';
+      const result = await addNotice(values).unwrap();
+      console.log(result);
     },
   });
+
+  const {
+    title: titleError,
+    petName: petNameError,
+    dateOfBirth: dateOfBirthError,
+    breed: breedError,
+    location: locationError,
+    price: priceError,
+    comment: commentError,
+  } = formik.errors;
 
   const onInputImageChange = event => {
     formik.setFieldValue('imageUrl', event.currentTarget.files[0]);
@@ -96,8 +112,12 @@ const CreateNotice = ({ onClose }) => {
               name="title"
               placeholder="Type title of ad"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.title}
             ></InputStyled>
+            {formik.touched.title && titleError ? (
+              <FieldError>{titleError} </FieldError>
+            ) : null}
           </InputLabel>
           <InputLabel>
             <span>Name pet:</span>
@@ -106,8 +126,12 @@ const CreateNotice = ({ onClose }) => {
               name="petName"
               placeholder="Type name pet"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.petName}
             ></InputStyled>
+            {formik.touched.petName && petNameError ? (
+              <FieldError>{petNameError} </FieldError>
+            ) : null}
           </InputLabel>
           <InputLabel>
             <span>Date of birth</span>
@@ -116,8 +140,12 @@ const CreateNotice = ({ onClose }) => {
               name="dateOfBirth"
               placeholder="Type date of birth"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.dateOfBirth}
             ></InputStyled>
+            {formik.touched.dateOfBirth && dateOfBirthError ? (
+              <FieldError>{dateOfBirthError} </FieldError>
+            ) : null}
           </InputLabel>
           <InputLabel>
             <span>Breed</span>
@@ -126,8 +154,12 @@ const CreateNotice = ({ onClose }) => {
               name="breed"
               placeholder="Type breed"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.breed}
             ></InputStyled>
+            {formik.touched.breed && breedError ? (
+              <FieldError>{breedError} </FieldError>
+            ) : null}
           </InputLabel>
         </FormPageWrapper>
       ) : (
@@ -160,7 +192,6 @@ const CreateNotice = ({ onClose }) => {
               />
               Female
             </RadioLabel>
-            Picked {formik.values.sex}
           </RadioGroupSex>
           <InputLabel>
             <span>
@@ -171,8 +202,12 @@ const CreateNotice = ({ onClose }) => {
               name="location"
               placeholder="Type location"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.location}
             ></InputStyled>
+            {formik.touched.location && locationError ? (
+              <FieldError>{locationError} </FieldError>
+            ) : null}
           </InputLabel>
           {isSell && (
             <InputLabel>
@@ -184,8 +219,12 @@ const CreateNotice = ({ onClose }) => {
                 name="price"
                 placeholder="Type price"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.price}
               ></InputStyled>
+              {formik.touched.price && priceError ? (
+                <FieldError>{priceError} </FieldError>
+              ) : null}
             </InputLabel>
           )}
           <InputImageLabel>
@@ -217,6 +256,9 @@ const CreateNotice = ({ onClose }) => {
               onChange={formik.handleChange}
               value={formik.values.comment}
             ></CommentInput>
+            {formik.touched.comment && commentError ? (
+              <FieldError>{commentError} </FieldError>
+            ) : null}
           </InputLabel>
         </FormPageWrapper>
       )}

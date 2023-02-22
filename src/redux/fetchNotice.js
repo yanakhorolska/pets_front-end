@@ -37,7 +37,7 @@ export const fetchNotice = createApi({
     }),
     addNotice: builder.mutation({
       query: payload => ({
-        url: '/notice/add',
+        url: `/notices/category/${payload.category}`,
         method: 'POST',
         body: payload,
       }),
