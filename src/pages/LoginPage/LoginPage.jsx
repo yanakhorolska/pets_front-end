@@ -1,5 +1,5 @@
 import AuthForm from 'components/AuthForm/AuthForm';
-import { AuthContainer } from "./styledLoginPage.styled"
+import { AuthContainer } from "./LoginPage.styled"
 
 const LoginPage = () => {
   return (

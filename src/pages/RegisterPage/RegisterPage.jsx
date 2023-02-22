@@ -1,10 +1,11 @@
 import AuthForm from 'components/AuthForm/AuthForm';
+import { AuthContainer } from "../LoginPage/LoginPage.styled"
 
 const RegisterPage = () => {
   return (
-    <div>
+    <AuthContainer>
       <AuthForm title="Registration" />
-    </div>
+    </AuthContainer>
   );
 };
 
