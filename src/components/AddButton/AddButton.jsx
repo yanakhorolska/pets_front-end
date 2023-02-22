@@ -1,16 +1,19 @@
-import AddPet from 'components/ModalAddsPet';
-import ModalWindow from 'components/ModalWindow';
 import { useAuth } from 'hooks/useAuth';
-import React, { useCallback, useState } from 'react';
-// import Icon from 'styles/Buttons/icons/index';
-import {
-  AddButtonTitle,
-  AddButtonWrapper,
-  AddNoticeStyled,
-  StyledIconAdd,
-} from './AddPetButton.styled';
+import { useCallback, useState } from 'react';
 
-const AddPetButton = () => {
+import ModalWindow from 'components/ModalWindow';
+
+import {
+    AddButtonTitle,
+    AddButtonWrapper,
+    AddButtonStyled,
+    StyledIconAdd,
+  } from './AddButton.styled';
+  
+
+const AddButton = ({ children, ...props }) => {
+  console.log('props', props);
+
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -25,23 +28,21 @@ const AddPetButton = () => {
       {isLoggedIn && (
         <AddButtonWrapper>
           <AddButtonTitle>Add pet</AddButtonTitle>
-          <AddNoticeStyled
+          <AddButtonStyled
             type="button"
             onClick={() => {
               setIsModalOpen(true);
             }}
           >
             <StyledIconAdd />
-          </AddNoticeStyled>
+          </AddButtonStyled>
         </AddButtonWrapper>
       )}
       {isModalOpen && (
-        <ModalWindow onClose={toggleModal}>
-          <AddPet onClose={toggleModal} />
-        </ModalWindow>
+        <ModalWindow onClose={toggleModal}>{children}</ModalWindow>
       )}
     </>
   );
 };
 
-export default AddPetButton;
+export { AddButton };

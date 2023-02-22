@@ -18,7 +18,7 @@ const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesCategoriesList = lazy(() =>
   import('components/NoticesCategoriesList')
 );
-const UserPageTemp = lazy(() => import('pages/UserTemp'));
+const ExamplesComponent = lazy(() => import('pages/ExamplesComponent'));
 
 export const App = () => {
   // const dispatch = useDispatch();
@@ -52,7 +52,7 @@ export const App = () => {
               </Route>
             </Route>
             //
-            <Route path="tempUser" element={<UserPageTemp />} />
+            <Route path="/examples" element={<ExamplesComponent />} />
             //
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route element={<PublicRoutes restricted />}>

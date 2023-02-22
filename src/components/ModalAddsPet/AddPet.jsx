@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 
-const AddPet = () => {
+export const  AddPet = () => {
   const formik = useFormik({
     initialValues: {
       nickname: '',
@@ -75,5 +75,3 @@ const AddPet = () => {
     </form>
   );
 };
-
-export default AddPet;

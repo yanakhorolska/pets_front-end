@@ -1,0 +1,1 @@
+export { AddPet as default } from './AddPet'
