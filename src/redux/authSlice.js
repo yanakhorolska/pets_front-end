@@ -47,12 +47,12 @@ const authSlice = createSlice({
       state.user.city = action.payload.city;
       state.user.birthday = action.payload.birthday;
     },
-    setAvatarUrl: (state, action) => {
-      state.user.avatarUrl = action.payload
+    setAvatarURL: (state, action) => {
+      state.user.avatarURL = action.payload
     }
   },
 });
 
-export const { setUser, setCredentials, setLogoutUser, setAvatarUrl, setUpdatedUser } = authSlice.actions;
+export const { setUser, setCredentials, setLogoutUser, setAvatarURL, setUpdatedUser } = authSlice.actions;
 
 export default authSlice.reducer;

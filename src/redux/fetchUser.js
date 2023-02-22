@@ -64,14 +64,14 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-    updateUserAvatar: builder.mutation({
-      query: payload => ({
-        url: 'users/avatar',
-        method: 'PATCH',
-        body: payload,
-      }),
-      invalidatesTags: ['User'],
-    }),
+    // updateUserAvatar: builder.mutation({
+    //   query: payload => ({
+    //     url: 'users/avatar',
+    //     method: 'PATCH',
+    //     body: payload,
+    //   }),
+    //   invalidatesTags: ['User'],
+    // }),
     // / updateUserAvatar: builder.mutation({
     //   query: payload => ({
     //     url: 'users/avatar',
@@ -93,6 +93,18 @@ export const userApi = createApi({
     //   },
     //   invalidatesTags: ['User'],
     // }),
+    updateUserAvatar: builder.mutation({
+      query: (file) => {
+        const formData = new FormData();
+        formData.append("avatar", file);
+        return {
+          url: "/users/avatars",
+          method: "PATCH",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
