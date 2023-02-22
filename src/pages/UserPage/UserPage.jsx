@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getToken, getUser } from '../../redux/selectors';
+import { getToken} from '../../redux/selectors';
 import { useGetUserQuery } from '../../redux/authApi';
 // import {useGetCurrentUserQuery} from '../../redux/fetchUser'
 // import{useLogOutMutation} from '../../redux/fetchUser'
@@ -11,7 +11,7 @@ import LogoutButton from "components/LogoutButton/LogoutButton"
 
 const UserPage = () => {
   const token = useSelector(getToken);
- console.log(token)
+//  console.log(token)
   const dispatch = useDispatch();
   
   const { data, isLoading } = useGetUserQuery(token);
@@ -24,8 +24,8 @@ console.log("data from back", user)
       dispatch(setUser(user), []);
     }
   });
-  const currentUser = useSelector(getUser);
-  console.log('CurrentUser from userState', currentUser);
+  // const currentUser = useSelector(getUser);
+  // console.log('CurrentUser from userState', currentUser);
 
     return (
     <div>

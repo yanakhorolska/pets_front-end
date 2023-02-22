@@ -30,7 +30,7 @@ const UserDataItem = ({ initialValues, name, value }) => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form>
         <label>{name}: </label>
-        <Field type="text" name={name} value={value} disabled={disabled}></Field>
+        <Field type="text" name={name} disabled={disabled} ></Field>
         <button type="submit" disabled={disabled}>Submit</button>
         <button type="button" onClick={() => setDisabled(!disabled)} >Edit</button>
       </Form>

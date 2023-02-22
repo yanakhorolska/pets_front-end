@@ -72,6 +72,27 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    // / updateUserAvatar: builder.mutation({
+    //   query: payload => ({
+    //     url: 'users/avatar',
+    //     method: 'PATCH',
+    //     body: payload,
+    //   }),
+    //   invalidatesTags: ['User'],
+    // })
+    //   updateUserAvatar: builder.mutation({
+    //   query: (file) => {
+    //     const formData = new FormData();
+    //     formData.append('file', file);
+    //     formData.append('upload_preset', 'YOUR_UPLOAD_PRESET');
+    //       formData.append('folder', 'YOUR_FOLDER');
+    //       return {
+    //     url: 'users/avatar',
+    //     method: 'PATCH',
+    //     body: payload,
+    //   },
+    //   invalidatesTags: ['User'],
+    // }),
   }),
 });
 
