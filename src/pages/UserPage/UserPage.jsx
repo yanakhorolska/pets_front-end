@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getToken, getUser } from '../../redux/selectors';
 import { useGetUserQuery } from '../../redux/authApi';
+// import {useGetCurrentUserQuery} from '../../redux/fetchUser'
 // import{useLogOutMutation} from '../../redux/fetchUser'
 import { setUser } from '../../redux/authSlice';
 import { useEffect } from 'react';
@@ -12,14 +13,15 @@ const UserPage = () => {
   const token = useSelector(getToken);
  console.log(token)
   const dispatch = useDispatch();
+  
   const { data, isLoading } = useGetUserQuery(token);
+  
 
-  const user = { ...data, token };
-  console.log("data from back", user)
-
+ const user = {...data, token}
+console.log("data from back", user)
   useEffect(() => {
     if (!isLoading) {
-      dispatch(setUser(user));
+      dispatch(setUser(user), []);
     }
   });
   const currentUser = useSelector(getUser);

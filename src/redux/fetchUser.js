@@ -57,7 +57,7 @@ export const userApi = createApi({
       }),
     }),
     updateUser: builder.mutation({
-      query: payload => ({
+      query: (token, payload) => ({
         url: '/users/update',
         method: 'PATCH',
         body: payload,
@@ -66,7 +66,7 @@ export const userApi = createApi({
     }),
     updateUserAvatar: builder.mutation({
       query: payload => ({
-        url: 'users/current/avatar',
+        url: 'users/avatar',
         method: 'PATCH',
         body: payload,
       }),
