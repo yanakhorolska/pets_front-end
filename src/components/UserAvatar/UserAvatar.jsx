@@ -18,7 +18,6 @@ const UserAvatar = () => {
     try {
       const file = event.target.files[0];
       const newAvatarURL = await updateUserAvatar(file).unwrap();
-      console.log("NEW", newAvatarURL)
       dispatch(setAvatarURL(newAvatarURL.avatarURL));
     } catch (err) {
       console.log(err);
