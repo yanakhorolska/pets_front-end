@@ -9,7 +9,7 @@ import {
   CategoryTag,
 } from './NoticeCategoryItemStyled';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
-import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
+// import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
 import  LearnMoreButtonComponent  from '../../components/LearnMoreButton/LearnMoreButton';
 export const NoticeCategoryItem = props => {
   const {
