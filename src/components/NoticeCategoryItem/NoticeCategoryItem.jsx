@@ -13,11 +13,11 @@ import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
 import { LearnMoreBtn } from 'styles/Buttons/LearnMoreButton/LearnMoreButton.styled';
 export const NoticeCategoryItem = props => {
   const {
-    _id,
-    petName,
-    owner,
-    sex,
-    comment,
+    // _id,
+    // petName,
+    // owner,
+    // sex,
+    // comment,
     category,
     imageUrl,
     title,
@@ -25,8 +25,8 @@ export const NoticeCategoryItem = props => {
     location,
     price,
     age,
-    refetchUser,
-    isLogged,
+    // refetchUser,
+    // isLogged,
   } = props;
 
   return (
