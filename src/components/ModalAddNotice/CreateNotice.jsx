@@ -49,7 +49,7 @@ const CreateNotice = ({ onClose }) => {
     initialValues: {
       title: '',
       petName: '',
-      dateOfBirth: Date.now(),
+      dateOfBirth: 0,
       breed: '',
       sex: 'male',
       location: '',
@@ -201,7 +201,9 @@ const CreateNotice = ({ onClose }) => {
               {imageSrc ? (
                 <img id="preview" src={imageSrc} alt="preview" />
               ) : (
-                <StyledIconAdd visible={formik.values.imageUrl === ''} />
+                <StyledIconAdd
+                  visible={(formik.values.imageUrl === '').toString()}
+                />
               )}
             </InputImageWrapper>
           </InputImageLabel>

@@ -121,7 +121,7 @@ const InputImageWrapper = styled.div`
 `;
 
 const StyledIconAdd = styled(Icon.Add)`
-  opacity: ${p => (p.visible ? 1 : 0)};
+  opacity: ${p => (p.visible === 'true' ? 1 : 0)};
   position: absolute;
   top: 50%;
   left: 50%;
