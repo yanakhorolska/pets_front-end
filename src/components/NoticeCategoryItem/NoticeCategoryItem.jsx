@@ -10,10 +10,10 @@ import {
 } from './NoticeCategoryItemStyled';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
-import { LearnMoreBtn } from 'styles/Buttons/LearnMoreButton/LearnMoreButton.styled';
+import { LearnMoreButtonComponent } from '../../components/LearnMoreButton/LearnMoreButton';
 export const NoticeCategoryItem = props => {
   const {
-    // _id,
+    _id,
     // petName,
     // owner,
     // sex,
@@ -54,8 +54,8 @@ export const NoticeCategoryItem = props => {
             </NoticeInfoListItem>
           ) : null}
         </NoticeInfoList>
-        <LearnMoreBtn>Learn More</LearnMoreBtn>
-        {<TrashBtn>Delete</TrashBtn>}
+        <LearnMoreButtonComponent id={_id}>Learn More</LearnMoreButtonComponent>
+        {/* {<TrashBtn>Delete</TrashBtn>} */}
       </NoticeInfoBox>
       <CategoryTag>
         <p>{category}</p>
