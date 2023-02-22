@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
 import { Loader } from 'components/Loader/Loader';
 import { CloseButton } from 'styles/Buttons/index';
@@ -21,6 +22,7 @@ import {
 const ModalNotice = onClose => {
   const { data, isError, isLoading } = useGetNoticeByIdQuery(
     '63f4d76951b8df42bda200c2'
+    // '63f4d89051b8df42bda200d5'
   );
   console.log(data);
   console.log(isLoading);
@@ -112,6 +114,13 @@ const ModalNotice = onClose => {
                   <b>Phone:</b> {phone}
                 </a>
               </li>
+              {category === 'sell' && (
+                <li>
+                  <p>
+                    <b>Price:</b> {price}
+                  </p>
+                </li>
+              )}
             </Descriptions>
           </ColumnBox>
           <Text>
@@ -119,7 +128,9 @@ const ModalNotice = onClose => {
           </Text>
           <ButtonBox>
             <li>
-              <ContactButton type="button">Contact</ContactButton>
+              <a href="tel:+49.157.0156">
+                <ContactButton type="button">Contact</ContactButton>
+              </a>
             </li>
             <li>
               <AddButton type="button">
