@@ -3,6 +3,9 @@ import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
 import { Loader } from 'components/Loader/Loader';
 import { CloseButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
+import { NavLink } from 'react-router-dom';
+
+import { useAuth } from 'hooks/useAuth';
 
 import {
   ModalBox,
@@ -19,13 +22,11 @@ import {
   AddButton,
 } from './ModalNotice.styled';
 
-const ModalNotice = onClose => {
-  const { data, isError, isLoading } = useGetNoticeByIdQuery(
-    '63f4d76951b8df42bda200c2'
-    // '63f4d89051b8df42bda200d5'
-  );
+const ModalNotice = (onClose, id) => {
+  const isLoggedIn = useAuth();
+  const { data, isError, isLoading } = useGetNoticeByIdQuery(id);
   console.log(data);
-  console.log(isLoading);
+  console.log(onClose);
 
   if (!data) {
     console.log('empty');
@@ -48,6 +49,14 @@ const ModalNotice = onClose => {
     phone,
   } = data;
 
+  const onAddToButtonClickLogin = () => {
+    console.log('login');
+  };
+
+  const onAddToButtonClickFavor = () => {
+    console.log('favourite');
+  };
+
   return (
     <>
       {isLoading ? (
@@ -56,19 +65,6 @@ const ModalNotice = onClose => {
         </ModalBox>
       ) : (
         <ModalBox>
-          {/* <CloseBox>
-            <CloseButton
-              onClose={onClose}
-              className={null}
-              style={{
-                position: 'absolute',
-                top: 23,
-                right: 23,
-                width: 34,
-                height: 34,
-              }}
-            />
-          </CloseBox> */}
           <ColumnBox>
             <PhotoBox>
               <PetPhoto src={imageUrl} alt="photoPets" />
@@ -132,11 +128,21 @@ const ModalNotice = onClose => {
                 <ContactButton type="button">Contact</ContactButton>
               </a>
             </li>
-            <li>
-              <AddButton type="button">
-                Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
-              </AddButton>
-            </li>
+            {isLoggedIn ? (
+              <li>
+                <AddButton type="button" onClick={onAddToButtonClickFavor}>
+                  Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
+                </AddButton>
+              </li>
+            ) : (
+              <li>
+                <NavLink to="/login">
+                  <AddButton type="button" onClick={onAddToButtonClickLogin}>
+                    Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
+                  </AddButton>
+                </NavLink>
+              </li>
+            )}
           </ButtonBox>
         </ModalBox>
       )}
@@ -145,3 +151,19 @@ const ModalNotice = onClose => {
 };
 
 export default ModalNotice;
+
+{
+  /* {/* <CloseBox>
+            <CloseButton
+              onClose={onClose} */
+}
+// className={null}
+// style={{
+//   position: 'absolute',
+//   top: 23,
+//   right: 23,
+//   width: 34,
+//   height: 34,
+// }}
+//   />
+// </CloseBox> */}
