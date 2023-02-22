@@ -21,6 +21,9 @@ const ModalCreateNotice = styled.form`
     width: ${p => p.theme.sizes.width.modalM2};
     padding: 40px 80px;
   }
+  *:focus {
+    outline: none;
+  }
 `;
 
 const FormTitle = styled.h3`
@@ -34,7 +37,7 @@ const FormPageWrapper = styled.div`
   flex-direction: column;
   margin-top: 40px;
   margin-bottom: 40px;
-  gap: 10px;
+  gap: 28px;
 `;
 
 const InputLabel = styled.label`
@@ -47,9 +50,17 @@ const InputLabel = styled.label`
   color: ${p => p.theme.color.black};
 `;
 
+const InputStyled = styled.input`
+  padding: 10px 16px;
+  font-size: ${p => p.theme.fontSizes.s};
+  height: ${p => p.theme.fontSizes.xxl};
+  background: ${p => p.theme.color.background};
+  border: ${p => p.theme.borders.inputBorder};
+  border-radius: ${p => p.theme.radii.borderRadius.btn};
+`;
+
 const StyledStar = styled.span`
   color: ${p => p.theme.color.accent};
-
   font-size: ${p => p.theme.fontSizes.l};
 `;
 
@@ -79,4 +90,5 @@ export {
   FormPageWrapper,
   StyledStar,
   InputLabel,
+  InputStyled,
 };

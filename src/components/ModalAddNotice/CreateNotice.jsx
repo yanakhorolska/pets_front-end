@@ -7,6 +7,7 @@ import {
   RadioSex,
   StyledStar,
   InputLabel,
+  InputStyled,
 } from './CreateNotice.styled';
 // import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -65,39 +66,39 @@ const CreateNotice = ({ onClose }) => {
             <span>
               Title of ad<StyledStar>*</StyledStar>
             </span>
-            <input
+            <InputStyled
               type="text"
               name="title"
               placeholder="Type title of ad"
               onChange={formik.handleChange}
-            ></input>
+            ></InputStyled>
           </InputLabel>
           <InputLabel>
             <span>Name pet:</span>
-            <input
+            <InputStyled
               type="text"
               name="petName"
               placeholder="Type name pet"
               onChange={formik.handleChange}
-            ></input>
+            ></InputStyled>
           </InputLabel>
           <InputLabel>
             <span>Date of birth</span>
-            <input
+            <InputStyled
               type="date"
               name="dateOfBirth"
               placeholder="Type date of birth"
               onChange={formik.handleChange}
-            ></input>
+            ></InputStyled>
           </InputLabel>
           <InputLabel>
             <span>Breed</span>
-            <input
+            <InputStyled
               type="text"
               name="breed"
               placeholder="Type breed"
               onChange={formik.handleChange}
-            ></input>
+            ></InputStyled>
           </InputLabel>
         </FormPageWrapper>
       ) : (
@@ -136,24 +137,24 @@ const CreateNotice = ({ onClose }) => {
             <span>
               Location<StyledStar>*</StyledStar>:
             </span>
-            <input
+            <InputStyled
               type="text"
               name="location"
               placeholder="Type location"
               onChange={formik.handleChange}
-            ></input>
+            ></InputStyled>
           </InputLabel>
           {isSell && (
             <InputLabel>
               <span>
                 Price<StyledStar>*</StyledStar>:
               </span>
-              <input
+              <InputStyled
                 type="number"
                 name="price"
                 placeholder="Type price"
                 onChange={formik.handleChange}
-              ></input>
+              ></InputStyled>
             </InputLabel>
           )}
           <InputLabel>
@@ -166,12 +167,12 @@ const CreateNotice = ({ onClose }) => {
           </InputLabel>
           <InputLabel>
             <span>Comments:</span>
-            <input
+            <InputStyled
               type="text"
               name="comment"
               placeholder="Type comment"
               onChange={formik.handleChange}
-            ></input>
+            ></InputStyled>
           </InputLabel>
         </FormPageWrapper>
       )}
