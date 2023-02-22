@@ -5,7 +5,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-back-end.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().users.token;
+      const token = getState().auth.token;
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -29,14 +29,18 @@ export const userApi = createApi({
       }),
     }),
     getCurrentUser: builder.query({
-      query: () => '/user/current',
-      providesTags: ['User'],
+      // query: (token) => '/users/current',
+      // providesTags: ['User'],
+      // transformResponse: response => response.data
+      query: (token) => `/users/current`,
+      transformResponse: response => response.data
     }),
     logOut: builder.mutation({
-      query: () => ({
-        url: '/auth/logout',
-        method: 'GET',
+      query: (token) => ({
+        url: '/users/logout',
+        method: 'POST',
       }),
+      invalidatesTags: ['User'],
     }),
     forgotPassword: builder.mutation({
       query: ({ email }) => ({
@@ -53,20 +57,53 @@ export const userApi = createApi({
       }),
     }),
     updateUser: builder.mutation({
-      query: payload => ({
-        url: '/user/current',
+      query: (token, payload) => ({
+        url: '/users/update',
         method: 'PATCH',
         body: payload,
       }),
       invalidatesTags: ['User'],
     }),
+    // updateUserAvatar: builder.mutation({
+    //   query: payload => ({
+    //     url: 'users/avatar',
+    //     method: 'PATCH',
+    //     body: payload,
+    //   }),
+    //   invalidatesTags: ['User'],
+    // }),
+    // / updateUserAvatar: builder.mutation({
+    //   query: payload => ({
+    //     url: 'users/avatar',
+    //     method: 'PATCH',
+    //     body: payload,
+    //   }),
+    //   invalidatesTags: ['User'],
+    // })
+    //   updateUserAvatar: builder.mutation({
+    //   query: (file) => {
+    //     const formData = new FormData();
+    //     formData.append('file', file);
+    //     formData.append('upload_preset', 'YOUR_UPLOAD_PRESET');
+    //       formData.append('folder', 'YOUR_FOLDER');
+    //       return {
+    //     url: 'users/avatar',
+    //     method: 'PATCH',
+    //     body: payload,
+    //   },
+    //   invalidatesTags: ['User'],
+    // }),
     updateUserAvatar: builder.mutation({
-      query: payload => ({
-        url: 'user/current/avatar',
-        method: 'PATCH',
-        body: payload,
-      }),
-      invalidatesTags: ['User'],
+      query: (file) => {
+        const formData = new FormData();
+        formData.append("avatar", file);
+        return {
+          url: "/users/avatars",
+          method: "PATCH",
+          body: formData,
+        };
+      },
+      invalidatesTags: ["User"],
     }),
   }),
 });
