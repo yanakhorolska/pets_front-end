@@ -14,7 +14,6 @@ export const firstPageRegister = Yup.object({
 
 export const secondPageRegister = Yup.object({
   name: Yup.string()
-    .min(1)
     .max(70)
     .required()
     .matches(/^[a-zA-Z]+$/),

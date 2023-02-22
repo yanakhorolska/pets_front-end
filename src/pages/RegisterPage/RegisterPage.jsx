@@ -1,15 +1,11 @@
 import AuthForm from 'components/AuthForm/AuthForm';
-// import s from './RegisterPage.module.scss';
+import { AuthContainer } from "../LoginPage/LoginPage.styled"
 
 const RegisterPage = () => {
   return (
-    <div
-      // className={s.container}
-    >
-      <AuthForm
-        title='Registration'
-      />
-    </div>
+    <AuthContainer>
+      <AuthForm title="Registration" />
+    </AuthContainer>
   );
 };
 
