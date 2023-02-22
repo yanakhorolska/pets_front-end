@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { OverlayStyled } from './ModalWindow.styled';
 import PropTypes from 'prop-types';
+import { Backdrop } from 'styles/Modals/Modals.styled';
 
 const container = document.getElementById('modal-root');
 
@@ -29,9 +29,9 @@ const ModalWindow = ({ onClose, children }) => {
   };
 
   return createPortal(
-    <OverlayStyled onClick={onBackdropClick}>
+    <Backdrop onClick={onBackdropClick}>
       <>{children}</>
-    </OverlayStyled>,
+    </Backdrop>,
     container
   );
 };

@@ -9,6 +9,7 @@ export const ourFriendsApi = createApi({
   endpoints: builder => ({
     getFriends: builder.query({
       query: () => `/friends`,
+      transformResponse: response => response.data,
     }),
   }),
 });

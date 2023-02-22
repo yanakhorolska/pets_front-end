@@ -4,11 +4,12 @@ import {OurFriendsItem} from "../OurFriendsItem/OurFriendsItem"
 export const OurFriendsList = () => {
 
     const {  data, isError, isLoading } = useGetFriendsQuery();
-  
+  console.log(isLoading)
     return (
 
         <>
             {isLoading ? <div> Loading ... </div> : null}  
+            {isError ? <div>Ooops something went wrong</div> : null}
             {!isLoading && !isError && data.length > 0 ?
                 <FriendsList>
                     {data.map((friendsData) =>

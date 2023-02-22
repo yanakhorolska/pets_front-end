@@ -1,10 +1,7 @@
-
+import * as React from 'react';
+import { RoundLink } from 'components/AuthNav/authNav.styled';
 const UserNav = () => {
-  
-  return <div>
-      UserNav
-      
-  </div>;
+  return <RoundLink to="/user"> Account</RoundLink>
 };
 
 export default UserNav;

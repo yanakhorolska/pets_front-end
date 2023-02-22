@@ -1,12 +1,13 @@
-import {OurFriendsList} from "../../components/OurFriensList/OurFriendsList"
+import { OurFriendsList } from "../../components/OurFriensList/OurFriendsList"
+import { FirstHeader } from "../../styles/Headers/Headers.styled"
+import { FriendsWrap} from "./OurFriendsWrapStyled"
 const OurFriendsPage = () => {
   return (
-    <section>
-      <div>
-        <h2>Our Friends</h2>
+   
+        <FriendsWrap>
+          <FirstHeader>Our Friends</FirstHeader>
           <OurFriendsList />
-      </div>
-    </section>
+        </FriendsWrap>
   );
 };
 

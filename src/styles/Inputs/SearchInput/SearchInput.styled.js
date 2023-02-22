@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
+export const Button = styled.button`
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: scale 250ms linear;
+`;
+
 export const SearchInputStyled = styled.input`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 
   padding: 9px 12px;
   width: 280px;
@@ -17,6 +26,7 @@ export const SearchInputStyled = styled.input`
   line-height: 1.37;
   letter-spacing: 0.04em;
 
+  outline: none;
   border: none;
   color: #535353;
 
@@ -35,6 +45,9 @@ export const SearchInputStyled = styled.input`
 `;
 
 export const Box = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   margin: 28px auto;
   width: 280px;
