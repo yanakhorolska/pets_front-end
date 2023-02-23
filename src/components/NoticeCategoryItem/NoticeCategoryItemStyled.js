@@ -92,11 +92,9 @@ export const NoticeInfoWrap = styled.div`
   flex-direction: column;
   flex-grow: 1;
   padding: 20px 16px 32px;
-  @media (min-width: 768px){
-        padding: 20px 20px 32px;
+  @media (min-width: 768px) {
+    padding: 20px 20px 32px;
   }
-
-}
 `;
 
 export const NoticeTitle = styled.h4`

@@ -7,7 +7,6 @@ import { authApi } from './authApi.js';
 import { ourFriendsApi } from './ourFriendsApi';
 import { userApi } from '../redux/fetchUser';
 import { fetchNotice } from './fetchNotice';
-import { noticeByIdApi } from './noticeByIdApi';
 
 import {
   persistReducer,
@@ -34,7 +33,6 @@ export const store = configureStore({
     [ourFriendsApi.reducerPath]: ourFriendsApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [fetchNotice.reducerPath]: fetchNotice.reducer,
-    [noticeByIdApi.reducerPath]: noticeByIdApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -45,7 +43,6 @@ export const store = configureStore({
       newsApi.middleware,
       authApi.middleware,
       ourFriendsApi.middleware,
-      noticeByIdApi.middleware,
       userApi.middleware,
       fetchNotice.middleware
     ),

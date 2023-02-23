@@ -75,6 +75,11 @@ export const fetchNotice = createApi({
       }),
       invalidatesTags: ['Favorites'],
     }),
+    getNoticeById: builder.query({
+      query: id => `/notices/${id}`,
+      transformResponse: response => response.data,
+    }),
+    providesTags: ['Notice'],
   }),
 });
 
@@ -87,4 +92,5 @@ export const {
   useGetNoticeFavoritesQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
+  useGetNoticeByIdQuery,
 } = fetchNotice;
