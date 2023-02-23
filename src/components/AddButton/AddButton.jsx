@@ -3,16 +3,19 @@ import { useCallback, useState } from 'react';
 import ModalWindow from 'components/ModalWindow';
 
 import {
-    AddButtonTitle,
-    AddButtonWrapper,
-    AddButtonStyled,
-    StyledIconAdd,
-  } from './AddButton.styled';
-  
+  AddButtonTitle,
+  AddButtonWrapper,
+  AddButtonStyled,
+  StyledIconAdd,
+} from './AddButton.styled';
 
-const AddButton = ({ isVisible = true,  component: Component }) => {
- 
+const AddButton = ({ isVisible = true, component: Component }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const body = document.querySelector('body');
+  if (isModalOpen === true) {
+    body.classList.add('is-hidden');
+  }
 
   const toggleModal = useCallback(() => {
     setIsModalOpen(prevState => {
@@ -78,4 +81,4 @@ const AddButton = ({ isVisible = true,  component: Component }) => {
 //   );
 // };
 
-export { AddButton };
+export default AddButton;
