@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRotes';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getToken } from 'redux/selectors';
-
-// import { useGetUserQuery } from 'redux/authApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { getToken } from 'redux/selectors';
+import { setCurrentUser } from 'redux/authSlice';
+import { useGetCurrentUserQuery } from 'redux/authApi';
 
 const Home = lazy(() => import('pages/Home'));
 const NewsPage = lazy(() => import('pages/NewsPage'));
@@ -21,18 +21,18 @@ const NoticesCategoriesList = lazy(() =>
 const ExamplesComponent = lazy(() => import('pages/ExamplesComponent'));
 
 export const App = () => {
-  // const dispatch = useDispatch();
-  // const token = useSelector(getToken);
+  const dispatch = useDispatch();
+  const token = useSelector(getToken);
 
-  // const mockQuery = '';
-  // const { data } = useGetUserQuery(mockQuery, { skip: !token });
+  const mockQuery = '';
+  const { data } = useGetCurrentUserQuery(mockQuery, { skip: !token });
 
-  // useEffect(() => {
-  //   if (!data) {
-  //     return;
-  //   }
-  //   dispatch(setCurrentUser(data));
-  // }, [data, dispatch]);
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    dispatch(setCurrentUser(data));
+  }, [data, dispatch]);
 
   return (
     <>

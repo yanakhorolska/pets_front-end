@@ -28,8 +28,11 @@ export const authApi = createApi({
       }),
     }),
     getUser: builder.query({
-      query: (token) => `/users/current`,
-      transformResponse: response => response.data
+      query: token => `/users/current`,
+      transformResponse: response => response.data,
+    }),
+    getCurrentUser: builder.query({
+      query: () => `/users/current`,
     }),
   }),
 });
@@ -37,5 +40,6 @@ export const authApi = createApi({
 export const {
   useLogInUserMutation,
   useGetUserQuery,
+  useGetCurrentUserQuery,
   useRegisterUserMutation,
 } = authApi;
