@@ -50,6 +50,9 @@ const NoticesSearch = () => {
   const [query, setQuery] = useState('');
   const [, setSearchParams] = useSearchParams();
 
+  // гетюзерснотайсес квері
+  // фільтрувати по пет.тайтл = квері
+
   const handleInput = event => {
     const newQuery = event.target.value.toLowerCase().trim();
     setQuery(newQuery);
