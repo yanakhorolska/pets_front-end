@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Logotype from 'components/Logo/logo';
+import { Container } from 'styles/Container/Container.styled';
 import { Link } from 'components/Nav/nav.styled';
 import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 import {
@@ -30,6 +31,7 @@ const Header = () => {
           <Logotype />
           <Nav />
         </HeadNav>
+        <ToggleButton />
         <HeaderWrap>
           <ButtonsContainer>
             {isLoggedIn ? <UserNav /> : <AuthNav />}
@@ -41,21 +43,33 @@ const Header = () => {
       </Head>
       {burg ? (
         <BurgerMenu>
-          <MenuHeader>
-            <Logotype />
-            <ToggleButtonBurg onClick={() => setBurg(!burg)}>
-              <Icon.Close />
-            </ToggleButtonBurg>
-          </MenuHeader>
-          <BurgerLinks>
-            <BurgerLinksWrap>
-              {isLoggedIn ? <UserNav /> : <AuthNav />}
-            </BurgerLinksWrap>
-            <Link to="/news">News</Link>
-            <Link to="/notices">Find pet</Link>
-            <Link to="/friends">Our friends</Link>
-            <ToggleButton />
-          </BurgerLinks>
+          <Container>
+            <MenuHeader>
+              <Logotype />
+              <ToggleButtonBurg onClick={() => setBurg(!burg)}>
+                <Icon.FatClose />
+              </ToggleButtonBurg>
+            </MenuHeader>
+
+            <BurgerLinks>
+              <BurgerLinksWrap>
+                {isLoggedIn ? (
+                  <UserNav click={() => setBurg(false)} />
+                ) : (
+                  <AuthNav click={() => setBurg(false)} />
+                )}
+              </BurgerLinksWrap>
+              <Link to="/news" onClick={() => setBurg(!burg)}>
+                News
+              </Link>
+              <Link to="/notices" onClick={() => setBurg(!burg)}>
+                Find pet
+              </Link>
+              <Link to="/friends" onClick={() => setBurg(!burg)}>
+                Our friends
+              </Link>
+            </BurgerLinks>
+          </Container>
         </BurgerMenu>
       ) : (
         <></>

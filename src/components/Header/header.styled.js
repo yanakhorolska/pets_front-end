@@ -27,13 +27,14 @@ export const BurgerMenu = styled('div')`
   z-index: 100;
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: ${p => p.theme.color.background};
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding: 16px 20px;
-  background-color: white;
+  padding-top: 16px ;
+  
   flex-direction: column;
+
 `;
 export const BurgerLinks = styled('div')`
   display: flex;

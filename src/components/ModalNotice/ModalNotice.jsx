@@ -1,7 +1,8 @@
 // import { useState } from 'react';
 import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
+import { useAddToFavoritesMutation } from '../../redux/fetchNotice';
 import { Loader } from 'components/Loader/Loader';
-// import { CloseButton } from 'styles/Buttons/index';
+import { CloseButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import { NavLink } from 'react-router-dom';
 
@@ -9,30 +10,33 @@ import { useAuth } from 'hooks/useAuth';
 
 import {
   ModalBox,
-  // CloseBox,
+  CloseBox,
   PetPhoto,
   Category,
   ColumnBox,
   PhotoBox,
   Descriptions,
   TitleCard,
-  Text,
   ButtonBox,
   ContactButton,
   AddButton,
+  DescriptionItems,
+  DescrCategory,
+  DescrData,
+  DescriptionLink,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ onClose, id }) => {
+const ModalNotice = ({ onClose, id, owner }) => {
   const isLoggedIn = useAuth();
   const { data, isError, isLoading } = useGetNoticeByIdQuery(id);
+  const [addToFavorite] = useAddToFavoritesMutation(owner);
   console.log(data);
-  console.log(onClose);
-  console.log(isError);
 
   if (!data) {
     console.log('empty');
     return;
   }
+  // console.log(owner, 'owner');
 
   const {
     title,
@@ -45,17 +49,18 @@ const ModalNotice = ({ onClose, id }) => {
     price,
     imageUrl,
     comment,
-    // owner,
     email,
     phone,
   } = data;
 
-  const onAddToButtonClickLogin = () => {
-    console.log('login');
+  const handleFavoriteClick = async () => {
+    console.log('favourite');
+    const data = await addToFavorite(owner).unwrap();
+    console.log(data, 'data');
   };
 
-  const onAddToButtonClickFavor = () => {
-    console.log('favourite');
+  const onAddToButtonClickLogin = () => {
+    console.log('login');
   };
 
   return (
@@ -66,6 +71,19 @@ const ModalNotice = ({ onClose, id }) => {
         </ModalBox>
       ) : (
         <ModalBox>
+          <CloseBox>
+            <CloseButton
+              onClick={onClose}
+              className={null}
+              style={{
+                position: 'absolute',
+                top: 23,
+                right: 23,
+                width: 34,
+                height: 34,
+              }}
+            />
+          </CloseBox>
           <ColumnBox>
             <PhotoBox>
               <PetPhoto src={imageUrl} alt="photoPets" />
@@ -76,53 +94,61 @@ const ModalNotice = ({ onClose, id }) => {
                 <TitleCard>{title}</TitleCard>
               </li>
               <li>
-                <p>
-                  <b>Name:</b> {petName}
-                </p>
+                <DescriptionItems>
+                  <DescrCategory>Name:</DescrCategory>
+                  <DescrData>{petName}</DescrData>
+                </DescriptionItems>
               </li>
               <li>
-                <p>
-                  <b>Birthday:</b> {dateOfBirth}
-                </p>
+                <DescriptionItems>
+                  <DescrCategory>Birthday:</DescrCategory>
+                  <DescrData>{dateOfBirth}</DescrData>
+                </DescriptionItems>
               </li>
               <li>
-                <p>
-                  <b>Breed:</b> {breed}
-                </p>
+                <DescriptionItems>
+                  <DescrCategory>Breed:</DescrCategory>
+                  <DescrData>{breed}</DescrData>
+                </DescriptionItems>
               </li>
               <li>
-                <p>
-                  <b>Place: </b>
-                  {location}
-                </p>
+                <DescriptionItems>
+                  <DescrCategory>Place: </DescrCategory>
+                  <DescrData>{location}</DescrData>
+                </DescriptionItems>
               </li>
               <li>
-                <p>
-                  <b>The sex:</b> {sex}
-                </p>
+                <DescriptionItems>
+                  <DescrCategory>The sex:</DescrCategory>
+                  <DescrData>{sex}</DescrData>
+                </DescriptionItems>
               </li>
               <li>
-                <a href="mailto:nowhere@mozilla.org">
-                  <b>Email:</b> {email}
-                </a>
+                <DescriptionLink href="mailto:nowhere@mozilla.org">
+                  <DescrCategory>Email:</DescrCategory>
+                  <DescrData>{email}</DescrData>
+                </DescriptionLink>
               </li>
               <li>
-                <a href="tel:+49.157.0156">
-                  <b>Phone:</b> {phone}
-                </a>
+                <DescriptionLink href="tel:+49.157.0156">
+                  <DescrCategory>Phone:</DescrCategory>
+                  <DescrData>{phone}</DescrData>
+                </DescriptionLink>
               </li>
               {category === 'sell' && (
                 <li>
-                  <p>
-                    <b>Price:</b> {price}
-                  </p>
+                  <DescriptionItems>
+                    <DescrCategory>Price:</DescrCategory>
+                    <DescrData>{price}</DescrData>
+                  </DescriptionItems>
                 </li>
               )}
             </Descriptions>
           </ColumnBox>
-          <Text>
-            <b>Comments:</b> {comment}
-          </Text>
+          <p>
+            <DescrCategory>Comments:</DescrCategory>
+            <DescrData>{comment}</DescrData>
+          </p>
           <ButtonBox>
             <li>
               <a href="tel:+49.157.0156">
@@ -131,7 +157,7 @@ const ModalNotice = ({ onClose, id }) => {
             </li>
             {isLoggedIn ? (
               <li>
-                <AddButton type="button" onClick={onAddToButtonClickFavor}>
+                <AddButton type="button" onClick={handleFavoriteClick}>
                   Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
                 </AddButton>
               </li>
@@ -152,18 +178,3 @@ const ModalNotice = ({ onClose, id }) => {
 };
 
 export default ModalNotice;
-
-/* {/* <CloseBox>
-            <CloseButton
-              onClose={onClose} */
-
-// className={null}
-// style={{
-//   position: 'absolute',
-//   top: 23,
-//   right: 23,
-//   width: 34,
-//   height: 34,
-// }}
-//   />
-// </CloseBox> */}
