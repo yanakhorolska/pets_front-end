@@ -24,7 +24,7 @@ import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import Icon from './svg/index';
-import { ModalButton, NextButton } from 'styles/Buttons/index';
+import { ModalButton, ModalStyledButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
 
 const validationSchemas = [
@@ -320,7 +320,7 @@ const CreateNotice = ({ onClose }) => {
           <ModalButton type="button" onClick={onClose}>
             Cancel
           </ModalButton>
-          <NextButton type="submit">Next</NextButton>
+          <ModalStyledButton type="submit">Next</ModalStyledButton>
         </ButtonsWrapper>
       )}
       {pageNumber === 2 && (
@@ -328,7 +328,7 @@ const CreateNotice = ({ onClose }) => {
           <ModalButton type="button" onClick={() => setPageNumber(1)}>
             Back
           </ModalButton>
-          <NextButton type="submit">Done</NextButton>
+          <ModalStyledButton type="submit">Done</ModalStyledButton>
         </ButtonsWrapper>
       )}
     </ModalCreateNotice>
