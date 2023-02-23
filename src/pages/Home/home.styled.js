@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import bgWomanDesk1 from '../../images/bgs/home-woman-desk-1x.png';
 import bgWomanDesk2 from '../../images/bgs/home-woman-desk-2x.png';
 import bgWomanTab1 from '../../images/bgs/home-woman-tab-1x.png';
@@ -98,17 +98,17 @@ export const HomeImg = styled('div')`
 `;
 
 export const HomeText = styled('h2')`
-  color: #000;
+  color:   ${p => p.theme.color.black};
   font-weight: 700;
   font-size: 32px;
   line-height: 1.38;
-  text-align: center;
+  max-width:280px;
   margin-top: 60px;
-  width: 280px;
-  align-self: center;
+  
+ 
   @media (min-width: 768px) {
     align-self: flex-start;
-    width: 100%;
+    max-width:588px;
     margin-top: 88px;
     text-align: left;
     font-size: 68px;
@@ -116,6 +116,7 @@ export const HomeText = styled('h2')`
   }
   @media (min-width: 1280px) {
     margin-top: 92px;
+    
   }
 `;
 
