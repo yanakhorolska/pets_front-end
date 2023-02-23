@@ -152,10 +152,16 @@ const RadioCaregory = styled.input`
 `;
 
 const RadioCaregoryLabel = styled.label`
-  display: flex;
-  flex-direction: column;
+  font-weight: ${p => p.theme.fontWeights.default};
+  padding: 10px 28px;
+  font-size: 20px;
+  letter-spacing: 0.04em;
   color: ${p =>
-    p.children[0].props.checked ? p.theme.color.accent : p.theme.color.black};
+    p.children[0].props.checked ? p.theme.color.white : p.theme.color.black};
+  background-color: ${p =>
+    p.children[0].props.checked ? p.theme.color.accent : p.theme.color.white};
+  border: ${p => p.theme.borders.buttonWhite};
+  border-radius: ${p => p.theme.radii.borderRadius.half}; ;
 `;
 
 export {
