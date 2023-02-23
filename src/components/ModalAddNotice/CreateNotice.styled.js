@@ -81,7 +81,7 @@ const RadioSex = styled.input`
   display: none;
 `;
 
-const RadioLabel = styled.label`
+const RadioSexLabel = styled.label`
   display: flex;
   flex-direction: column;
   color: ${p =>
@@ -90,7 +90,7 @@ const RadioLabel = styled.label`
 
 const ButtonsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 20px;
 
   @media ${p => p.theme.media.tabletDesktop} {
@@ -127,10 +127,7 @@ const InputImageWrapper = styled.div`
   }
 `;
 
-const StyledIconAdd = styled(Icon.Add).attrs(props => ({
-  opacity: props.isvisible === 'true' ? 1 : 0,
-}))`
-  opacity: ${p => p.opacity};
+const StyledIconAdd = styled(Icon.Add)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -144,10 +141,27 @@ const FieldError = styled.p`
   margin-left: 15px;
 `;
 
+const RadioGroupCategories = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-bottom: 12px;
+`;
+
+const RadioCaregory = styled.input`
+  display: none;
+`;
+
+const RadioCaregoryLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  color: ${p =>
+    p.children[0].props.checked ? p.theme.color.accent : p.theme.color.black};
+`;
+
 export {
   FormTitle,
   ModalCreateNotice,
-  RadioLabel,
+  RadioSexLabel,
   RadioSex,
   RadioGroupSex,
   FormPageWrapper,
@@ -161,4 +175,7 @@ export {
   InputImageLabel,
   StyledIconAdd,
   FieldError,
+  RadioGroupCategories,
+  RadioCaregory,
+  RadioCaregoryLabel,
 };
