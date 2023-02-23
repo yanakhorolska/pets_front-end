@@ -92,38 +92,59 @@
 
 // === ===  var2 (всеодно летить 400, але після редагування ендпойнтів взагалі не працює... хулєра(( ))) === ===//
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
-import { useGetNoticeQuery } from 'redux/fetchNotice';
+import {
+  useGetNoticeQuery,
+  // useGetNoticeFavoritesQuery,
+  // useGetUserNoticesQuery,
+} from 'redux/fetchNotice';
+import { getIsLogged } from 'redux/selectors';
 
 const NoticesCategoriesList = () => {
   const [searchParams] = useSearchParams();
   let search = searchParams.get('search');
   if (!search) search = '';
 
+  const isLogged = useSelector(getIsLogged);
+  console.log(isLogged);
+
   const { pathname } = useLocation();
   const renderCategory = () => {
     switch (pathname) {
       case '/notices/sell':
-        return 'category/sell';
+        return 'sell';
       case '/notices/lost-found':
-        return 'category/lostFound';
+        return 'lostFound';
       case '/notices/for-free':
-        return 'category/inGoodHands';
-      case '/favorite':
+        return 'inGoodHands';
+      case '/notices/favorite':
         return 'favorite';
-      case '/own':
+      case '/notices/own':
         return 'own';
       default:
-        return 'category/sell';
+        return 'sell';
     }
   };
 
   const category = renderCategory();
-  console.log(category);
+  console.log(pathname);
 
-  const { data: petsList } = useGetNoticeQuery({ category, search });
+  const { data: petsList, refetch } = useGetNoticeQuery({ category, search });
+
+  // const { data: favoritesList } = useGetNoticeFavoritesQuery(isLogged, {
+  //   skip: !isLogged,
+  // });
+
+  // const  { data: userNoticesList } = useGetUserNoticesQuery(isLogged, {
+  //   skip: !isLogged,
+  // });
+
+  useEffect(() => {
+    refetch();
+  }, [pathname, refetch]);
 
   // фільтруємо тварин по категоріям
   let pets = [];
@@ -138,6 +159,7 @@ const NoticesCategoriesList = () => {
       pets = petsList;
     }
   }
+
   // якщо пошук !== '' кинути масив який фільтрую
 
   return (
@@ -151,6 +173,7 @@ const NoticesCategoriesList = () => {
             age={pet.age.months}
             price={pet.price}
             category={pet.category}
+            owner={pet.owner}
             key={pet.id}
           />
         ))}

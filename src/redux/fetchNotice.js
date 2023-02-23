@@ -24,7 +24,7 @@ export const fetchNotice = createApi({
     }),
     getNotice: builder.query({
       query: ({ category, search = '' }) => ({
-        url: `/notices/${category}?search=${search}`,
+        url: `/notices/category/${category}?search=${search}`,
 
         method: 'GET',
       }),
@@ -51,26 +51,26 @@ export const fetchNotice = createApi({
     }),
     deleteUserNoticeById: builder.mutation({
       query: id => ({
-        url: `/user/notices/${id}`,
+        url: `/notices/${id}`,
         method: 'DELETE',
         body: id,
       }),
       invalidatesTags: ['UserNotice'],
     }),
     getNoticeFavorites: builder.query({
-      query: () => '/user/favorites',
+      query: () => '/notices/favorites',
       providesTags: ['Favorites'],
     }),
     addToFavorites: builder.mutation({
       query: id => ({
-        url: `/user/favorites/${id}`,
+        url: `/notices/favorites/${id}`,
         method: 'POST',
       }),
       invalidatesTags: ['Favorites'],
     }),
     deleteFromFavorites: builder.mutation({
       query: id => ({
-        url: `/user/favorites/${id}`,
+        url: `/notices/favorites/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Favorites'],
