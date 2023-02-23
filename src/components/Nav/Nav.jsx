@@ -1,6 +1,5 @@
 import { List, Link } from './nav.styled';
 
-import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 const Nav = () => {
   return (
     <List>
