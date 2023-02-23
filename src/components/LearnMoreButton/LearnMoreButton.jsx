@@ -5,11 +5,16 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import { LearnMoreButton } from 'styles/Buttons/index';
 
 import { useAuth } from 'hooks/useAuth';
-const LearnMoreButtonComponent = ({ id, owner }) => {
-  console.log(id, 'id');
+const LearnMoreButtonComponent = ({ id }) => {
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(isModalOpen);
+
+  const body = document.querySelector('body');
+  if (isModalOpen === true) {
+    body.classList.add('is-hidden');
+  } else if (isModalOpen === false) {
+    body.classList.remove('is-hidden');
+  }
 
   const toggleModal = useCallback(() => {
     setIsModalOpen(prevState => {
@@ -31,7 +36,7 @@ const LearnMoreButtonComponent = ({ id, owner }) => {
       )}
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
-          <ModalNotice onClose={toggleModal} id={id} owner={owner} />
+          <ModalNotice onClose={toggleModal} id={id} />
         </ModalWindow>
       )}
     </>

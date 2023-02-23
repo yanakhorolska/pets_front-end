@@ -15,6 +15,8 @@ const AddButton = ({ isVisible = true, component: Component }) => {
   const body = document.querySelector('body');
   if (isModalOpen === true) {
     body.classList.add('is-hidden');
+  } else if (isModalOpen === false) {
+    body.classList.remove('is-hidden');
   }
 
   const toggleModal = useCallback(() => {

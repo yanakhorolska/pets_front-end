@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
+import { NavLink } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuth';
 import {
+  useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
 import { Loader } from 'components/Loader/Loader';
 import { CloseButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
-import { NavLink } from 'react-router-dom';
-
-import { useAuth } from 'hooks/useAuth';
-
 import {
   ModalBox,
   CloseBox,
