@@ -19,7 +19,7 @@ export const fetchNotice = createApi({
   tagTypes: ['UserNotice', 'Notice', 'Favorites'],
   endpoints: builder => ({
     getUserNotices: builder.query({
-      query: () => '/notices',
+      query: () => '/notices/myNotices',
       providesTags: ['UserNotice'],
     }),
     getNotice: builder.query({

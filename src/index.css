@@ -7,6 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: overlay;
 }
+body.is-hidden {
+  overflow: hidden;
+}
 
 body::-webkit-scrollbar {
   width: 8px;

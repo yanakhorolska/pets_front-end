@@ -1,12 +1,18 @@
 import {
   NoticeItem,
+  ImgWrap,
   NoticeImg,
-  NoticeInfoBox,
+  CategoryTag,
+  HeartBtnWrap,
+  NoticeInfoWrap,
+  NoticeTitle,
+  ListInfoWrap,
   NoticeInfoList,
   NoticeInfoListItem,
   NoticeInfoListItemCategory,
   NoticeInfoListItemData,
-  CategoryTag,
+  LearnBtnWrap,
+  
 } from './NoticeCategoryItemStyled';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 // import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
@@ -31,10 +37,18 @@ export const NoticeCategoryItem = props => {
 
   return (
     <NoticeItem>
-      <NoticeImg src={imageUrl} alt={title} />
-      <NoticeInfoBox>
-        <h4>{title}</h4>
-        <NoticeInfoList>
+      <ImgWrap>
+ <NoticeImg src={imageUrl} alt={title} />
+<CategoryTag> {category} 
+</CategoryTag>
+<HeartBtnWrap>  
+  <HeartButton />
+  </HeartBtnWrap>
+      </ImgWrap>
+     <NoticeInfoWrap>
+ <NoticeTitle>{title}</NoticeTitle>
+ <ListInfoWrap>
+<NoticeInfoList>
           <NoticeInfoListItem>
             <NoticeInfoListItemCategory>Breed:</NoticeInfoListItemCategory>
             <NoticeInfoListItemData>{breed}</NoticeInfoListItemData>
@@ -54,13 +68,15 @@ export const NoticeCategoryItem = props => {
             </NoticeInfoListItem>
           ) : null}
         </NoticeInfoList>
-        <LearnMoreButtonComponent id={_id} />
-        {/* {<TrashBtn>Delete</TrashBtn>} */}
-      </NoticeInfoBox>
-      <CategoryTag>
-        <p>{category}</p>
-      </CategoryTag>
-      <HeartButton />
+        <LearnBtnWrap>
+ <LearnMoreButtonComponent id={_id} />
+        </LearnBtnWrap>
+      {/* {<TrashBtn>Delete</TrashBtn>} */}
+ </ListInfoWrap>
+     </NoticeInfoWrap>
+     
+      
+        
     </NoticeItem>
   );
 };
