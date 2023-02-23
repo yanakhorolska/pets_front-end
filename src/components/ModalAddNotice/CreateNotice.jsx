@@ -3,7 +3,6 @@ import {
   FormTitle,
   ModalCreateNotice,
   RadioGroupSex,
-  RadioLabel,
   RadioSex,
   StyledStar,
   InputLabel,
@@ -15,17 +14,22 @@ import {
   InputImageLabel,
   StyledIconAdd,
   FieldError,
+  RadioGroupCategories,
+  RadioSexLabel,
+  RadioCaregoryLabel,
+  RadioCaregory,
 } from './CreateNotice.styled';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, NextButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
 
-const addNoticeSchema = Yup.object()
-  .shape({
+const validationSchemas = [
+  Yup.object().shape({
+    category: Yup.string().oneOf(['lostFound', 'inGoodHands', 'sell']),
     title: Yup.string()
       .min(2, 'Too Short!')
       .max(100, 'Too long!')
@@ -33,35 +37,54 @@ const addNoticeSchema = Yup.object()
     petName: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
     dateOfBirth: Yup.date().max(new Date(), "You can't be born in the future!"),
     breed: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
+  }),
+  Yup.object().shape({
     sex: Yup.string().oneOf(['male', 'female']).required('Required'),
     location: Yup.string().required('Location is required field'),
     price: Yup.number().min(0).max(100000),
     comment: Yup.string().max(200, 'Too long!'),
-  })
-  .required();
+  }),
+];
 
 const CreateNotice = ({ onClose }) => {
   const location = useLocation();
-
   const [pageNumber, setPageNumber] = useState(1);
-  const [imageSrc, setImageSrc] = useState('');
-  const [currentPage, setCurrentPage] = useState('');
-
   const [addNotice] = useAddNoticeMutation();
 
-  useEffect(() => {
+  const getCurrentCategory = () => {
     const fullPath = location.pathname;
     if (fullPath.includes('lost-found')) {
-      setCurrentPage('lostFound');
+      return 'lostFound';
     } else if (fullPath.includes('for-free')) {
-      setCurrentPage('inGoodHands');
+      return 'inGoodHands';
     } else if (fullPath.includes('sell')) {
-      setCurrentPage('sell');
+      return 'sell';
+    } else {
+      return 'sell';
     }
-  }, [location.pathname]);
+  };
+
+  const _submitForm = async (values, actions) => {
+    const status = await addNotice(values).unwrap();
+    if (status === 'success') {
+      onClose();
+    }
+    actions.setSubmitting(false);
+  };
+
+  const _handleSubmit = (values, actions) => {
+    if (pageNumber === 2) {
+      _submitForm(values, actions);
+    } else {
+      setPageNumber(2);
+      actions.setTouched({});
+      actions.setSubmitting(false);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
+      category: getCurrentCategory(),
       title: '',
       petName: '',
       dateOfBirth: '',
@@ -72,14 +95,8 @@ const CreateNotice = ({ onClose }) => {
       imageUrl: '',
       comment: '',
     },
-    validationSchema: addNoticeSchema,
-    onSubmit: async values => {
-      values.category = currentPage;
-      const status = await addNotice(values).unwrap();
-      if (status === 'success') {
-        onClose();
-      }
-    },
+    validationSchema: validationSchemas[pageNumber - 1],
+    onSubmit: _handleSubmit,
   });
 
   const {
@@ -92,33 +109,52 @@ const CreateNotice = ({ onClose }) => {
     comment: commentError,
   } = formik.errors;
 
-  const onInputImageChange = event => {
-    formik.setFieldValue('imageUrl', event.currentTarget.files[0]);
-    loadFile(event);
-  };
-
-  const loadFile = event => {
-    if (!event.target.files.length) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImageSrc(reader.result);
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
-
   return (
     <ModalCreateNotice onSubmit={formik.handleSubmit}>
       <FormTitle>Add pet</FormTitle>
 
       {pageNumber === 1 ? (
         <FormPageWrapper>
+          <RadioGroupCategories
+            role="group"
+            aria-labelledby="radio-categories-group"
+          >
+            <RadioCaregoryLabel>
+              <RadioCaregory
+                type="radio"
+                name="category"
+                value="lostFound"
+                checked={formik.values.category === 'lostFound'}
+                onChange={formik.handleChange}
+              />
+              lost/found
+            </RadioCaregoryLabel>
+            <RadioCaregoryLabel>
+              <RadioCaregory
+                type="radio"
+                name="category"
+                value="inGoodHands"
+                checked={formik.values.category === 'inGoodHands'}
+                onChange={formik.handleChange}
+              />
+              in good hands
+            </RadioCaregoryLabel>
+            <RadioCaregoryLabel>
+              <RadioCaregory
+                type="radio"
+                name="category"
+                value="sell"
+                checked={formik.values.category === 'sell'}
+                onChange={formik.handleChange}
+              />
+              sell
+            </RadioCaregoryLabel>
+          </RadioGroupCategories>
           <InputLabel>
             <span>
               Title of ad<StyledStar>*</StyledStar>
             </span>
+
             <InputStyled
               type="text"
               name="title"
@@ -182,7 +218,7 @@ const CreateNotice = ({ onClose }) => {
             </span>
           </InputLabel>
           <RadioGroupSex role="group" aria-labelledby="radio-sex-group">
-            <RadioLabel>
+            <RadioSexLabel>
               <Icon.Male />
               <RadioSex
                 type="radio"
@@ -192,8 +228,8 @@ const CreateNotice = ({ onClose }) => {
                 onChange={formik.handleChange}
               />
               Male
-            </RadioLabel>
-            <RadioLabel>
+            </RadioSexLabel>
+            <RadioSexLabel>
               <Icon.Female />
               <RadioSex
                 type="radio"
@@ -203,7 +239,7 @@ const CreateNotice = ({ onClose }) => {
                 onChange={formik.handleChange}
               />
               Female
-            </RadioLabel>
+            </RadioSexLabel>
           </RadioGroupSex>
           <InputLabel>
             <span>
@@ -221,7 +257,7 @@ const CreateNotice = ({ onClose }) => {
               <FieldError>{locationError} </FieldError>
             ) : null}
           </InputLabel>
-          {currentPage === 'sell' && (
+          {formik.values.category === 'sell' && (
             <InputLabel>
               <span>
                 Price<StyledStar>*</StyledStar>:
@@ -247,14 +283,18 @@ const CreateNotice = ({ onClose }) => {
                 type="file"
                 name="imageUrl"
                 accept="image/*"
-                onChange={onInputImageChange}
+                onChange={event =>
+                  formik.setFieldValue('imageUrl', event.currentTarget.files[0])
+                }
               />
-              {imageSrc ? (
-                <img id="preview" src={imageSrc} alt="preview" />
-              ) : (
-                <StyledIconAdd
-                  isvisible={(formik.values.imageUrl === '').toString()}
+              {formik.values.imageUrl ? (
+                <img
+                  id="preview"
+                  src={URL.createObjectURL(formik.values.imageUrl)}
+                  alt="preview"
                 />
+              ) : (
+                <StyledIconAdd />
               )}
             </InputImageWrapper>
           </InputImageLabel>
@@ -280,9 +320,7 @@ const CreateNotice = ({ onClose }) => {
           <ModalButton type="button" onClick={onClose}>
             Cancel
           </ModalButton>
-          <NextButton type="button" onClick={() => setPageNumber(2)}>
-            Next
-          </NextButton>
+          <NextButton type="submit">Next</NextButton>
         </ButtonsWrapper>
       )}
       {pageNumber === 2 && (
