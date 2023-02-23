@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { CloseButton } from 'styles/Buttons/index';
 import Icon from './svg/index';
 
 const ModalCreateNotice = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 20px 20px 40px 20px;
+  padding: 20px 18px 40px 18px;
   background-color: ${p => p.theme.color.white};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   width: ${p => p.theme.sizes.width.modalS};
@@ -14,12 +15,13 @@ const ModalCreateNotice = styled.form`
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
   height: ${p => p.theme.sizes.height.auto};
+
   @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.sizes.width.modalM};
     padding: 40px 80px;
   }
   @media ${p => p.theme.media.desktop} {
-    width: ${p => p.theme.sizes.width.modalM2};
+    width: ${p => p.theme.sizes.width.modalM};
     padding: 40px 80px;
   }
   *:focus {
@@ -29,41 +31,80 @@ const ModalCreateNotice = styled.form`
 
 const FormTitle = styled.h3`
   margin: 0 auto;
-  font-size: ${p => p.theme.fontSizes.xl};
-  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.l};
+  font-weight: ${p => p.theme.fontWeights.default};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-weight: ${p => p.theme.fontWeights.semiBold};
+    font-size: 36px;
+  }
+`;
+
+const FormDescription = styled.h2`
+  margin-top: 20px;
+  font-weight: ${p => p.theme.fontWeights.default};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.35;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-size: 20px;
+  }
 `;
 
 const FormPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
   margin-bottom: 40px;
-  gap: 20px;
+  gap: 16px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    gap: 28px;
+  }
 `;
 
 const InputLabel = styled.label`
   display: flex;
   flex-direction: column;
   font-weight: ${p => p.theme.fontWeights.default};
-  font-size: ${p => p.theme.fontSizes.l};
+  font-size: 18px;
   line-height: 26px;
   color: ${p => p.theme.color.black};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-size: 24px;
+  }
 `;
 
 const InputStyled = styled.input`
   padding: 10px 16px;
-  margin-top: 12px;
-  font-size: ${p => p.theme.fontSizes.s};
-  height: ${p => p.theme.fontSizes.xxl};
+  margin-top: 8px;
+  font-size: 14px;
+  height: 40px;
   background: ${p => p.theme.color.background};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
+
+  @media ${p => p.theme.media.tablet} {
+    font-size: 16px;
+    margin-top: 12px;
+    height: 48px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    font-size: ${p => p.theme.fontSizes.m};
+    margin-top: 12px;
+    height: 48px;
+  }
 `;
 
 const CommentInput = styled(InputStyled)`
-  height: 110px;
+  height: 40px;
   border-radius: 20px;
   resize: none;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    height: 110px;
+  }
 `;
 
 const StyledStar = styled.span`
@@ -73,8 +114,12 @@ const StyledStar = styled.span`
 
 const RadioGroupSex = styled.div`
   display: flex;
-  gap: 80px;
+  gap: 40px;
   margin-bottom: 12px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    gap: 80px;
+  }
 `;
 
 const RadioSex = styled.input`
@@ -115,8 +160,8 @@ const InputImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 140px;
-  height: 140px;
+  width: 116px;
+  height: 116px;
   margin-top: 12px;
   border: ${p => p.theme.borders.inputBorder};
   background: ${p => p.theme.color.background};
@@ -124,6 +169,11 @@ const InputImageWrapper = styled.div`
   overflow: hidden;
   & > img {
     object-fit: contain;
+  }
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    width: 140px;
+    height: 140px;
   }
 `;
 
@@ -143,8 +193,12 @@ const FieldError = styled.p`
 
 const RadioGroupCategories = styled.div`
   display: flex;
-  gap: 20px;
-  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    gap: 20px;
+  }
 `;
 
 const RadioCaregory = styled.input`
@@ -153,15 +207,39 @@ const RadioCaregory = styled.input`
 
 const RadioCaregoryLabel = styled.label`
   font-weight: ${p => p.theme.fontWeights.default};
-  padding: 10px 28px;
-  font-size: 20px;
-  letter-spacing: 0.04em;
+  padding: 8px 28px;
+  font-size: 14px;
   color: ${p =>
     p.children[0].props.checked ? p.theme.color.white : p.theme.color.black};
   background-color: ${p =>
     p.children[0].props.checked ? p.theme.color.accent : p.theme.color.white};
   border: ${p => p.theme.borders.buttonWhite};
-  border-radius: ${p => p.theme.radii.borderRadius.half}; ;
+  border-radius: ${p => p.theme.radii.borderRadius.half};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-size: 20px;
+    padding: 10px 28px;
+  }
+`;
+
+const CloseButtonAbsolute = styled(CloseButton)`
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 44px;
+    height: 44px;
+    top: 15px;
+    right: 20px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    top: 25px;
+    right: 40px;
+  }
 `;
 
 export {
@@ -184,4 +262,6 @@ export {
   RadioGroupCategories,
   RadioCaregory,
   RadioCaregoryLabel,
+  FormDescription,
+  CloseButtonAbsolute,
 };

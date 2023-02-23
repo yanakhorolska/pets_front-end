@@ -18,6 +18,8 @@ import {
   RadioSexLabel,
   RadioCaregoryLabel,
   RadioCaregory,
+  FormDescription,
+  CloseButtonAbsolute,
 } from './CreateNotice.styled';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -111,10 +113,15 @@ const CreateNotice = ({ onClose }) => {
 
   return (
     <ModalCreateNotice onSubmit={formik.handleSubmit}>
+      <CloseButtonAbsolute onClick={onClose} />
       <FormTitle>Add pet</FormTitle>
 
       {pageNumber === 1 ? (
         <FormPageWrapper>
+          <FormDescription>
+            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            consectetur
+          </FormDescription>
           <RadioGroupCategories
             role="group"
             aria-labelledby="radio-categories-group"
@@ -154,7 +161,6 @@ const CreateNotice = ({ onClose }) => {
             <span>
               Title of ad<StyledStar>*</StyledStar>
             </span>
-
             <InputStyled
               type="text"
               name="title"
@@ -314,7 +320,6 @@ const CreateNotice = ({ onClose }) => {
           </InputLabel>
         </FormPageWrapper>
       )}
-
       {pageNumber === 1 && (
         <ButtonsWrapper>
           <ModalButton type="button" onClick={onClose}>
