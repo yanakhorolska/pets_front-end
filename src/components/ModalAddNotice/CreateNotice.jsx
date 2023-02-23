@@ -19,7 +19,7 @@ import {
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, NextButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
@@ -42,12 +42,23 @@ const addNoticeSchema = Yup.object()
 
 const CreateNotice = ({ onClose }) => {
   const location = useLocation();
-  const isSell = location.pathname.includes('sell');
 
   const [pageNumber, setPageNumber] = useState(1);
   const [imageSrc, setImageSrc] = useState('');
+  const [currentPage, setCurrentPage] = useState('');
 
   const [addNotice] = useAddNoticeMutation();
+
+  useEffect(() => {
+    const fullPath = location.pathname;
+    if (fullPath.includes('lost-found')) {
+      setCurrentPage('lostFound');
+    } else if (fullPath.includes('for-free')) {
+      setCurrentPage('inGoodHands');
+    } else if (fullPath.includes('sell')) {
+      setCurrentPage('sell');
+    }
+  }, [location.pathname]);
 
   const formik = useFormik({
     initialValues: {
@@ -63,10 +74,11 @@ const CreateNotice = ({ onClose }) => {
     },
     validationSchema: addNoticeSchema,
     onSubmit: async values => {
-      console.log(values);
-      values.category = 'lostFound';
-      const result = await addNotice(values).unwrap();
-      console.log(result);
+      values.category = currentPage;
+      const status = await addNotice(values).unwrap();
+      if (status === 'success') {
+        onClose();
+      }
     },
   });
 
@@ -209,7 +221,7 @@ const CreateNotice = ({ onClose }) => {
               <FieldError>{locationError} </FieldError>
             ) : null}
           </InputLabel>
-          {isSell && (
+          {currentPage === 'sell' && (
             <InputLabel>
               <span>
                 Price<StyledStar>*</StyledStar>:
@@ -241,7 +253,7 @@ const CreateNotice = ({ onClose }) => {
                 <img id="preview" src={imageSrc} alt="preview" />
               ) : (
                 <StyledIconAdd
-                  visible={(formik.values.imageUrl === '').toString()}
+                  isvisible={(formik.values.imageUrl === '').toString()}
                 />
               )}
             </InputImageWrapper>

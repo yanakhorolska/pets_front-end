@@ -123,8 +123,10 @@ const InputImageWrapper = styled.div`
   }
 `;
 
-const StyledIconAdd = styled(Icon.Add)`
-  opacity: ${p => (p.visible === 'true' ? 1 : 0)};
+const StyledIconAdd = styled(Icon.Add).attrs(props => ({
+  opacity: props.isvisible === 'true' ? 1 : 0,
+}))`
+  opacity: ${p => p.opacity};
   position: absolute;
   top: 50%;
   left: 50%;
