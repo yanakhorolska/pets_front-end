@@ -44,7 +44,6 @@ const FormPageWrapper = styled.div`
 const InputLabel = styled.label`
   display: flex;
   flex-direction: column;
-  /* gap: 12px; */
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 26px;
@@ -91,9 +90,14 @@ const RadioLabel = styled.label`
 
 const ButtonsWrapper = styled.div`
   display: flex;
-  margin: 0 auto;
+  flex-direction: column;
   gap: 20px;
-  width: 380px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    margin: 0 auto;
+    flex-direction: row;
+    width: 380px;
+  }
 `;
 
 const InputImageLabel = styled(InputLabel)`
@@ -123,8 +127,10 @@ const InputImageWrapper = styled.div`
   }
 `;
 
-const StyledIconAdd = styled(Icon.Add)`
-  opacity: ${p => (p.visible === 'true' ? 1 : 0)};
+const StyledIconAdd = styled(Icon.Add).attrs(props => ({
+  opacity: props.isvisible === 'true' ? 1 : 0,
+}))`
+  opacity: ${p => p.opacity};
   position: absolute;
   top: 50%;
   left: 50%;
@@ -133,17 +139,12 @@ const StyledIconAdd = styled(Icon.Add)`
 
 const FieldError = styled.p`
   height: 20px;
-  /* text-align: left; */
   font-size: 10px;
-  /* line-height: 12px; */
   color: ${p => p.theme.color.accent};
-  /* letter-spacing: 0.04em; */
-  /* padding: 5px 15px; */
   margin-left: 15px;
 `;
 
 export {
-  //
   FormTitle,
   ModalCreateNotice,
   RadioLabel,

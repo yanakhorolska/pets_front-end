@@ -1,12 +1,15 @@
 import React from 'react';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
-import AddNoticeButton from 'components/AddNoticeButton/AddNoticeButton';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
+import AddButton from 'components/AddButton';
+import CreateNotice from 'components/ModalAddNotice/CreateNotice';
+import { useAuth } from 'hooks/useAuth';
 
 // import { Outlet } from 'react-router-dom/dist';
 
 const NoticesPage = () => {
+  const isLoggedIn = useAuth();
   return (
     <>
       <div>
@@ -15,7 +18,7 @@ const NoticesPage = () => {
 
         <div>
           <NoticesCategoriesNav />
-          <AddNoticeButton />
+          <AddButton isVisible={isLoggedIn} component={CreateNotice} />
         </div>
 
         <div>
