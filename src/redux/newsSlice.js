@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const newsApi = createApi({
   reducerPath: 'news',
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://pets-back-end.vercel.app/api/news`,
+    baseUrl: `https://pets-back-end.vercel.app/api/news`,
   }),
 
   endpoints: builder => ({
