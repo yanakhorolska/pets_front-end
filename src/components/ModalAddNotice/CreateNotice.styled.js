@@ -90,9 +90,14 @@ const RadioLabel = styled.label`
 
 const ButtonsWrapper = styled.div`
   display: flex;
-  margin: 0 auto;
+  flex-direction: column;
   gap: 20px;
-  width: 380px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    margin: 0 auto;
+    flex-direction: row;
+    width: 380px;
+  }
 `;
 
 const InputImageLabel = styled(InputLabel)`
