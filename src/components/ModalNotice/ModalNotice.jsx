@@ -1,6 +1,9 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { useGetNoticeByIdQuery } from '../../redux/noticeByIdApi';
-import { useAddToFavoritesMutation } from '../../redux/fetchNotice';
+import {
+  useAddToFavoritesMutation,
+  useDeleteFromFavoritesMutation,
+} from '../../redux/fetchNotice';
 import { Loader } from 'components/Loader/Loader';
 import { CloseButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
@@ -26,17 +29,16 @@ import {
   DescriptionLink,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ onClose, id, owner }) => {
-  const isLoggedIn = useAuth();
+const ModalNotice = ({ onClose, id }) => {
   const { data, isLoading } = useGetNoticeByIdQuery(id);
-  const [addToFavorite] = useAddToFavoritesMutation(owner);
-  console.log(data);
+  const [addToFavorite] = useAddToFavoritesMutation();
+  const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
+  const [forFavorite, setForFavorite] = useState(false);
+  const isLoggedIn = useAuth();
 
   if (!data) {
-    console.log('empty');
     return;
   }
-  // console.log(owner, 'owner');
 
   const {
     title,
@@ -53,10 +55,21 @@ const ModalNotice = ({ onClose, id, owner }) => {
     phone,
   } = data;
 
+  console.log(data);
+
   const handleFavoriteClick = async () => {
-    console.log('favourite');
-    const data = await addToFavorite(owner).unwrap();
-    console.log(data, 'data');
+    if (!forFavorite) {
+      setForFavorite(true);
+      console.log('favourite add');
+      const data = await addToFavorite(id).unwrap();
+      console.log(data, 'data');
+      return;
+    } else {
+      setForFavorite(false);
+      console.log('favourite add');
+      const data = await deleteFromFavorite(id).unwrap();
+      console.log(data, 'data');
+    }
   };
 
   const onAddToButtonClickLogin = () => {
@@ -158,7 +171,8 @@ const ModalNotice = ({ onClose, id, owner }) => {
             {isLoggedIn ? (
               <li>
                 <AddButton type="button" onClick={handleFavoriteClick}>
-                  Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
+                  {forFavorite ? 'Delete from' : 'Add to'}
+                  {<Icon.Heart style={{ fill: '#f59256' }} />}
                 </AddButton>
               </li>
             ) : (
