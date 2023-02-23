@@ -29,7 +29,7 @@ const authSlice = createSlice({
       state.user.phone = action.payload.phone;
       state.user.city = action.payload.city;
       state.user.birthday = action.payload.birthday;
-      state.user.avatarURL = action.payload.avatarURL
+      state.user.avatarURL = action.payload.avatarURL;
       
       // state.user.avatarUrl = action.payload.avatarUrl;
 
@@ -46,6 +46,7 @@ const authSlice = createSlice({
       state.user.phone = action.payload.phone;
       state.user.city = action.payload.city;
       state.user.birthday = action.payload.birthday;
+      
     },
     setAvatarURL: (state, action) => {
       state.user.avatarURL = action.payload

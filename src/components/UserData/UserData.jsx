@@ -1,23 +1,41 @@
 import React from 'react'
 import UserAvatar from "../UserAvatar/UserAvatar"
 import UserDataItem from 'components/UserDataItem/UserDataItem'
-import { getUser } from 'redux/selectors';
-import { useSelector } from 'react-redux';
+import { getUser, getToken } from 'redux/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { useGetUserQuery } from '../../redux/authApi';
+import { setUser } from '../../redux/authSlice';
+import { useEffect } from 'react';
 
 const UserData = () => {
-  const user = useSelector(getUser)
+ const token = useSelector(getToken);
+//  console.log(token)
+  const dispatch = useDispatch();
   
-  console.log("USER IN USERState", user)
+  const { data, isLoading } = useGetUserQuery(token);
+  
+
+ const user = {...data, token}
+console.log("data from back", user)
+  useEffect(() => {
+    if (!isLoading) {
+      dispatch(setUser(user, token), []);
+    }
+  });
+
+  const currentuser = useSelector(getUser)
+  
+  console.log("USER IN USERState", currentuser )
 
   return (
       <div>
           <p>My Information</p>
       <UserAvatar />
-      <UserDataItem initialValues={{ name: user.name }} name="name" value={user.name} />
-      <UserDataItem initialValues={{ email: user.email }} name="email" value={user.email} />
-      <UserDataItem initialValues={{ birthday: user.birthday }} name="birthday" value={user.birthday} />
-      <UserDataItem initialValues={{ phone: user.city }} name="city" value={user.city} />
-      <UserDataItem initialValues={{ phone: user.phone }} name="phone" value={user.phone} />
+      <UserDataItem initialValues={{ name: currentuser.name }} name="name" value={currentuser.name} />
+      <UserDataItem initialValues={{ email: currentuser.email }} name="email" value={currentuser.email} />
+      <UserDataItem initialValues={{ birthday: currentuser.birthday }} name="birthday" value={currentuser.birthday} />
+      <UserDataItem initialValues={{ city: currentuser.city }} name="city" value={currentuser.city} />
+      <UserDataItem initialValues={{ phone: currentuser.phone }} name="phone" value={currentuser.phone} />
     </div>
   )
 }
