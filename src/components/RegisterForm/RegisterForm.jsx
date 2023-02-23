@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../LoginForm/LoginFormStyled"
+import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../AuthForm/AuthFormStyled"
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegisterUserMutation();
@@ -27,7 +27,12 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-        .email('Invalid email address')
+      .email('Invalid email address')
+        .matches(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Invalid email address'
+      )
+        .min(10, 'Email must include more tnan 10 characters')
+        .max(63, 'Email must be less tnan 63 characters')
         .required('This is a required field'),
       password: Yup.string()
         .min(7, 'Password must include more tnan 7 characters')
@@ -40,15 +45,13 @@ const RegisterForm = () => {
         )
         .required('This is a required field'),
       name: Yup.string()
-        .matches(
-          /[A-Za-z]+/,
-          'Please, enter only latin letters'
-        )
+        .max(70, 'Name must be less tnan 70 characters')
+        .matches(/^[a-zA-Z]+$/, "Only latin letters")
         .required('This is a required field'),
       city: Yup.string()
         .matches(
           /[A-Za-z]+, [A-Za-z]+/,
-          'Please, enter the data in format "region, city"'
+          'Please, enter the data in format "region, city" (only latin letters)'
         )
         .required('This is a required field'),
       phone: Yup.string()
@@ -190,14 +193,14 @@ const RegisterForm = () => {
             <AuthErrorLast>
               {formik.touched.phone && phoneError && phoneError}
             </AuthErrorLast>
-            <AuthButton page = {1} last={false}
+            <AuthButton accent = {true} last={false}
               type="submit"
             >
               Register
             </AuthButton>
           </>
         )}
-        <AuthButton page={page} last={true}
+        <AuthButton accent={page === 1 ? true : false} last={true}
           type="button"
           onClick={onPageChange}
         >

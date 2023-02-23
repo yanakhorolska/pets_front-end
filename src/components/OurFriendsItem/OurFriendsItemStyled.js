@@ -88,7 +88,7 @@ export const ContactsList = styled.div`
   }
 `;
 
-export const ContactsWrap = styled.div`
+export const ContactsWrap = styled.span`
   display: block;
   font-weight: 600;
 `;
@@ -98,6 +98,10 @@ export const ContactsLink = styled.a`
   &:hover {
     color: ${p => p.theme.color.accent};
   }
+  &:hover ~ ${ContactsWrap}:first-child {
+    color: ${p => p.theme.color.accent};
+  }
+
   &:focus {
     color: ${p => p.theme.color.accent};
   }
@@ -107,5 +111,10 @@ export const ContactsLink = styled.a`
 `;
 
 export const NoInfo = styled.span`
-  color: ${p => p.theme.color.greyText};
+  color: ${p => p.theme.color.black};
+`;
+
+export const Wrap = styled.div`
+ &:hover span {
+    color: ${p => p.theme.color.accent};
 `;

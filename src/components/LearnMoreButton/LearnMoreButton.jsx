@@ -6,9 +6,11 @@ import { LearnMoreButton } from 'styles/Buttons/index';
 
 import { useAuth } from 'hooks/useAuth';
 
-const LearnMoreButtonComponent = () => {
+const LearnMoreButtonComponent = ({ id }) => {
+  console.log(id, 'id');
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log(isModalOpen);
 
   const toggleModal = useCallback(() => {
     setIsModalOpen(prevState => {
@@ -30,7 +32,7 @@ const LearnMoreButtonComponent = () => {
       )}
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
-          <ModalNotice onClose={toggleModal} />
+          <ModalNotice onClose={toggleModal} id={id} />
         </ModalWindow>
       )}
     </>

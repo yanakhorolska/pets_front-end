@@ -1,4 +1,3 @@
-
 import {
   NoticeItem,
   NoticeImg,
@@ -9,16 +8,16 @@ import {
   NoticeInfoListItemData,
   CategoryTag,
 } from './NoticeCategoryItemStyled';
-import {HeartButton} from "../../styles/Buttons/HeartButton/HeartButton"
-import { LearnMoreBtn } from "../../styles/Buttons/LearnMoreButton/LearnMoreButton"
-import {TrashBtn} from "../../styles/Buttons/TrashButton/TrashButton"
+import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
+// import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
+import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
 export const NoticeCategoryItem = props => {
   const {
     _id,
-    petName,
-    owner,
-    sex,
-    comment,
+    // petName,
+    // owner,
+    // sex,
+    // comment,
     category,
     imageUrl,
     title,
@@ -26,42 +25,40 @@ export const NoticeCategoryItem = props => {
     location,
     price,
     age,
-    refetchUser,
-    isLogged,
+    // refetchUser,
+    // isLogged,
   } = props;
 
-
- 
-    
   return (
     <NoticeItem>
-          <NoticeImg src={imageUrl} alt={title} />
+      <NoticeImg src={imageUrl} alt={title} />
       <NoticeInfoBox>
-              <h4>{title }</h4>
+        <h4>{title}</h4>
         <NoticeInfoList>
           <NoticeInfoListItem>
             <NoticeInfoListItemCategory>Breed:</NoticeInfoListItemCategory>
-                      <NoticeInfoListItemData>{breed }</NoticeInfoListItemData>
+            <NoticeInfoListItemData>{breed}</NoticeInfoListItemData>
           </NoticeInfoListItem>
           <NoticeInfoListItem>
             <NoticeInfoListItemCategory>Place:</NoticeInfoListItemCategory>
-                      <NoticeInfoListItemData>{location }</NoticeInfoListItemData>
+            <NoticeInfoListItemData>{location}</NoticeInfoListItemData>
           </NoticeInfoListItem>
           <NoticeInfoListItem>
             <NoticeInfoListItemCategory>Age:</NoticeInfoListItemCategory>
-                      <NoticeInfoListItemData>{age}</NoticeInfoListItemData>
+            <NoticeInfoListItemData>{age}</NoticeInfoListItemData>
           </NoticeInfoListItem>
-                  { price ? <NoticeInfoListItem>
-                      <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
-                      <NoticeInfoListItemData>{price}</NoticeInfoListItemData>
-                  </NoticeInfoListItem> :  null}
+          {price ? (
+            <NoticeInfoListItem>
+              <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemData>{price}</NoticeInfoListItemData>
+            </NoticeInfoListItem>
+          ) : null}
         </NoticeInfoList>
-              <LearnMoreBtn>Learn More</LearnMoreBtn>
-               {<TrashBtn>Delete 
-              </TrashBtn>} 
+        <LearnMoreButtonComponent id={_id} />
+        {/* {<TrashBtn>Delete</TrashBtn>} */}
       </NoticeInfoBox>
       <CategoryTag>
-              <p>{category}</p>
+        <p>{category}</p>
       </CategoryTag>
       <HeartButton />
     </NoticeItem>
