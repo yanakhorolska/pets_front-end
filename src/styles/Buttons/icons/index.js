@@ -12,6 +12,7 @@ import { ReactComponent as Add } from './add.svg';
 import { ReactComponent as Sun } from './sun.svg';
 import { ReactComponent as Moon } from './moon.svg';
 import { ReactComponent as FatClose } from './fatclose.svg';
+import { ReactComponent as ResetQuery } from './x-circle.svg';
 
 const Icon = {
   Heart,
@@ -28,6 +29,7 @@ const Icon = {
   Sun,
   Moon,
   FatClose,
+  ResetQuery,
 };
 
 export default Icon;

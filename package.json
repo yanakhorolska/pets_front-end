@@ -36,6 +36,7 @@
     "eject": "react-scripts eject",
     "lint:js": "eslint src/**/*.{js,jsx}"
   },
+  "proxy":"https://pets-back-end.vercel.app/",
   "eslintConfig": {
     "extends": [
       "react-app",
