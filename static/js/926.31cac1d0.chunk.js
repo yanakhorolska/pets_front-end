@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpets_front_end=self.webpackChunkpets_front_end||[]).push([[926],{2002:function(e,n,t){t.r(n),t.d(n,{default:function(){return u.Z}});var u=t(4746)}}]);
