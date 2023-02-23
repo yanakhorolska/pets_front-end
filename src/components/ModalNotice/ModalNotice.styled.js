@@ -24,14 +24,14 @@ export const ModalBox = styled.div`
   }
 `;
 
-// export const CloseBox = styled.div`
-//   position: 'absolute';
-//   top: 23px;
-//   right: 23px;
+export const CloseBox = styled.div`
+  position: 'absolute';
+  top: 23px;
+  right: 23px;
 
-//   width: 34px;
-//   height: 34px;
-// `;
+  width: 34px;
+  height: 34px;
+`;
 
 // ${p => p.theme};
 
@@ -93,19 +93,6 @@ export const Descriptions = styled.ul`
 
   gap: 8px;
   margin-bottom: 28px;
-
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.36;
-
-  color: #000000;
-
-  @media ${p => p.theme.media.tabletDesktop} {
-    font-size: 16px;
-    line-height: 1.38;
-  }
 `;
 
 export const TitleCard = styled.p`
@@ -123,14 +110,35 @@ export const TitleCard = styled.p`
   }
 `;
 
-export const Text = styled.p`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
+export const DescriptionItems = styled.p`
+  display: flex;
+`;
+
+export const DescriptionLink = styled.a`
+  display: flex;
+`;
+
+export const DescrCategory = styled.span`
+  display: block;
+  width: 90px;
+  font-weight: 600;
   font-size: 14px;
   line-height: 1.36;
+  color: ${p => p.theme.color.text};
 
-  color: #000000;
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+`;
+
+export const DescrData = styled.span`
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.36;
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: 16px;
