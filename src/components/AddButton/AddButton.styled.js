@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Icon from 'styles/Buttons/icons/index';
 
-const AddNoticeStyled = styled.button`
+const AddButtonStyled = styled.button`
   width: 80px;
   height: 80px;
   background-color: ${p => p.theme.color.accent};
@@ -69,4 +69,4 @@ const StyledIconAdd = styled(Icon.Add)`
   }
 `;
 
-export { AddNoticeStyled, AddButtonTitle, AddButtonWrapper, StyledIconAdd };
+export { AddButtonStyled, AddButtonTitle, AddButtonWrapper, StyledIconAdd };

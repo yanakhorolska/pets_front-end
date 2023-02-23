@@ -5,8 +5,8 @@ export const fetchNotice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://pets-back-end.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
-      if (getState().users !== undefined) {
-        const token = getState().users.token;
+      if (getState().auth !== undefined) {
+        const token = getState().auth.token;
         if (token) {
           headers.set('Authorization', `Bearer ${token}`);
         }
@@ -36,11 +36,17 @@ export const fetchNotice = createApi({
       providesTags: ['Notice', 'UserNotice'],
     }),
     addNotice: builder.mutation({
-      query: payload => ({
-        url: `/notices/category/${payload.category}`,
-        method: 'POST',
-        body: payload,
-      }),
+      query: payload => {
+        const formData = new FormData();
+        const { category, ...data } = payload;
+        Object.keys(data).forEach(key => formData.append(key, data[key]));
+        return {
+          url: `/notices/category/${category}`,
+          method: 'POST',
+          body: formData,
+        };
+      },
+      transformResponse: response => response.status,
       invalidatesTags: ['UserNotice'],
     }),
     deleteUserNoticeById: builder.mutation({

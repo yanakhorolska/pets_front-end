@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Icon from './svg/index';
+// import Icon from './svg/index';
 
 const ModalCreateNotice = styled.form`
   display: flex;
@@ -38,12 +38,13 @@ const FormPageWrapper = styled.div`
   flex-direction: column;
   margin-top: 40px;
   margin-bottom: 40px;
-  gap: 20px;
+  gap: 28px;
 `;
 
 const InputLabel = styled.label`
   display: flex;
   flex-direction: column;
+  gap: 12px;
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 26px;
@@ -52,7 +53,6 @@ const InputLabel = styled.label`
 
 const InputStyled = styled.input`
   padding: 10px 16px;
-  margin-top: 12px;
   font-size: ${p => p.theme.fontSizes.s};
   height: ${p => p.theme.fontSizes.xxl};
   background: ${p => p.theme.color.background};
@@ -74,7 +74,6 @@ const StyledStar = styled.span`
 const RadioGroupSex = styled.div`
   display: flex;
   gap: 80px;
-  margin-bottom: 12px;
 `;
 
 const RadioSex = styled.input`
@@ -90,14 +89,9 @@ const RadioLabel = styled.label`
 
 const ButtonsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  margin: 0 auto;
   gap: 20px;
-
-  @media ${p => p.theme.media.tabletDesktop} {
-    margin: 0 auto;
-    flex-direction: row;
-    width: 380px;
-  }
+  width: 380px;
 `;
 
 const InputImageLabel = styled(InputLabel)`
@@ -117,7 +111,6 @@ const InputImageWrapper = styled.div`
   justify-content: center;
   width: 140px;
   height: 140px;
-  margin-top: 12px;
   border: ${p => p.theme.borders.inputBorder};
   background: ${p => p.theme.color.background};
   border-radius: 20px;
@@ -127,24 +120,16 @@ const InputImageWrapper = styled.div`
   }
 `;
 
-const StyledIconAdd = styled(Icon.Add).attrs(props => ({
-  opacity: props.isvisible === 'true' ? 1 : 0,
-}))`
-  opacity: ${p => p.opacity};
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const FieldError = styled.p`
-  height: 20px;
-  font-size: 10px;
-  color: ${p => p.theme.color.accent};
-  margin-left: 15px;
-`;
+// const StyledIconAdd = styled(Icon.Add)`
+//   opacity: ${p => (p.visible === 'true' ? 1 : 0)};
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// `;
 
 export {
+  //
   FormTitle,
   ModalCreateNotice,
   RadioLabel,
@@ -159,6 +144,5 @@ export {
   InputImage,
   InputImageWrapper,
   InputImageLabel,
-  StyledIconAdd,
-  FieldError,
+//   StyledIconAdd,
 };
