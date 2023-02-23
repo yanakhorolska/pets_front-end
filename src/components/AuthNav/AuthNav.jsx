@@ -4,7 +4,7 @@ import { RoundLink } from './authNav.styled';
 const AuthNav = click => {
   return (
     <div>
-      <RoundLink onClick={click} style={{ color: '#FFFFFF' }} to="/login">
+      <RoundLink onClick={click} style={{ color: '#FFFFFF' }} to="/user">
         Login
       </RoundLink>
       <RoundLink
