@@ -51,9 +51,7 @@ export const App = () => {
                 <Route path="own" element={<NoticesCategoriesList />} />
               </Route>
             </Route>
-            //
             <Route path="/examples" element={<ExamplesComponent />} />
-            //
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route element={<PublicRoutes restricted />}>
               <Route path="/login" element={<LoginPage />} />

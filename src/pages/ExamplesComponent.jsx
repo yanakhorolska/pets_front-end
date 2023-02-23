@@ -23,8 +23,9 @@ const ExamplesComponent = () => {
         >
           <Box> My pets </Box>
           <AddButton isVisible={true} component={ModalAddsPet} />
-            
-          {/* </AddButton> */}
+          {/* </AddButton> 
+            < ModalAddsPet />
+          </AddButton> */}
         </Box>
       </Box>
     </Box>
