@@ -44,7 +44,6 @@ const FormPageWrapper = styled.div`
 const InputLabel = styled.label`
   display: flex;
   flex-direction: column;
-  /* gap: 12px; */
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: 26px;
@@ -135,17 +134,12 @@ const StyledIconAdd = styled(Icon.Add).attrs(props => ({
 
 const FieldError = styled.p`
   height: 20px;
-  /* text-align: left; */
   font-size: 10px;
-  /* line-height: 12px; */
   color: ${p => p.theme.color.accent};
-  /* letter-spacing: 0.04em; */
-  /* padding: 5px 15px; */
   margin-left: 15px;
 `;
 
 export {
-  //
   FormTitle,
   ModalCreateNotice,
   RadioLabel,
