@@ -28,7 +28,7 @@ import {
 
 const ModalNotice = ({ onClose, id, owner }) => {
   const isLoggedIn = useAuth();
-  const { data, isError, isLoading } = useGetNoticeByIdQuery(id);
+  const { data, isLoading } = useGetNoticeByIdQuery(id);
   const [addToFavorite] = useAddToFavoritesMutation(owner);
   console.log(data);
 
