@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { getUserAvatarURL } from 'redux/selectors';
 import { useUpdateUserAvatarMutation } from '../../redux/fetchUser';
 import { useDispatch } from 'react-redux';
-// import { setUser } from 'redux/authSlice';
-// import { useDispatch } from 'react-redux';
 import { setAvatarURL } from '../../redux/authSlice';
+import { AvatarInput, AvatarLabel, AvatarImage } from './UserAvatar.styled';
+import Icon from '../../styles/Buttons/icons';
 
 const UserAvatar = () => {
   const dispatch = useDispatch();
@@ -26,18 +26,20 @@ const UserAvatar = () => {
 
   return (
     <div>
-      <img src={avatarURL} alt="User" />
+      <AvatarImage src={avatarURL} alt="User" />
 
-      <div>
-        <label htmlFor="avatar-upload">Upload Avatar</label>
-        <input
+    
+        <AvatarLabel htmlFor="avatar-upload">
+          <Icon.Camera /> Edit photo</AvatarLabel>
+        <AvatarInput
           name="avatar"
           id="avatar-upload"
           type="file"
           accept="image/*"
+          // placeholder='Put the file'
           onChange={e => handleAvatarChange(e)}
         />
-      </div>
+      
     </div>
   );
 };

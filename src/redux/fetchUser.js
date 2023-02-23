@@ -57,10 +57,10 @@ export const userApi = createApi({
       }),
     }),
     updateUser: builder.mutation({
-      query: (token, payload) => ({
+      query: ( {values}) => ({
         url: '/users/update',
         method: 'PATCH',
-        body: payload,
+        body: values,
       }),
       invalidatesTags: ['User'],
     }),
