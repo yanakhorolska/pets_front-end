@@ -8,10 +8,10 @@ export const Container = styled('div')`
     max-width: ${p => p.theme.sizes.width.mediaS};
   }
   @media ${p => p.theme.media.mobileMin} {
-    width: ${p => p.theme.sizes.width.mediaS};
+    width: 100%;
   }
   @media ${p => p.theme.media.tabletDesktop} {
-    width: ${p => p.theme.sizes.width.mediaM};
+    width: 100%;
     padding-left: ${p => p.theme.space.p.s};
     padding-right: ${p => p.theme.space.p.s};
   }

@@ -9,7 +9,7 @@ import loginWavesDesk2x from '../../images/bgs/login-waves-desk-2x.png';
 
 export const AuthContainer = styled.div`
   max-width: 100vw;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 56px);
   background-image: url(${loginWavesMob1x});
   background-repeat: no-repeat;
   background-size: contain;
@@ -25,7 +25,7 @@ export const AuthContainer = styled.div`
   }
 
   @media (min-width: 768px) {
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 64px);
     background-image: url(${loginWavesTab1x});
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -39,7 +39,7 @@ export const AuthContainer = styled.div`
   }
 
   @media (min-width: 1280px) {
-    min-height: calc(100vh - 50px);
+    min-height: calc(100vh - 70px);
     background-image: url(${loginWavesDesk1x});
 
     @media screen and (min-device-pixel-ratio: 2),

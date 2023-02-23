@@ -9,10 +9,10 @@ const SharedLayout = () => {
     <Layout>
       <Container>
         <Header />
-        <Suspense fallback={<></>}>
-          <Outlet />
-        </Suspense>
       </Container>
+      <Suspense fallback={<></>}>
+        <Outlet />
+      </Suspense>
     </Layout>
   );
 };

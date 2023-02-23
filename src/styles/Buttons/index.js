@@ -6,3 +6,4 @@ export { ModalButton } from './ModalButton/ModalButton';
 export { CameraButton } from './CameraButton/CameraButton';
 export { CloseButton } from './CloseButton/CloseButton';
 export { EditButton } from './EditButton/EditButton';
+export { ModalStyledButton } from './ModalButton/ModalButton';
