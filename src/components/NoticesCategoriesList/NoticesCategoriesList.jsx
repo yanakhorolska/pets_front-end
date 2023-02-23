@@ -92,37 +92,59 @@
 
 // === ===  var2 (всеодно летить 400, але після редагування ендпойнтів взагалі не працює... хулєра(( ))) === ===//
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
-import { useGetNoticeQuery } from 'redux/fetchNotice';
+import {
+  useGetNoticeQuery,
+  // useGetNoticeFavoritesQuery,
+  // useGetUserNoticesQuery,
+} from 'redux/fetchNotice';
+import { getIsLogged } from 'redux/selectors';
 
 const NoticesCategoriesList = () => {
   const [searchParams] = useSearchParams();
   let search = searchParams.get('search');
   if (!search) search = '';
 
+  const isLogged = useSelector(getIsLogged);
+  console.log(isLogged);
+
   const { pathname } = useLocation();
   const renderCategory = () => {
     switch (pathname) {
-      case '/sell':
+      case '/notices/sell':
         return 'sell';
-      case '/lost-found':
-        return 'lost-found';
-      case '/for-free':
+      case '/notices/lost-found':
+        return 'lostFound';
+      case '/notices/for-free':
         return 'inGoodHands';
-      case '/favorite':
+      case '/notices/favorite':
         return 'favorite';
-      case '/own':
+      case '/notices/own':
         return 'own';
       default:
-        return '';
+        return 'sell';
     }
   };
 
   const category = renderCategory();
+  console.log(pathname);
 
-  const { data: petsList } = useGetNoticeQuery({ category, search });
+  const { data: petsList, refetch } = useGetNoticeQuery({ category, search });
+
+  // const { data: favoritesList } = useGetNoticeFavoritesQuery(isLogged, {
+  //   skip: !isLogged,
+  // });
+
+  // const  { data: userNoticesList } = useGetUserNoticesQuery(isLogged, {
+  //   skip: !isLogged,
+  // });
+
+  useEffect(() => {
+    refetch();
+  }, [pathname, refetch]);
 
   // фільтруємо тварин по категоріям
   let pets = [];
@@ -130,13 +152,15 @@ const NoticesCategoriesList = () => {
     if (category === 'sell') {
       pets = petsList.filter(pet => pet.category === 'sell');
     } else if (category === 'lost-found') {
-      pets = petsList.filter(pet => pet.category === 'lost-found');
+      pets = petsList.filter(pet => pet.category === 'lostFound');
     } else if (category === 'inGoodHands') {
       pets = petsList.filter(pet => pet.category === 'inGoodHands');
     } else {
       pets = petsList;
     }
   }
+
+  // якщо пошук !== '' кинути масив який фільтрую
 
   return (
     <>
@@ -149,6 +173,7 @@ const NoticesCategoriesList = () => {
             age={pet.age.months}
             price={pet.price}
             category={pet.category}
+            owner={pet.owner}
             key={pet.id}
           />
         ))}
@@ -157,3 +182,78 @@ const NoticesCategoriesList = () => {
 };
 
 export default NoticesCategoriesList;
+
+// === a це варіант з юзефектом === //
+
+// import React, { useEffect } from 'react';
+// import { useLocation, useSearchParams } from 'react-router-dom';
+// import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
+// import { useGetNoticeQuery } from 'redux/fetchNotice';
+
+// const NoticesCategoriesList = () => {
+//   const [searchParams] = useSearchParams();
+//   let search = searchParams.get('search');
+//   if (!search) search = '';
+
+//   const { pathname } = useLocation();
+
+//   const renderCategory = () => {
+//     switch (pathname) {
+//       case '/sell':
+//         return 'sell';
+//       case '/lost-found':
+//         return 'lost-found';
+//       case '/for-free':
+//         return 'inGoodHands';
+//       case '/favorite':
+//         return 'favorite';
+//       case '/own':
+//         return 'own';
+//       default:
+//         return '';
+//     }
+//   };
+
+//   const category = renderCategory();
+
+//   // Запит до сервера за списком тварин зі змінною категорією
+//   const { data: petsList, refetch } = useGetNoticeQuery({ category, search });
+
+//   // Оновлюємо компонент при зміні категорії в pathname
+//   useEffect(() => {
+//     refetch();
+//   }, [pathname, refetch]);
+
+//   // фільтруємо тварин по категоріям
+//   let pets = [];
+//   if (Array.isArray(petsList)) {
+//     if (category === 'sell') {
+//       pets = petsList.filter(pet => pet.category === 'sell');
+//     } else if (category === 'lost-found') {
+//       pets = petsList.filter(pet => pet.category === 'lost-found');
+//     } else if (category === 'inGoodHands') {
+//       pets = petsList.filter(pet => pet.category === 'inGoodHands');
+//     } else {
+//       pets = petsList;
+//     }
+//   }
+
+//   return (
+//     <>
+//       {Array.isArray(pets) &&
+//         pets.map(pet => (
+//           <NoticeCategoryItem
+//             _id={pet._id}
+//             breed={pet.breed}
+//             location={pet.location}
+//             age={pet.age.months}
+//             price={pet.price}
+//             category={pet.category}
+//             key={pet.id}
+//           />
+//         ))}
+//     </>
+//   );
+// };
+
+// export default NoticesCategoriesList;

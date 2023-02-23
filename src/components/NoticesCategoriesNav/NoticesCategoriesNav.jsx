@@ -56,7 +56,7 @@
 // ===  var2 (всеодно летить 400) === //
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { getIsLogged } from 'redux/selectors';
@@ -90,10 +90,8 @@ const NoticesCategoriesNav = () => {
     if (!isLogged || !Array.isArray(linkAuth)) return null;
 
     return linkAuth.map(el => (
-      <li key={el.to}>
-        <NavLink to={el.to}>
-          <span>{el.text}</span>
-        </NavLink>
+      <li style={{ display: 'inline-block', paddingRight: '10px' }} key={el.to}>
+        <AnchorElem el={el} />
       </li>
     ));
   };
