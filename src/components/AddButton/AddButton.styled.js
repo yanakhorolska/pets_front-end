@@ -27,6 +27,8 @@ const AddButtonTitle = styled.span`
   top: 40px;
   color: ${p => p.theme.color.white};
 
+  pointer-events: none;
+
   &:hover,
   &:focus {
     z-index: 1;
