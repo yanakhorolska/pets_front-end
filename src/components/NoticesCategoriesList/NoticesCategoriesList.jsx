@@ -9,6 +9,7 @@ import {
 } from 'redux/fetchNotice';
 
 import { getIsLogged } from 'redux/selectors';
+import { ListBox } from 'pages/NoticesPage/NoticesPage.styled';
 
 const NoticesCategoriesList = () => {
   const [usersPets, setUsersPets] = useState(null);
@@ -98,11 +99,11 @@ const NoticesCategoriesList = () => {
   );
 
   return (
-    <>
+    <ListBox>
       {visiblePets.map(pet => (
         <NoticeCategoryItem id={pet._id} key={pet._id} />
       ))}
-    </>
+    </ListBox>
   );
 };
 

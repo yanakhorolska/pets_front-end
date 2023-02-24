@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
@@ -42,14 +42,8 @@ export const App = () => {
             <Route index element={<Home />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/notices" element={<NoticesPage />}>
-              <Route index element={<NoticesCategoriesList />} />
-              <Route path="lost-found" element={<NoticesCategoriesList />} />
-              <Route path="for-free" element={<NoticesCategoriesList />} />
-              <Route path="sell" element={<NoticesCategoriesList />} />
-              <Route element={<PrivateRoutes />}>
-                <Route path="favorite" element={<NoticesCategoriesList />} />
-                <Route path="own" element={<NoticesCategoriesList />} />
-              </Route>
+              <Route index element={<Navigate to="sell" />}></Route>
+              <Route path=":category" element={<NoticesCategoriesList />} />
             </Route>
             <Route path="/examples" element={<ExamplesComponent />} />
             <Route path="/friends" element={<OurFriendsPage />} />
