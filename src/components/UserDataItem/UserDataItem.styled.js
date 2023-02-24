@@ -15,6 +15,10 @@ font-size: 12px;
 text-transform: capitalize;
 width: 56px;
 // margin-right: 8px;
+@media ${p => p.theme.media.tabletDesktop}{
+    font-size: 18px;
+    lineHeights: ${p => p.theme.lineHeights.s}
+}
 `
 
 export const UserDataInput = styled(Field)`
@@ -27,6 +31,12 @@ margin-right: 8px;
 background-color: ${p => p.theme.color.white};
 border: none;
 color: black;
+
+@media ${p => p.theme.media.tabletDesktop}{
+    width: 216px;
+    font-size: 18px;
+    lineHeights: ${p => p.theme.lineHeights.s}
+}
 
 
 

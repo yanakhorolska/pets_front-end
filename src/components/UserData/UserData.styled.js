@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const MainUserPageBox = styled.div`
   margin-top: 60px;
   width: 100%;
+  @media ${p => p.theme.media.tabletDesktop} {
+    margin-top: 90px;
+  }
 `;
 
 export const UserDataBox = styled.div`
@@ -12,4 +15,16 @@ export const UserDataBox = styled.div`
   margin-top: 18px;
   margin-bottom: 40px;
   padding: 20px 12px 20px 16px;
+  @media ${p => p.theme.media.tabletDesktop} {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
+
+export const UserDataItemsBox = styled.div`
+display: flex;
+flex-direction: column;
+width: 380px;
+`
