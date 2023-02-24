@@ -6,7 +6,6 @@ import { Link } from 'components/Nav/nav.styled';
 import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 import {
   Head,
-  // HeadNav,
   BurgerMenu,
   BurgerLinks,
   ToggleButtonBurg,
@@ -15,7 +14,7 @@ import {
   HeaderWrap,
   BurgerLinksWrap,
 } from './header.styled';
-// import Nav from '../Nav/Nav';
+import Nav from '../Nav/Nav';
 import UserNav from '../UserNav/UserNav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import Icon from 'styles/Buttons/icons/index';
@@ -27,10 +26,8 @@ const Header = () => {
   return (
     <>
       <Head>
-        {/* <HeadNav> */}
-          <Logotype to="/" />
-          {/* <Nav /> */}
-        {/* </HeadNav> */}
+          <Logotype/>
+          <Nav />
         <ToggleButton />
         <HeaderWrap>
           <ButtonsContainer>

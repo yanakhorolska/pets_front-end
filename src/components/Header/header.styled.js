@@ -17,11 +17,11 @@ export const Head = styled('header')`
   }
 `;
 
-export const HeadNav = styled('div')`
-  display: flex;
-  flex-diracion: row;
-  align-items: center;
-`;
+// export const HeadNav = styled('div')`
+//   display: flex;
+//   flex-diracion: row;
+//   align-items: center;
+// `;
 export const BurgerMenu = styled('div')`
   position: fixed;
   z-index: 100;
@@ -31,10 +31,9 @@ export const BurgerMenu = styled('div')`
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding-top: 16px ;
-  
-  flex-direction: column;
+  padding-top: 16px;
 
+  flex-direction: column;
 `;
 export const BurgerLinks = styled('div')`
   display: flex;
