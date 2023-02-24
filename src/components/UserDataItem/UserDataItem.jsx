@@ -1,9 +1,12 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useUpdateUserMutation } from '../../redux/fetchUser';
 import { setUpdatedUser } from 'redux/authSlice';
+import { EditButton } from '../../styles/Buttons/EditButton/EditButton'
+import { CheckButton } from '../../styles/Buttons/CheckButton/CheckButton'
+import {UserDataForm, UserDataInput, UserDataLabel} from './UserDataItem.styled'
 
 const UserDataItem = ({ initialValues, text, name, placeholder }) => {
   const [disabled, setDisabled] = useState(true);
@@ -33,25 +36,28 @@ const UserDataItem = ({ initialValues, text, name, placeholder }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form>
-        <label>{name}: </label>
-        <Field
+      <UserDataForm >
+        <UserDataLabel htmlFor={name}>{name}: </ UserDataLabel>
+        <UserDataInput
+          // as={UserDataInput}
           type="text"
           onChange={changeInput}
           value={inputeData}
           name={name}
+          id={name}
           placeholder={placeholder}
           disabled={disabled}
         />
-        <button type="button" onClick={() => setDisabled(!disabled)}>
-          Edit
-        </button>
-        <button type="submit" disabled={disabled}>
-          Submit
-        </button>
-      </Form>
+        {disabled ? <EditButton onClick={() => setDisabled(!disabled)} />
+          // <button type="button" onClick={() => setDisabled(!disabled)}>Edit</button>
+          // :<button type="submit" disabled={disabled}>Submit</button>}
+          : <CheckButton disabled={disabled}/>}
+        
+      </UserDataForm>
     </Formik>
   );
 };
 
 export default UserDataItem;
+
+
