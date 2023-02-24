@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 
+import { useAddPetMutation } from 'redux/fetchUser';
+
 import * as Yup from 'yup';
 
 import { ModalAddPet, FormPageWrapper, FormDescription, FormTitle, InputLabel, InputStyled, InputImageWrapper, InputImageLabel, InputImage, CommentInput, ButtonsWrapper, FieldError, CloseFormButton } from './AddPet.styled';
@@ -9,21 +11,23 @@ import { ModalButton, NextButton } from 'styles/Buttons'
 import Icon from '../ModalAddNotice/svg';
 // import Box from 'components/Box';
 
-
-const validationSchema = [Yup.object().shape({
-  nickname:Yup.string().min(2).max(16).required("Name pet is required"), 
-  breed: Yup.string().min(2).max(16).required("Breed is required"),
-  birthday: Yup.date()}),
+const validationSchema = [
   Yup.object().shape({
-  avatar: Yup.mixed().required('Image pet is required'),
-  comment: Yup.string().min(8).max(120).required("Comments is required"),
-})]
+    nickname:Yup.string().min(2).max(16).required().label("Name pet"), 
+    breed: Yup.string().min(2).max(16).required("Breed is required"),
+    birthday: Yup.date().typeError('Date of birth invalid Date').required().label("Date of birth").typeError('Date of birth invalid Date'),
+  }),
+  Yup.object().shape({
+    avatar: Yup.mixed().required('Image pet is required'),
+    comment: Yup.string().min(8).max(120).required("Comments is required"),
+  })
+]
 
 export const AddPet = ({ onClose }) => {
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [addPet] = useAddPetMutation();
 
-  // const [addPets] = use(); //fetch
+  const [currentPage, setCurrentPage] = useState(0); 
 
   const onChangeAvatarImage = event => {
     if (event.target?.files) {
@@ -32,9 +36,11 @@ export const AddPet = ({ onClose }) => {
   };
 
   const customOnSubmit = async (values, actions) => {
-     console.log(values)
-     //if currentPage === 2 
-    //  actions.setSubmitting(false);
+    const status = await addPet(values).unwrap();
+    if (status === 'success') {
+      onClose();
+    }
+    actions.setSubmitting(false);
   }
  
   const customHandleSubmit = (values, actions) => {
@@ -50,17 +56,13 @@ export const AddPet = ({ onClose }) => {
   const formik = useFormik({
     initialValues: {
       nickname: '',
-      birthday: Date,
+      birthday: new Date(),
       breed: '',
       avatar: '',
       comment: '',
     },
     validationSchema : validationSchema[currentPage],
     onSubmit: customHandleSubmit,
-    //  onSubmit: async values => {
-    //    console.log(values);
-    //    //await addPet(values);
-    //  },
     onChangeAvatarImage : async values => {
       formik.setFieldValue('avatar', values.files[0]);
     },
