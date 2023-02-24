@@ -5,29 +5,33 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCateg
 import AddButton from 'components/AddButton';
 import CreateNotice from 'components/ModalAddNotice/CreateNotice';
 import { useAuth } from 'hooks/useAuth';
+import { FirstHeader } from 'styles/Headers/Headers.styled';
+import { Container } from 'styles/Container/Container.styled';
+import { NoticesBox, NavBox, ListBox } from './NoticesPage.styled';
 
 // import { Outlet } from 'react-router-dom/dist';
 
 const NoticesPage = () => {
   const isLoggedIn = useAuth();
   return (
-    <>
-      <div>
-        <h1>Find your favorite pet</h1>
+    <Container>
+      <NoticesBox>
+        <FirstHeader>Find your favorite pet</FirstHeader>
         <NoticesSearch />
 
-        <div>
+        <NavBox>
           <NoticesCategoriesNav />
-          <AddButton isVisible={isLoggedIn} component={CreateNotice} />
-        </div>
 
-        <div>
+          <AddButton isVisible={isLoggedIn} component={CreateNotice} />
+        </NavBox>
+
+        <ListBox>
           <NoticesCategoriesList />
-        </div>
+        </ListBox>
 
         {/* <Outlet /> */}
-      </div>
-    </>
+      </NoticesBox>
+    </Container>
   );
 };
 

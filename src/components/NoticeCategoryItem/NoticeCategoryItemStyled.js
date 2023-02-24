@@ -99,7 +99,6 @@ export const NoticeInfoWrap = styled.div`
 
 export const NoticeTitle = styled.h4`
   color: #111;
-  font-family: Manrope-Bold;
   font-size: 28px;
   letter-spacing: -0.01em;
   line-height: 1.36;
@@ -129,7 +128,6 @@ export const NoticeInfoListItem = styled.li`
 
 export const NoticeInfoListItemCategory = styled.p`
   color: #111;
-  font-family: Manrope-Medium;
   font-size: 16px;
   line-height: 1.38;
   width: 90px;
@@ -137,7 +135,6 @@ export const NoticeInfoListItemCategory = styled.p`
 
 export const NoticeInfoListItemData = styled.p`
   color: #111;
-  font-family: Manrope-Medium;
   font-size: 16px;
   line-height: 1.38;
   max-width: 155px;
