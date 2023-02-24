@@ -1,12 +1,9 @@
-import { Logo } from './logo.styled';
-import { Link } from 'react-router-dom';
+import { Logo, LogoAccent } from './logo.styled';
 
 const Logotype = () => {
   return (
     <Logo>
-      <Link to="/">
-        pe<span style={{ color: '#F59256' }}>t</span>ly
-      </Link>
+      pe<LogoAccent>t</LogoAccent>ly
     </Logo>
   );
 };
