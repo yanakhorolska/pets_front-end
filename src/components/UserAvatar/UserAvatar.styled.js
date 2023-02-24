@@ -8,6 +8,9 @@ opacity: 0;
 export const AvatarBox = styled.div`
 // display: flex;
 margin-bottom: 36px;
+@media ${p => p.theme.media.tabletDesktop}{
+  margin-bottom: 0;
+}
 `
 
 export const AvatarLabel = styled("label")`
@@ -30,5 +33,7 @@ margin-left: 4px;
 export const AvatarImage = styled("img")`
 border-radius: 50%;
 margin-bottom: 12px;
+width: 233px;
+height: 233px;
 
 `

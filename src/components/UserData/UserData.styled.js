@@ -6,6 +6,10 @@ export const MainUserPageBox = styled.div`
   @media ${p => p.theme.media.tabletDesktop} {
     margin-top: 90px;
   }
+  @media ${p => p.theme.media.desktop} {
+    display: flex;
+     margin-top: 60px;
+  }
 `;
 
 export const UserDataBox = styled.div`
@@ -20,7 +24,7 @@ export const UserDataBox = styled.div`
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-  }
+    padding: 24px 40px 24px 32px;
 `;
 
 export const UserDataItemsBox = styled.div`

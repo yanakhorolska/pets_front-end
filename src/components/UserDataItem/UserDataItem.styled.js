@@ -31,7 +31,7 @@ margin-right: 8px;
 background-color: ${p => p.theme.color.white};
 border: none;
 color: black;
-
+font-weight: 400;
 @media ${p => p.theme.media.tabletDesktop}{
     width: 216px;
     font-size: 18px;
@@ -44,6 +44,11 @@ color: black;
 background: #FDF7F2;
 border: 1px solid rgba(245, 146, 86, 0.5);
 border-radius: 40px;
+}
+
+:-ms-input-placeholder {
+     color: red;
+  
 }
 
 `
