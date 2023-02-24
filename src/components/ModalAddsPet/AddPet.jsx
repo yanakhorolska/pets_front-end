@@ -37,9 +37,9 @@ export const AddPet = ({ onClose }) => {
 
   const customOnSubmit = async (values, actions) => {
     const status = await addPet(values).unwrap();
-    if (status === 'success') {
-      onClose();
-    }
+     if (status === 'success') {
+       onClose();
+     }
     actions.setSubmitting(false);
   }
  
