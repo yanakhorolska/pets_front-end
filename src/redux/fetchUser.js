@@ -128,37 +128,10 @@ export const userApi = createApi({
         url: `/pets/${id}`,
         method: 'DELETE',
         body: id,
-        transformResponse: response => response.status,
-        invalidatesTags: ['Pet'],
       }),
-    }),
-    getUserPets: builder.mutation({
-      query: () => '/users/pets',
       transformResponse: response => response.status,
-      providesTags: ["Pet"],
-    }),
-    addPet: builder.mutation({
-      query: payload => {
-        const formData = new FormData();
-        Object.keys(payload).forEach(key => formData.append(key, payload[key]));
-        return {
-          url: `/pets`,
-          method: 'POST',
-          body: formData,
-        };
-      },
-      transformResponse: response => response.status,
-      invalidatesTags: ["Pet"],
-    }),
-    removePetById: builder.mutation({
-      query: id => ({
-        url: `/pets/${id}`,
-        method: 'DELETE',
-        body: id,
-        transformResponse: response => response.status,
-        invalidatesTags: ["Pet"],
-      }),
-    }),
+      invalidatesTags: ['Pet'],
+    }),    
   }),
 });
 
