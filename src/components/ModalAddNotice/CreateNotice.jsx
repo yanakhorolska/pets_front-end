@@ -49,22 +49,21 @@ const validationSchemas = [
 ];
 
 const CreateNotice = ({ onClose }) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const [pageNumber, setPageNumber] = useState(1);
   const [addNotice] = useAddNoticeMutation();
 
   const currentCategory = useMemo(() => {
-    const fullPath = location.pathname;
-    if (fullPath.includes('lost-found')) {
+    if (pathname.includes('lost-found')) {
       return 'lostFound';
-    } else if (fullPath.includes('for-free')) {
+    } else if (pathname.includes('for-free')) {
       return 'inGoodHands';
-    } else if (fullPath.includes('sell')) {
+    } else if (pathname.includes('sell')) {
       return 'sell';
     } else {
       return 'sell';
     }
-  }, [location.pathname]);
+  }, [pathname]);
 
   const _submitForm = async (values, actions) => {
     const status = await addNotice(values).unwrap();
