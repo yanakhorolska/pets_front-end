@@ -64,19 +64,19 @@ disableRestoreFocus
 function getDayName(index) {
   switch (index) {
     case 0:
-      return "SN";
-    case 1:
       return "MN";
-    case 2:
+    case 1:
       return "TU";
-    case 3:
+    case 2:
       return "WD";
-    case 4:
+    case 3:
       return "TH";
-    case 5:
+    case 4:
       return "FR";
-    case 6:
+    case 5:
       return "ST";
+    case 6:
+      return "SN";
     default:
       return "Invalid day";
   }
