@@ -28,7 +28,7 @@ const Header = () => {
     <>
       <Head>
         <HeadNav>
-          <Logotype />
+          <Logotype to="/" />
           <Nav />
         </HeadNav>
         <ToggleButton />
@@ -45,7 +45,7 @@ const Header = () => {
         <BurgerMenu>
           <Container>
             <MenuHeader>
-              <Logotype />
+              <Logotype to="/" />
               <ToggleButtonBurg onClick={() => setBurg(!burg)}>
                 <Icon.FatClose />
               </ToggleButtonBurg>
