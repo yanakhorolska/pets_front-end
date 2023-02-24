@@ -1,9 +1,9 @@
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
-import { getIsLogged } from '../redux/selectors';
+import { getToken } from '../redux/selectors';
 import { useSelector } from 'react-redux';
 
 const PrivateRoutes = () => {
-  const isLogged = useSelector(getIsLogged);
+  const isLogged = useSelector(getToken);
   const location = useLocation();
   return !isLogged ? (
     <Outlet />

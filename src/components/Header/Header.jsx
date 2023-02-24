@@ -6,7 +6,6 @@ import { Link } from 'components/Nav/nav.styled';
 import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 import {
   Head,
-  HeadNav,
   BurgerMenu,
   BurgerLinks,
   ToggleButtonBurg,
@@ -27,10 +26,8 @@ const Header = () => {
   return (
     <>
       <Head>
-        <HeadNav>
-          <Logotype to="/" />
+          <Logotype/>
           <Nav />
-        </HeadNav>
         <ToggleButton />
         <HeaderWrap>
           <ButtonsContainer>

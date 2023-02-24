@@ -5,6 +5,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from 'redux/selectors';
 
+import Icon from 'styles/Buttons/icons/index';
+import { Button, ButtonText } from './LogoutButton.styled' 
+// import {LogOut} from '../../styles/Buttons/icons/index'
+
 function LogoutButton() {
     const token = useSelector(getToken)
     const [logout, { isLoading }] = useLogOutMutation(token);
@@ -17,9 +21,10 @@ function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogoutClick} disabled={isLoading}>
-      Logout
-    </button>
+    <Button onClick={handleLogoutClick} disabled={isLoading}>
+      <Icon.LogOut /> 
+      <ButtonText>Log Out</ButtonText>
+    </Button>
   );
 }
 

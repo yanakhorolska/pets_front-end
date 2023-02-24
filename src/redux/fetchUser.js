@@ -32,13 +32,13 @@ export const userApi = createApi({
       // query: (token) => '/users/current',
       // providesTags: ['User'],
       // transformResponse: response => response.data
-      query: (token) => `/users/current`,
-      transformResponse: response => response.data
+      query: token => `/users/current`,
+      transformResponse: response => response.data,
     }),
     logOut: builder.mutation({
-      query: (token) => ({
+      query: token => ({
         url: '/users/logout',
-        method: 'POST',
+        method: 'GET',
       }),
       invalidatesTags: ['User'],
     }),
@@ -57,7 +57,7 @@ export const userApi = createApi({
       }),
     }),
     updateUser: builder.mutation({
-      query: ( {values}) => ({
+      query: ({ values }) => ({
         url: '/users/update',
         method: 'PATCH',
         body: values,
@@ -94,16 +94,43 @@ export const userApi = createApi({
     //   invalidatesTags: ['User'],
     // }),
     updateUserAvatar: builder.mutation({
-      query: (file) => {
+      query: file => {
         const formData = new FormData();
-        formData.append("avatar", file);
+        formData.append('avatar', file);
         return {
-          url: "/users/avatars",
-          method: "PATCH",
+          url: '/users/avatars',
+          method: 'PATCH',
           body: formData,
         };
       },
-      invalidatesTags: ["User"],
+      invalidatesTags: ['User'],
+    }),
+    getUserPets: builder.query({
+      query: () => '/users/pets',
+      transformResponse: response => response.data,
+      providesTags: ['Pet'],
+    }),
+    addPet: builder.mutation({
+      query: payload => {
+        const formData = new FormData();
+        Object.keys(payload).forEach(key => formData.append(key, payload[key]));
+        return {
+          url: `/pets`,
+          method: 'POST',
+          body: formData,
+        };
+      },
+      transformResponse: response => response.status,
+      invalidatesTags: ['Pet'],
+    }),
+    removePetById: builder.mutation({
+      query: id => ({
+        url: `/pets/${id}`,
+        method: 'DELETE',
+        body: id,
+        transformResponse: response => response.status,
+        invalidatesTags: ['Pet'],
+      }),
     }),
     getUserPets: builder.mutation({
       query: () => '/users/pets',
