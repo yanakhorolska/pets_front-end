@@ -6,6 +6,5 @@ export const StyledListTest = styled.ul`
   gap: 32px;
   justify-content: center;
   @media (min-width: 768px) {
-    justify-content: flex-start;
   }
 `;

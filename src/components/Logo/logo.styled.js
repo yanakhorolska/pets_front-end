@@ -1,7 +1,7 @@
-import styled from '@emotion/styled'
-import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Logo = styled(NavLink)`
+export const Logo = styled(Link)`
     font-family: 'Poppins';
     font-size: 28px;
     text-decoration: none; 
@@ -9,7 +9,7 @@ export const Logo = styled(NavLink)`
    
     line-height: 0.66;
     letter-spacing: 0.07em;
-    color:#111111;
+    color:${p => p.theme.color.black};
    
     @media (min-width:768px){
         font-size: 32px;
@@ -18,4 +18,7 @@ export const Logo = styled(NavLink)`
         margin-right: 80px;
         
     }
+`;
+export const LogoAccent = styled('span')` 
+    color:${p => p.theme.color.accent};
 `;
