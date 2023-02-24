@@ -45,7 +45,7 @@ const authSlice = createSlice({
       state.user.birthday = action.payload.data.birthday;
     },
     setAvatarURL: (state, action) => {
-      state.user.avatarURL = action.payload.avatarURL;
+      state.user.avatarURL = action.payload;
     },
     setCurrentUser: (state, action) => {
       state.user.name = action.payload.data.name;
