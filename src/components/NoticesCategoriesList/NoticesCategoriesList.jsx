@@ -79,7 +79,10 @@ const NoticesCategoriesList = () => {
       } else {
         const notices = [...userFavoriteList.data];
         setUsersPets(notices.reverse());
-        console.log(userFavoriteList);
+
+        // !!! цей лог перевіряє, чи є обрані оголошення залогованого юзера, можна видалити при деплої
+
+        // console.log(userFavoriteList);
 
         return;
       }

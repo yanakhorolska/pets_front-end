@@ -5,14 +5,15 @@ import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCateg
 import AddButton from 'components/AddButton';
 import CreateNotice from 'components/ModalAddNotice/CreateNotice';
 import { useAuth } from 'hooks/useAuth';
+import { Container } from 'components/stylesComponents.styled.';
 
-// import { Outlet } from 'react-router-dom/dist';
+import { Outlet } from 'react-router-dom/dist';
 
 const NoticesPage = () => {
   const isLoggedIn = useAuth();
   return (
     <>
-      <div>
+      <Container>
         <h1>Find your favorite pet</h1>
         <NoticesSearch />
 
@@ -25,8 +26,8 @@ const NoticesPage = () => {
           <NoticesCategoriesList />
         </div>
 
-        {/* <Outlet /> */}
-      </div>
+        <Outlet />
+      </Container>
     </>
   );
 };
