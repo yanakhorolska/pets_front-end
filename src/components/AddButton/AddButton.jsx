@@ -1,6 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import ModalWindow from 'components/ModalWindow';
-
 import {
   AddButtonTitle,
   AddButtonWrapper,
@@ -11,26 +10,30 @@ import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const AddButton = ({ component: Component }) => {
-  const isLoggedIn = useAuth();
+  const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
-  if (!isLoggedIn) {
-    navigate('/login');
-  }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const body = document.querySelector('body');
-  if (isModalOpen === true) {
-    body.classList.add('is-hidden');
-  } else if (isModalOpen === false) {
-    body.classList.remove('is-hidden');
-  }
+  useEffect(() => {
+    const body = document.querySelector('body');
+    isModalOpen
+      ? body.classList.add('is-hidden')
+      : body.classList.remove('is-hidden');
+  }, [isModalOpen]);
 
   const toggleModal = useCallback(() => {
     setIsModalOpen(prevState => {
       setIsModalOpen(!prevState);
     });
   }, []);
+
+  const openModalWindow = () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+    setIsModalOpen(true);
+  };
 
   return (
     <>
@@ -39,7 +42,7 @@ const AddButton = ({ component: Component }) => {
         <AddButtonStyled
           type="button"
           onClick={() => {
-            setIsModalOpen(true);
+            openModalWindow();
           }}
         >
           <StyledIconAdd />

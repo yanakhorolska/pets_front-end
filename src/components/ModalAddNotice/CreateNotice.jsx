@@ -24,7 +24,7 @@ import {
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, ModalStyledButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
@@ -53,7 +53,7 @@ const CreateNotice = ({ onClose }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [addNotice] = useAddNoticeMutation();
 
-  const getCurrentCategory = () => {
+  const currentCategory = useMemo(() => {
     const fullPath = location.pathname;
     if (fullPath.includes('lost-found')) {
       return 'lostFound';
@@ -64,12 +64,14 @@ const CreateNotice = ({ onClose }) => {
     } else {
       return 'sell';
     }
-  };
+  }, [location.pathname]);
 
   const _submitForm = async (values, actions) => {
     const status = await addNotice(values).unwrap();
     if (status === 'success') {
       onClose();
+    } else {
+      alert('Oooops, something goes wrong..');
     }
     actions.setSubmitting(false);
   };
@@ -86,7 +88,7 @@ const CreateNotice = ({ onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      category: getCurrentCategory(),
+      category: currentCategory,
       title: '',
       petName: '',
       dateOfBirth: '',
