@@ -93,23 +93,13 @@ const NoticesCategoriesList = () => {
 
   if (usersPets !== null) {
     pets = Object.values(usersPets);
+    console.log(pets);
   }
 
   return (
     <>
       {Array.isArray(pets) &&
-        pets.map(pet => (
-          <NoticeCategoryItem
-            _id={pet._id}
-            breed={pet.breed}
-            location={pet.location}
-            age={pet.age.months}
-            price={pet.price}
-            category={pet.category}
-            owner={pet.owner}
-            key={pet.id}
-          />
-        ))}
+        pets.map(pet => <NoticeCategoryItem id={pet._id} key={pet._id} />)}
     </>
   );
 };

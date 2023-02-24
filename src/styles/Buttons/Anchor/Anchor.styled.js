@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Anchor = styled(NavLink)`
+  display: flex;
+  align-item: center;
   padding: 8px 28px;
   background-color: ${p => p.theme.color.white};
   border-radius: ${p => p.theme.radii.borderRadius.btn};

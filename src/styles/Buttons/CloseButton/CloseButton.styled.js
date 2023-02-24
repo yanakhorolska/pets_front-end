@@ -1,8 +1,9 @@
-import styled from "@emotion/styled";
+import styled from 'styled-components';
+import Icon from '../icons/index';
 
 export const CloseBtn = styled.button`
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   margin: 0;
   padding: 0;
   border: 0;
@@ -19,5 +20,20 @@ export const CloseBtn = styled.button`
   &:focus {
     color: #f59256;
     opacity: 1;
+  }
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    width: 44px;
+    height: 44px;
+  }
+`;
+
+export const IconClose = styled(Icon.Close)`
+  width: 15px;
+  height: 15px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    width: 20px;
+    height: 20px;
   }
 `;

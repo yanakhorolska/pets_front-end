@@ -1,10 +1,9 @@
-import { CloseBtn } from "./CloseButton.styled";
-import Icon from "../icons/index";
+import { CloseBtn, IconClose } from './CloseButton.styled';
 
 export const CloseButton = ({ onClick, className }) => {
   return (
     <CloseBtn onClick={onClick} className={className}>
-      <Icon.Close />
+      <IconClose />
     </CloseBtn>
   );
 };

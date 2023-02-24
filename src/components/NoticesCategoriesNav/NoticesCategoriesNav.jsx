@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { getIsLogged } from 'redux/selectors';
 import { AnchorElem } from 'styles/Buttons/Anchor/Anchor';
+import { LinksItem, LinksList } from './NoticesCategoriesNav.styled';
 
 const link = [
   { to: '/notices/lost-found', text: 'Lost/Found' },
@@ -22,9 +23,9 @@ const NoticesCategoriesNav = () => {
     if (!Array.isArray(link)) return null;
 
     return link.map(el => (
-      <li style={{ display: 'inline-block', paddingRight: '10px' }} key={el.to}>
+      <LinksItem style={{ display: 'inline-block' }} key={el.to}>
         <AnchorElem el={el} />
-      </li>
+      </LinksItem>
     ));
   };
 
@@ -32,19 +33,17 @@ const NoticesCategoriesNav = () => {
     if (!isLogged || !Array.isArray(linkAuth)) return null;
 
     return linkAuth.map(el => (
-      <li style={{ display: 'inline-block', paddingRight: '10px' }} key={el.to}>
+      <LinksItem style={{ display: 'inline-block' }} key={el.to}>
         <AnchorElem el={el} />
-      </li>
+      </LinksItem>
     ));
   };
 
   return (
-    <div>
-      <ul>
-        {renderLinks()}
-        {renderAuthLinks()}
-      </ul>
-    </div>
+    <LinksList>
+      {renderLinks()}
+      {renderAuthLinks()}
+    </LinksList>
   );
 };
 
