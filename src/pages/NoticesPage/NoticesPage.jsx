@@ -8,8 +8,6 @@ import { FirstHeader } from 'styles/Headers/Headers.styled';
 import { Container } from 'styles/Container/Container.styled';
 import { NoticesBox, NavBox, ListBox } from './NoticesPage.styled';
 
-// import { Outlet } from 'react-router-dom/dist';
-
 const NoticesPage = () => {
   return (
     <Container>
@@ -19,14 +17,13 @@ const NoticesPage = () => {
 
         <NavBox>
           <NoticesCategoriesNav />
+
           <AddButton component={CreateNotice} />
         </NavBox>
 
         <ListBox>
           <NoticesCategoriesList />
         </ListBox>
-
-        {/* <Outlet /> */}
       </NoticesBox>
     </Container>
   );

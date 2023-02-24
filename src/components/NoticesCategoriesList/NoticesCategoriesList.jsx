@@ -7,6 +7,7 @@ import {
   useGetNoticeFavoritesQuery,
   useGetUserNoticesQuery,
 } from 'redux/fetchNotice';
+
 import { getIsLogged } from 'redux/selectors';
 
 const NoticesCategoriesList = () => {
@@ -92,11 +93,15 @@ const NoticesCategoriesList = () => {
     pets = Object.values(usersPets);
     console.log(pets);
   }
+  const visiblePets = pets.filter(pet =>
+    pet.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
-      {Array.isArray(pets) &&
-        pets.map(pet => <NoticeCategoryItem id={pet._id} key={pet._id} />)}
+      {visiblePets.map(pet => (
+        <NoticeCategoryItem id={pet._id} key={pet._id} />
+      ))}
     </>
   );
 };
