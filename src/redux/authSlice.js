@@ -24,13 +24,13 @@ const authSlice = createSlice({
       state.isLogged = true;
     },
     setUser: (state, action) => {
-      state.user.name = action.payload.name;
+      state.user.name = action.payload.action.name;
       state.user.email = action.payload.email;
       state.user.phone = action.payload.phone;
       state.user.city = action.payload.city;
       state.user.birthday = action.payload.birthday;
       state.user.avatarURL = action.payload.avatarURL;
-      state.token = action.payload.token;
+      // state.token = action.payload.token;
       state.isLogged = true;
     },
     setLogoutUser: (state, action) => {
@@ -38,14 +38,14 @@ const authSlice = createSlice({
       state.isLogged = false;
     },
     setUpdatedUser: (state, action) => {
-      state.user.name = action.payload.name;
-      state.user.email = action.payload.email;
-      state.user.phone = action.payload.phone;
-      state.user.city = action.payload.city;
-      state.user.birthday = action.payload.birthday;
+      state.user.name = action.payload.data.name;
+      state.user.email = action.payload.data.email;
+      state.user.phone = action.payload.data.phone;
+      state.user.city = action.payload.data.city;
+      state.user.birthday = action.payload.data.birthday;
     },
     setAvatarURL: (state, action) => {
-      state.user.avatarURL = action.payload;
+      state.user.avatarURL = action.payload.avatarURL;
     },
     setCurrentUser: (state, action) => {
       state.user.name = action.payload.data.name;

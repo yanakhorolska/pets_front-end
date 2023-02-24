@@ -1,43 +1,50 @@
-import React from 'react'
-import UserAvatar from "../UserAvatar/UserAvatar"
-import UserDataItem from 'components/UserDataItem/UserDataItem'
-import { getUser, getToken } from 'redux/selectors';
-import { useSelector, useDispatch } from 'react-redux';
-import { useGetUserQuery } from '../../redux/authApi';
-import { setUser } from '../../redux/authSlice';
-import { useEffect } from 'react';
+import React from 'react';
+import UserAvatar from '../UserAvatar/UserAvatar';
+import UserDataItem from 'components/UserDataItem/UserDataItem';
+import { getUser } from 'redux/selectors';
+import { useSelector } from 'react-redux';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 const UserData = () => {
- const token = useSelector(getToken);
-//  console.log(token)
-  const dispatch = useDispatch();
-  
-  const { data, isLoading } = useGetUserQuery(token);
-  
-
- const user = {...data, token}
-console.log("data from back", user)
-  useEffect(() => {
-    if (!isLoading) {
-      dispatch(setUser(user, token), []);
-    }
-  });
-
-  const currentuser = useSelector(getUser)
-  
-  console.log("USER IN USERState", currentuser )
+  const currentuser = useSelector(getUser);
 
   return (
-      <div>
-          <p>My Information</p>
+    <div>
+      <p>My Information</p>
       <UserAvatar />
-      <UserDataItem initialValues={{ name: currentuser.name }} name="name" value={currentuser.name} />
-      <UserDataItem initialValues={{ email: currentuser.email }} name="email" value={currentuser.email} />
-      <UserDataItem initialValues={{ birthday: currentuser.birthday }} name="birthday" value={currentuser.birthday} />
-      <UserDataItem initialValues={{ city: currentuser.city }} name="city" value={currentuser.city} />
-      <UserDataItem initialValues={{ phone: currentuser.phone }} name="phone" value={currentuser.phone} />
+      <UserDataItem
+        initialValues={{ name: currentuser.name }}
+        name="name"
+        text="name"
+        placeholder={currentuser.name}
+      />
+      <UserDataItem
+        initialValues={{ email: currentuser.email }}
+        name="email"
+        text="email"
+        placeholder={currentuser.email}
+      />
+      <UserDataItem
+        initialValues={{ birthday: currentuser.birthday }}
+        name="birthday"
+        text="birthday"
+        placeholder={currentuser.birthday}
+      />
+      <UserDataItem
+        initialValues={{ city: currentuser.city }}
+        name="city"
+        text="city"
+        placeholder={currentuser.city}
+      />
+      <UserDataItem
+        initialValues={{ phone: currentuser.phone }}
+        name="phone"
+        text="phone"
+        placeholder={currentuser.phone}
+      />
+      <LogoutButton />
     </div>
-  )
-}
+  );
+};
 
-export default UserData
+export default UserData;
