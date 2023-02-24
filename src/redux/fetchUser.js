@@ -105,6 +105,15 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"],
     }),
+    getUserPets: builder.query({
+      query: () => ({
+        url:'/users/pets',
+        method: 'GET',
+        
+      }),
+      transformResponse: response => response.data,
+      providesTags: ["Pet"],
+    }),
   }),
 });
 
@@ -117,4 +126,5 @@ export const {
   useGetCurrentUserQuery,
   useUpdateUserMutation,
   useUpdateUserAvatarMutation,
+  useGetUserPetsQuery,
 } = userApi;
