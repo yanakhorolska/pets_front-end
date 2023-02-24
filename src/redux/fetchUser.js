@@ -131,7 +131,7 @@ export const userApi = createApi({
       }),
       transformResponse: response => response.status,
       invalidatesTags: ['Pet'],
-    }),    
+    }),
   }),
 });
 
