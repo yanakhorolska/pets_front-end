@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from 'styled-components';
 
 export const LearnMoreBtn = styled.button`
   width: 248px;
@@ -9,12 +9,13 @@ export const LearnMoreBtn = styled.button`
   border-radius: 40px;
   cursor: pointer;
 
-  font-family: "Manrope";
+  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
 
-  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   color: #f59256;
 
