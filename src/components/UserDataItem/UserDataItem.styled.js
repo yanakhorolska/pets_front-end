@@ -5,7 +5,7 @@ import { Form, Field } from 'formik';
 
 export const UserDataForm = styled(Form)`
 display: flex;
-justify-content: space-between;
+// justify-content: space-between;
 align-items: baseline;
 flex-direction: row;
 padding: 0;

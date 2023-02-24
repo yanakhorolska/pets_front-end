@@ -12,23 +12,34 @@ export const MainUserPageBox = styled.div`
   }
 `;
 
+export const Box = styled.div`
+width: 280px;
+`
+
 export const UserDataBox = styled.div`
   background: ${p => p.theme.color.white};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 20px;
   margin-top: 18px;
   margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px 12px 20px 16px;
+  width: 280px;
   @media ${p => p.theme.media.tabletDesktop} {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     padding: 24px 40px 24px 32px;
+     width: 704px;
+    border-radius: 40px;
+
 `;
 
 export const UserDataItemsBox = styled.div`
 display: flex;
 flex-direction: column;
-width: 380px;
+
+
 `
