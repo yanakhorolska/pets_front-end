@@ -3,13 +3,12 @@ import { useState } from 'react';
 
 import * as Yup from 'yup';
 
-import { ModalAddPet, FormTitle, FormPageWrapper, InputLabel, InputStyled, InputImageWrapper, InputImageLabel, InputImage, CommentInput, ButtonsWrapper, FieldError } from './AddPet.styled';
+import { ModalAddPet, FormPageWrapper, FormDescription, FormTitle, InputLabel, InputStyled, InputImageWrapper, InputImageLabel, InputImage, CommentInput, ButtonsWrapper, FieldError, CloseFormButton } from './AddPet.styled';
 import { ModalButton, NextButton } from 'styles/Buttons'
 
 import Icon from '../ModalAddNotice/svg';
-import IconButtons from 'styles/Buttons/icons'
-import Box from 'components/Box';
-import { useTheme } from 'styled-components';
+// import Box from 'components/Box';
+
 
 const validationSchema = [Yup.object().shape({
   nickname:Yup.string().min(2).max(16).required("Name pet is required"), 
@@ -21,8 +20,6 @@ const validationSchema = [Yup.object().shape({
 })]
 
 export const AddPet = ({ onClose }) => {
-
-  const theme = useTheme()
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -77,33 +74,9 @@ export const AddPet = ({ onClose }) => {
     comment: commentError,
   } = formik.errors;
 
-
-  // const styleButtonClose = {
-  //   position:"absolute",
-  //   top:"0",
-  //   right:"0",
-  //   "border-radius": "50%",
-    
-  //   bgc: "tomato",
-  //   transform: "translate(-50%, 50%)",
-  // }
-
   return (
-    <ModalAddPet onSubmit={formik.handleSubmit}>
-      <Box
-        position="absolute"
-        top="0"
-        right="0"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        width="40px"
-        height="40px"
-        borderRadius="50%"
-        backgroundColor={theme.color.background}
-      >
-        <IconButtons.Close onClick={onClose} />
-      </Box>
+    <ModalAddPet onSubmit={formik.handleSubmit} autoComplete="off">
+      <CloseFormButton onClick={onClose} />
       <FormTitle>Add pet</FormTitle>
       {(() => {
         switch (currentPage) {
@@ -120,10 +93,10 @@ export const AddPet = ({ onClose }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                </InputLabel>
                 {formik.touched.nickname && nicknameError ? (
                   <FieldError>{nicknameError} </FieldError>
                 ) : null}
+                </InputLabel>
                 <InputLabel>
                   Date of birth
                   <InputStyled
@@ -134,10 +107,10 @@ export const AddPet = ({ onClose }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                </InputLabel>
                 {formik.touched.birthday && birthdayError ? (
                   <FieldError>{birthdayError} </FieldError>
                 ) : null}
+                </InputLabel>
                 <InputLabel>
                   Breed
                   <InputStyled
@@ -148,10 +121,10 @@ export const AddPet = ({ onClose }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                </InputLabel>
                 {formik.touched.breed && breedError ? (
                   <FieldError>{breedError} </FieldError>
                 ) : null}
+                </InputLabel>
                 <ButtonsWrapper>
                   <ModalButton type="button" onClick={onClose}>
                     Cancel
@@ -163,7 +136,7 @@ export const AddPet = ({ onClose }) => {
           case 1:
             return (
               <>
-                <span mx="auto">Add photo and some comments</span>
+                <FormDescription>Add photo and some comments</FormDescription>
                 <FormPageWrapper>
                   <InputImageWrapper sx={{ margin: 'auto' }}>
                     <InputImageLabel>
@@ -183,17 +156,17 @@ export const AddPet = ({ onClose }) => {
                         />
                       )}
                     </InputImageLabel>
-                  </InputImageWrapper>
-                  {formik.touched.avatar && avatarError ? (
+                    {formik.touched.avatar && avatarError ? (
                       <FieldError>{avatarError} </FieldError>
                     ) : null}
+                  </InputImageWrapper>
                   <InputLabel>
                     Comments:
                     <CommentInput
                       as="textarea"
                       type="text"
                       name="comment"
-                      placeholder="Type comment"
+                      placeholder="Type comments"
                       value={formik.values.comment}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
