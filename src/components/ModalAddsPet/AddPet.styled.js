@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { CloseButton } from 'styles/Buttons';
 // import  from '../../styles/Buttons/icons';
 
 const ModalAddPet = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 20px 20px 40px 20px;
+  padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
   background-color: ${p => p.theme.color.white};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   width: ${p => p.theme.sizes.width.modalS};
@@ -14,69 +15,112 @@ const ModalAddPet = styled.form`
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
   height: ${p => p.theme.sizes.height.auto};
-  @media ${p => p.theme.media.tablet} {
+
+  @media ${p => p.theme.media.tabletDesktop} {
     width: ${p => p.theme.sizes.width.modalM};
-    padding: 40px 80px;
+    padding: ${p => p.theme.space.p.m} 107px;
   }
-  @media ${p => p.theme.media.desktop} {
-    width: ${p => p.theme.sizes.width.modalM2};
-    padding: 40px 80px;
-  }
+  
   *:focus {
     outline: none;
   }
 `;
 
-const FormTitle = styled.h3`
-  margin: 0 auto;
-  font-size: ${p => p.theme.fontSizes.xl};
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-`;
-
 const FormPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  gap: 20px;
+  margin-top:  ${p => p.theme.space.m.s};
+  gap: ${p => p.theme.space.p.xxs};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    margin-top:  ${p => p.theme.space.m.l};
+    gap: ${p => p.theme.space.m.s};
+  }
+
+`;
+
+const FormTitle = styled.h3`
+  margin: 0 auto;
+  font-size: ${p => p.theme.fontSizes.l};
+  font-weight: ${p => p.theme.fontWeights.default};
+  line-height: 1;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-size: ${p => p.theme.fontSizes.xl};
+    font-weight: ${p => p.theme.fontWeights.semiBold};
+  }
+
+`;
+
+const FormDescription = styled.h4`
+  margin-top: ${p => p.theme.space.p.xs};
+  font-weight: ${p => p.theme.fontWeights.default};
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1;
+  text-align: center;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    margin-top: ${p => p.theme.space.p.xs};
+    font-size: ${p => p.theme.fontSizes.l};
+  }
 `;
 
 const InputLabel = styled.label`
   display: flex;
   flex-direction: column;
   font-weight: ${p => p.theme.fontWeights.default};
-  font-size: ${p => p.theme.fontSizes.l};
-  line-height: 26px;
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: 1.08;
   color: ${p => p.theme.color.black};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-weight: ${p => p.theme.fontWeights.l};
+    font-size: ${p => p.theme.fontSizes.l};
+    line-height: 81%;
+  }
 `;
 
 const InputStyled = styled.input`
-  padding: 10px 16px;
-  margin-top: 12px;
+  padding: ${p => p.theme.space.m.xxs} ${p => p.theme.space.m.xs};
+  margin-top: ${p => p.theme.space.m.xxs};
   font-size: ${p => p.theme.fontSizes.s};
+  line-height: 1;
   height: ${p => p.theme.fontSizes.xxl};
   background: ${p => p.theme.color.background};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.21;
+  }
+
 `;
 
 // Image
 
 const InputImageWrapper = styled.div`
-position: relative;
-display: flex;
-align-items: center;
-justify-content: center;
-margin: auto;
-width: 140px;
-height: 140px;
-margin-top: 12px;
-background: ${p => p.theme.color.background};
-border-radius: 20px;
-overflow: hidden;
-& > img {
-  object-fit: contain;
-}
+  position: ${p => p.theme.position.r};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto ;
+  margin-bottom: 4px;
+  width: 208px;
+  height: 208px;
+  background: ${p => p.theme.color.background};
+  border-radius: ${p => p.theme.radii.borderRadius.inputModal};
+  overflow: hidden;
+  & > img {
+    object-fit: contain;
+  }
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    width: 182px;
+    height: 182px;
+    margin-top: -${p => p.theme.space.p.xs};
+  }
 `;
 
 const InputImageLabel = styled(InputLabel)`
@@ -84,15 +128,19 @@ const InputImageLabel = styled(InputLabel)`
 `;
 
 const InputImage = styled.input`
+  position: ${p => p.theme.position.a};
   opacity: 0;
   visibility: hidden;
-  position: absolute;
 `
 
 const CommentInput = styled(InputStyled)`
-  height: 110px;
-  border-radius: 20px;
+  height: 100px;
+  border-radius: ${p=> p.theme.radii.borderRadius.inputModal};
   resize: none;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    height: 116px;
+  }
 `;
 
 // const StyledIconAdd = styled(Add).attrs(props => ({
@@ -106,28 +154,52 @@ const CommentInput = styled(InputStyled)`
 // `;
 
 const FieldError = styled.p`
+  padding-top : 8px; 
+  //${p => p.theme.space.p.xs};
   height: 20px;
-  font-size: 10px;
+  font-size: ${p => p.theme.fontSizes.xs};
   color: ${p => p.theme.color.accent};
-  margin-left: 15px;
+  text-align: center;
+  
 `;
 
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  gap: 20px;
+  gap: ${p => p.theme.space.m.xxs};
+  margin-top: ${p => p.theme.space.m.s};
 
   @media ${p => p.theme.media.tabletDesktop} {
     margin: 0 auto;
+    margin-top: ${p => p.theme.space.m.xxs};
     flex-direction: row;
     width: 380px;
   }
 `;
 
+const CloseFormButton = styled(CloseButton)`
+  position: ${p => p.theme.position.a};
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 44px;
+    height: 44px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    top: 24px;
+    right: 24px;
+  }
+`;
+
 export {
   ModalAddPet,
-  FormTitle,
   FormPageWrapper,
+  FormTitle,
+  FormDescription,
   InputLabel,
   InputStyled,
   InputImageWrapper,
@@ -136,4 +208,5 @@ export {
   CommentInput,
   FieldError,
   ButtonsWrapper,
+  CloseFormButton
 };
