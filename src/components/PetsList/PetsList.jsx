@@ -13,7 +13,7 @@ import {
   Button,
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
-import { Loader } from 'components/Loader/Loader';
+//import { Loader } from 'components/Loader/Loader';
 
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
