@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-
 import ModalWindow from 'components/ModalWindow';
 
 import {
@@ -8,8 +7,16 @@ import {
   AddButtonStyled,
   StyledIconAdd,
 } from './AddButton.styled';
+import { useAuth } from 'hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
-const AddButton = ({ isVisible = true, component: Component }) => {
+const AddButton = ({ component: Component }) => {
+  const isLoggedIn = useAuth();
+  const navigate = useNavigate();
+  if (!isLoggedIn) {
+    navigate('/login');
+  }
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const body = document.querySelector('body');
@@ -27,19 +34,18 @@ const AddButton = ({ isVisible = true, component: Component }) => {
 
   return (
     <>
-      {isVisible && (
-        <AddButtonWrapper>
-          <AddButtonTitle>Add pet</AddButtonTitle>
-          <AddButtonStyled
-            type="button"
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
-            <StyledIconAdd />
-          </AddButtonStyled>
-        </AddButtonWrapper>
-      )}
+      <AddButtonWrapper>
+        <AddButtonTitle>Add pet</AddButtonTitle>
+        <AddButtonStyled
+          type="button"
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          <StyledIconAdd />
+        </AddButtonStyled>
+      </AddButtonWrapper>
+
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
           <Component onClose={toggleModal} />
@@ -48,39 +54,5 @@ const AddButton = ({ isVisible = true, component: Component }) => {
     </>
   );
 };
-
-// const AddButton = ({ children, ...props }) => {
-//   console.log('props', props);
-
-//   const isLoggedIn = useAuth();
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-
-//   const toggleModal = useCallback(() => {
-//     setIsModalOpen(prevState => {
-//       setIsModalOpen(!prevState);
-//     });
-//   }, []);
-
-//   return (
-//     <>
-//       {isLoggedIn && (
-//         <AddButtonWrapper>
-//           <AddButtonTitle>Add pet</AddButtonTitle>
-//           <AddButtonStyled
-//             type="button"
-//             onClick={() => {
-//               setIsModalOpen(true);
-//             }}
-//           >
-//             <StyledIconAdd />
-//           </AddButtonStyled>
-//         </AddButtonWrapper>
-//       )}
-//       {isModalOpen && (
-//         <ModalWindow onClose={toggleModal} >{children}</ModalWindow>
-//       )}
-//     </>
-//   );
-// };
 
 export default AddButton;
