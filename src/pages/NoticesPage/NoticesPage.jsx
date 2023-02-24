@@ -4,11 +4,9 @@ import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategor
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import AddButton from 'components/AddButton';
 import CreateNotice from 'components/ModalAddNotice/CreateNotice';
-import { useAuth } from 'hooks/useAuth';
 import { FirstHeader } from 'styles/Headers/Headers.styled';
 import { Container } from 'styles/Container/Container.styled';
 import { NoticesBox, NavBox, ListBox } from './NoticesPage.styled';
-
 
 // import { Outlet } from 'react-router-dom/dist';
 
@@ -21,9 +19,8 @@ const NoticesPage = () => {
 
         <NavBox>
           <NoticesCategoriesNav />
-          <AddButton isVisible={isLoggedIn} component={CreateNotice} />
+          <AddButton component={CreateNotice} />
         </NavBox>
-
 
         <ListBox>
           <NoticesCategoriesList />
