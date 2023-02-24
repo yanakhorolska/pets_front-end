@@ -127,10 +127,10 @@ export const userApi = createApi({
       query: id => ({
         url: `/pets/${id}`,
         method: 'DELETE',
-        body: id,
-        transformResponse: response => response.status,
-        invalidatesTags: ['Pet'],
+        body: id,        
       }),
+      transformResponse: response => response.status,
+      invalidatesTags: ['Pet'],
     }),
   }),
 });
