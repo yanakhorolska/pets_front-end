@@ -3,7 +3,7 @@ import Icon from '../icons/index';
 
 export const EditButton = ({ onClick }) => {
   return (
-    <EditBtn onClick={onClick}>
+    <EditBtn onClick={onClick} type="button">
       <Icon.Edit />
     </EditBtn>
   );
