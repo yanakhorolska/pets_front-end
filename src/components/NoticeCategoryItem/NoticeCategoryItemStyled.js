@@ -58,7 +58,7 @@ export const NoticeImg = styled.img`
 export const CategoryTag = styled.p`
   border-radius: 0 40px 40px 0;
   color: #111;
-  font-family: Manrope-Medium;
+  font-family: Inter;
   font-size: 12px;
   height: 28px;
   letter-spacing: 0.04em;

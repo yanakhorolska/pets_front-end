@@ -32,11 +32,42 @@ export const NoticeCategoryItem = ({ id }) => {
   const { title, category, dateOfBirth, breed, location, price, imageUrl } =
     data;
 
+  const changeTextOfCategory = (category) => {
+    if (category === "sell") {
+      return "Sell"
+    }
+    if (category === "inGoodHands") {
+      return "In good hands"
+    }
+     if (category === "lostFound") {
+      return "Lost & Found"
+    }
+  }
+
+
+  function timeSinceCurrentDate(age) {
+  const currentDate = new Date();
+  const inputDate = new Date(age);
+  const delta = currentDate - inputDate;
+
+  const years = Math.floor(delta / (365 * 24 * 60 * 60 * 1000));
+  const months = Math.floor(delta / (30 * 24 * 60 * 60 * 1000));
+  const days = Math.floor(delta / (24 * 60 * 60 * 1000));
+
+  if (years > 0) {
+    return `${years} years `;
+  } else if (months > 0) {
+    return `${months} months `;
+  } else {
+    return `${days} days `;
+  }
+}
+
   return (
     <NoticeItem>
       <ImgWrap>
         <NoticeImg src={imageUrl} alt={title} />
-        <CategoryTag> {category}</CategoryTag>
+        <CategoryTag> {changeTextOfCategory(category)}</CategoryTag>
         <HeartBtnWrap>
           <HeartButton />
         </HeartBtnWrap>
@@ -55,7 +86,7 @@ export const NoticeCategoryItem = ({ id }) => {
             </NoticeInfoListItem>
             <NoticeInfoListItem>
               <NoticeInfoListItemCategory>Age:</NoticeInfoListItemCategory>
-              <NoticeInfoListItemData>{dateOfBirth}</NoticeInfoListItemData>
+              <NoticeInfoListItemData>{timeSinceCurrentDate(dateOfBirth)}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             {price ? (
               <NoticeInfoListItem>
