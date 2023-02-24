@@ -128,9 +128,9 @@ export const userApi = createApi({
         url: `/pets/${id}`,
         method: 'DELETE',
         body: id,
-        transformResponse: response => response.status,
-        invalidatesTags: ['Pet'],
       }),
+      transformResponse: response => response.status,
+      invalidatesTags: ['Pet'],
     }),
   }),
 });
