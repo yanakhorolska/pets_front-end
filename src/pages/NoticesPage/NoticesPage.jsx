@@ -9,10 +9,10 @@ import { FirstHeader } from 'styles/Headers/Headers.styled';
 import { Container } from 'styles/Container/Container.styled';
 import { NoticesBox, NavBox, ListBox } from './NoticesPage.styled';
 
+
 // import { Outlet } from 'react-router-dom/dist';
 
 const NoticesPage = () => {
-  const isLoggedIn = useAuth();
   return (
     <Container>
       <NoticesBox>
@@ -21,9 +21,9 @@ const NoticesPage = () => {
 
         <NavBox>
           <NoticesCategoriesNav />
-
           <AddButton isVisible={isLoggedIn} component={CreateNotice} />
         </NavBox>
+
 
         <ListBox>
           <NoticesCategoriesList />
