@@ -31,8 +31,8 @@ const NoticesCategoriesList = () => {
         return 'inGoodHands';
       case '/notices/favorite':
         return 'favorite';
-      case '/notices/own':
-        return 'own';
+      case '/notices/myNotices':
+        return 'myNotices';
       default:
         return 'sell';
     }
@@ -64,28 +64,28 @@ const NoticesCategoriesList = () => {
       const data = [...petsList];
       setUsersPets(data.reverse());
       return;
-    } else {
+    } else if (category === 'myNotices') {
       if (!userAddsList) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         userAddsList = null;
         setUsersPets(userAddsList);
         return;
-      } else {
-        const notices = [...userAddsList.data];
-        setUsersPets(notices.reverse());
       }
+      const notices = [...userAddsList.data];
+      setUsersPets(notices.reverse());
+      return;
+    } else if (category === 'favorite') {
       if (!userFavoriteList) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
         userFavoriteList = null;
         setUsersPets(userFavoriteList);
         return;
-      } else {
-        const notices = [...userFavoriteList.data];
-        setUsersPets(notices.reverse());
-        console.log(userFavoriteList);
-
-        return;
       }
+      const notices = [...userFavoriteList.data];
+      setUsersPets(notices.reverse());
+      return;
+    } else {
+      return;
     }
   }, [category, petsList, userAddsList, userFavoriteList]);
 

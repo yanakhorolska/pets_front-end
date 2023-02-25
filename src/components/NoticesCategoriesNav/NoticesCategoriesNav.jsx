@@ -12,7 +12,7 @@ const link = [
 
 const linkAuth = [
   { to: '/notices/favorite', text: 'Favorite ads' },
-  { to: '/notices/own', text: 'My ads' },
+  { to: '/notices/myNotices', text: 'My ads' },
 ];
 
 const NoticesCategoriesNav = () => {
