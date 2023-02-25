@@ -73,11 +73,12 @@ export const fetchNotice = createApi({
         url: `/notices/favorites/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Favorites'],
+      invalidatesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
     getNoticeById: builder.query({
       query: id => `/notices/${id}`,
       transformResponse: response => response.data,
+      providesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
     providesTags: ['Favorites', 'Notice', 'UserNotice'],
   }),
