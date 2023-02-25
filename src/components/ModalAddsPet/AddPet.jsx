@@ -13,9 +13,9 @@ import Icon from '../ModalAddNotice/svg';
 const validationSchema = [
   Yup.object().shape({
     nickname: Yup.string().min(2).max(16).required().label('Name pet'),
-    breed: Yup.string().min(2).max(16).required('Breed is required'),
+    breed: Yup.string().min(2).max(16).required('Breed is required').label("Breed"),
     birthday: Yup.date()
-      .typeError(({ label }) => `${label} invalid Date for format DD.MM.YYYY`)
+      .typeError(({ label }) => `${label} invalid format DD.MM.YYYY`)
       .min(new Date("1900.01.01"), ({ label, min }) => `${label} field must be later than ${min.toLocaleDateString()}`)
       .max(new Date(),  ({ label }) => `${label} future date not allowed`)
       .transform((value, originalValue) => {
@@ -24,9 +24,9 @@ const validationSchema = [
           if (date.length === 3 ) {
             return new Date(`${date[2]}-${date[1]}-${date[0]}`);
           }
-          return null;
+          return <FieldError/>;
         } catch (e) {
-          return null;
+          return <FieldError/>;
         }
       })
       .required(({label}) => `${label} is a required field in format DD.MM.YYYY`)
@@ -34,7 +34,7 @@ const validationSchema = [
   }),
   Yup.object().shape({
     avatar: Yup.mixed().required('Image pet is required'),
-    comment: Yup.string().min(8).max(120).required('Comments is required'),
+    comment: Yup.string().min(8).max(120).required().label("Comments"),
   }),
 ];
 
@@ -70,7 +70,7 @@ export const AddPet = ({ onClose }) => {
 
   useEffect(() => {
     document.addEventListener("keydown", function (event) {
-      if (event.charCode || event.keyCode === 13 && event.target.nodeName === "INPUT") {
+      if ((event.charCode || event.keyCode === 13) && event.target.nodeName === "INPUT") {
         const form = event.target.form;
         const arrayFormInput = Array.prototype.filter.call(form, elem => elem.nodeName === "INPUT")
         const index = arrayFormInput.indexOf(event.target);
@@ -126,7 +126,7 @@ export const AddPet = ({ onClose }) => {
                   />
                   {formik.touched.nickname && nicknameError ? (
                     <FieldError>{nicknameError} </FieldError>
-                  ) : null}
+                  ) : <FieldError/>}
                 </InputLabel>
                 <InputLabel>
                   Date of birth
@@ -149,7 +149,7 @@ export const AddPet = ({ onClose }) => {
                   />
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
-                  ) : null}
+                  ) : <FieldError/>}
                 </InputLabel>
                 <InputLabel>
                   Breed
@@ -163,7 +163,7 @@ export const AddPet = ({ onClose }) => {
                   />
                   {formik.touched.breed && breedError ? (
                     <FieldError>{breedError} </FieldError>
-                  ) : null}
+                  ) : <FieldError/>}
                 </InputLabel>
                 <ButtonsWrapper>
                   <ModalButton type="button" tabindex="-1" onClick={onClose}>
@@ -196,10 +196,10 @@ export const AddPet = ({ onClose }) => {
                         />
                       )}
                     </InputImageLabel>
-                    {formik.touched.avatar && avatarError ? (
-                      <FieldError>{avatarError} </FieldError>
-                    ) : null}
                   </InputImageWrapper>
+                  {formik.touched.avatar && avatarError ? (
+                      <FieldError>{avatarError} </FieldError>
+                    ) : <FieldError/>}
                   <InputLabel>
                     Comments:
                     <CommentInput
@@ -213,7 +213,7 @@ export const AddPet = ({ onClose }) => {
                     ></CommentInput>
                     {formik.touched.comment && commentError ? (
                       <FieldError>{commentError} </FieldError>
-                    ) : null}
+                    ) : <FieldError/>}
                   </InputLabel>
                   <ButtonsWrapper>
                     <ModalButton

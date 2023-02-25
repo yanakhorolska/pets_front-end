@@ -30,11 +30,11 @@ const FormPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top:  ${p => p.theme.space.m.s};
-  gap: ${p => p.theme.space.p.xxs};
+  // gap: ${p => p.theme.space.p.xxs};
 
   @media ${p => p.theme.media.tabletDesktop} {
     margin-top:  ${p => p.theme.space.m.l};
-    gap: ${p => p.theme.space.m.s};
+    // gap: ${p => p.theme.space.m.s};
   }
 
 `;
@@ -94,7 +94,6 @@ const InputStyled = styled.input`
     font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.21;
   }
-
 `;
 
 // Image
@@ -143,24 +142,19 @@ const CommentInput = styled(InputStyled)`
   }
 `;
 
-// const StyledIconAdd = styled(Add).attrs(props => ({
-//   opacity: props.isvisible === 'true' ? 1 : 0,
-// }))`
-//   opacity: ${p => p.opacity};
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// `;
-
 const FieldError = styled.p`
-  padding-top : 8px; 
+  padding-top : 2px; 
   //${p => p.theme.space.p.xs};
-  height: 20px;
+  height: ${p => p.theme.space.p.xxs};
   font-size: ${p => p.theme.fontSizes.xs};
   color: ${p => p.theme.color.accent};
   text-align: center;
-  
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    //padding-top : 4px;
+    height: ${p => p.theme.space.m.s};
+    font-size: ${p => p.theme.fontSizes.s};
+  }
 `;
 
 const ButtonsWrapper = styled.div`
