@@ -39,8 +39,7 @@ const UserDataItem = ({ initialValues, text, name, placeholder }) => {
       <UserDataForm >
         <UserDataLabel htmlFor={name}>{name}: </ UserDataLabel>
         <UserDataInput
-          // as={UserDataInput}
-          type="text"
+          // type="text"
           onChange={changeInput}
           value={inputeData}
           name={name}

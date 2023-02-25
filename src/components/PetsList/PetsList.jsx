@@ -19,7 +19,7 @@ const PetsList = () => {
   if (!data) {
       return;
     }
-  // return <div>PetList</div>;
+  
     return (
       <Box>
         {isLoading && <Loader />}
