@@ -33,6 +33,8 @@ margin-left: 4px;
 export const AvatarImage = styled("img")`
 border-radius: 50%;
 margin-bottom: 12px;
+margin-left: auto;
+margin-right: auto;
 width: 233px;
 height: 233px;
 

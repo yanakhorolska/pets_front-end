@@ -64,35 +64,7 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-    // updateUserAvatar: builder.mutation({
-    //   query: payload => ({
-    //     url: 'users/avatar',
-    //     method: 'PATCH',
-    //     body: payload,
-    //   }),
-    //   invalidatesTags: ['User'],
-    // }),
-    // / updateUserAvatar: builder.mutation({
-    //   query: payload => ({
-    //     url: 'users/avatar',
-    //     method: 'PATCH',
-    //     body: payload,
-    //   }),
-    //   invalidatesTags: ['User'],
-    // })
-    //   updateUserAvatar: builder.mutation({
-    //   query: (file) => {
-    //     const formData = new FormData();
-    //     formData.append('file', file);
-    //     formData.append('upload_preset', 'YOUR_UPLOAD_PRESET');
-    //       formData.append('folder', 'YOUR_FOLDER');
-    //       return {
-    //     url: 'users/avatar',
-    //     method: 'PATCH',
-    //     body: payload,
-    //   },
-    //   invalidatesTags: ['User'],
-    // }),
+   
     updateUserAvatar: builder.mutation({
       query: (file) => {
         const formData = new FormData();
@@ -105,14 +77,41 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"],
     }),
-    getUserPets: builder.query({
-      query: () => ({
-        url:'/users/pets',
-        method: 'GET',
+    // getUserPets: builder.query({
+    //   query: () => ({
+    //     url:'/users/pets',
+    //     method: 'GET',
         
-      }),
+    //   }),
+    //   transformResponse: response => response.data,
+    //   providesTags: ["Pet"],
+    // }),
+    getUserPets: builder.query({
+      query: () => '/users/pets',
       transformResponse: response => response.data,
-      providesTags: ["Pet"],
+      providesTags: ['Pet'],
+    }),
+    addPet: builder.mutation({
+      query: payload => {
+        const formData = new FormData();
+        Object.keys(payload).forEach(key => formData.append(key, payload[key]));
+        return {
+          url: `/pets`,
+          method: 'POST',
+          body: formData,
+        };
+      },
+      transformResponse: response => response.status,
+      invalidatesTags: ['Pet'],
+    }),
+    removePetById: builder.mutation({
+      query: id => ({
+        url: `/pets/${id}`,
+        method: 'DELETE',
+        body: id,
+      }),
+      transformResponse: response => response.status,
+      invalidatesTags: ['Pet'],
     }),
   }),
 });

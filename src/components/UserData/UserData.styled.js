@@ -14,6 +14,12 @@ export const MainUserPageBox = styled.div`
 
 export const Box = styled.div`
 width: 280px;
+margin-left:auto;
+margin-right: auto;
+`;
+
+export const TitleWrapper = styled.div`
+display: flex;
 `
 
 export const UserDataBox = styled.div`

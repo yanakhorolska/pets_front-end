@@ -1,15 +1,19 @@
 import React from 'react'
 import PetsList from "../PetsList/PetsList.jsx"
-import AddButton from 'components/AddButton';
+import AddPetButton from 'components/AddPetButton';
 import {AddPet} from '../ModalAddsPet/AddPet'
 import UserPageTitle from '../UserPageTitle/UserPageTitle'
-import {Box} from '../UserData/UserData.styled'
+import {Box, TitleWrapper} from '../UserData/UserData.styled'
 
 const PetsData = () => {
   return (
-      <Box>
-          <UserPageTitle title={"My pets:"} />
-          <AddButton component={AddPet} />
+    <Box>
+      <TitleWrapper>
+        <UserPageTitle title={"My pets:"} />
+      <AddPetButton component={AddPet} />
+      </TitleWrapper>
+          
+      
           <PetsList />
       </Box>
   )

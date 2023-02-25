@@ -5,13 +5,13 @@ import { getUser } from 'redux/selectors';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import UserPageTitle from '../UserPageTitle/UserPageTitle';
-import { UserDataBox, UserDataItemsBox } from './UserData.styled';
+import { UserDataBox, UserDataItemsBox, Box } from './UserData.styled';
 
 const UserData = () => {
   const currentuser = useSelector(getUser);
 
   return (
-    <div>
+    <Box>
       <UserPageTitle title={'My information:'} />
       <UserDataBox>
         <UserAvatar />
@@ -51,7 +51,7 @@ const UserData = () => {
         <LogoutButton />
         </ UserDataItemsBox>
       </UserDataBox>
-    </div>
+    </Box>
   );
 };
 
