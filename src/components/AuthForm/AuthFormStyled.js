@@ -91,7 +91,7 @@ export const AuthInput = styled.input`
   outline: none;
   padding: 9px 14px 10px;
   &:placeholder-shown {
-    color: white;
+    color: ${p => p.theme.color.greyTransp};
   }
 
   @media (min-width: 768px) {

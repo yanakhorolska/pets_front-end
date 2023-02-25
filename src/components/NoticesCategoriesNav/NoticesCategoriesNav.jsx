@@ -1,7 +1,8 @@
-import { useAuth } from 'hooks/useAuth';
 import React from 'react';
 import { AnchorElem } from 'styles/Buttons/Anchor/Anchor';
 import { LinksItem, LinksList } from './NoticesCategoriesNav.styled';
+import { useSelector } from 'react-redux';
+import { getIsLogged } from 'redux/selectors';
 
 const link = [
   { to: '/notices/lost-found', text: 'Lost/Found' },
@@ -15,7 +16,7 @@ const linkAuth = [
 ];
 
 const NoticesCategoriesNav = () => {
-  const isLogged = useAuth();
+  const isLogged = useSelector(getIsLogged);
 
   const renderLinks = () => {
     if (!Array.isArray(link)) return null;
