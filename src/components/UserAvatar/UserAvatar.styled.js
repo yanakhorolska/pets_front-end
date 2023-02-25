@@ -11,6 +11,9 @@ margin-bottom: 36px;
 @media ${p => p.theme.media.tabletDesktop}{
   margin-bottom: 0;
 }
+@media ${p => p.theme.media.desktop}{
+  margin-bottom: 36px;
+}
 `
 
 export const AvatarLabel = styled("label")`
@@ -33,6 +36,8 @@ margin-left: 4px;
 export const AvatarImage = styled("img")`
 border-radius: 50%;
 margin-bottom: 12px;
+margin-left: auto;
+margin-right: auto;
 width: 233px;
 height: 233px;
 
