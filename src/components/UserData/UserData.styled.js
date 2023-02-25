@@ -37,7 +37,7 @@ align-items: flex-end;
 }
 `
 
-export const TitleWrapperData = styled.p`
+export const TitleWrapperData = styled.div`
 width: 280px;
 margin-left: auto;
 margin-right: auto;
@@ -72,7 +72,7 @@ export const UserDataBox = styled.div`
       flex-direction: column;
       width: 410px;
       margin-top: 24px;
-    }
+  }
 
 `;
 

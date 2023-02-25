@@ -29,8 +29,8 @@ const UserAvatar = () => {
   
   return (
     <AvatarBox>
-      {avatar ? <AvatarImage src={avatar} alt="User" />
-        : <AvatarImage src={Emptyphoto} />
+      {avatar ? <AvatarImage src={avatar} alt="User"  />
+        : <AvatarImage src={Emptyphoto}  />
       }
       
 
