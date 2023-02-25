@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../AuthForm/AuthFormStyled"
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
@@ -77,11 +78,11 @@ const RegisterForm = () => {
   const onPageChange = async () => {
     if (page === 1) {
       if (email === '' || password === '' || confirm_password === '') {
-        alert('Input all required fields');
+        Notify.warning('Input all required fields');
         return;
       }
       if (passwordError || confirmError || emailError) {
-        alert('Input all fields in the necessary format');
+        Notify.warning('Input all fields in the necessary format');
         return;
       }
       setPage(2);
@@ -93,11 +94,11 @@ const RegisterForm = () => {
   const onFormSubmit = async e => {
     e.preventDefault();
     if (name === '' || city === '' || phone === '') {
-      alert('Input all required fields');
+      Notify.warning('Input all required fields');
       return;
     }
     if (nameError || cityError || phoneError) {
-      alert('Input all fields in the necessary format');
+      Notify.warning('Input all fields in the necessary format');
       return;
     }
 
@@ -112,7 +113,7 @@ const RegisterForm = () => {
       const user = await loginUser({ email, password }).unwrap();
       dispatch(setCredentials(user));
     } catch (error) {
-      alert(error.data.message);
+      Notify.failure(error.data.message);
     }
   };
 

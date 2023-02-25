@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../AuthForm/AuthFormStyled"
 
 const LoginForm = () => {
@@ -42,11 +43,11 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (email === '' || password === '') {
-      alert('Input all required fields');
+      Notify.warning('Input all required fields');
       return;
     }
     if (passwordError || emailError) {
-      alert('Input all fields in the necessary format');
+      Notify.warning('Input all fields in the necessary format');
       return;
     }
 
@@ -54,7 +55,7 @@ const LoginForm = () => {
       const user = await loginUser({ email, password }).unwrap();
       dispatch(setCredentials(user));
     } catch (error) {
-      alert(error.data.message);
+      Notify.failure(error.data.message);
     }
   };
 
