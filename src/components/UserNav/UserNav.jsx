@@ -1,19 +1,34 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RoundLink } from 'components/AuthNav/authNav.styled';
 import Icon from 'styles/Buttons/icons/index';
+import { getUserAvatarURL } from 'redux/selectors';
+import { useSelector } from 'react-redux';
+import { UserAvatar } from './UserNav.styled';
 const UserNav = click => {
+  const avatarURL = useSelector(getUserAvatarURL);
+  const [avatar, setAvatar] = useState(avatarURL);
+
+  useEffect(() => {
+    setAvatar(avatarURL);
+  }, [avatarURL]);
+
   return (
     <RoundLink
       style={{
         display: 'flex',
         alignItems: 'center',
         color: '#fff',
+        background: '#F59256',
         marginRight: '0',
       }}
       to="/user"
       onClick={click}
     >
-      <Icon.Account style={{ marginRight: '12px' }} />
+      {avatar ? (
+        <UserAvatar src={avatar} alt="avatar" />
+      ) : (
+        <Icon.Account style={{ marginRight: '12px' }} />
+      )}
       Account
     </RoundLink>
   );

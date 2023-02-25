@@ -17,11 +17,13 @@ export const Head = styled('header')`
   }
 `;
 
-// export const HeadNav = styled('div')`
-//   display: flex;
-//   flex-diracion: row;
-//   align-items: center;
-// `;
+export const HeadNav = styled('div')`
+ @media (min-width: 1280px) {
+  display: flex;
+  flex-diracion: row;
+  align-items: center;
+}
+`;
 export const BurgerMenu = styled('div')`
   position: fixed;
   z-index: 100;

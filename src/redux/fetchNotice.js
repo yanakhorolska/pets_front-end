@@ -47,7 +47,7 @@ export const fetchNotice = createApi({
         };
       },
       transformResponse: response => response.status,
-      invalidatesTags: ['UserNotice'],
+      invalidatesTags: ['Notice'],
     }),
     deleteUserNoticeById: builder.mutation({
       query: id => ({
@@ -66,20 +66,21 @@ export const fetchNotice = createApi({
         url: `/notices/favorites/${id}`,
         method: 'POST',
       }),
-      invalidatesTags: ['Favorites'],
+      invalidatesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
     deleteFromFavorites: builder.mutation({
       query: id => ({
         url: `/notices/favorites/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Favorites'],
+      invalidatesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
     getNoticeById: builder.query({
       query: id => `/notices/${id}`,
       transformResponse: response => response.data,
+      providesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
-    providesTags: ['Notice'],
+    providesTags: ['Favorites', 'Notice', 'UserNotice'],
   }),
 });
 

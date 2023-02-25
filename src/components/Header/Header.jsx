@@ -13,6 +13,7 @@ import {
   ButtonsContainer,
   HeaderWrap,
   BurgerLinksWrap,
+  HeadNav,
 } from './header.styled';
 import Nav from '../Nav/Nav';
 import UserNav from '../UserNav/UserNav';
@@ -26,8 +27,10 @@ const Header = () => {
   return (
     <>
       <Head>
-          <Logotype/>
+        <HeadNav>
+          <Logotype />
           <Nav />
+        </HeadNav>
         <ToggleButton />
         <HeaderWrap>
           <ButtonsContainer>

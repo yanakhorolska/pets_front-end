@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAvatarURL } from 'redux/selectors';
 import { useUpdateUserAvatarMutation } from '../../redux/fetchUser';
@@ -20,12 +20,13 @@ const UserAvatar = () => {
       const file = event.target.files[0];
       const { avatarURL } = await updateUserAvatar(file).unwrap();
       dispatch(setAvatarURL(avatarURL));
-      setAvatar(avatarURL);
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => { setAvatar(avatarURL); }, [avatarURL])
+  
   return (
     <AvatarBox>
       {avatar ? <AvatarImage src={avatar} alt="User" />

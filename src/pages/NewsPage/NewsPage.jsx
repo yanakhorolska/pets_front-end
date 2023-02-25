@@ -1,7 +1,7 @@
 import { useGetNewsQuery } from 'redux/newsSlice';
 import { SearchField } from 'components/CustomComponents/NewsSearch/NewsSearch';
 import { NewsBoard } from 'components/CustomComponents/NewsBoard/NewsBoard';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { NewsWrap, NewsBtn, NewsButtonsWrap } from './NewsPageStyled';
 import { Container } from 'styles/Container/Container.styled';
 import { FirstHeader } from '../../styles/Headers/Headers.styled';
@@ -11,16 +11,19 @@ const NewsPage = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const { data, error, isLoading } = useGetNewsQuery({ query, page });
-
-  function searchNews(query) {
+  const newsStart = useRef(null);
+  const searchNews = query => {
     setQuery(query);
     setPage(1);
-  }
-
+  };
+  const scrollToTop = () => {
+    newsStart.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <Container>
       <NewsWrap>
         <FirstHeader>News</FirstHeader>
+        <div ref={newsStart} />
         <SearchField onSearch={searchNews} />
         {error ? (
           <>Oh no, there was an error</>
@@ -31,13 +34,19 @@ const NewsPage = () => {
             <NewsBoard newsData={data.data} />
             <NewsButtonsWrap>
               <NewsBtn
-                onClick={() => setPage(page => page - 1)}
+                onClick={() => {
+                  setPage(page => page - 1);
+                  scrollToTop();
+                }}
                 disabled={page === 1}
               >
                 Prev
               </NewsBtn>
               <NewsBtn
-                onClick={() => setPage(page => page + 1)}
+                onClick={() => {
+                  setPage(page => page + 1);
+                  scrollToTop();
+                }}
                 disabled={page * 6 >= data.total}
               >
                 Next
