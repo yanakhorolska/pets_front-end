@@ -126,8 +126,7 @@ export const DescrCategory = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.s};
-  color: ${p => p.theme.color.text};
-
+  color: ${p => p.theme.color.black};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
