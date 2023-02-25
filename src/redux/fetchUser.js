@@ -64,7 +64,7 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-   
+
     updateUserAvatar: builder.mutation({
       query: file => {
         const formData = new FormData();
@@ -104,12 +104,6 @@ export const userApi = createApi({
       transformResponse: response => response.status,
       invalidatesTags: ['Pet'],
     }),
-    // getUserPets: builder.query({
-    //   query: () => '/users/pets',
-    //   transformResponse: response => response.data,
-    //   providesTags: ['Pet'],
-    // }),
-   
   }),
 });
 
@@ -123,4 +117,6 @@ export const {
   useUpdateUserMutation,
   useUpdateUserAvatarMutation,
   useGetUserPetsQuery,
+  useAddPetMutation,
+  useRemovePetByIdMutation,
 } = userApi;
