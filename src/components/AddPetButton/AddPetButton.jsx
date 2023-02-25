@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import ModalWindow from 'components/ModalWindow';
 import {
   AddButtonTitle,
-  // AddButtonWrapper,
+  AddButtonWrapper,
   AddButtonStyled,
   StyledIconAdd,
 } from './AddPetButton.styled';
@@ -39,18 +39,29 @@ const AddPetButton = ({ component: Component }) => {
 
   return (
     <>
-      {/* <AddButtonWrapper> */}
-        
+      <AddButtonWrapper>
+        <AddButtonTitle>Add pet</AddButtonTitle>
+      <AddButtonStyled  type="button"
+          onClick={() => {
+            openModalWindow();
+          }}>
+          <StyledIconAdd />
+        </AddButtonStyled>
+      </AddButtonWrapper>
+      
+
+      {/* <AddButtonWrapper>
+        <AddButtonTitle>Add pet</AddButtonTitle> 
         <AddButtonStyled
           type="button"
           onClick={() => {
             openModalWindow();
           }}
         >       
-         <AddButtonTitle>Add pet</AddButtonTitle> 
+         
         <StyledIconAdd />
         </AddButtonStyled>
-      {/* </AddButtonWrapper> */}
+      </AddButtonWrapper> */}
 
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>

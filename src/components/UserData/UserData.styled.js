@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const MainUserPageBox = styled.div`
   margin-top: 60px;
+  margin-left:auto;
+margin-right: auto;
   width: 100%;
   @media ${p => p.theme.media.tabletDesktop} {
     margin-top: 90px;
@@ -9,17 +11,19 @@ export const MainUserPageBox = styled.div`
   @media ${p => p.theme.media.desktop} {
     display: flex;
      margin-top: 60px;
+     gap:32px; 
   }
 `;
 
 export const Box = styled.div`
-width: 280px;
+width: 100%px;
 margin-left:auto;
 margin-right: auto;
 `;
 
 export const TitleWrapper = styled.div`
 display: flex;
+justify-content: space-between;
 `
 
 export const UserDataBox = styled.div`
@@ -40,6 +44,11 @@ export const UserDataBox = styled.div`
     padding: 24px 40px 24px 32px;
      width: 704px;
     border-radius: 40px;
+    @media ${p => p.theme.media.desktop}{
+      flex-direction: column;
+      width: 410px;
+      margin-top: 24px;
+    }
 
 `;
 

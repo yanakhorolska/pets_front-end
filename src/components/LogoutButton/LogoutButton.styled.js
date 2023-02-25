@@ -15,6 +15,8 @@ height: 22px;
 `
 export const ButtonText = styled.span`
 margin-left: 4px;
-
+font-weight: 500;
+font-size: 16px;
+// line-height: 22px;
 color: ${p => p.theme.color.greyTransp}
 `
