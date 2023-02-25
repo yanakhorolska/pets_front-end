@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import {
@@ -35,6 +35,8 @@ const ModalNotice = ({ onClose, id }) => {
   //const [favText, setFavText] = useState('Add to');
   const isLoggedIn = useAuth();
 
+  const favText = useMemo(() => data.favorite ? 'Delete from' : 'Add to', [data])
+
   if (!data) {
     return;
   }
@@ -55,32 +57,22 @@ const ModalNotice = ({ onClose, id }) => {
     favorite,
   } = data;
 
-  // useEffect(() => {
-  //   first
-
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
-
-  let favText = '';
-  console.log(data);
-  favorite ? (favText = 'Delete from') : (favText = 'Add to');
-
-  const handleFavoriteClick = async () => {
+  const handleFavoriteClick = () => {
     if (!favorite) {
       console.log('favourite add');
-      const data = await addToFavorite(id).unwrap();
-      console.log(data, 'data add');
-      favText = 'Add to';
+      addToFavorite(id).unwrap();
+      //const data = await addToFavorite(id).unwrap();
+      //console.log(data, 'data add');
+      //favText = 'Add to';
       return;
     }
 
     if (favorite) {
       console.log('favourite delete');
-      const data = await deleteFromFavorite(id).unwrap();
-      console.log(data, 'data delete');
-      favText = 'Delete from';
+      // const data = await deleteFromFavorite(id).unwrap();
+      // console.log(data, 'data delete');
+      deleteFromFavorite(id).unwrap();      
+      //favText = 'Delete from';
     }
   };
 
