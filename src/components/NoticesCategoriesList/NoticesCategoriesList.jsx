@@ -10,6 +10,7 @@ import {
 
 import { getIsLogged } from 'redux/selectors';
 import { ListBox } from 'pages/NoticesPage/NoticesPage.styled';
+import { Loader } from 'components/Loader/Loader';
 
 const NoticesCategoriesList = () => {
   const [usersPets, setUsersPets] = useState(null);
@@ -39,7 +40,7 @@ const NoticesCategoriesList = () => {
 
   const category = renderCategory();
 
-  let { data: petsList } = useGetNoticeQuery({ category, search });
+  let { data: petsList, isLoading } = useGetNoticeQuery({ category, search });
 
   let { data: userAddsList } = useGetUserNoticesQuery(isLogged, {
     skip: !isLogged,
@@ -99,11 +100,22 @@ const NoticesCategoriesList = () => {
   );
 
   return (
-    <ListBox>
-      {visiblePets.map(pet => (
-        <NoticeCategoryItem id={pet._id} key={pet._id} />
-      ))}
-    </ListBox>
+    <>
+      {/* {isLoading ? (
+        <Loader styles={{ marginTop: '60px' }} />
+      ) : ( */}
+      <ListBox>
+        {isLoading ? (
+          <Loader styles={{ marginTop: '60px' }} />
+        ) : (
+          <>
+            {visiblePets.map(pet => (
+              <NoticeCategoryItem id={pet._id} key={pet._id} />
+            ))}
+          </>
+        )}
+      </ListBox>
+    </>
   );
 };
 
