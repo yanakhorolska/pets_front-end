@@ -33,9 +33,12 @@ export const BurgerMenu = styled('div')`
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding-top: 16px;
+  padding-top: 19px;
 
   flex-direction: column;
+  @media (min-width: 768px) {
+    padding-top: 27px;
+  }
 `;
 export const BurgerLinks = styled('div')`
   display: flex;
