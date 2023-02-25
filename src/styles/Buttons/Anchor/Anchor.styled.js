@@ -5,7 +5,7 @@ export const Anchor = styled(NavLink)`
   display: flex;
   align-item: center;
   padding: 8px 28px;
-  background-color: ${p => p.theme.color.white};
+  background-color: ${p => p.theme.color.background};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
   border: ${p => p.theme.borders.buttonWhite};
   &.active {

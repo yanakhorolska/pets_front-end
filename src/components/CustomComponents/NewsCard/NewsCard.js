@@ -18,7 +18,9 @@ export const NewsCard = ({ title, description, date, url }) => {
       </NewsTextWrap>
       <NewsInfoWrap>
         <NewsDate>{date}</NewsDate>
-        <NewsLink href={url}>Read more</NewsLink>
+        <NewsLink href={url} target="_blank">
+          Read more
+        </NewsLink>
       </NewsInfoWrap>
     </NewsItem>
   );

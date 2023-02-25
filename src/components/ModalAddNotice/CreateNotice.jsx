@@ -37,7 +37,7 @@ const validationSchemas = [
       .max(100, 'Too long!')
       .required('Title is required field'),
     petName: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
-    dateOfBirth: Yup.date().max(new Date(), "You can't be born in the future!"),
+    dateOfBirth: Yup.date().max(new Date(), "Pet can't be born in the future!"),
     breed: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
   }),
   Yup.object().shape({
@@ -66,11 +66,13 @@ const CreateNotice = ({ onClose }) => {
   }, [pathname]);
 
   const _submitForm = async (values, actions) => {
-    const status = await addNotice(values).unwrap();
-    if (status === 'success') {
-      onClose();
-    } else {
-      alert('Oooops, something goes wrong..');
+    try {
+      const status = await addNotice(values).unwrap();
+      if (status === 'success') {
+        onClose();
+      }
+    } catch ({ status, data }) {
+      alert(`Status: ${status}, error: ${data.message}`);
     }
     actions.setSubmitting(false);
   };
