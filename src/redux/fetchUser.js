@@ -77,11 +77,11 @@ export const userApi = createApi({
       },
       invalidatesTags: ["User"],
     }),
-    getUserPets: builder.query({
-      query: () => '/users/pets',
-      transformResponse: response => response.data,
-      providesTags: ['Pet'],
-    }),
+    // getUserPets: builder.query({
+    //   query: () => '/users/pets',
+    //   transformResponse: response => response.data,
+    //   providesTags: ['Pet'],
+    // }),
    
   }),
 });
