@@ -1,7 +1,5 @@
+import { useAuth } from 'hooks/useAuth';
 import React from 'react';
-import { useSelector } from 'react-redux';
-
-import { getIsLogged } from 'redux/selectors';
 import { AnchorElem } from 'styles/Buttons/Anchor/Anchor';
 import { LinksItem, LinksList } from './NoticesCategoriesNav.styled';
 
@@ -17,7 +15,7 @@ const linkAuth = [
 ];
 
 const NoticesCategoriesNav = () => {
-  const isLogged = useSelector(getIsLogged);
+  const isLogged = useAuth();
 
   const renderLinks = () => {
     if (!Array.isArray(link)) return null;

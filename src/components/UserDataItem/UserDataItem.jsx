@@ -39,8 +39,7 @@ const UserDataItem = ({ initialValues, text, name, placeholder }) => {
       <UserDataForm >
         <UserDataLabel htmlFor={name}>{name}: </ UserDataLabel>
         <UserDataInput
-          // as={UserDataInput}
-          type="text"
+          // type="text"
           onChange={changeInput}
           value={inputeData}
           name={name}
@@ -51,7 +50,7 @@ const UserDataItem = ({ initialValues, text, name, placeholder }) => {
         {disabled ? <EditButton onClick={() => setDisabled(!disabled)} />
           // <button type="button" onClick={() => setDisabled(!disabled)}>Edit</button>
           // :<button type="submit" disabled={disabled}>Submit</button>}
-          : <CheckButton disabled={disabled}/>}
+          : <CheckButton disabled={disabled} type="submit"/>}
         
       </UserDataForm>
     </Formik>

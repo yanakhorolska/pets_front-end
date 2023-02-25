@@ -2,6 +2,16 @@ import styled from 'styled-components';
 import Icon from 'styles/Buttons/icons/index';
 
 const AddButtonStyled = styled.button`
+  z-index:3;
+
+  position: fixed;
+ 
+  font-size: 12px;
+  line-height:1.33;
+
+  right: 10px;
+  top: 400px;
+
   width: 80px;
   height: 80px;
   background-color: ${p => p.theme.color.accent};
@@ -10,6 +20,14 @@ const AddButtonStyled = styled.button`
   cursor: pointer;
 
   @media ${p => p.theme.media.tabletDesktop} {
+    position: static;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    top: auto;
+    right: auto;
+
     width: 44px;
     height: 44px;
 
@@ -21,49 +39,47 @@ const AddButtonStyled = styled.button`
   }
 `;
 
-const AddButtonTitle = styled.span`
-  position: absolute;
-  left: 10px;
-  top: 40px;
-  color: ${p => p.theme.color.white};
-
-  pointer-events: none;
-
-  &:hover,
-  &:focus {
-    z-index: 1;
-  }
-
+const AddSpanText = styled.span`
+  display:none;
   @media ${p => p.theme.media.tabletDesktop} {
-    position: static;
-    color: ${p => p.theme.color.text};
+   display:block;
+   margin-right: 12px;
+
+   font-size: 20px;
+    line-height: 1.35;
   }
-`;
+`
+
+const AddButtonText = styled.p`
+  font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+  font-family: 'Manrope';
+  color:${p => p.theme.color.white};
+  @media ${p => p.theme.media.tabletDesktop} {
+    display:none;
+   }
+
+`
 
 const AddButtonWrapper = styled.div`
-  position: fixed;
-  right: 10px;
-  top: 400px;
+   
 
   @media ${p => p.theme.media.tabletDesktop} {
-    position: static;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    top: auto;
-    right: auto;
+   display:inline-flex;
+   align-items: center;
   }
 `;
 
 const StyledIconAdd = styled(Icon.Add)`
   width: 22px;
   height: 22px;
-  position: absolute;
+ // position: absolute;
   top: 10px;
   left: 30px;
 
   @media ${p => p.theme.media.tabletDesktop} {
-    position: relative;
+    //position: relative;
     width: 16px;
     height: 16px;
     top: auto;
@@ -71,4 +87,4 @@ const StyledIconAdd = styled(Icon.Add)`
   }
 `;
 
-export { AddButtonStyled, AddButtonTitle, AddButtonWrapper, StyledIconAdd };
+export { AddButtonStyled, StyledIconAdd , AddButtonText, AddButtonWrapper, AddSpanText};

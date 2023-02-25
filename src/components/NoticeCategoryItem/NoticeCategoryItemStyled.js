@@ -2,7 +2,7 @@ import styled from 'styled-components';
 export const StyledListTest = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+ // gap: 32px;
   justify-content: center;
   @media (min-width: 768px) {
     justify-content: flex-start;
@@ -10,13 +10,13 @@ export const StyledListTest = styled.ul`
 `;
 
 export const NoticeItem = styled.li`
-  background-color: #fff;
+  background-color: ${p => p.theme.color.white};
   border-radius: 0 0 20px 20px;
-  box-shadow: 7px 4px 14px rgb(49 21 4 / 7%);
+  box-shadow: ${p => p.theme.shadows.boxShadow};
   display: flex;
   flex-direction: column;
-  min-height: 565px;
-  width: 280px;
+  //min-height: 565px;
+  width: 100%;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -29,7 +29,7 @@ export const NoticeItem = styled.li`
 export const ImgWrap = styled.div`
   height: 288px;
   position: relative;
-  width: 280px;
+  width: 100%;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -44,7 +44,7 @@ export const NoticeImg = styled.img`
   display: block;
   height: 288px;
   object-fit: cover;
-  width: 280px;
+  width: 100%;
 
   @media (min-width: 768px) {
     width: 336px;
@@ -57,8 +57,8 @@ export const NoticeImg = styled.img`
 
 export const CategoryTag = styled.p`
   border-radius: 0 40px 40px 0;
-  color: #111;
-  font-family: Inter;
+  color:${p => p.theme.color.primaryText};
+ 
   font-size: 12px;
   height: 28px;
   letter-spacing: 0.04em;
@@ -98,7 +98,7 @@ export const NoticeInfoWrap = styled.div`
 `;
 
 export const NoticeTitle = styled.h4`
-  color: #111;
+  color:  ${p => p.theme.color.primaryText};  
   font-size: 28px;
   letter-spacing: -0.01em;
   line-height: 1.36;
@@ -127,14 +127,14 @@ export const NoticeInfoListItem = styled.li`
 `;
 
 export const NoticeInfoListItemCategory = styled.p`
-  color: #111;
+  color:  ${p => p.theme.color.primaryText};
   font-size: 16px;
   line-height: 1.38;
   width: 90px;
 `;
 
 export const NoticeInfoListItemData = styled.p`
-  color: #111;
+  color: ${p => p.theme.color.primaryText};
   font-size: 16px;
   line-height: 1.38;
   max-width: 155px;
@@ -151,5 +151,6 @@ export const LearnBtnWrap = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  //gap: 12px;
+  width:100%;
 `;

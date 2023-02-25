@@ -7,6 +7,7 @@ import { setAvatarURL } from '../../redux/authSlice';
 import { AvatarInput, AvatarLabel, AvatarImage, AvatarLabelText, AvatarBox } from './UserAvatar.styled';
 import Icon from '../../styles/Buttons/icons';
 import { useState } from 'react';
+import Emptyphoto from "../../images/bgs/EmptyPhoto.jpg"
 
 const UserAvatar = () => {
   const avatarURL = useSelector(getUserAvatarURL);
@@ -28,7 +29,10 @@ const UserAvatar = () => {
   
   return (
     <AvatarBox>
-      <AvatarImage src={avatar} alt="User" />
+      {avatar ? <AvatarImage src={avatar} alt="User" />
+        : <AvatarImage src={Emptyphoto} />
+      }
+      
 
       <AvatarLabel htmlFor="avatar-upload">
         <Icon.Camera /><AvatarLabelText>Edit photo</AvatarLabelText>

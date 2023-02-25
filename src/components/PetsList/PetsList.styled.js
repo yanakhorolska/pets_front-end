@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
-  margin: 20px auto;
-`;
+// export const Box = styled.div`
+// margin: 20px auto;
+// `
+
 
 export const PetBox = styled.div`
   position: relative;
@@ -32,6 +33,7 @@ export const PetPhoto = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 20px;
+  object-fit: contain;
 
   @media ${p => p.theme.media.tabletDesktop} {
     margin-bottom: 0;
