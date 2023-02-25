@@ -40,6 +40,7 @@ export const fetchNotice = createApi({
         const formData = new FormData();
         const { category, ...data } = payload;
         Object.keys(data).forEach(key => formData.append(key, data[key]));
+        formData.append('category', category);
         return {
           url: `/notices/category/${category}`,
           method: 'POST',

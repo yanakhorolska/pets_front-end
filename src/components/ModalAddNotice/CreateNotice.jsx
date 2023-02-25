@@ -28,16 +28,17 @@ import { useMemo, useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, ModalStyledButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const validationSchemas = [
   Yup.object().shape({
-    category: Yup.string().oneOf(['lostFound', 'inGoodHands', 'sell']),
+    category: Yup.string()
+      .oneOf(['lostFound', 'inGoodHands', 'sell'])
+      .required(),
     title: Yup.string()
       .min(2, 'Too Short!')
-      .max(100, 'Too long!')
+      .max(48, 'Too long!')
       .required('Title is required field'),
-    petName: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
+    petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!'),
     dateOfBirth: Yup.string()
       .matches(
         /^\d{2}([./-])\d{2}\1\d{4}$/,
@@ -45,7 +46,8 @@ const validationSchemas = [
       )
       .test('', '', (value, contex) => {
         const currDate = new Date();
-        const petDate = new Date(value);
+        const dateArr = value.split('.');
+        const petDate = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
         if (currDate < petDate) {
           return contex.createError({
             message: "Pet can't be born in the future!",
@@ -53,13 +55,20 @@ const validationSchemas = [
         }
         return true;
       }),
-    breed: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
+    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too long!'),
   }),
   Yup.object().shape({
-    sex: Yup.string().oneOf(['male', 'female']).required('Required'),
-    location: Yup.string().required('Location is required field'),
+    sex: Yup.string()
+      .oneOf(['male', 'female'])
+      .required('sex of pet is required'),
+    location: Yup.string()
+      .matches(
+        /[A-Za-z]+, [A-Za-z]+/,
+        'Please, enter the data in format "region, city" (only latin letters)'
+      )
+      .required('This is a required field'),
     price: Yup.number().min(0).max(100000),
-    comment: Yup.string().max(200, 'Too long!'),
+    comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!'),
   }),
 ];
 
@@ -80,18 +89,28 @@ const CreateNotice = ({ onClose }) => {
     }
   }, [pathname]);
 
+  const reverceDate = dateString => {
+    const dateArr = dateString.split('.');
+    if (dateArr.length !== 3) {
+      return dateString;
+    }
+    return `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`;
+  };
+
   const _submitForm = async (values, actions) => {
+    const { ...formValues } = values;
+    console.log(formValues);
+    if (formValues.dateOfBirth.length) {
+      formValues.dateOfBirth = reverceDate(formValues.dateOfBirth);
+    }
     try {
-      const status = await addNotice(values).unwrap();
+      const status = await addNotice(formValues).unwrap();
       if (status === 'success') {
         onClose();
       }
     } catch (error) {
       const { status = '', data = '' } = error;
-      Notify.failure(`Status: ${status}, error: ${data?.message}`, {
-        timeout: 5000,
-        fontSize: '18px',
-      });
+      alert(`Status: ${status}, error: ${data?.message}`);
     }
     actions.setSubmitting(false);
   };
