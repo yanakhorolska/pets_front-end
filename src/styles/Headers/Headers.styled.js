@@ -13,6 +13,7 @@ export const FirstHeader = styled('h1')`
 `;
 
 export const MainHeader = styled('h1')`
+  color: ${p => p.theme.color.text};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.xl};
   line-height: ${p => p.theme.lineHeights.s};
