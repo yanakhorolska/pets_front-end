@@ -1,3 +1,5 @@
+// import { useMemo } from 'react';
+// import { NavLink } from 'react-router-dom';
 import {
   NoticeItem,
   ImgWrap,
@@ -15,22 +17,50 @@ import {
 } from './NoticeCategoryItemStyled';
 import {
   useGetNoticeByIdQuery,
-  // useAddToFavoritesMutation,
-  // useDeleteFromFavoritesMutation,
+  useAddToFavoritesMutation,
+  useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
+import { useAuth } from 'hooks/useAuth';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
-// import { TrashBtn } from 'styles/Buttons/TrashButton/TrashButton.styled';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
 
 export const NoticeCategoryItem = ({ id }) => {
   const { data } = useGetNoticeByIdQuery(id);
+  const [addToFavorite] = useAddToFavoritesMutation();
+  const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
+  // const { isLoggedIn } = useAuth();
 
   if (!data) {
     return;
   }
 
-  const { title, category, dateOfBirth, breed, location, price, imageUrl } =
-    data;
+  const {
+    title,
+    category,
+    dateOfBirth,
+    breed,
+    location,
+    price,
+    imageUrl,
+    favorite,
+  } = data;
+
+  const handleFavoriteClick = () => {
+    if (!favorite) {
+      console.log('favourite add');
+      // del const
+      const data = addToFavorite(id).unwrap();
+      console.log(data, 'data add');
+      return;
+    }
+
+    if (favorite) {
+      console.log('favourite delete');
+      // del const
+      const data = deleteFromFavorite(id).unwrap();
+      console.log(data, 'data delete');
+    }
+  };
 
   const changeTextOfCategory = category => {
     if (category === 'sell') {
@@ -68,7 +98,7 @@ export const NoticeCategoryItem = ({ id }) => {
         <NoticeImg src={imageUrl} alt={title} />
         <CategoryTag>{changeTextOfCategory(category)}</CategoryTag>
         <HeartBtnWrap>
-          <HeartButton />
+          <HeartButton type="button" onClick={handleFavoriteClick} />
         </HeartBtnWrap>
       </ImgWrap>
       <NoticeInfoWrap>
