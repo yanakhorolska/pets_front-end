@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const LearnMoreBtn = styled.button`
-  width: 248px;
-  height: 38px;
+ 
   padding: 8px 79px;
-  background: #ffffff;
-  border: 2px solid #f59256;
+  background: ${p => p.theme.color.secondatyBtnText};
+  border: 2px solid ${p => p.theme.color.accent};
   border-radius: 40px;
   cursor: pointer;
 
@@ -17,10 +16,10 @@ export const LearnMoreBtn = styled.button`
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-  color: #f59256;
+  color: ${p => p.theme.color.accent};
 
   &:hover {
-    color: #ff6101;
-    border: 2px solid #ff6101;
+    color: ${p => p.theme.color.hoverBtn};
+    border: 2px solid  ${p => p.theme.color.hoverBtn};
   }
 `;

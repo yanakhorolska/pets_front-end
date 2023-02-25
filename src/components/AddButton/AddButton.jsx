@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import ModalWindow from 'components/ModalWindow';
 import {
-  AddButtonTitle,
+  AddButtonText,
   AddButtonWrapper,
   AddButtonStyled,
   StyledIconAdd,
+  AddSpanText,
 } from './AddButton.styled';
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +39,7 @@ const AddButton = ({ component: Component }) => {
   return (
     <>
       <AddButtonWrapper>
-        <AddButtonTitle>Add pet</AddButtonTitle>
+        <AddSpanText>Add pet</AddSpanText>
         <AddButtonStyled
           type="button"
           onClick={() => {
@@ -46,6 +47,7 @@ const AddButton = ({ component: Component }) => {
           }}
         >
           <StyledIconAdd />
+          <AddButtonText>Add pet</AddButtonText>
         </AddButtonStyled>
       </AddButtonWrapper>
 
