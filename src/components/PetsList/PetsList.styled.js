@@ -32,6 +32,7 @@ export const PetPhoto = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 20px;
+  object-fit: contain;
 
   @media ${p => p.theme.media.tabletDesktop} {
     margin-bottom: 0;

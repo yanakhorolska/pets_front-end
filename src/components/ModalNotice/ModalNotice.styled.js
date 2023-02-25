@@ -24,7 +24,7 @@ export const ModalBox = styled.div`
   }
 `;
 
-export const CloseBox = styled.div`
+export const CloseButton = styled.button`
   position: 'absolute';
   top: 23px;
   right: 23px;
@@ -40,6 +40,7 @@ export const PetPhoto = styled.img`
   height: 240px;
   border-radius: 0px 0px 40px 40px;
   border: 1px solid tomato;
+  object-fit: contain;
 
   @media ${p => p.theme.media.tabletDesktop} {
     width: 288px;

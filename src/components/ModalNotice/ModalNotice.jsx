@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import {
@@ -7,11 +7,10 @@ import {
   useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
 import { Loader } from 'components/Loader/Loader';
-import { CloseButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import {
   ModalBox,
-  CloseBox,
+  // CloseBox,
   PetPhoto,
   Category,
   ColumnBox,
@@ -25,13 +24,15 @@ import {
   DescrCategory,
   DescrData,
   DescriptionLink,
+  CloseButton,
 } from './ModalNotice.styled';
 
 const ModalNotice = ({ onClose, id }) => {
   const { data, isLoading } = useGetNoticeByIdQuery(id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
-  const [forFavorite, setForFavorite] = useState(false);
+  // const [forFavorite, setForFavorite] = useState(false);
+  //const [favText, setFavText] = useState('Add to');
   const isLoggedIn = useAuth();
 
   if (!data) {
@@ -51,28 +52,53 @@ const ModalNotice = ({ onClose, id }) => {
     comment,
     email,
     phone,
+    favorite,
   } = data;
 
+  // useEffect(() => {
+  //   first
+
+  //   return () => {
+  //     second
+  //   }
+  // }, [third])
+
+  let favText = '';
   console.log(data);
+  favorite ? (favText = 'Delete from') : (favText = 'Add to');
 
   const handleFavoriteClick = async () => {
-    if (!forFavorite) {
-      setForFavorite(true);
+    if (!favorite) {
       console.log('favourite add');
       const data = await addToFavorite(id).unwrap();
-      console.log(data, 'data');
+      console.log(data, 'data add');
+      favText = 'Add to';
       return;
-    } else {
-      setForFavorite(false);
-      console.log('favourite add');
+    }
+
+    if (favorite) {
+      console.log('favourite delete');
       const data = await deleteFromFavorite(id).unwrap();
-      console.log(data, 'data');
+      console.log(data, 'data delete');
+      favText = 'Delete from';
     }
   };
 
   const onAddToButtonClickLogin = () => {
     console.log('login');
   };
+
+  // const changeTextOfCategory = category => {
+  //   if (category === 'sell') {
+  //     return 'Sell';
+  //   }
+  //   if (category === 'inGoodHands') {
+  //     return 'In good hands';
+  //   }
+  //   if (category === 'lostFound') {
+  //     return 'Lost & Found';
+  //   }
+  // };
 
   return (
     <>
@@ -82,19 +108,8 @@ const ModalNotice = ({ onClose, id }) => {
         </ModalBox>
       ) : (
         <ModalBox>
-          <CloseBox>
-            <CloseButton
-              onClick={onClose}
-              className={null}
-              style={{
-                position: 'absolute',
-                top: 23,
-                right: 23,
-                width: 34,
-                height: 34,
-              }}
-            />
-          </CloseBox>
+          <CloseButton onClick={onClose} />
+
           <ColumnBox>
             <PhotoBox>
               <PetPhoto src={imageUrl} alt="photoPets" />
@@ -169,7 +184,7 @@ const ModalNotice = ({ onClose, id }) => {
             {isLoggedIn ? (
               <li>
                 <AddButton type="button" onClick={handleFavoriteClick}>
-                  {forFavorite ? 'Delete from' : 'Add to'}
+                  {favText}
                   {<Icon.Heart style={{ fill: '#f59256' }} />}
                 </AddButton>
               </li>
