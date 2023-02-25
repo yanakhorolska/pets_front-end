@@ -29,10 +29,10 @@ font-size: 20px;
 const AddButtonWrapper = styled.div`
 display: flex;
 width: 128px;
-height: 40px;
+height: 40px
 gap: 12px;
 align-items: baseline;
-
+justify-content: space-between;
 // //   @media ${p => p.theme.media.tabletDesktop} {
 // //     // position: static;
 // //     display: flex;

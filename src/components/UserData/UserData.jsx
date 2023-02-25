@@ -5,17 +5,19 @@ import { getUser } from 'redux/selectors';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import UserPageTitle from '../UserPageTitle/UserPageTitle';
-import { UserDataBox, UserDataItemsBox, Box } from './UserData.styled';
+import { UserDataBox, UserDataItemsBox, DataBox, TitleWrapperData } from './UserData.styled';
 
 const UserData = () => {
   const currentuser = useSelector(getUser);
 
   return (
-    <Box>
-      <UserPageTitle title={'My information:'} />
+    <DataBox>
+      <TitleWrapperData>
+       <UserPageTitle title={'My information:'} /> 
+      </TitleWrapperData>
       <UserDataBox>
         <UserAvatar />
-        < UserDataItemsBox>
+        <UserDataItemsBox>
           <UserDataItem
             initialValues={{ name: currentuser.name }}
             name="name"
@@ -46,12 +48,11 @@ const UserData = () => {
             text="phone"
             placeholder={currentuser.phone}
           />
-        
 
-        <LogoutButton />
-        </ UserDataItemsBox>
+          <LogoutButton />
+        </UserDataItemsBox>
       </UserDataBox>
-    </Box>
+    </DataBox>
   );
 };
 

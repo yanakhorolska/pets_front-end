@@ -12,18 +12,42 @@ margin-right: auto;
     display: flex;
      margin-top: 60px;
      gap:32px; 
+     align-items: flex-start;
   }
 `;
 
-export const Box = styled.div`
-width: 100%px;
-margin-left:auto;
-margin-right: auto;
+export const DataBox = styled.div`
+// 
+
 `;
 
 export const TitleWrapper = styled.div`
 display: flex;
 justify-content: space-between;
+align-items: baseline;
+width: 280px;
+margin-left: auto;
+margin-right: auto;
+@media ${p => p.theme.media.tabletDesktop}{
+  width: 704px;
+}
+@media ${p => p.theme.media.desktop}{
+width: 821px;
+align-items: flex-end;
+}
+`
+
+export const TitleWrapperData = styled.p`
+width: 280px;
+margin-left: auto;
+margin-right: auto;
+@media ${p => p.theme.media.tabletDesktop}{
+  width: 704px;
+}
+@media ${p => p.theme.media.desktop}{
+width: 410px;
+}
+
 `
 
 export const UserDataBox = styled.div`
