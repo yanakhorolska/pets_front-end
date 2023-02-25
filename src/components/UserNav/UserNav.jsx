@@ -18,6 +18,7 @@ const UserNav = click => {
         display: 'flex',
         alignItems: 'center',
         color: '#fff',
+        background: '#F59256',
         marginRight: '0',
       }}
       to="/user"

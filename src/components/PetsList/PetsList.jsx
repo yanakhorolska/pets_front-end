@@ -14,6 +14,7 @@ import {
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
 
+
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
   let { data } = useGetUserPetsQuery();

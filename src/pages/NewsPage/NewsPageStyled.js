@@ -4,27 +4,28 @@ export const NewsWrap = styled.div`
   padding-top: 42px;
   padding-bottom: 100px;
   @media (min-width: 768px) {
-    padding-top: 88px;
+    padding-top: 60px;
   }
-  @media (min-width: 1280px) {
-    padding-top: 61px;
-  } ;
 `;
 
 export const NewsBtn = styled.button`
-  width: 248px;
-  height: 38px;
-  padding: 8px 79px;
-  background: #ffffff;
+  @media (min-width: 768px) {
+    width: 248px;
+    height: 38px;
+    padding: 8px 79px;
+  }
+  width: 124px;
+  height: 28px;
+  padding: 4px 40px;
+  background: ${p => p.theme.color.white};
   border: 2px solid #f59256;
   border-radius: 40px;
   cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
+  font-size: ${p => p.theme.fontSizes.m};
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-  color: #f59256;
+  color: ${p => p.theme.color.accent};
   ${({ disabled }) =>
     !disabled &&
     `&:hover {
@@ -44,5 +45,6 @@ export const NewsButtonsWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 64px;
 `;

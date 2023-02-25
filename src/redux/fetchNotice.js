@@ -47,7 +47,7 @@ export const fetchNotice = createApi({
         };
       },
       transformResponse: response => response.status,
-      invalidatesTags: ['UserNotice'],
+      invalidatesTags: ['Notice'],
     }),
     deleteUserNoticeById: builder.mutation({
       query: id => ({

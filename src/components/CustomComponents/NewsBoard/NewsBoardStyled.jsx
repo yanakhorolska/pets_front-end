@@ -4,7 +4,7 @@ export const NewsBoardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 32px;
   max-width: 500px;
   margin: 0 auto;
   list-style-type: none;

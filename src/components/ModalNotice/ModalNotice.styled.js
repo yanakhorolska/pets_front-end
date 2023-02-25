@@ -128,6 +128,7 @@ export const DescrCategory = styled.span`
   line-height: ${p => p.theme.lineHeights.s};
   color: ${p => p.theme.color.text};
 
+
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.5;
@@ -140,7 +141,7 @@ export const DescrData = styled.span`
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.36;
-  color: ${p => p.theme.color.text};
+  color: ${p => p.theme.color.black};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
