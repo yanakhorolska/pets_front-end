@@ -12,8 +12,8 @@ export const AuthContainer = styled.div`
   @media (min-width: 768px) {
     width: 608px;
     top: calc((100vh - 490px) / 2);
-    background-color: ${p => p.theme.color.white};
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    background-color: ${p => p.theme.color.cards};
+    box-shadow: ${p => p.theme.shadows.boxShadow};
     border-radius: 40px;
     padding: 60px 80px;
   }
@@ -80,6 +80,7 @@ export const AuthErrorLast = styled.p`
 `;
 
 export const AuthInput = styled.input`
+  color: ${p => p.theme.color.text};
   width: 100%;
   font-size: 14px;
   line-height: 1.36;
@@ -89,6 +90,9 @@ export const AuthInput = styled.input`
   border-radius: 40px;
   outline: none;
   padding: 9px 14px 10px;
+  &:placeholder-shown {
+    color: white;
+  }
 
   @media (min-width: 768px) {
     font-size: 18px;

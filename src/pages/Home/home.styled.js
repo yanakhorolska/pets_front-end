@@ -98,17 +98,16 @@ export const HomeImg = styled('div')`
 `;
 
 export const HomeText = styled('h2')`
-  color:   ${p => p.theme.color.black};
+  color: ${p => p.theme.color.text};
   font-weight: 700;
   font-size: 32px;
   line-height: 1.38;
-  max-width:280px;
+  max-width: 280px;
   margin-top: 60px;
-  
- 
+
   @media (min-width: 768px) {
     align-self: flex-start;
-    max-width:588px;
+    max-width: 588px;
     margin-top: 88px;
     text-align: left;
     font-size: 68px;
@@ -116,7 +115,6 @@ export const HomeText = styled('h2')`
   }
   @media (min-width: 1280px) {
     margin-top: 92px;
-    
   }
 `;
 

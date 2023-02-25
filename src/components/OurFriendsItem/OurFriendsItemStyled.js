@@ -5,9 +5,9 @@ export const FriendsItem = styled.li`
   width: 80%;
   text-align: center;
   padding: 15px;
-  background-color: ${p => p.theme.color.white};
+  background-color: ${p => p.theme.color.cards};
   border-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  box-shadow: ${p => p.theme.shadows.boxShadow};
   flex-wrap: wrap;
   @media (min-width: 768px) {
     border-radius: 40px;
@@ -111,7 +111,7 @@ export const ContactsLink = styled.a`
 `;
 
 export const NoInfo = styled.span`
-  color: ${p => p.theme.color.black};
+  color: ${p => p.theme.color.text};
 `;
 
 export const Wrap = styled.div`

@@ -5,11 +5,14 @@ export const getMode = mode => {
       ...(mode === 'dark'
         ? {
             black: '#000',
+
             white: '#fff',
+            cards: '#212F3C',
             background: '#212F3C',
             accent: '#F59256',
             logo: '#111111',
             text: '#fff',
+            buttonOW: '#F59256',
             textLight: '#111321',
             primaryText: '#111111',
             navBarText: '#181C27',
@@ -19,17 +22,19 @@ export const getMode = mode => {
             secondatyBtnText: '#FFFFFF',
             hoverBtn: '#FF6101',
             shadowCard: 'rgba(49, 21, 4, 0.07)',
-            greyTransp: 'rgba(17, 17, 17, 0.6)',
+            greyTransp: '#fff',
             inputModal: 'rgba(245, 146, 86, 0.5)',
             none: 'none',
           }
         : {
             black: '#000',
             white: '#fff',
+            cards: '#fff',
             background: '#FDF7F2',
             accent: '#F59256',
             logo: '#111111',
             text: '#111111',
+            buttonOW: '#FFF',
             textLight: '#111321',
             primaryText: '#111111',
             navBarText: '#181C27',
