@@ -166,7 +166,7 @@ const ModalNotice = ({ onClose, id }) => {
                 <li>
                   <DescriptionItems>
                     <DescrCategory>Price:</DescrCategory>
-                    <DescrData>{price}</DescrData>
+                    <DescrData>{price} $</DescrData>
                   </DescriptionItems>
                 </li>
               )}

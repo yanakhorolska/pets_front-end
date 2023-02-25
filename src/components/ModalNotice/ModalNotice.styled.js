@@ -26,9 +26,9 @@ export const ModalBox = styled.div`
 `;
 
 export const CloseButtonTop = styled(CloseButton)`
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  position: ${p => p.theme.position.a};
+  top: ${p => p.theme.space.p.xs};
+  right: ${p => p.theme.space.p.xs};
   width: 34px;
   height: 34px;
 
@@ -38,11 +38,9 @@ export const CloseButtonTop = styled(CloseButton)`
   }
 
   @media ${p => p.theme.media.desktop} {
-    top: 12px;
+    top: ${p => p.theme.space.m.xxs};
   }
 `;
-
-// ${p => p.theme};
 
 export const PetPhoto = styled.img`
   width: 240px;
@@ -57,12 +55,12 @@ export const PetPhoto = styled.img`
 `;
 
 export const Category = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 20px;
+  display: ${p => p.theme.display.flex};
+  align-items: ${p => p.theme.textAlign.center};
+  position: ${p => p.theme.position.a};
+  top: ${p => p.theme.space.p.xs};
   left: 0;
-  padding-left: 20px;
+  padding-left: ${p => p.theme.space.p.xs};
   width: 158px;
   height: 28px;
   background: rgba(255, 255, 255, 0.6);
@@ -70,45 +68,41 @@ export const Category = styled.div`
 
   border-radius: 0px 20px 20px 0px;
 
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
+  font-weight: ${p => p.theme.fontWeights.default};
+  font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
   letter-spacing: 0.04em;
 
-  color: #111111;
+  color: ${p => p.theme.color.primaryText};
 `;
 
 export const PhotoBox = styled.div`
-  position: relative;
+  position: ${p => p.theme.position.r};
   @media ${p => p.theme.media.tabletMin} {
-    margin-bottom: 16px;
+    margin-bottom: ${p => p.theme.space.m.xs};
   }
 `;
 
 export const ColumnBox = styled.div`
   @media ${p => p.theme.media.tabletDesktop} {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 28px;
+    display: ${p => p.theme.display.flex};
+    gap: ${p => p.theme.space.p.xs};
+    margin-bottom: ${p => p.theme.space.m.s};
   }
 `;
 
 export const Descriptions = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: ${p => p.theme.display.flex};
+  flex-direction: ${p => p.theme.flexDirection.col};
 
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: ${p => p.theme.space.m.s};
 `;
 
 export const TitleCard = styled.p`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.36;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.l};
+  line-height: ${p => p.theme.lineHeights.s};
   letter-spacing: -0.01em;
 
   color: #000000;
@@ -119,23 +113,23 @@ export const TitleCard = styled.p`
 `;
 
 export const DescriptionItems = styled.p`
-  display: flex;
+  display: ${p => p.theme.display.flex};
 `;
 
 export const DescriptionLink = styled.a`
-  display: flex;
+  display: ${p => p.theme.display.flex};
 `;
 
 export const DescrCategory = styled.span`
   display: block;
   width: 90px;
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: 14px;
-  line-height: 1.36;
+  line-height: ${p => p.theme.lineHeights.s};
   color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
-    font-size: 16px;
+    font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.5;
     letter-spacing: 0.04em;
   }
@@ -143,21 +137,21 @@ export const DescrCategory = styled.span`
 
 export const DescrData = styled.span`
   display: block;
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.default};
   font-size: 14px;
   line-height: 1.36;
   color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
-    font-size: 16px;
+    font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.5;
     letter-spacing: 0.04em;
   }
 `;
 
 export const ButtonBox = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: ${p => p.theme.display.flex};
+  flex-direction: ${p => p.theme.flexDirection.col};
   gap: 12px;
   margin-top: 40px;
   list-style: none;
@@ -169,7 +163,7 @@ export const ButtonBox = styled.ul`
 `;
 
 export const ContactButton = styled.button`
-  display: flex;
+  display: ${p => p.theme.display.flex};
   align-items: center;
   justify-content: center;
   width: 240px;
@@ -181,8 +175,8 @@ export const ContactButton = styled.button`
 
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${p => p.theme.fontWeights.default};
+  font-size: ${p => p.theme.fontSizes.m};
 
   transition: color, border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -198,7 +192,7 @@ export const ContactButton = styled.button`
 `;
 
 export const AddButton = styled.button`
-  display: flex;
+  display: ${p => p.theme.display.flex};
   align-items: center;
   justify-content: center;
   width: 240px;
@@ -210,8 +204,8 @@ export const AddButton = styled.button`
 
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: ${p => p.theme.fontWeights.default};
+  font-size: ${p => p.theme.fontSizes.m};
   letter-spacing: 0.04em;
 
   transition: color, border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
