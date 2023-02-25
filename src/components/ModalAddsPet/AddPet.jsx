@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useAddPetMutation } from 'redux/fetchUser';
 
@@ -9,19 +9,34 @@ import { ModalAddPet, FormPageWrapper, FormDescription, FormTitle, InputLabel, I
 import { ModalButton, NextButton } from 'styles/Buttons'
 
 import Icon from '../ModalAddNotice/svg';
-// import Box from 'components/Box';
 
 const validationSchema = [
   Yup.object().shape({
-    nickname:Yup.string().min(2).max(16).required().label("Name pet"), 
-    breed: Yup.string().min(2).max(16).required("Breed is required"),
-    birthday: Yup.date().typeError('Date of birth invalid Date').required().label("Date of birth").typeError('Date of birth invalid Date'),
+    nickname: Yup.string().min(2).max(16).required().label('Name pet'),
+    breed: Yup.string().min(2).max(16).required('Breed is required'),
+    birthday: Yup.date()
+      .typeError(({ label }) => `${label} invalid Date for format DD.MM.YYYY`)
+      .min(new Date("1900.01.01"), ({ label, min }) => `${label} field must be later than ${min.toLocaleDateString()}`)
+      .max(new Date(),  ({ label }) => `${label} future date not allowed`)
+      .transform((value, originalValue) => {
+        try {
+          const date = originalValue.split('.');
+          if (date.length === 3 ) {
+            return new Date(`${date[2]}-${date[1]}-${date[0]}`);
+          }
+          return null;
+        } catch (e) {
+          return null;
+        }
+      })
+      .required(({label}) => `${label} is a required field in format DD.MM.YYYY`)
+      .label('Date of birth'),
   }),
   Yup.object().shape({
     avatar: Yup.mixed().required('Image pet is required'),
-    comment: Yup.string().min(8).max(120).required("Comments is required"),
-  })
-]
+    comment: Yup.string().min(8).max(120).required('Comments is required'),
+  }),
+];
 
 export const AddPet = ({ onClose }) => {
 
@@ -34,12 +49,12 @@ export const AddPet = ({ onClose }) => {
       formik.setFieldValue('avatar', event.target.files[0]);
     }
   };
-
+ 
   const customOnSubmit = async (values, actions) => {
-    const status = await addPet(values).unwrap();
-     if (status === 'success') {
-       onClose();
-     }
+    console.log(values);
+    const { birthday, ...reqValue } = values
+    const status = await addPet({birthday : new Date(birthday).toLocaleDateString('fr-CA'), ...reqValue}).unwrap();
+    if (status === 'success')  onClose()
     actions.setSubmitting(false);
   }
  
@@ -52,6 +67,19 @@ export const AddPet = ({ onClose }) => {
       actions.setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    document.addEventListener("keydown", function (event) {
+      if (event.charCode || event.keyCode === 13 && event.target.nodeName === "INPUT") {
+        const form = event.target.form;
+        const arrayFormInput = Array.prototype.filter.call(form, elem => elem.nodeName === "INPUT")
+        const index = arrayFormInput.indexOf(event.target);
+        const newFocusElem  = arrayFormInput[index + 1]
+        if (newFocusElem) newFocusElem.focus()
+        event.preventDefault();
+      }
+    });
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -91,27 +119,37 @@ export const AddPet = ({ onClose }) => {
                     type="text"
                     name="nickname"
                     placeholder="Type name pet"
+                    autoFocus={true}
                     value={formik.values.nickname}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                {formik.touched.nickname && nicknameError ? (
-                  <FieldError>{nicknameError} </FieldError>
-                ) : null}
+                  {formik.touched.nickname && nicknameError ? (
+                    <FieldError>{nicknameError} </FieldError>
+                  ) : null}
                 </InputLabel>
                 <InputLabel>
                   Date of birth
                   <InputStyled
-                    type="date"
+                    //type="date"
+                    type="nunber"
                     name="birthday"
                     placeholder="Type date of birth"
                     value={formik.values.birthday}
-                    onChange={formik.handleChange}
+                    onChange={e => {
+                      formik.handleChange(e);
+                      formik.setFieldValue(
+                        'birthday',
+                        e.currentTarget.value
+                          .replace(/\D/g, '')
+                          .replace(/(\d{2})(\d{2})(\d*)/, '$1.$2.$3')
+                      );
+                    }}
                     onBlur={formik.handleBlur}
                   />
-                {formik.touched.birthday && birthdayError ? (
-                  <FieldError>{birthdayError} </FieldError>
-                ) : null}
+                  {formik.touched.birthday && birthdayError ? (
+                    <FieldError>{birthdayError} </FieldError>
+                  ) : null}
                 </InputLabel>
                 <InputLabel>
                   Breed
@@ -123,12 +161,12 @@ export const AddPet = ({ onClose }) => {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
-                {formik.touched.breed && breedError ? (
-                  <FieldError>{breedError} </FieldError>
-                ) : null}
+                  {formik.touched.breed && breedError ? (
+                    <FieldError>{breedError} </FieldError>
+                  ) : null}
                 </InputLabel>
                 <ButtonsWrapper>
-                  <ModalButton type="button" onClick={onClose}>
+                  <ModalButton type="button" tabindex="-1" onClick={onClose}>
                     Cancel
                   </ModalButton>
                   <NextButton type="submit">Next</NextButton>

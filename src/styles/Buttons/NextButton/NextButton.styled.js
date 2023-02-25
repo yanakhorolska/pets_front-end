@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NextBtn = styled.button`
-  width: 180px;
+  
   height: 44px;
   padding: 8px 55px;
   background: #f59256;
@@ -18,8 +18,13 @@ export const NextBtn = styled.button`
 
   color: #ffffff;
 
-  &:hover {
+  width: 100%;
+  &:hover, &:focus {
     color: #ffffff;
     border: 2px solid #ff6101;
+  }
+
+  @media ${p => p.theme.media.tabletDesktop} { 
+    width: 180px;
   }
 `;
