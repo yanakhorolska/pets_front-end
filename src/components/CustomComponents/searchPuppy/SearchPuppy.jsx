@@ -7,7 +7,7 @@ export const SearchPuppy = () => {
   return (
     <SearchPuppyWrap>
       <div>
-        <SearchPuppyText>No news found</SearchPuppyText>
+        <SearchPuppyText>We couldn't find anything</SearchPuppyText>
       </div>
       <SearchPuppyImg />
     </SearchPuppyWrap>
