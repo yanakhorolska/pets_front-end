@@ -48,7 +48,8 @@ const PetsList = () => {
                 </li>
                 <li>
                   <PetDescripton>
-                    <Span> Date of birth:</Span> {pet.birthday}
+                    <Span> Date of birth:</Span>
+                    {new Date(pet.birthday).toLocaleDateString('en-GB')}
                   </PetDescripton>
                 </li>
                 <li>
