@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Backdrop = styled.div`
+  z-index:4;
+
   position: ${p => p.theme.position.f};
   top: ${p => p.theme.sizes.top.zero};
   left: ${p => p.theme.sizes.left.zero};
@@ -13,6 +15,8 @@ export const Backdrop = styled.div`
 `;
 
 export const Modal = styled.div`
+   z-index:6;
+
   padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
   background-color: ${p => p.theme.color.white};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
