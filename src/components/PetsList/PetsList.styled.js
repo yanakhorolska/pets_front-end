@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const Box = styled.div`
-  margin: 20px auto;
-`;
+// export const Box = styled.div`
+// margin: 20px auto;
+// `
+
 
 export const PetBox = styled.div`
   position: relative;

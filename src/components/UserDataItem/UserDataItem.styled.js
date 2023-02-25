@@ -9,6 +9,10 @@ justify-content: space-between;
 align-items: baseline;
 flex-direction: row;
 padding: 0;
+width:100%;
+@media ${p => p.theme.media.tabletDesktop}{
+    width: 380px;
+}
 `
 export const  UserDataLabel = styled.label`
 font-size: 12px;
@@ -38,16 +42,21 @@ font-weight: 400;
     lineHeights: ${p => p.theme.lineHeights.s}
 }
 
-
-
 &:active{
 background: #FDF7F2;
 border: 1px solid rgba(245, 146, 86, 0.5);
 border-radius: 40px;
 }
 
-:-ms-input-placeholder {
-     color: red;
+&:not(:disabled){
+    background: #FDF7F2;
+border: 1px solid rgba(245, 146, 86, 0.5);
+border-radius: 40px;
+}
+
+&::placeholder {
+     color: black;
+     font-weight: 400;
   
 }
 

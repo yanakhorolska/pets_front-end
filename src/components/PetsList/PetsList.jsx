@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   useGetUserPetsQuery,
@@ -61,7 +62,7 @@ const PetsList = () => {
                 <li>
                   <PetDescripton>
                     <Span> Comments:</Span>
-                    {pet.comments}
+                    {pet.comment}
                   </PetDescripton>
                 </li>
               </PetList>
@@ -71,5 +72,6 @@ const PetsList = () => {
     </Box>
   );
 };
+
 
 export default PetsList;

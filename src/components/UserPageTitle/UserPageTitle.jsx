@@ -1,10 +1,8 @@
-import React from 'react'
-import {Title} from './UserPageTitle.styled'
+import React from 'react';
+import { Title } from './UserPageTitle.styled';
 
-const UserPageTitle = ({title}) => {
-  return (
-    <Title>{title}</Title>
-  )
-}
+const UserPageTitle = ({ title }) => {
+  return <Title>{title}</Title>;
+};
 
-export default UserPageTitle
+export default UserPageTitle;
