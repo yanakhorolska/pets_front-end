@@ -20,7 +20,7 @@ import {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
-import { useAuth } from 'hooks/useAuth';
+// import { useAuth } from 'hooks/useAuth';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
 

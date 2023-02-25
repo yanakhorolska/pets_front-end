@@ -1,11 +1,10 @@
-
 import React from 'react';
 import {
   useGetUserPetsQuery,
   useRemovePetByIdMutation,
 } from '../../redux/fetchUser';
 import {
-  Box,
+  // Box,
   PetBox,
   PetPhoto,
   PetList,
@@ -14,7 +13,6 @@ import {
   Button,
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
-
 
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
@@ -32,7 +30,7 @@ const PetsList = () => {
   };
 
   return (
-    <Box>
+    <div>
       {data.length > 0
         ? data.map(pet => (
             <PetBox key={pet.id}>
@@ -69,9 +67,8 @@ const PetsList = () => {
             </PetBox>
           ))
         : null}
-    </Box>
+    </div>
   );
 };
-
 
 export default PetsList;
