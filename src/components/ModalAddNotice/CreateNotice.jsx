@@ -45,6 +45,7 @@ const validationSchemas = [
         'date of birth must have DD.MM.YYYY format!'
       )
       .test('', '', (value, contex) => {
+        if (!value) return true;
         const currDate = new Date();
         const dateArr = value.split('.');
         const petDate = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
