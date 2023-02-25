@@ -93,7 +93,7 @@ const NoticesCategoriesList = () => {
 
   if (usersPets !== null) {
     pets = Object.values(usersPets);
-    console.log(pets);
+    // console.log(pets);
   }
   const visiblePets = pets.filter(pet =>
     pet.title.toLowerCase().includes(search.toLowerCase())
@@ -101,17 +101,18 @@ const NoticesCategoriesList = () => {
 
   return (
     <>
-      {/* {isLoading ? (
-        <Loader styles={{ marginTop: '60px' }} />
-      ) : ( */}
       <ListBox>
         {isLoading ? (
           <Loader styles={{ marginTop: '60px' }} />
         ) : (
           <>
-            {visiblePets.map(pet => (
-              <NoticeCategoryItem id={pet._id} key={pet._id} />
-            ))}
+            {visiblePets.length > 0 ? (
+              visiblePets.map(pet => (
+                <NoticeCategoryItem id={pet._id} key={pet._id} />
+              ))
+            ) : (
+              <p>We couldn't find anything</p>
+            )}
           </>
         )}
       </ListBox>
