@@ -11,6 +11,11 @@ import {
 import { getIsLogged } from 'redux/selectors';
 import { ListBox } from 'pages/NoticesPage/NoticesPage.styled';
 import { Loader } from 'components/Loader/Loader';
+import {
+  SearchPuppyImg,
+  SearchPuppyWrap,
+  SearchPuppyText,
+} from 'components/CustomComponents/searchPuppy/SearchPuppyStyled';
 
 const NoticesCategoriesList = () => {
   const [usersPets, setUsersPets] = useState(null);
@@ -73,6 +78,7 @@ const NoticesCategoriesList = () => {
       } else {
         const notices = [...userAddsList.data];
         setUsersPets(notices.reverse());
+        console.log(userAddsList);
       }
       if (!userFavoriteList) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -82,7 +88,7 @@ const NoticesCategoriesList = () => {
       } else {
         const notices = [...userFavoriteList.data];
         setUsersPets(notices.reverse());
-        console.log(userFavoriteList);
+        // console.log(userFavoriteList);
 
         return;
       }
@@ -111,7 +117,12 @@ const NoticesCategoriesList = () => {
                 <NoticeCategoryItem id={pet._id} key={pet._id} />
               ))
             ) : (
-              <p>We couldn't find anything</p>
+              <SearchPuppyWrap>
+                <div>
+                  <SearchPuppyText>No matches</SearchPuppyText>
+                </div>
+                <SearchPuppyImg />
+              </SearchPuppyWrap>
             )}
           </>
         )}

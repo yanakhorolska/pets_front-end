@@ -40,7 +40,6 @@ export const fetchNotice = createApi({
         const formData = new FormData();
         const { category, ...data } = payload;
         Object.keys(data).forEach(key => formData.append(key, data[key]));
-        formData.append('category', category);
         return {
           url: `/notices/category/${category}`,
           method: 'POST',
@@ -67,21 +66,20 @@ export const fetchNotice = createApi({
         url: `/notices/favorites/${id}`,
         method: 'POST',
       }),
-      invalidatesTags: ['Favorites', 'Notice', 'UserNotice'],
+      invalidatesTags: ['Favorites'],
     }),
     deleteFromFavorites: builder.mutation({
       query: id => ({
         url: `/notices/favorites/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Favorites', 'Notice', 'UserNotice'],
+      invalidatesTags: ['Favorites'],
     }),
     getNoticeById: builder.query({
       query: id => `/notices/${id}`,
       transformResponse: response => response.data,
-      providesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
-    providesTags: ['Favorites', 'Notice', 'UserNotice'],
+    providesTags: ['Notice'],
   }),
 });
 
