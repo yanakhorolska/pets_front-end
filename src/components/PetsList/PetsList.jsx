@@ -13,14 +13,12 @@ import {
   Button,
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
-//import { Loader } from 'components/Loader/Loader';
+
 
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
   let { data } = useGetUserPetsQuery();
   console.log('pets', data);
-
-  // const data = [];
 
   if (!data) {
     return;
@@ -34,7 +32,6 @@ const PetsList = () => {
 
   return (
     <Box>
-      {/* {isLoading && <Loader />} */}
       {data.length > 0
         ? data.map(pet => (
             <PetBox key={pet.id}>
@@ -52,7 +49,8 @@ const PetsList = () => {
                 </li>
                 <li>
                   <PetDescripton>
-                    <Span> Date of birth:</Span> {pet.birthday}
+                    <Span> Date of birth:</Span>
+                    {new Date(pet.birthday).toLocaleDateString('en-GB')}
                   </PetDescripton>
                 </li>
                 <li>
