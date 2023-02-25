@@ -124,7 +124,7 @@ export const DescrCategory = styled.span`
   display: block;
   width: 90px;
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: 14px;
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.s};
   color: ${p => p.theme.color.text};
 
@@ -138,7 +138,7 @@ export const DescrCategory = styled.span`
 export const DescrData = styled.span`
   display: block;
   font-weight: ${p => p.theme.fontWeights.default};
-  font-size: 14px;
+  font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.36;
   color: ${p => p.theme.color.text};
 
@@ -152,9 +152,8 @@ export const DescrData = styled.span`
 export const ButtonBox = styled.ul`
   display: ${p => p.theme.display.flex};
   flex-direction: ${p => p.theme.flexDirection.col};
-  gap: 12px;
-  margin-top: 40px;
-  list-style: none;
+  gap: ${p => p.theme.space.m.xxs};
+  margin-top: ${p => p.theme.space.m.l};
 
   @media ${p => p.theme.media.tabletDesktop} {
     flex-direction: row-reverse;
