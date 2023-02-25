@@ -34,7 +34,7 @@ const UserDataItem = ({ initialValues, text, name, placeholder, type }) => {
     console.log(data);
   };
 
-
+console.log(placeholder)
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>

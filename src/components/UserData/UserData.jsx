@@ -41,7 +41,7 @@ const UserData = () => {
             initialValues={{ birthday: currentuser.birthday }}
             name="birthday"
             text="birthday"
-            type="date"
+            type="text"
             placeholder={currentuser.birthday}
           />
           <UserDataItem

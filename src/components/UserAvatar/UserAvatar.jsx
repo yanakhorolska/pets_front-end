@@ -7,7 +7,7 @@ import { setAvatarURL } from '../../redux/authSlice';
 import { AvatarInput, AvatarLabel, AvatarImage, AvatarLabelText, AvatarBox } from './UserAvatar.styled';
 import Icon from '../../styles/Buttons/icons';
 import { useState } from 'react';
-import Emptyphoto from "../../images/bgs/EmptyPhoto.jpg"
+import Emptyphoto from "../../images/bgs/EmptyPhoto.png"
 
 const UserAvatar = () => {
   const avatarURL = useSelector(getUserAvatarURL);
