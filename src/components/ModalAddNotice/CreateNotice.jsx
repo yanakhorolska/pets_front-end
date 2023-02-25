@@ -28,6 +28,7 @@ import { useMemo, useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, ModalStyledButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const validationSchemas = [
   Yup.object().shape({
@@ -37,7 +38,21 @@ const validationSchemas = [
       .max(100, 'Too long!')
       .required('Title is required field'),
     petName: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
-    dateOfBirth: Yup.date().max(new Date(), "Pet can't be born in the future!"),
+    dateOfBirth: Yup.string()
+      .matches(
+        /^\d{2}([./-])\d{2}\1\d{4}$/,
+        'date of birth must have DD.MM.YYYY format!'
+      )
+      .test('', '', (value, contex) => {
+        const currDate = new Date();
+        const petDate = new Date(value);
+        if (currDate < petDate) {
+          return contex.createError({
+            message: "Pet can't be born in the future!",
+          });
+        }
+        return true;
+      }),
     breed: Yup.string().min(2, 'Too Short!').max(50, 'Too long!'),
   }),
   Yup.object().shape({
@@ -71,8 +86,12 @@ const CreateNotice = ({ onClose }) => {
       if (status === 'success') {
         onClose();
       }
-    } catch ({ status, data }) {
-      alert(`Status: ${status}, error: ${data.message}`);
+    } catch (error) {
+      const { status = '', data = '' } = error;
+      Notify.failure(`Status: ${status}, error: ${data?.message}`, {
+        timeout: 5000,
+        fontSize: '18px',
+      });
     }
     actions.setSubmitting(false);
   };
@@ -193,9 +212,9 @@ const CreateNotice = ({ onClose }) => {
           <InputLabel>
             <span>Date of birth</span>
             <InputStyled
-              type="date"
+              type="text"
               name="dateOfBirth"
-              placeholder="Type date of birth"
+              placeholder="DD.MM.YYYY"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.dateOfBirth}
