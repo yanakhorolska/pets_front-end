@@ -8,7 +8,7 @@ import { EditButton } from '../../styles/Buttons/EditButton/EditButton'
 import { CheckButton } from '../../styles/Buttons/CheckButton/CheckButton'
 import {UserDataForm, UserDataInput, UserDataLabel} from './UserDataItem.styled'
 
-const UserDataItem = ({ initialValues, text, name, placeholder }) => {
+const UserDataItem = ({ initialValues, text, name, placeholder, type }) => {
   const [disabled, setDisabled] = useState(true);
   const dispatch = useDispatch();
   const [updateUser] = useUpdateUserMutation();
@@ -34,12 +34,14 @@ const UserDataItem = ({ initialValues, text, name, placeholder }) => {
     console.log(data);
   };
 
+console.log(placeholder)
+
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <UserDataForm >
         <UserDataLabel htmlFor={name}>{name}: </ UserDataLabel>
         <UserDataInput
-          // type="text"
+          type={type}
           onChange={changeInput}
           value={inputeData}
           name={name}

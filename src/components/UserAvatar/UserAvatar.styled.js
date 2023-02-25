@@ -8,8 +8,10 @@ opacity: 0;
 export const AvatarBox = styled.div`
 // display: flex;
 margin-bottom: 36px;
+width: 100%;
 @media ${p => p.theme.media.tabletDesktop}{
   margin-bottom: 0;
+  margin-left: 21px;
 }
 @media ${p => p.theme.media.desktop}{
   margin-bottom: 36px;
@@ -40,5 +42,6 @@ margin-left: auto;
 margin-right: auto;
 width: 233px;
 height: 233px;
-
+// filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+box-shadow:0px 4px 14px rgba(0, 0, 0, 0.11);
 `
