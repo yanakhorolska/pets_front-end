@@ -47,6 +47,8 @@ export const BurgerLinks = styled('div')`
   margin-top: 46px;
 `;
 export const ToggleButtonBurg = styled('button')`
+  fill: ${p => p.theme.color.text};
+ stroke:${p => p.theme.color.text};
   background-color: transparent;
   border: 1px solid transparent;
   width: 40px;

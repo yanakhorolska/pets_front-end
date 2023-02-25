@@ -209,7 +209,7 @@ export const getMode = mode => {
       mode,
       ...(mode === 'dark'
         ? {
-            boxShadow: '0px 0px 10px 0px rgba(255, 255, 255, 1)',
+            boxShadow: '7px 4px 14px rgba(99, 99, 99, 1)',
           }
         : { boxShadow: '7px 4px 14px rgba(0, 0, 0, 0.11)' }),
     },
