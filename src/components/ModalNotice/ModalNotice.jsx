@@ -10,7 +10,6 @@ import { Loader } from 'components/Loader/Loader';
 import Icon from 'styles/Buttons/icons/index';
 import {
   ModalBox,
-  // CloseBox,
   PetPhoto,
   Category,
   ColumnBox,
@@ -24,7 +23,7 @@ import {
   DescrCategory,
   DescrData,
   DescriptionLink,
-  CloseButton,
+  CloseButtonTop,
 } from './ModalNotice.styled';
 
 const ModalNotice = ({ onClose, id }) => {
@@ -33,7 +32,7 @@ const ModalNotice = ({ onClose, id }) => {
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   // const [forFavorite, setForFavorite] = useState(false);
   //const [favText, setFavText] = useState('Add to');
-  const isLoggedIn = useAuth();
+  const { isLoggedIn } = useAuth();
 
   if (!data) {
     return;
@@ -88,17 +87,19 @@ const ModalNotice = ({ onClose, id }) => {
     console.log('login');
   };
 
-  // const changeTextOfCategory = category => {
-  //   if (category === 'sell') {
-  //     return 'Sell';
-  //   }
-  //   if (category === 'inGoodHands') {
-  //     return 'In good hands';
-  //   }
-  //   if (category === 'lostFound') {
-  //     return 'Lost & Found';
-  //   }
-  // };
+  const changeTextOfCategory = category => {
+    if (category === 'sell') {
+      return 'Sell';
+    }
+    if (category === 'inGoodHands') {
+      return 'In good hands';
+    }
+    if (category === 'lostFound') {
+      return 'Lost & Found';
+    }
+  };
+
+  const date = new Date(dateOfBirth).toLocaleDateString('en-GB');
 
   return (
     <>
@@ -108,12 +109,12 @@ const ModalNotice = ({ onClose, id }) => {
         </ModalBox>
       ) : (
         <ModalBox>
-          <CloseButton onClick={onClose} />
+          <CloseButtonTop onClick={onClose} />
 
           <ColumnBox>
             <PhotoBox>
               <PetPhoto src={imageUrl} alt="photoPets" />
-              <Category>{category}</Category>
+              <Category>{changeTextOfCategory(category)}</Category>
             </PhotoBox>
             <Descriptions>
               <li>
@@ -128,7 +129,7 @@ const ModalNotice = ({ onClose, id }) => {
               <li>
                 <DescriptionItems>
                   <DescrCategory>Birthday:</DescrCategory>
-                  <DescrData>{dateOfBirth}</DescrData>
+                  <DescrData>{date}</DescrData>
                 </DescriptionItems>
               </li>
               <li>
@@ -150,13 +151,13 @@ const ModalNotice = ({ onClose, id }) => {
                 </DescriptionItems>
               </li>
               <li>
-                <DescriptionLink href="mailto:nowhere@mozilla.org">
+                <DescriptionLink href={`mailto:${email}`}>
                   <DescrCategory>Email:</DescrCategory>
                   <DescrData>{email}</DescrData>
                 </DescriptionLink>
               </li>
               <li>
-                <DescriptionLink href="tel:+49.157.0156">
+                <DescriptionLink href={`tel:${phone}`}>
                   <DescrCategory>Phone:</DescrCategory>
                   <DescrData>{phone}</DescrData>
                 </DescriptionLink>
@@ -177,7 +178,7 @@ const ModalNotice = ({ onClose, id }) => {
           </p>
           <ButtonBox>
             <li>
-              <a href="tel:+49.157.0156">
+              <a href={`tel:${phone}`}>
                 <ContactButton type="button">Contact</ContactButton>
               </a>
             </li>

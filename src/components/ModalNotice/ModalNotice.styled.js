@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CloseButton } from 'styles/Buttons/index';
 
 export const ModalBox = styled.div`
   position: ${p => p.theme.position.a};
@@ -24,13 +25,21 @@ export const ModalBox = styled.div`
   }
 `;
 
-export const CloseButton = styled.button`
-  position: 'absolute';
-  top: 23px;
-  right: 23px;
-
+export const CloseButtonTop = styled(CloseButton)`
+  position: absolute;
+  top: 20px;
+  right: 20px;
   width: 34px;
   height: 34px;
+
+  @media ${p => p.theme.media.tablet} {
+    width: 44px;
+    height: 44px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    top: 12px;
+  }
 `;
 
 // ${p => p.theme};
@@ -39,7 +48,6 @@ export const PetPhoto = styled.img`
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
-  border: 1px solid tomato;
   object-fit: contain;
 
   @media ${p => p.theme.media.tabletDesktop} {
@@ -60,7 +68,6 @@ export const Category = styled.div`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(50px);
 
-  border: 1px solid tomato;
   border-radius: 0px 20px 20px 0px;
 
   font-family: 'Manrope';
