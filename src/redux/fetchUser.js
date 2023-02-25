@@ -12,7 +12,7 @@ export const userApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Pet'],
   endpoints: builder => ({
     registrationUser: builder.mutation({
       query: payload => ({
