@@ -44,7 +44,7 @@ export const NewsBtn = styled.button`
 export const NewsButtonsWrap = styled.div`
   margin-top: 40px;
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: center;
   gap: 64px;
 `;
