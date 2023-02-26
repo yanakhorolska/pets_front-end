@@ -57,8 +57,9 @@ export const PetDescripton = styled.div`
   font-size: 14px;
   line-height: 1.36;
   letter-spacing: 0.04em;
-
+  overflow-wrap: break-word;
   color: ${p => p.theme.color.text};
+
 
   @media ${p => p.theme.media.tabletDesktop} {
     width: 470px;
