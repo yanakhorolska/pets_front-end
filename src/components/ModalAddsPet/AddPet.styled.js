@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { CloseButton } from 'styles/Buttons';
-// import  from '../../styles/Buttons/icons';
 
 const ModalAddPet = styled.form`
   display: flex;
   flex-direction: column;
   padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
-  background-color: ${p => p.theme.color.background};
+  background-color: ${p => p.theme.color.cards};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   width: ${p => p.theme.sizes.width.modalS};
   position: ${p => p.theme.position.a};
@@ -86,7 +85,7 @@ const InputStyled = styled.input`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1;
   height: ${p => p.theme.fontSizes.xxl};
-  background: ${p => p.theme.color.inputModal};
+  background-color: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
 
@@ -108,7 +107,7 @@ const InputImageWrapper = styled.div`
   margin-bottom: 4px;
   width: 208px;
   height: 208px;
-  background: ${p => p.theme.color.inputModal};
+  background-color: ${p => p.theme.color.inputModal};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   overflow: hidden;
   & > img {
