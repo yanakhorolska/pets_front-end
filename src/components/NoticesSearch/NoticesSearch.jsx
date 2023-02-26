@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SearchInput from 'styles/Inputs/SearchInput/SearchInput';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
@@ -15,7 +16,7 @@ const NoticesSearch = () => {
     event.preventDefault();
 
     if (query === '') {
-      alert(`Type something to search.`);
+      Notify.warning('Please start type search query');
       return;
     }
 

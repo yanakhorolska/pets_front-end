@@ -1,4 +1,4 @@
-// import { useMemo } from 'react';
+import { useMemo } from 'react';
 // import { NavLink } from 'react-router-dom';
 import {
   NoticeItem,
@@ -14,21 +14,30 @@ import {
   NoticeInfoListItemCategory,
   NoticeInfoListItemData,
   LearnBtnWrap,
+  SmallHeartBox,
 } from './NoticeCategoryItemStyled';
 import {
   useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
-// import { useAuth } from 'hooks/useAuth';
+import { useAuth } from 'hooks/useAuth';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
+import Icon from 'styles/Buttons/icons/index';
+import Notiflix from 'notiflix';
 
 export const NoticeCategoryItem = ({ id }) => {
   const { data } = useGetNoticeByIdQuery(id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
-  // const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
+
+  const fav = useMemo(() => {
+    if (data) {
+      return data.favorite;
+    }
+  }, [data]);
 
   if (!data) {
     return;
@@ -60,6 +69,19 @@ export const NoticeCategoryItem = ({ id }) => {
       const data = deleteFromFavorite(id).unwrap();
       console.log(data, 'data delete');
     }
+  };
+
+  const onAddToButtonClickLogin = () => {
+    console.log('login');
+    Notiflix.Notify.warning('Please login to add', {
+      background: '#000000',
+      textColor: '#fff',
+      childClassName: 'notiflix-notify-warning',
+      notiflixIconColor: 'rgba(0,0,0,0.2)',
+      fontAwesomeClassName: 'fas fa-exclamation-circle',
+      fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
+      backOverlayColor: '#31ee8657',
+    });
   };
 
   const changeTextOfCategory = category => {
@@ -98,8 +120,17 @@ export const NoticeCategoryItem = ({ id }) => {
         <NoticeImg src={imageUrl} alt={title} />
         <CategoryTag>{changeTextOfCategory(category)}</CategoryTag>
         <HeartBtnWrap>
-          <HeartButton type="button" onClick={handleFavoriteClick} />
+          {isLoggedIn ? (
+            <HeartButton type="button" onClick={handleFavoriteClick} />
+          ) : (
+            <HeartButton type="button" onClick={onAddToButtonClickLogin} />
+          )}
         </HeartBtnWrap>
+        {fav && (
+          <SmallHeartBox>
+            <Icon.SmallHeart style={{ fill: '#f59256' }} />
+          </SmallHeartBox>
+        )}
       </ImgWrap>
       <NoticeInfoWrap>
         <NoticeTitle>{title}</NoticeTitle>
@@ -122,7 +153,7 @@ export const NoticeCategoryItem = ({ id }) => {
             {price ? (
               <NoticeInfoListItem>
                 <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
-                <NoticeInfoListItemData>{price}</NoticeInfoListItemData>
+                <NoticeInfoListItemData>{price} $</NoticeInfoListItemData>
               </NoticeInfoListItem>
             ) : null}
           </NoticeInfoList>

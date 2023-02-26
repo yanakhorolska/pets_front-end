@@ -60,7 +60,7 @@ export const fetchNotice = createApi({
     }),
     getNoticeFavorites: builder.query({
       query: () => '/notices/favorites',
-      providesTags: ['Favorites'],
+      providesTags: ['Favorites', 'Notice'],
     }),
     addToFavorites: builder.mutation({
       query: id => ({
@@ -81,7 +81,7 @@ export const fetchNotice = createApi({
       transformResponse: response => response.data,
       providesTags: ['Favorites', 'Notice', 'UserNotice'],
     }),
-    providesTags: ['Favorites', 'Notice', 'UserNotice'],
+    providesTags: ['Notice'],
   }),
 });
 

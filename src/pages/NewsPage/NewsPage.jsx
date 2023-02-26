@@ -6,7 +6,7 @@ import { NewsWrap, NewsBtn, NewsButtonsWrap } from './NewsPageStyled';
 import { Container } from 'styles/Container/Container.styled';
 import { FirstHeader } from '../../styles/Headers/Headers.styled';
 import { Loader } from 'components/Loader/Loader';
-
+import { SearchPuppy } from 'components/CustomComponents/searchPuppy/SearchPuppy';
 const NewsPage = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
@@ -54,7 +54,7 @@ const NewsPage = () => {
             </NewsButtonsWrap>
           </>
         ) : (
-          <>No news found</>
+          <SearchPuppy></SearchPuppy>
         )}
       </NewsWrap>
     </Container>

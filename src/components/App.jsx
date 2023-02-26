@@ -18,7 +18,6 @@ const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesCategoriesList = lazy(() =>
   import('components/NoticesCategoriesList')
 );
-const ExamplesComponent = lazy(() => import('pages/ExamplesComponent'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -45,7 +44,6 @@ export const App = () => {
               <Route index element={<Navigate to="sell" />}></Route>
               <Route path=":category" element={<NoticesCategoriesList />} />
             </Route>
-            <Route path="/examples" element={<ExamplesComponent />} />
             <Route path="/friends" element={<OurFriendsPage />} />
             <Route element={<PublicRoutes restricted />}>
               <Route path="/login" element={<LoginPage />} />

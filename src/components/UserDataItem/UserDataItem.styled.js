@@ -11,7 +11,7 @@ flex-direction: row;
 padding: 0;
 width:100%;
 @media ${p => p.theme.media.tabletDesktop}{
-    width: 380px;
+    width: 370px;
 }
 `
 export const  UserDataLabel = styled.label`
@@ -56,8 +56,14 @@ border-radius: 40px;
 
 &::placeholder {
      color: black;
+     font-size: 12px;
      font-weight: 400;
-  
+     opacity: 1;
+@media ${p => p.theme.media.tabletDesktop}{
+    
+    font-size: 18px;
+    lineHeights: ${p => p.theme.lineHeights.s}
+     
 }
 
 `
