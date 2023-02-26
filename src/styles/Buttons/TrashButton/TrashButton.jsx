@@ -1,11 +1,15 @@
-import { TrashBtn } from "./TrashButton.styled";
-import Icon from "../icons/index";
+import { TrashBtn } from './TrashButton.styled';
+import Icon from '../icons/index';
 
 export const TrashButton = ({ onClick }) => {
   return (
     <TrashBtn onClick={onClick}>
-      <Icon.Trash />
+      Delete
+      <Icon.Trash
+        style={{
+          marginLeft: 15,
+        }}
+      />
     </TrashBtn>
   );
 };
-
