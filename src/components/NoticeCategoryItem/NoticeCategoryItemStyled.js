@@ -11,19 +11,22 @@ export const StyledListTest = styled.ul`
 `;
 
 export const NoticeItem = styled.li`
-  background-color: ${p => p.theme.color.white};
+  background-color: ${p => p.theme.color.cards};
   border-radius: 0 0 20px 20px;
   box-shadow: ${p => p.theme.shadows.boxShadow};
   display: flex;
   flex-direction: column;
   //min-height: 565px;
-  width: 100%;
+  width: 280px;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     width: 336px;
+    margin: 0;
   }
   @media (min-width: 1280px) {
     width: 288px;
+    margin: 0;
   }
 `;
 
@@ -44,7 +47,7 @@ export const ImgWrap = styled.div`
 export const NoticeImg = styled.img`
   display: block;
   height: 288px;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -99,7 +102,7 @@ export const NoticeInfoWrap = styled.div`
 `;
 
 export const NoticeTitle = styled.h4`
-  color: ${p => p.theme.color.primaryText};
+  color: ${p => p.theme.color.text};
   font-size: 28px;
   letter-spacing: -0.01em;
   line-height: 1.36;
@@ -128,14 +131,14 @@ export const NoticeInfoListItem = styled.li`
 `;
 
 export const NoticeInfoListItemCategory = styled.p`
-  color: ${p => p.theme.color.primaryText};
+  color: ${p => p.theme.color.text};
   font-size: 16px;
   line-height: 1.38;
   width: 90px;
 `;
 
 export const NoticeInfoListItemData = styled.p`
-  color: ${p => p.theme.color.primaryText};
+  color: ${p => p.theme.color.text};
   font-size: 16px;
   line-height: 1.38;
   max-width: 155px;
@@ -152,12 +155,13 @@ export const LearnBtnWrap = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  //gap: 12px;
+  gap: 12px;
   width: 100%;
 `;
 
 export const SmallHeartBox = styled.div`
   border-radius: 50%;
+  cursor: pointer;
 
   right: 26px;
   top: 26px;

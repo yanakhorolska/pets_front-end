@@ -67,7 +67,7 @@ const NoticesCategoriesList = () => {
         return;
       }
       const data = [...petsList];
-      setUsersPets(data.reverse());
+      setUsersPets(data);
       return;
     } else if (category === 'myNotices') {
       if (!userAddsList) {
@@ -77,7 +77,7 @@ const NoticesCategoriesList = () => {
         return;
       }
       const notices = [...userAddsList.data];
-      setUsersPets(notices.reverse());
+      setUsersPets(notices);
       return;
     } else if (category === 'favorite') {
       if (!userFavoriteList) {
@@ -87,7 +87,7 @@ const NoticesCategoriesList = () => {
         return;
       }
       const notices = [...userFavoriteList.data];
-      setUsersPets(notices.reverse());
+      setUsersPets(notices);
       return;
     } else {
       return;
@@ -98,8 +98,11 @@ const NoticesCategoriesList = () => {
 
   if (usersPets !== null) {
     pets = Object.values(usersPets);
-    // console.log(pets);
+    if (category === 'myNotices')
+      pets = pets.map(el => ({ ...el, myads: true }));
+    console.log('array', pets);
   }
+
   const visiblePets = pets.filter(pet =>
     pet.title.toLowerCase().includes(search.toLowerCase())
   );
@@ -113,7 +116,7 @@ const NoticesCategoriesList = () => {
           <>
             {visiblePets.length > 0 ? (
               visiblePets.map(pet => (
-                <NoticeCategoryItem id={pet._id} key={pet._id} />
+                <NoticeCategoryItem pet={pet} key={pet._id} />
               ))
             ) : (
               <SearchPuppyWrap>

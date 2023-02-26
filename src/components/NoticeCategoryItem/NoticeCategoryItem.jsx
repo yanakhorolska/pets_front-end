@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-// import { NavLink } from 'react-router-dom';
 import {
   NoticeItem,
   ImgWrap,
@@ -17,33 +16,36 @@ import {
   SmallHeartBox,
 } from './NoticeCategoryItemStyled';
 import {
-  useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
+  useDeleteUserNoticeByIdMutation,
 } from '../../redux/fetchNotice';
 import { useAuth } from 'hooks/useAuth';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
+import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
 
-export const NoticeCategoryItem = ({ id }) => {
-  const { data } = useGetNoticeByIdQuery(id);
+export const NoticeCategoryItem = ({ pet }) => {
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
+  const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
   const { isLoggedIn } = useAuth();
 
   const fav = useMemo(() => {
-    if (data) {
-      return data.favorite;
+    if (pet) {
+      return pet.favorite;
     }
-  }, [data]);
+  }, [pet]);
 
-  if (!data) {
+  if (!pet) {
     return;
   }
+  console.log('pet', pet);
 
   const {
+    _id,
     title,
     category,
     dateOfBirth,
@@ -52,27 +54,21 @@ export const NoticeCategoryItem = ({ id }) => {
     price,
     imageUrl,
     favorite,
-  } = data;
+    myads,
+  } = pet;
 
   const handleFavoriteClick = () => {
     if (!favorite) {
-      console.log('favourite add');
-      // del const
-      const data = addToFavorite(id).unwrap();
-      console.log(data, 'data add');
+      addToFavorite(_id).unwrap();
       return;
     }
 
     if (favorite) {
-      console.log('favourite delete');
-      // del const
-      const data = deleteFromFavorite(id).unwrap();
-      console.log(data, 'data delete');
+      deleteFromFavorite(_id).unwrap();
     }
   };
 
   const onAddToButtonClickLogin = () => {
-    console.log('login');
     Notiflix.Notify.warning('Please login to add', {
       background: '#000000',
       textColor: '#fff',
@@ -82,6 +78,11 @@ export const NoticeCategoryItem = ({ id }) => {
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
       backOverlayColor: '#31ee8657',
     });
+  };
+
+  const handleNoticeClick = () => {
+    deleteFromNotises(_id).unwrap();
+    return;
   };
 
   const changeTextOfCategory = category => {
@@ -114,6 +115,14 @@ export const NoticeCategoryItem = ({ id }) => {
     }
   }
 
+  const deleteButton = () => {
+    if (myads === true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <NoticeItem>
       <ImgWrap>
@@ -128,7 +137,10 @@ export const NoticeCategoryItem = ({ id }) => {
         </HeartBtnWrap>
         {fav && (
           <SmallHeartBox>
-            <Icon.SmallHeart style={{ fill: '#f59256' }} />
+            <Icon.SmallHeart
+              style={{ fill: '#f59256' }}
+              onClick={handleFavoriteClick}
+            />
           </SmallHeartBox>
         )}
       </ImgWrap>
@@ -158,9 +170,9 @@ export const NoticeCategoryItem = ({ id }) => {
             ) : null}
           </NoticeInfoList>
           <LearnBtnWrap>
-            <LearnMoreButtonComponent id={id} />
+            <LearnMoreButtonComponent id={_id} />
+            {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
-          {/* {<TrashBtn>Delete</TrashBtn>} */}
         </ListInfoWrap>
       </NoticeInfoWrap>
     </NoticeItem>

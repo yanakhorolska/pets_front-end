@@ -4,7 +4,6 @@ import {
   ModalCreateNotice,
   RadioGroupSex,
   RadioSex,
-  StyledStar,
   InputLabel,
   InputStyled,
   CommentInput,
@@ -38,9 +37,10 @@ const validationSchemas = [
       .min(2, 'Too Short!')
       .max(48, 'Too long!')
       .required('Title is required field'),
-    petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!'),
+    petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!').required(),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
+      .required()
       .test('', '', (value, context) => {
         if (!value) return true;
         const currDate = new Date();
@@ -53,7 +53,7 @@ const validationSchemas = [
         }
         return true;
       }),
-    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too long!'),
+    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too long!').required(),
   }),
   Yup.object().shape({
     sex: Yup.string()
@@ -75,8 +75,9 @@ const validationSchemas = [
           });
         }
         return true;
-      }),
-    comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!'),
+      })
+      .required(),
+    comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!').required(),
   }),
 ];
 
@@ -206,9 +207,7 @@ const CreateNotice = ({ onClose }) => {
             </RadioCaregoryLabel>
           </RadioGroupCategories>
           <InputLabel>
-            <span>
-              Title of ad<StyledStar>*</StyledStar>
-            </span>
+            <span>Title of ad:</span>
             <InputStyled
               type="text"
               name="title"
@@ -232,7 +231,7 @@ const CreateNotice = ({ onClose }) => {
             <FieldError>{formik.touched.petName && petNameError} </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Date of birth</span>
+            <span>Date of birth:</span>
             <InputStyled
               type="text"
               name="dateOfBirth"
@@ -246,7 +245,7 @@ const CreateNotice = ({ onClose }) => {
             </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Breed</span>
+            <span>Breed:</span>
             <InputStyled
               type="text"
               name="breed"
@@ -261,9 +260,7 @@ const CreateNotice = ({ onClose }) => {
       ) : (
         <FormPageWrapper>
           <InputLabel>
-            <span>
-              The sex<StyledStar>*</StyledStar>
-            </span>
+            <span>The sex:</span>
           </InputLabel>
           <RadioGroupSex role="group" aria-labelledby="radio-sex-group">
             <RadioSexLabel>
@@ -290,9 +287,7 @@ const CreateNotice = ({ onClose }) => {
             </RadioSexLabel>
           </RadioGroupSex>
           <InputLabel>
-            <span>
-              Location<StyledStar>*</StyledStar>:
-            </span>
+            <span>Location:</span>
             <InputStyled
               type="text"
               name="location"
@@ -305,9 +300,7 @@ const CreateNotice = ({ onClose }) => {
           </InputLabel>
           {formik.values.category === 'sell' && (
             <InputLabel>
-              <span>
-                Price<StyledStar>*</StyledStar>:
-              </span>
+              <span>Price:</span>
               <InputStyled
                 type="number"
                 name="price"

@@ -1,21 +1,14 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import {
-  AuthError,
-  AuthErrorLast,
-  AuthInput,
-  AuthButton,
-} from '../AuthForm/AuthFormStyled';
-import { useTranslation } from 'react-i18next';
+import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../AuthForm/AuthFormStyled"
 
 const LoginForm = () => {
   const [loginUser] = useLogInUserMutation();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -31,13 +24,14 @@ const LoginForm = () => {
       email: Yup.string()
         .email('Invalid email address')
         .matches(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          /^([a-zA-Z0-9])+([a-zA-Z0-9._-]+)@[a-zA-Z0-9]+([.-]?[a-zA-Z0-9]+)\.[a-zA-Z]{2,}$/,
           'Invalid email address'
         )
         .min(10, 'Email must include more tnan 10 characters')
         .max(63, 'Email must be less tnan 63 characters')
         .required('This is a required field'),
       password: Yup.string()
+        .matches(/^[^\s]+(^\s.*)?$/, "Password can't include whitespace")
         .min(7, 'Password must include more tnan 7 characters')
         .max(32, 'Password must be less tnan 32 characters')
         .required('This is a required field'),
@@ -72,16 +66,18 @@ const LoginForm = () => {
       <AuthInput
         type="email"
         name="email"
-        placeholder={t('email')}
+        placeholder="Email"
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={email}
       />
-      <AuthError>{formik.touched.email && emailError && emailError}</AuthError>
+      <AuthError>
+        {formik.touched.email && emailError && emailError}
+        </AuthError>
       <AuthInput
         type="password"
         name="password"
-        placeholder={t('password')}
+        placeholder="Password"
         onChange={event => {
           formik.setFieldValue('password', event.target.value.trim());
         }}
@@ -92,9 +88,9 @@ const LoginForm = () => {
         {formik.touched.password && passwordError && passwordError}
       </AuthErrorLast>
       <AuthButton type="submit" accent={true} last={true}>
-        {t('login')}
-      </AuthButton>
-    </form>
+        Login
+        </AuthButton>
+      </form>
   );
 };
 
