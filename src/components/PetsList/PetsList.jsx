@@ -12,14 +12,18 @@ import {
   Button,
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
-import { Loader } from '../Loader/Loader';
+
+import { Loader } from 'components/Loader/Loader';
 
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
-  let { data, isLoading } = useGetUserPetsQuery();
-  if (!data) {
-    return;
-  }
+  let { data , isLoading } = useGetUserPetsQuery();
+  // console.log('pets', data);
+
+  // if (!data) {
+  //   return;
+  // }
+
 
   const onClick = async idPet => {
     await removePet(idPet).unwrap();
@@ -74,54 +78,46 @@ const PetsList = () => {
   // );
 
   return (
-    <>
-      {isLoading ? (
-        <>
-          <Loader />
-        </>
-      ) : (
-        <>
-          {data.length > 0 ? (
-            <div>
-              {data.map(pet => (
-                <PetBox key={pet.id}>
-                  <PetPhoto src={pet.avatarURL} alt="Pet Foto" />
+    <div>
+      {isLoading ? <Loader/> :
+      <> {data.length > 0
+        ? data.map(pet => (
+            <PetBox key={pet.id}>
+              <PetPhoto src={pet.avatarURL} alt="Pet Foto" />
+
 
                   <Button type="submit" onClick={() => onClick(pet.id)}>
                     <Icon.Trash style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
                   </Button>
-
-                  <PetList>
-                    <li>
-                      <PetDescripton>
-                        <Span> Name:</Span> {pet.nickname}
-                      </PetDescripton>
-                    </li>
-                    <li>
-                      <PetDescripton>
-                        <Span> Date of birth:</Span>
-                        {new Date(pet.birthday).toLocaleDateString('en-GB')}
-                      </PetDescripton>
-                    </li>
-                    <li>
-                      <PetDescripton>
-                        <Span> Breed:</Span> {pet.breed}
-                      </PetDescripton>
-                    </li>
-                    <li>
-                      <PetDescripton>
-                        <Span> Comments:</Span>
-                        {pet.comment}
-                      </PetDescripton>
-                    </li>
-                  </PetList>
-                </PetBox>
-              ))}
-            </div>
-          ) : null}
-        </>
-      )}
-    </>
+              <PetList>
+                <li>
+                  <PetDescripton>
+                    <Span> Name:</Span> {pet.nickname}
+                  </PetDescripton>
+                </li>
+                <li>
+                  <PetDescripton>
+                    <Span> Date of birth:</Span>
+                    {new Date(pet.birthday).toLocaleDateString('en-GB')}
+                  </PetDescripton>
+                </li>
+                <li>
+                  <PetDescripton>
+                    <Span> Breed:</Span> {pet.breed}
+                  </PetDescripton>
+                </li>
+                <li>
+                  <PetDescripton>
+                    <Span> Comments:</Span>
+                    {pet.comment}
+                  </PetDescripton>
+                </li>
+              </PetList>
+            </PetBox>
+          ))
+        : null}</>
+        }
+    </div>
   );
 };
 
