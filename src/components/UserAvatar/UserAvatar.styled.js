@@ -42,6 +42,6 @@ margin-left: auto;
 margin-right: auto;
 width: 233px;
 height: 233px;
-// filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
-box-shadow:0px 4px 14px rgba(0, 0, 0, 0.11);
+filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
+
 `

@@ -15,7 +15,9 @@ import {
 const UserData = () => {
   const currentuser = useSelector(getUser);
 
-  const date = new Date(currentuser.birthday).toLocaleDateString('en-GB')
+  let date = new Date(currentuser.birthday).toLocaleDateString("en-US", {day: "2-digit", month: "2-digit", year: "numeric"});
+
+  console.log(date)
   return (
     <DataBox>
       <TitleWrapperData>
@@ -43,7 +45,7 @@ const UserData = () => {
             name="birthday"
             text="birthday"
             type="text"
-            placeholder={date}
+            placeholder={ date === "Invalid Date" ? "00.00.0000" :  date}
           />
           <UserDataItem
             initialValues={{ phone: currentuser.phone }}
