@@ -59,7 +59,7 @@ export const AddPet = ({ onClose }) => {
   };
  
   const customOnSubmit = async (values, actions) => {
-    console.log(values);
+    const { birthday, ...reqValue } = values
     const status = await addPet({birthday : formatDate(new Date(birthday)), ...reqValue}).unwrap();
     if (status === 'success')  onClose()
     actions.setSubmitting(false);
