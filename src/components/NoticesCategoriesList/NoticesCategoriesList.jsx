@@ -98,6 +98,7 @@ const NoticesCategoriesList = () => {
 
   if (usersPets !== null) {
     pets = Object.values(usersPets);
+    if (category === "myNotices") pets = pets.map(el => ({ ...el, myads: true}))
     // console.log(pets);
   }
   const visiblePets = pets.filter(pet =>
