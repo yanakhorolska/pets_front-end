@@ -5,13 +5,20 @@ import * as Yup from 'yup';
 import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../AuthForm/AuthFormStyled"
+import {
+  AuthError,
+  AuthErrorLast,
+  AuthInput,
+  AuthButton,
+} from '../AuthForm/AuthFormStyled';
+import { useTranslation } from 'react-i18next';
+
 const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegisterUserMutation();
   const [loginUser] = useLogInUserMutation();
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -28,10 +35,11 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object({
       email: Yup.string()
-      .email('Invalid email address')
+        .email('Invalid email address')
         .matches(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Invalid email address'
-      )
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          'Invalid email address'
+        )
         .min(10, 'Email must include more tnan 10 characters')
         .max(63, 'Email must be less tnan 63 characters')
         .required('This is a required field'),
@@ -47,7 +55,7 @@ const RegisterForm = () => {
         .required('This is a required field'),
       name: Yup.string()
         .max(70, 'Name must be less tnan 70 characters')
-        .matches(/^[a-zA-Z]+$/, "Only latin letters")
+        .matches(/^[a-zA-Z]+$/, 'Only latin letters')
         .required('This is a required field'),
       city: Yup.string()
         .matches(
@@ -125,7 +133,7 @@ const RegisterForm = () => {
             <AuthInput
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('email')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={email}
@@ -136,7 +144,7 @@ const RegisterForm = () => {
             <AuthInput
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={t('password')}
               onChange={event => {
                 formik.setFieldValue('password', event.target.value.trim());
               }}
@@ -149,7 +157,7 @@ const RegisterForm = () => {
             <AuthInput
               type="password"
               name="confirm_password"
-              placeholder="Confirm Password"
+              placeholder={t('confirmPassword')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={confirm_password}
@@ -164,7 +172,7 @@ const RegisterForm = () => {
             <AuthInput
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={t('name')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={name}
@@ -175,7 +183,7 @@ const RegisterForm = () => {
             <AuthInput
               type="text"
               name="city"
-              placeholder="City"
+              placeholder={t('city')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={city}
@@ -186,7 +194,7 @@ const RegisterForm = () => {
             <AuthInput
               type="tel"
               name="phone"
-              placeholder="Mobile phone"
+              placeholder={t('mobilePhone')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={phone}
@@ -194,18 +202,18 @@ const RegisterForm = () => {
             <AuthErrorLast>
               {formik.touched.phone && phoneError && phoneError}
             </AuthErrorLast>
-            <AuthButton accent = {true} last={false}
-              type="submit"
-            >
-              Register
+            <AuthButton accent={true} last={false} type="submit">
+              {t('register')}
             </AuthButton>
           </>
         )}
-        <AuthButton accent={page === 1 ? true : false} last={true}
+        <AuthButton
+          accent={page === 1 ? true : false}
+          last={true}
           type="button"
           onClick={onPageChange}
         >
-          {page === 1 ? 'Next' : 'Back'}
+          {page === 1 ? t('next') : t('back')}
         </AuthButton>
       </form>
     </>

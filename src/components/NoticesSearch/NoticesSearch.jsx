@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SearchInput from 'styles/Inputs/SearchInput/SearchInput';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+import { useTranslation } from 'react-i18next';
 const NoticesSearch = () => {
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [, setSearchParams] = useSearchParams();
 
@@ -31,7 +32,7 @@ const NoticesSearch = () => {
           name="findpet"
           type="text"
           value={query}
-          placeholder="Search"
+          placeholder={t('search')}
           onChange={handleInput}
         />
       </form>

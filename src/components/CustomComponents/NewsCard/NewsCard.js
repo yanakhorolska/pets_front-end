@@ -8,7 +8,10 @@ import {
   NewsInfoWrap,
   NewsTextWrap,
 } from './NewsCardStyled';
+import { useTranslation } from 'react-i18next';
+
 export const NewsCard = ({ title, description, date, url }) => {
+  const { t } = useTranslation();
   return (
     <NewsItem>
       <NewsLine />
@@ -19,7 +22,7 @@ export const NewsCard = ({ title, description, date, url }) => {
       <NewsInfoWrap>
         <NewsDate>{date}</NewsDate>
         <NewsLink href={url} target="_blank">
-          Read more
+          {t('readMore')}
         </NewsLink>
       </NewsInfoWrap>
     </NewsItem>

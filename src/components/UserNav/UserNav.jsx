@@ -4,10 +4,11 @@ import Icon from 'styles/Buttons/icons/index';
 import { getUserAvatarURL } from 'redux/selectors';
 import { useSelector } from 'react-redux';
 import { UserAvatar } from './UserNav.styled';
+import { useTranslation } from 'react-i18next';
 const UserNav = click => {
   const avatarURL = useSelector(getUserAvatarURL);
   const [avatar, setAvatar] = useState(avatarURL);
-
+  const { t } = useTranslation();
   useEffect(() => {
     setAvatar(avatarURL);
   }, [avatarURL]);
@@ -29,7 +30,7 @@ const UserNav = click => {
       ) : (
         <Icon.Account style={{ marginRight: '12px' }} />
       )}
-      Account
+      {t('account')}
     </RoundLink>
   );
 };

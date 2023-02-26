@@ -1,0 +1,126 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+i18n
+  // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
+  // learn more: https://github.com/i18next/i18next-http-backend
+  // want your translations to be loaded from a professional CDN? => https://github.com/locize/react-tutorial#step-2---use-the-locize-cdn
+  .use(Backend)
+  // detect user language
+  // learn more: https://github.com/i18next/i18next-browser-languageDetector
+  .use(LanguageDetector)
+  // pass the i18n instance to react-i18next.
+  .use(initReactI18next)
+  // init i18next
+  // for all options read: https://www.i18next.com/overview/configuration-options
+  .init({
+    fallbackLng: 'en',
+    debug: true,
+
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+    resources: {
+      en: {
+        translation: {
+          titleMain: 'Take good care of your small pets',
+          //News
+          titleNews: 'News',
+          noNews: 'No news found',
+          prev: 'Prev',
+          next: 'Next',
+          back: 'Back',
+          readMore: 'Read More',
+          search: 'Search',
+          // Notices
+          noticesTitle: 'Find your favorite pet',
+          noticesHeaderTitle: 'Find Pet',
+          learnMore: 'Learn more',
+          //Friends
+          friendsTitle: 'Our Friends',
+          phone: 'Phone',
+          email: 'Email',
+          address: 'Address',
+          time: 'Time',
+          //Login&Registration
+          login: 'Login',
+          registration: 'Registration',
+          register: 'Register',
+          alreadyQuestion: 'Already have an account?',
+          dontQuestion: "Don't have an account?",
+          password: 'Password',
+          confirmPassword: 'Confirm Password',
+          name: 'Name',
+          city: 'City',
+          mobilePhone: 'Mobile phone',
+          //Account
+          account: 'Аccount',
+          myInfo: 'My information',
+          myPets: 'My pets',
+          birthday: 'Birthday',
+          logOut: 'Log out',
+          addPet: 'Add pet',
+          namePet: 'Name pet',
+          datePet: 'Date of birth',
+          breed: 'Breed',
+          cancel: 'Cancel',
+          comments: 'Comments',
+          addText: 'Add photo and some comments',
+          done: 'Done',
+        },
+      },
+      ua: {
+        translation: {
+          titleMain: 'Доглядайте за своїми улюбленцями',
+          //News
+          titleNews: 'Новини',
+          noNews: 'Новин не знайдено',
+          prev: 'Назад',
+          next: 'Далі',
+          back: 'Назад',
+          readMore: 'Докладніше',
+          search: 'Пошук',
+          // Notices
+          noticesTitle: 'Знайдіть свого вихованця',
+          noticesHeaderTitle: 'Пошук вихованця',
+          learnMore: 'Докладніше',
+          //Friends
+          friendsTitle: 'Друзі',
+          phone: 'Телефон',
+          email: 'Пошта',
+          address: 'Адреса',
+          time: 'Час',
+          //Login&Registration
+          login: 'Логін',
+          registration: 'Реєстрація',
+          register: 'Зареєструватися',
+          alreadyQuestion: 'Вже є аккаунт?',
+          dontQuestion: 'Немає аккаунта?',
+          password: 'Пароль',
+          confirmPassword: 'Пiдтвердіть пароль',
+          name: "Ім'я",
+          city: 'Місто',
+          mobilePhone: 'Мобільний телефон',
+          //Account
+          account: 'Аккаунт',
+          myInfo: 'Моя інформація',
+          myPets: 'Мої улюбленці',
+          birthday: 'Дата народження',
+          logOut: 'Вийти',
+          addPet: 'Додати',
+          namePet: "Ім'я улюбленця",
+          datePet: 'Дата народження',
+          breed: 'Порода',
+          cancel: 'Відміна',
+          comments: 'Коментарі',
+          addText: 'Додайте фото та коментарі',
+          done: 'Готово',
+        },
+      },
+    },
+  });
+
+export default i18n;

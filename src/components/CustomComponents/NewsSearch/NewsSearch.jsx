@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import SearchInput from 'styles/Inputs/SearchInput/SearchInput';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useTranslation } from 'react-i18next';
 Notify.init({ warning: { background: '#F59256' } });
 export const SearchField = ({ onSearch }) => {
+  const { t } = useTranslation();
   const [inputUsed, setInputUsed] = useState(false);
   const [value, setValue] = useState('');
 
   const handleChange = e => {
-    onSearch(e.target.value);
+    onSearch(e.target.value.trim(' '));
     if (e.target.value !== '') {
       setInputUsed(true);
     }
@@ -28,10 +30,11 @@ export const SearchField = ({ onSearch }) => {
   };
   return (
     <SearchInput
+      maxLength={10}
       value={value}
       type="text"
       name="search"
-      placeholder="Search"
+      placeholder={t('search')}
       onChange={handleChange}
       inputUsed={inputUsed}
       onClick={handleClear}

@@ -1,10 +1,11 @@
 import AuthForm from 'components/AuthForm/AuthForm';
-import { AuthContainer } from "../LoginPage/LoginPage.styled"
-
+import { AuthContainer } from '../LoginPage/LoginPage.styled';
+import { useTranslation } from 'react-i18next';
 const RegisterPage = () => {
+  const { t } = useTranslation();
   return (
     <AuthContainer>
-      <AuthForm title="Registration" />
+      <AuthForm title={t('registration')} />
     </AuthContainer>
   );
 };

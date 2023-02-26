@@ -4,13 +4,14 @@ import AddPetButton from 'components/AddPetButton';
 import { AddPet } from '../ModalAddsPet/AddPet';
 import UserPageTitle from '../UserPageTitle/UserPageTitle';
 import { TitleWrapper } from '../UserData/UserData.styled';
-
+import { useTranslation } from 'react-i18next';
 
 const PetsData = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <TitleWrapper>
-        <UserPageTitle title={'My pets:'} />
+        <UserPageTitle title={t('myPets') + ':'} />
         <AddPetButton component={AddPet} />
       </TitleWrapper>
 
