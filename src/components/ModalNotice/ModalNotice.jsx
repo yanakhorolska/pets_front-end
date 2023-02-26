@@ -24,6 +24,7 @@ import {
   DescrData,
   DescriptionLink,
   CloseButtonTop,
+  CommentBox,
 } from './ModalNotice.styled';
 
 const ModalNotice = ({ onClose, id }) => {
@@ -163,10 +164,10 @@ const ModalNotice = ({ onClose, id }) => {
               )}
             </Descriptions>
           </ColumnBox>
-          <p>
+          <CommentBox>
             <DescrCategory>Comments:</DescrCategory>
             <DescrData>{comment}</DescrData>
-          </p>
+          </CommentBox>
           <ButtonBox>
             <li>
               <a href={`tel:${phone}`}>

@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-// import { NavLink } from 'react-router-dom';
 import {
   NoticeItem,
   ImgWrap,
@@ -20,10 +19,13 @@ import {
   useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
+  useDeleteUserNoticeByIdMutation,
 } from '../../redux/fetchNotice';
 import { useAuth } from 'hooks/useAuth';
+import { useUser } from 'hooks/useUser';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
+import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
 
@@ -31,7 +33,12 @@ export const NoticeCategoryItem = ({ id }) => {
   const { data } = useGetNoticeByIdQuery(id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
+  const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
   const { isLoggedIn } = useAuth();
+  const { userData } = useUser();
+  // const [del, setfirst] = useState(second);
+  console.log(data);
+  console.log(userData, 'user data');
 
   const fav = useMemo(() => {
     if (data) {
@@ -52,6 +59,7 @@ export const NoticeCategoryItem = ({ id }) => {
     price,
     imageUrl,
     favorite,
+    email,
   } = data;
 
   const handleFavoriteClick = () => {
@@ -84,6 +92,14 @@ export const NoticeCategoryItem = ({ id }) => {
     });
   };
 
+  const handleNoticeClick = () => {
+    console.log('notice dell');
+    // del const
+    const data = deleteFromNotises(id).unwrap();
+    console.log(data, 'data dell');
+    return;
+  };
+
   const changeTextOfCategory = category => {
     if (category === 'sell') {
       return 'Sell';
@@ -114,6 +130,16 @@ export const NoticeCategoryItem = ({ id }) => {
     }
   }
 
+  const deleteButton = () => {
+    if (userData.email === email) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  console.log(deleteButton(), 'deletebtn');
+
   return (
     <NoticeItem>
       <ImgWrap>
@@ -128,7 +154,10 @@ export const NoticeCategoryItem = ({ id }) => {
         </HeartBtnWrap>
         {fav && (
           <SmallHeartBox>
-            <Icon.SmallHeart style={{ fill: '#f59256' }} />
+            <Icon.SmallHeart
+              style={{ fill: '#f59256' }}
+              onClick={handleFavoriteClick}
+            />
           </SmallHeartBox>
         )}
       </ImgWrap>
@@ -159,8 +188,8 @@ export const NoticeCategoryItem = ({ id }) => {
           </NoticeInfoList>
           <LearnBtnWrap>
             <LearnMoreButtonComponent id={id} />
+            {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
-          {/* {<TrashBtn>Delete</TrashBtn>} */}
         </ListInfoWrap>
       </NoticeInfoWrap>
     </NoticeItem>
