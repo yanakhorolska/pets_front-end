@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const LearnMoreBtn = styled.button`
   padding: 8px 79px;
-  background: ${p => p.theme.color.secondatyBtnText};
+  background: ${p => p.theme.color.cards};
   border: 2px solid ${p => p.theme.color.accent};
   border-radius: 40px;
   cursor: pointer;
