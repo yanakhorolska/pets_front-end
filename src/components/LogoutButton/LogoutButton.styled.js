@@ -10,6 +10,7 @@ background-color: transparent;
 width: 90px;
 height: 22px;
 padding: 0;
+cursor: pointer;
 @media ${p => p.theme.media.tabletDesktop}{
     margin-left: 0;
 }
