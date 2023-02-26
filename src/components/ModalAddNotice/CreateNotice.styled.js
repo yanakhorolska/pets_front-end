@@ -33,6 +33,7 @@ const FormTitle = styled.h3`
   margin: 0 auto;
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.default};
+  margin-bottom: 20px;
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-weight: ${p => p.theme.fontWeights.semiBold};
@@ -41,7 +42,6 @@ const FormTitle = styled.h3`
 `;
 
 const FormDescription = styled.h2`
-  margin-top: 20px;
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.35;
@@ -54,11 +54,11 @@ const FormDescription = styled.h2`
 const FormPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
-  gap: 16px;
+  margin-bottom: 20px;
+  /* gap: 3px; */
 
   @media ${p => p.theme.media.tabletDesktop} {
-    gap: 28px;
+    /* gap: 5px; */
   }
 `;
 
@@ -80,7 +80,7 @@ const InputStyled = styled.input`
   margin-top: 8px;
   font-size: 14px;
   height: 40px;
-  background: ${p => p.theme.color.background};
+  background: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
 
@@ -131,6 +131,10 @@ const RadioSexLabel = styled.label`
   flex-direction: column;
   color: ${p =>
     p.children[1].props.checked ? p.theme.color.accent : p.theme.color.black};
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    margin-top: 20px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
@@ -163,6 +167,7 @@ const InputImageWrapper = styled.div`
   width: 116px;
   height: 116px;
   margin-top: 12px;
+  margin-bottom: 12px;
   border: ${p => p.theme.borders.inputBorder};
   background: ${p => p.theme.color.background};
   border-radius: 20px;
@@ -185,16 +190,24 @@ const StyledIconAdd = styled(Icon.Add)`
 `;
 
 const FieldError = styled.p`
-  height: 20px;
-  font-size: 10px;
+  height: 18px;
+  font-size: 14px;
   color: ${p => p.theme.color.accent};
   margin-left: 15px;
+  line-height: 18px;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    height: 20px;
+    font-size: 16px;
+  }
 `;
 
 const RadioGroupCategories = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 
   @media ${p => p.theme.media.tabletDesktop} {
     gap: 20px;
