@@ -100,6 +100,7 @@ export const Descriptions = styled.ul`
 `;
 
 export const TitleCard = styled.p`
+  /* display: block; */
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.l};
   line-height: ${p => p.theme.lineHeights.s};
@@ -108,6 +109,7 @@ export const TitleCard = styled.p`
   color: #000000;
 
   @media ${p => p.theme.media.tabletDesktop} {
+    width: 400px;
     font-size: 28px;
   }
 `;
@@ -122,7 +124,7 @@ export const DescriptionLink = styled.a`
 
 export const DescrCategory = styled.span`
   display: block;
-  width: 90px;
+  width: 100px;
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.s};
