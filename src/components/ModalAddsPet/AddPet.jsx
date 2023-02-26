@@ -20,11 +20,7 @@ const validationSchema = [
       .max(new Date(),  ({ label }) => `${label} future date not allowed`)
       .transform((value, originalValue) => {
         try {
-          const date = originalValue.split('.');
-          if (date.length === 3 ) {
-            return new Date(`${date[2]}-${date[1]}-${date[0]}`);
-          }
-          return null;
+          return getDateFromString(originalValue);
         } catch (e) {
           return null;
         }
@@ -38,13 +34,21 @@ const validationSchema = [
   }),
 ];
 
-const formatDate = date => {
-  return [
-    date.toLocaleDateString('default', { year: 'numeric' }),
-    date.toLocaleDateString('default', { month: '2-digit' }),
-    date.toLocaleDateString('default', { day: '2-digit' }),
-  ].join('-');
+const getDateFromString = dateString => {
+  const date = dateString.split('.');
+  if (date.length === 3 ) {
+    return new Date(`${date[2]}-${date[1]}-${date[0]}`);
+  }
+  return null
 }
+
+// const formatDate = date => {
+//   return [
+//     date.toLocaleDateString('default', { year: 'numeric' }),
+//     date.toLocaleDateString('default', { month: '2-digit' }),
+//     date.toLocaleDateString('default', { day: '2-digit' }),
+//   ].join('-');
+// }
 
 export const AddPet = ({ onClose }) => {
 
@@ -60,7 +64,10 @@ export const AddPet = ({ onClose }) => {
  
   const customOnSubmit = async (values, actions) => {
     const { birthday, ...reqValue } = values
-    const status = await addPet({birthday : formatDate(new Date(birthday)), ...reqValue}).unwrap();
+    const status = await addPet({
+      birthday: getDateFromString(birthday).toJSON().slice(0, 10),
+      ...reqValue,
+    }).unwrap();
     if (status === 'success')  onClose()
     actions.setSubmitting(false);
   }
