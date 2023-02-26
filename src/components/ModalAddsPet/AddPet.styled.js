@@ -82,6 +82,7 @@ const InputLabel = styled.label`
 const InputStyled = styled.input`
   padding: ${p => p.theme.space.m.xxs} ${p => p.theme.space.m.xs};
   margin-top: ${p => p.theme.space.m.xxs};
+  font-family: inherit;
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1;
   height: ${p => p.theme.fontSizes.xxl};
