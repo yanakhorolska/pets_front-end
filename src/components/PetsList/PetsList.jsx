@@ -37,7 +37,7 @@ const PetsList = () => {
               <PetPhoto src={pet.avatarURL} alt="Pet Foto" />
 
               <Button type="submit" onClick={() => onClick(pet.id)}>
-                <Icon.Trash style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+                <Icon.Trash style={{ color: 'rgba(17, 17, 17, 0.6)'}} />
               </Button>
 
               <PetList>

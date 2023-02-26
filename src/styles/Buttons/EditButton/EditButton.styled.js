@@ -8,7 +8,6 @@ export const EditBtn = styled.button`
   height: 20px;
   background: #fdf7f2;
   cursor: pointer;
-  color: rgba(17, 17, 17, 0.6);
   @media ${p => p.theme.media.tabletDesktop}{
   width: 32px;
   height: 32px;
