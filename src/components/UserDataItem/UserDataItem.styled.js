@@ -1,19 +1,19 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+// import { Form, Field } from 'formik';
 
-export const UserDataForm = styled(Form)`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-direction: row;
-  padding: 0;
-  width: 100%;
-  @media ${p => p.theme.media.tabletDesktop} {
+export const UserDataForm = styled.ul`
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+flex-direction: row;
+padding: 0;
+width:100%;
+@media ${p => p.theme.media.tabletDesktop}{
     width: 370px;
-  }
-`;
-export const UserDataLabel = styled.label`
-color: ${p => p.theme.color.text};
+}
+`
+export const UserDataLabel = styled.h3`
+  color: ${p => p.theme.color.text};
   font-size: 12px;
   text-transform: capitalize;
   width: 56px;
@@ -24,7 +24,25 @@ color: ${p => p.theme.color.text};
   }
 `;
 
-export const UserDataInput = styled(Field)`
+export const UserDataPar = styled.p`
+display: block;
+width: 160px;
+border-radius: 5px;
+padding: 4px 18px;
+margin-bottom: 8px;
+margin-right: 8px;
+background-color: ${p => p.theme.color.white};
+border: none;
+color: black;
+font-weight: 400;
+@media ${p => p.theme.media.tabletDesktop}{
+    width: 216px;
+    font-size: 18px;
+    lineHeights: ${p => p.theme.lineHeights.s}
+}
+`
+
+export const UserDataInput = styled.input`
 display: block;
 width: 160px;
 border-radius: 40px;

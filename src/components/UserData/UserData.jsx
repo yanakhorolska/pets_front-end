@@ -13,11 +13,18 @@ import {
 } from './UserData.styled';
 
 const UserData = () => {
-  const currentuser = useSelector(getUser);
+  const { name, email, birthday, phone, city } = useSelector(getUser);
 
-  let date = new Date(currentuser.birthday).toLocaleDateString("en-US", {day: "2-digit", month: "2-digit", year: "numeric"});
+  const date = new Date(birthday).toLocaleDateString('en-GB');
 
-  console.log(date)
+  const info = {
+    name,
+    email,
+    birthday: date,
+    phone,
+    city,
+  };
+
   return (
     <DataBox>
       <TitleWrapperData>
@@ -26,42 +33,11 @@ const UserData = () => {
       <UserDataBox>
         <UserAvatar />
         <UserDataItemsBox>
-          <UserDataItem
-            initialValues={{ name: currentuser.name }}
-            name="name"
-            text="name"
-            type="text"
-            placeholder={currentuser.name}
-          />
-          <UserDataItem
-            initialValues={{ email: currentuser.email }}
-            name="email"
-            text="email"
-            type="email"
-            placeholder={currentuser.email}
-          />
-          <UserDataItem
-            initialValues={{ birthday: currentuser.birthday }}
-            name="birthday"
-            text="birthday"
-            type="text"
-            placeholder={ date === "Invalid Date" ? "00.00.0000" :  date}
-          />
-          <UserDataItem
-            initialValues={{ phone: currentuser.phone }}
-            name="phone"
-            text="phone"
-            type="tel"
-            placeholder={currentuser.phone}
-          />
-          <UserDataItem
-            initialValues={{ city: currentuser.city }}
-            name="city"
-            text="city"
-            type="text"
-            placeholder={currentuser.city}
-          />
-
+          <ul>
+            {Object.entries(info).map(item => (
+              <UserDataItem key={item} item={item} />
+            ))}
+          </ul>
           <LogoutButton />
         </UserDataItemsBox>
       </UserDataBox>
