@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+
 export const StyledListTest = styled.ul`
   display: flex;
   flex-wrap: wrap;
- // gap: 32px;
+  // gap: 32px;
   justify-content: center;
   @media (min-width: 768px) {
     justify-content: flex-start;
@@ -57,8 +58,8 @@ export const NoticeImg = styled.img`
 
 export const CategoryTag = styled.p`
   border-radius: 0 40px 40px 0;
-  color:${p => p.theme.color.primaryText};
- 
+  color: ${p => p.theme.color.primaryText};
+
   font-size: 12px;
   height: 28px;
   letter-spacing: 0.04em;
@@ -98,7 +99,7 @@ export const NoticeInfoWrap = styled.div`
 `;
 
 export const NoticeTitle = styled.h4`
-  color:  ${p => p.theme.color.primaryText};  
+  color: ${p => p.theme.color.primaryText};
   font-size: 28px;
   letter-spacing: -0.01em;
   line-height: 1.36;
@@ -127,7 +128,7 @@ export const NoticeInfoListItem = styled.li`
 `;
 
 export const NoticeInfoListItemCategory = styled.p`
-  color:  ${p => p.theme.color.primaryText};
+  color: ${p => p.theme.color.primaryText};
   font-size: 16px;
   line-height: 1.38;
   width: 90px;
@@ -152,5 +153,22 @@ export const LearnBtnWrap = styled.div`
   display: flex;
   flex-direction: column;
   //gap: 12px;
-  width:100%;
+  width: 100%;
+`;
+
+export const SmallHeartBox = styled.div`
+  border-radius: 50%;
+
+  right: 26px;
+  top: 26px;
+
+  display: flex;
+  position: absolute;
+
+  transition: transform scale3d 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: rotate(-45deg) scale3d(1.1, 1.1, 1.1);
+  }
 `;

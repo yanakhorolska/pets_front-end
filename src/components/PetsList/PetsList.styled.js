@@ -4,7 +4,6 @@ import styled from 'styled-components';
 // margin: 20px auto;
 // `
 
-
 export const PetBox = styled.div`
   position: relative;
   margin: 20px auto;
@@ -49,19 +48,24 @@ export const PetList = styled.ul`
   gap: 12px;
 `;
 
-export const PetDescripton = styled.p`
+export const PetDescripton = styled.div`
+  display: block;
+  align-items: center;
+  width: 235px;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.36;
-  display: flex;
-  align-items: center;
   letter-spacing: 0.04em;
 
   color: #000000;
 
   @media ${p => p.theme.media.tabletDesktop} {
+    width: 470px;
     font-size: 16px;
     line-height: 1.38;
+  }
+  @media ${p => p.theme.media.desktop} {
+    width: 580px;
   }
 `;
 
