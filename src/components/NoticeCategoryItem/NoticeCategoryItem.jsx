@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-// import { NavLink } from 'react-router-dom';
 import {
   NoticeItem,
   ImgWrap,
@@ -20,10 +19,12 @@ import {
   useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
+  useDeleteUserNoticeByIdMutation,
 } from '../../redux/fetchNotice';
 import { useAuth } from 'hooks/useAuth';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
+import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
 
@@ -31,7 +32,9 @@ export const NoticeCategoryItem = ({ id }) => {
   const { data } = useGetNoticeByIdQuery(id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
+  const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
   const { isLoggedIn } = useAuth();
+  console.log(data);
 
   const fav = useMemo(() => {
     if (data) {
@@ -82,6 +85,14 @@ export const NoticeCategoryItem = ({ id }) => {
       fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
       backOverlayColor: '#31ee8657',
     });
+  };
+
+  const handleNoticeClick = () => {
+    console.log('notice dell');
+    // del const
+    const data = deleteFromNotises(id).unwrap();
+    console.log(data, 'data dell');
+    return;
   };
 
   const changeTextOfCategory = category => {
@@ -160,7 +171,7 @@ export const NoticeCategoryItem = ({ id }) => {
           <LearnBtnWrap>
             <LearnMoreButtonComponent id={id} />
           </LearnBtnWrap>
-          {/* {<TrashBtn>Delete</TrashBtn>} */}
+          <TrashButton onClick={handleNoticeClick} />
         </ListInfoWrap>
       </NoticeInfoWrap>
     </NoticeItem>
