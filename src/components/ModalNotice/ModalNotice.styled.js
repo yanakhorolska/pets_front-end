@@ -219,3 +219,12 @@ export const AddButton = styled.button`
     width: 160px;
   }
 `;
+
+export const CommentBox = styled.div`
+  width: 240px;
+  overflow-wrap: break-word;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    width: 660px;
+  }
+`;

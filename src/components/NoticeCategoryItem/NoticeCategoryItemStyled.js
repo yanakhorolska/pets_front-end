@@ -44,7 +44,7 @@ export const ImgWrap = styled.div`
 export const NoticeImg = styled.img`
   display: block;
   height: 288px;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -152,12 +152,13 @@ export const LearnBtnWrap = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  //gap: 12px;
+  gap: 12px;
   width: 100%;
 `;
 
 export const SmallHeartBox = styled.div`
   border-radius: 50%;
+  cursor: pointer;
 
   right: 26px;
   top: 26px;

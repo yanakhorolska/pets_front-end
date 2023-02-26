@@ -5,7 +5,11 @@ export const TrashButton = ({ onClick }) => {
   return (
     <TrashBtn onClick={onClick}>
       Delete
-      <Icon.Trash />
+      <Icon.Trash
+        style={{
+          marginLeft: 15,
+        }}
+      />
     </TrashBtn>
   );
 };

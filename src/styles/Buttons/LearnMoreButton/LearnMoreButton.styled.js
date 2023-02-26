@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const LearnMoreBtn = styled.button`
- 
   padding: 8px 79px;
   background: ${p => p.theme.color.secondatyBtnText};
   border: 2px solid ${p => p.theme.color.accent};
   border-radius: 40px;
   cursor: pointer;
+  width: 248px;
+  height: 38px;
 
   font-family: 'Manrope';
   font-style: normal;
@@ -20,6 +21,6 @@ export const LearnMoreBtn = styled.button`
 
   &:hover {
     color: ${p => p.theme.color.hoverBtn};
-    border: 2px solid  ${p => p.theme.color.hoverBtn};
+    border: 2px solid ${p => p.theme.color.hoverBtn};
   }
 `;
