@@ -94,6 +94,9 @@ export const ContactsWrap = styled.span`
 `;
 
 export const ContactsLink = styled.a`
+  display: block;
+  word-wrap: break-word;
+  word-break: keep-all;
   color: inherit;
   &:hover {
     color: ${p => p.theme.color.accent};
@@ -115,6 +118,7 @@ export const NoInfo = styled.span`
 `;
 
 export const Wrap = styled.div`
- &:hover span {
+  &:hover span {
     color: ${p => p.theme.color.accent};
+  }
 `;
