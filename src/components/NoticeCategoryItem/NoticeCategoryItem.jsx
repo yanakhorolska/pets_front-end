@@ -36,9 +36,6 @@ export const NoticeCategoryItem = ({ id }) => {
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
   const { isLoggedIn } = useAuth();
   const { userData } = useUser();
-  // const [del, setfirst] = useState(second);
-  console.log(data);
-  console.log(userData, 'user data');
 
   const fav = useMemo(() => {
     if (data) {
@@ -64,23 +61,16 @@ export const NoticeCategoryItem = ({ id }) => {
 
   const handleFavoriteClick = () => {
     if (!favorite) {
-      console.log('favourite add');
-      // del const
-      const data = addToFavorite(id).unwrap();
-      console.log(data, 'data add');
+      addToFavorite(id).unwrap();
       return;
     }
 
     if (favorite) {
-      console.log('favourite delete');
-      // del const
-      const data = deleteFromFavorite(id).unwrap();
-      console.log(data, 'data delete');
+      deleteFromFavorite(id).unwrap();
     }
   };
 
   const onAddToButtonClickLogin = () => {
-    console.log('login');
     Notiflix.Notify.warning('Please login to add', {
       background: '#000000',
       textColor: '#fff',
@@ -93,10 +83,7 @@ export const NoticeCategoryItem = ({ id }) => {
   };
 
   const handleNoticeClick = () => {
-    console.log('notice dell');
-    // del const
-    const data = deleteFromNotises(id).unwrap();
-    console.log(data, 'data dell');
+    deleteFromNotises(id).unwrap();
     return;
   };
 
@@ -137,8 +124,6 @@ export const NoticeCategoryItem = ({ id }) => {
       return false;
     }
   };
-
-  console.log(deleteButton(), 'deletebtn');
 
   return (
     <NoticeItem>
