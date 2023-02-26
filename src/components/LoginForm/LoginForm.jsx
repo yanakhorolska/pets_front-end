@@ -24,12 +24,14 @@ const LoginForm = () => {
       email: Yup.string()
         .email('Invalid email address')
         .matches(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Invalid email address'
-      )
+          /^([a-zA-Z0-9])+([a-zA-Z0-9._-]+)@[a-zA-Z0-9]+([.-]?[a-zA-Z0-9]+)\.[a-zA-Z]{2,}$/,
+          'Invalid email address'
+        )
         .min(10, 'Email must include more tnan 10 characters')
         .max(63, 'Email must be less tnan 63 characters')
         .required('This is a required field'),
       password: Yup.string()
+        .matches(/^[^\s]+(^\s.*)?$/, "Password can't include whitespace")
         .min(7, 'Password must include more tnan 7 characters')
         .max(32, 'Password must be less tnan 32 characters')
         .required('This is a required field'),

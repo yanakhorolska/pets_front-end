@@ -20,7 +20,7 @@ export const fetchNotice = createApi({
   endpoints: builder => ({
     getUserNotices: builder.query({
       query: () => '/notices/myNotices',
-      providesTags: ['UserNotice'],
+      providesTags: ['UserNotice', 'Notice'],
     }),
     getNotice: builder.query({
       query: ({ category, search = '' }) => ({
@@ -52,11 +52,11 @@ export const fetchNotice = createApi({
     }),
     deleteUserNoticeById: builder.mutation({
       query: id => ({
-        url: `/notices/${id}`,
+        url: `/notices/myNotices/${id}`,
         method: 'DELETE',
         body: id,
       }),
-      invalidatesTags: ['UserNotice'],
+      invalidatesTags: ['UserNotice', 'Notice'],
     }),
     getNoticeFavorites: builder.query({
       query: () => '/notices/favorites',
