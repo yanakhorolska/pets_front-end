@@ -19,7 +19,7 @@ width: 100%;
 `
 
 export const AvatarLabel = styled("label")`
-color: ${p => p.theme.color.navBarText};
+color: ${p => p.theme.color.greyTransp};
 font-size: ${p => p.theme.fontSizes.xs};
   display: flex;
   width: 86px;
@@ -42,6 +42,6 @@ margin-left: auto;
 margin-right: auto;
 width: 233px;
 height: 233px;
-// filter: drop-shadow(0px 4px 14px rgba(0, 0, 0, 0.11));
-box-shadow:0px 4px 14px rgba(0, 0, 0, 0.11);
+filter: drop-shadow( ${p => p.theme.shadows.boxShadow});;
+
 `

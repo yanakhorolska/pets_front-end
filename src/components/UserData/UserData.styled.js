@@ -51,8 +51,8 @@ width: 410px;
 `
 
 export const UserDataBox = styled.div`
-  background: ${p => p.theme.color.white};
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  background: ${p => p.theme.color.cards};
+  box-shadow: ${p => p.theme.shadows.boxShadow};
   border-radius: 20px;
   margin-top: 18px;
   margin-bottom: 40px;

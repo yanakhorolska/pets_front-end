@@ -24,6 +24,7 @@ import {
   DescrData,
   DescriptionLink,
   CloseButtonTop,
+  CommentBox,
 } from './ModalNotice.styled';
 
 const ModalNotice = ({ onClose, id }) => {
@@ -59,24 +60,18 @@ const ModalNotice = ({ onClose, id }) => {
 
   const handleFavoriteClick = () => {
     if (!favorite) {
-      console.log('favourite add');
-      // del const
-      const data = addToFavorite(id).unwrap();
-      console.log(data, 'data add');
+      addToFavorite(id).unwrap();
       return;
     }
 
     if (favorite) {
-      console.log('favourite delete');
-      // del const
-      const data = deleteFromFavorite(id).unwrap();
-      console.log(data, 'data delete');
+      deleteFromFavorite(id).unwrap();
     }
   };
 
-  const onAddToButtonClickLogin = () => {
-    console.log('login');
-  };
+  // const onAddToButtonClickLogin = () => {
+  //   console.log('login');
+  // };
 
   const changeTextOfCategory = category => {
     if (category === 'sell') {
@@ -163,10 +158,10 @@ const ModalNotice = ({ onClose, id }) => {
               )}
             </Descriptions>
           </ColumnBox>
-          <p>
+          <CommentBox>
             <DescrCategory>Comments:</DescrCategory>
             <DescrData>{comment}</DescrData>
-          </p>
+          </CommentBox>
           <ButtonBox>
             <li>
               <a href={`tel:${phone}`}>
@@ -183,7 +178,7 @@ const ModalNotice = ({ onClose, id }) => {
             ) : (
               <li>
                 <NavLink to="/login">
-                  <AddButton type="button" onClick={onAddToButtonClickLogin}>
+                  <AddButton type="button">
                     Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
                   </AddButton>
                 </NavLink>

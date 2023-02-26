@@ -1,7 +1,7 @@
 import React from 'react';
 import PetsList from '../PetsList/PetsList.jsx';
 import AddPetButton from 'components/AddPetButton';
-import { AddPet } from '../ModalAddsPet/AddPet';
+import AddPet from '../ModalAddsPet';
 import UserPageTitle from '../UserPageTitle/UserPageTitle';
 import { TitleWrapper } from '../UserData/UserData.styled';
 

@@ -24,6 +24,7 @@ const UserData = () => {
     phone,
     city,
   };
+
   return (
     <DataBox>
       <TitleWrapperData>
@@ -58,8 +59,7 @@ const UserData = () => {
             name="birthday"
             text="birthday"
             type="text"
-            value={date}
-            placeholder={date}
+            placeholder={ date === "Invalid Date" ? "00.00.0000" :  date}
           />
           <UserDataItem
             initialValues={{ phone: phone }}

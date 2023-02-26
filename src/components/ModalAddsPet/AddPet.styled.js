@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import { CloseButton } from 'styles/Buttons';
-// import  from '../../styles/Buttons/icons';
 
 const ModalAddPet = styled.form`
   display: flex;
   flex-direction: column;
   padding: ${p => p.theme.space.p.m} ${p => p.theme.space.p.xs};
-  background-color: ${p => p.theme.color.white};
+  background-color: ${p => p.theme.color.cards};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   width: ${p => p.theme.sizes.width.modalS};
   position: ${p => p.theme.position.a};
@@ -43,6 +42,7 @@ const FormTitle = styled.h3`
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.default};
   line-height: 1;
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.xl};
@@ -56,6 +56,7 @@ const FormDescription = styled.h4`
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1;
   text-align: center;
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     margin-top: ${p => p.theme.space.p.xs};
@@ -69,7 +70,7 @@ const InputLabel = styled.label`
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.08;
-  color: ${p => p.theme.color.black};
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-weight: ${p => p.theme.fontWeights.l};
@@ -84,7 +85,7 @@ const InputStyled = styled.input`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1;
   height: ${p => p.theme.fontSizes.xxl};
-  background: ${p => p.theme.color.inputModal};
+  background-color: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
 
@@ -106,7 +107,7 @@ const InputImageWrapper = styled.div`
   margin-bottom: 4px;
   width: 208px;
   height: 208px;
-  background: ${p => p.theme.color.background};
+  background-color: ${p => p.theme.color.inputModal};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   overflow: hidden;
   & > img {

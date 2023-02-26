@@ -1,32 +1,46 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import SearchInput from 'styles/Inputs/SearchInput/SearchInput';
+import { Box, SearchInput, Button } from './NoticesSearch.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Icon from '../../styles/Buttons/icons/index';
+import { useEffect } from 'react';
 
 const NoticesSearch = () => {
+  const [hasClose, setHasClose] = useState(false);
   const [query, setQuery] = useState('');
   const [, setSearchParams] = useSearchParams();
 
-  const handleInput = event => {
-    const newQuery = event.target.value.toLowerCase().trim();
-    setQuery(newQuery);
-  };
-
-  const handleSubmit = event => {
-    event.preventDefault();
-
+  useEffect(() => {
     if (query === '') {
-      Notify.warning('Please start type search query');
+      setSearchParams({});
+      setHasClose(false);
       return;
     }
+    setSearchParams({ search: query });
+  }, [query, setSearchParams]);
+
+  const handleInput = event => {
+    setHasClose(true);
+    const newQuery = event.target.value.toLowerCase().trim();
+    setQuery(newQuery);
 
     setSearchParams({ search: query });
+  };
+
+  const onClick = () => {
+    setHasClose(false);
+    setSearchParams({});
     setQuery('');
+  };
+  const onClickSearch = () => {
+    if (query === '') {
+      Notify.warning('Please start type search query');
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <Box>
         <SearchInput
           name="findpet"
           type="text"
@@ -34,7 +48,31 @@ const NoticesSearch = () => {
           placeholder="Search"
           onChange={handleInput}
         />
-      </form>
+        {!hasClose ? (
+          <Button type="submit" onClick={onClickSearch}>
+            <Icon.Search
+              style={{
+                position: 'absolute',
+                top: 10,
+                right: 20,
+              }}
+            />
+          </Button>
+        ) : (
+          <Button type="submit" onClick={onClick}>
+            <Icon.ResetQuery
+              style={{
+                backgroundColor: 'white',
+                position: 'absolute',
+                top: 5,
+                right: 18,
+                borderRadius: '50%',
+                height: '32px',
+              }}
+            />
+          </Button>
+        )}
+      </Box>
     </>
   );
 };

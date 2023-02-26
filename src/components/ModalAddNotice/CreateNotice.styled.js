@@ -14,7 +14,9 @@ const ModalCreateNotice = styled.form`
   left: ${p => p.theme.sizes.left.half};
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
-  height: ${p => p.theme.sizes.height.auto};
+  max-height: ${p => p.theme.sizes.height.max};
+
+  overflow-y: scroll;
 
   @media ${p => p.theme.media.tablet} {
     width: ${p => p.theme.sizes.width.modalM};
