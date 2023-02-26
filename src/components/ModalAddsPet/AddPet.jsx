@@ -24,9 +24,9 @@ const validationSchema = [
           if (date.length === 3 ) {
             return new Date(`${date[2]}-${date[1]}-${date[0]}`);
           }
-          return <FieldError/>;
+          return null;
         } catch (e) {
-          return <FieldError/>;
+          return null;
         }
       })
       .required(({label}) => `${label} is a required field in format DD.MM.YYYY`)
@@ -37,6 +37,14 @@ const validationSchema = [
     comment: Yup.string().min(8).max(120).required().label("Comments"),
   }),
 ];
+
+const formatDate = date => {
+  return [
+    date.toLocaleDateString('default', { year: 'numeric' }),
+    date.toLocaleDateString('default', { month: '2-digit' }),
+    date.toLocaleDateString('default', { day: '2-digit' }),
+  ].join('-');
+}
 
 export const AddPet = ({ onClose }) => {
 
@@ -53,7 +61,7 @@ export const AddPet = ({ onClose }) => {
   const customOnSubmit = async (values, actions) => {
     console.log(values);
     const { birthday, ...reqValue } = values
-    const status = await addPet({birthday : new Date(birthday).toLocaleDateString('fr-CA'), ...reqValue}).unwrap();
+    const status = await addPet({birthday : formatDate(new Date(birthday)), ...reqValue}).unwrap();
     if (status === 'success')  onClose()
     actions.setSubmitting(false);
   }
