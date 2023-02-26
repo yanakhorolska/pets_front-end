@@ -30,7 +30,7 @@ const ModalWindow = ({ onClose, children }) => {
 
   return createPortal(
     <Backdrop onClick={onBackdropClick}>
-      <>{children}</>
+      {children}
     </Backdrop>,
     container
   );
