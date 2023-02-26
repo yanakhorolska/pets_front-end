@@ -14,13 +14,15 @@ export const ModalBox = styled.div`
   overflow-y: scroll;
   max-height: 100%;
 
-  background: #ffffff;
+  background: ${p => p.theme.color.cards};
+  box-shadow: ${p => p.theme.shadows.boxShadow};
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
 
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
 
   @media ${p => p.theme.media.tabletDesktop} {
+    overflow: hidden;
     width: ${p => p.theme.sizes.width.modalM2};
     padding: 32px 20px;
     border-radius: ${p => p.theme.radii.borderRadius.btn};
@@ -75,7 +77,7 @@ export const Category = styled.div`
   line-height: 1.33;
   letter-spacing: 0.04em;
 
-  color: ${p => p.theme.color.primaryText};
+  color: ${p => p.theme.color.text};
 `;
 
 export const PhotoBox = styled.div`
@@ -108,7 +110,7 @@ export const TitleCard = styled.p`
   line-height: ${p => p.theme.lineHeights.s};
   letter-spacing: -0.01em;
 
-  color: #000000;
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     width: 400px;
@@ -130,7 +132,7 @@ export const DescrCategory = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.s};
-  color: ${p => p.theme.color.black};
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
@@ -144,7 +146,7 @@ export const DescrData = styled.span`
   font-weight: ${p => p.theme.fontWeights.default};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.36;
-  color: ${p => p.theme.color.black};
+  color: ${p => p.theme.color.text};
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
@@ -183,7 +185,7 @@ export const ContactButton = styled.button`
 
   transition: color, border 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-  color: #ffffff;
+  color: ${p => p.theme.color.text};
 
   &:hover {
     border: 2px solid #ff6101;
