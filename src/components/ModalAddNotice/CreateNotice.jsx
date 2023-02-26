@@ -41,13 +41,13 @@ const validationSchemas = [
     petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!'),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
-      .test('', '', (value, contex) => {
+      .test('', '', (value, context) => {
         if (!value) return true;
         const currDate = new Date();
         const dateArr = value.split('.');
         const petDate = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
         if (currDate < petDate) {
-          return contex.createError({
+          return context.createError({
             message: "Pet can't be born in the future!",
           });
         }
@@ -65,7 +65,17 @@ const validationSchemas = [
         'Format is "region, city" (only latin letters)'
       )
       .required('This is a required field'),
-    price: Yup.number().min(0).max(100000),
+    price: Yup.number()
+      .min(0)
+      .max(100000)
+      .test('', '', (value, context) => {
+        if ((context.parent.category === 'sell') & (value === 0)) {
+          return context.createError({
+            message: 'price must be greater than 0',
+          });
+        }
+        return true;
+      }),
     comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!'),
   }),
 ];

@@ -80,7 +80,7 @@ const InputStyled = styled.input`
   margin-top: 8px;
   font-size: 14px;
   height: 40px;
-  background: ${p => p.theme.color.background};
+  background: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
 
