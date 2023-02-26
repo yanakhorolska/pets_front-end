@@ -13,9 +13,17 @@ import {
 } from './UserData.styled';
 
 const UserData = () => {
-  const currentuser = useSelector(getUser);
+  const { name, email, birthday, phone, city } = useSelector(getUser);
 
-  const date = new Date(currentuser.birthday).toLocaleDateString('en-GB')
+  const date = new Date(birthday).toLocaleDateString('en-GB');
+
+  const info = {
+    name,
+    email,
+    birthday: date,
+    phone,
+    city,
+  };
   return (
     <DataBox>
       <TitleWrapperData>
@@ -24,41 +32,51 @@ const UserData = () => {
       <UserDataBox>
         <UserAvatar />
         <UserDataItemsBox>
-          <UserDataItem
-            initialValues={{ name: currentuser.name }}
+          <ul>
+            {Object.entries(info).map(item => (
+              <UserDataItem key={item} item={item} />
+            ))}
+          </ul>
+          {/* <UserDataItem
+            initialValues={{ name: name }}
             name="name"
             text="name"
             type="text"
-            placeholder={currentuser.name}
+            value={name}
+            placeholder={name}
           />
           <UserDataItem
-            initialValues={{ email: currentuser.email }}
+            initialValues={{ email: email }}
             name="email"
             text="email"
             type="email"
-            placeholder={currentuser.email}
+            value={email}
+            placeholder={email}
           />
           <UserDataItem
-            initialValues={{ birthday: currentuser.birthday }}
+            initialValues={{ birthday: birthday }}
             name="birthday"
             text="birthday"
             type="text"
+            value={date}
             placeholder={date}
           />
           <UserDataItem
-            initialValues={{ phone: currentuser.phone }}
+            initialValues={{ phone: phone }}
             name="phone"
             text="phone"
             type="tel"
-            placeholder={currentuser.phone}
+            value={phone}
+            placeholder={phone}
           />
           <UserDataItem
-            initialValues={{ city: currentuser.city }}
+            initialValues={{ city: city }}
             name="city"
             text="city"
             type="text"
-            placeholder={currentuser.city}
-          />
+            value={city}
+            placeholder={city}
+          /> */}
 
           <LogoutButton />
         </UserDataItemsBox>
