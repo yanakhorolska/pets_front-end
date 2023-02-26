@@ -13,15 +13,16 @@ import {
   Button,
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
+import { Loader } from 'components/Loader/Loader';
 
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
-  let { data } = useGetUserPetsQuery();
-  console.log('pets', data);
+  let { data , isLoading } = useGetUserPetsQuery();
+  // console.log('pets', data);
 
-  if (!data) {
-    return;
-  }
+  // if (!data) {
+  //   return;
+  // }
 
   const onClick = async idPet => {
     console.log(idPet);
@@ -31,7 +32,8 @@ const PetsList = () => {
 
   return (
     <div>
-      {data.length > 0
+      {isLoading ? <Loader/> :
+      <> {data.length > 0
         ? data.map(pet => (
             <PetBox key={pet.id}>
               <PetPhoto src={pet.avatarURL} alt="Pet Foto" />
@@ -66,7 +68,8 @@ const PetsList = () => {
               </PetList>
             </PetBox>
           ))
-        : null}
+        : null}</>
+        }
     </div>
   );
 };
