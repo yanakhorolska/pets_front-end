@@ -8,7 +8,7 @@ export const TrashBtn = styled.button`
   border: 0;
   font-size: 0;
 
-  background: #fdf7f2;
+  background-color: ${p => p.theme.color.background};
   border-radius: 50%;
   cursor: pointer;
   color: rgba(17, 17, 17, 0.6);

@@ -9,21 +9,11 @@ const AddButtonStyled = styled.button`
   border-radius: ${p => p.theme.radii.borderRadius.round};
   cursor: pointer;
 
-//   @media ${p => p.theme.media.tabletDesktop} {
-//     width: 44px;
-//     height: 44px;
-
-//     &:hover,
-//     &:focus {
-//       transform: scale(1.05);
-//     }
-//     transition: transform 250ms ease-out;
-//   }
 `;
 
 const AddButtonTitle = styled.span`
 font-size: 20px;
-  color: ${p => p.theme.color.black};
+  color: ${p => p.theme.color.text};
 `
 
 const AddButtonWrapper = styled.div`
