@@ -10,7 +10,9 @@ export const ModalBox = styled.div`
   flex-direction: ${p => p.theme.flexDirection.col};
 
   padding: 60px 20px 40px 20px;
-  width: ${p => p.theme.sizes.width.modalS};
+  width: 300px;
+  overflow-y: scroll;
+  max-height: 100%;
 
   background: #ffffff;
   border-radius: ${p => p.theme.radii.borderRadius.inputModal};
