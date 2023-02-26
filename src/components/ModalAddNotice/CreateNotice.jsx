@@ -35,10 +35,14 @@ const validationSchemas = [
       .oneOf(['lostFound', 'inGoodHands', 'sell'])
       .required(),
     title: Yup.string()
+      .alphanumeric()
       .min(2, 'Too Short!')
       .max(48, 'Too long!')
       .required('Title is required field'),
-    petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!'),
+    petName: Yup.string()
+      .alphanumeric()
+      .min(2, 'Too Short!')
+      .max(16, 'Too long!'),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
       .test('', '', (value, context) => {
@@ -53,7 +57,10 @@ const validationSchemas = [
         }
         return true;
       }),
-    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too long!'),
+    breed: Yup.string()
+      .alphanumeric()
+      .min(2, 'Too Short!')
+      .max(24, 'Too long!'),
   }),
   Yup.object().shape({
     sex: Yup.string()
@@ -76,7 +83,7 @@ const validationSchemas = [
         }
         return true;
       }),
-    comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!'),
+    comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!').required(),
   }),
 ];
 
