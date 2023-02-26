@@ -25,7 +25,7 @@ export const getMode = mode => {
             hoverBtn: '#FF6101',
             shadowCard: 'rgba(49, 21, 4, 0.07)',
             greyTransp: '#fff',
-            inputModal: 'rgba(245, 146, 86, 0.5)',
+            inputModal: '#FDF7F2',
             none: 'none',
           }
         : {
@@ -49,7 +49,7 @@ export const getMode = mode => {
             hoverBtn: '#FF6101',
             shadowCard: 'rgba(49, 21, 4, 0.07)',
             greyTransp: 'rgba(17, 17, 17, 0.6)',
-            inputModal: 'rgba(245, 146, 86, 0.5)',
+            inputModal: '#FDF7F2',
             none: 'none',
           }),
     },

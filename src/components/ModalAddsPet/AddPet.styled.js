@@ -20,7 +20,7 @@ const ModalAddPet = styled.form`
     width: ${p => p.theme.sizes.width.modalM};
     padding: ${p => p.theme.space.p.m} 107px;
   }
-  
+
   *:focus {
     outline: none;
   }
@@ -29,14 +29,13 @@ const ModalAddPet = styled.form`
 const FormPageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top:  ${p => p.theme.space.m.s};
+  margin-top: ${p => p.theme.space.m.s};
   // gap: ${p => p.theme.space.p.xxs};
 
   @media ${p => p.theme.media.tabletDesktop} {
-    margin-top:  ${p => p.theme.space.m.l};
+    margin-top: ${p => p.theme.space.m.l};
     // gap: ${p => p.theme.space.m.s};
   }
-
 `;
 
 const FormTitle = styled.h3`
@@ -49,7 +48,6 @@ const FormTitle = styled.h3`
     font-size: ${p => p.theme.fontSizes.xl};
     font-weight: ${p => p.theme.fontWeights.semiBold};
   }
-
 `;
 
 const FormDescription = styled.h4`
@@ -86,7 +84,7 @@ const InputStyled = styled.input`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1;
   height: ${p => p.theme.fontSizes.xxl};
-  background: ${p => p.theme.color.background};
+  background: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};
   border-radius: ${p => p.theme.radii.borderRadius.btn};
 
@@ -104,7 +102,7 @@ const InputImageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto ;
+  margin: auto;
   margin-bottom: 4px;
   width: 208px;
   height: 208px;
@@ -130,11 +128,11 @@ const InputImage = styled.input`
   position: ${p => p.theme.position.a};
   opacity: 0;
   visibility: hidden;
-`
+`;
 
 const CommentInput = styled(InputStyled)`
   height: 100px;
-  border-radius: ${p=> p.theme.radii.borderRadius.inputModal};
+  border-radius: ${p => p.theme.radii.borderRadius.inputModal};
   resize: none;
 
   @media ${p => p.theme.media.tabletDesktop} {
@@ -143,7 +141,7 @@ const CommentInput = styled(InputStyled)`
 `;
 
 const FieldError = styled.p`
-  padding-top : 2px; 
+  padding-top: 2px;
   //${p => p.theme.space.p.xs};
   height: ${p => p.theme.space.p.xxs};
   font-size: ${p => p.theme.fontSizes.xs};
@@ -202,5 +200,5 @@ export {
   CommentInput,
   FieldError,
   ButtonsWrapper,
-  CloseFormButton
+  CloseFormButton,
 };

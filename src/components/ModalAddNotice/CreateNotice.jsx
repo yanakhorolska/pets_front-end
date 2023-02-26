@@ -40,16 +40,14 @@ const validationSchemas = [
       .required('Title is required field'),
     petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!'),
     dateOfBirth: Yup.string()
-      .matches(
-        /^\d{2}([./-])\d{2}\1\d{4}$/,
-        'date of birth must have DD.MM.YYYY format!'
-      )
-      .test('', '', (value, contex) => {
+      .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
+      .test('', '', (value, context) => {
+        if (!value) return true;
         const currDate = new Date();
         const dateArr = value.split('.');
         const petDate = new Date(`${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`);
         if (currDate < petDate) {
-          return contex.createError({
+          return context.createError({
             message: "Pet can't be born in the future!",
           });
         }
@@ -64,10 +62,20 @@ const validationSchemas = [
     location: Yup.string()
       .matches(
         /[A-Za-z]+, [A-Za-z]+/,
-        'Please, enter the data in format "region, city" (only latin letters)'
+        'Format is "region, city" (only latin letters)'
       )
       .required('This is a required field'),
-    price: Yup.number().min(0).max(100000),
+    price: Yup.number()
+      .min(0)
+      .max(100000)
+      .test('', '', (value, context) => {
+        if ((context.parent.category === 'sell') & (value === 0)) {
+          return context.createError({
+            message: 'price must be greater than 0',
+          });
+        }
+        return true;
+      }),
     comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!'),
   }),
 ];
@@ -160,8 +168,7 @@ const CreateNotice = ({ onClose }) => {
       {pageNumber === 1 ? (
         <FormPageWrapper>
           <FormDescription>
-            Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur
+            This announcement may make someone even happier!
           </FormDescription>
           <RadioGroupCategories
             role="group"
@@ -210,9 +217,7 @@ const CreateNotice = ({ onClose }) => {
               onBlur={formik.handleBlur}
               value={formik.values.title}
             ></InputStyled>
-            {formik.touched.title && titleError ? (
-              <FieldError>{titleError} </FieldError>
-            ) : null}
+            <FieldError>{formik.touched.title && titleError} </FieldError>
           </InputLabel>
           <InputLabel>
             <span>Name pet:</span>
@@ -224,9 +229,7 @@ const CreateNotice = ({ onClose }) => {
               onBlur={formik.handleBlur}
               value={formik.values.petName}
             ></InputStyled>
-            {formik.touched.petName && petNameError ? (
-              <FieldError>{petNameError} </FieldError>
-            ) : null}
+            <FieldError>{formik.touched.petName && petNameError} </FieldError>
           </InputLabel>
           <InputLabel>
             <span>Date of birth</span>
@@ -238,9 +241,9 @@ const CreateNotice = ({ onClose }) => {
               onBlur={formik.handleBlur}
               value={formik.values.dateOfBirth}
             ></InputStyled>
-            {formik.touched.dateOfBirth && dateOfBirthError ? (
-              <FieldError>{dateOfBirthError} </FieldError>
-            ) : null}
+            <FieldError>
+              {formik.touched.dateOfBirth && dateOfBirthError}
+            </FieldError>
           </InputLabel>
           <InputLabel>
             <span>Breed</span>
@@ -252,9 +255,7 @@ const CreateNotice = ({ onClose }) => {
               onBlur={formik.handleBlur}
               value={formik.values.breed}
             ></InputStyled>
-            {formik.touched.breed && breedError ? (
-              <FieldError>{breedError} </FieldError>
-            ) : null}
+            <FieldError>{formik.touched.breed && breedError}</FieldError>
           </InputLabel>
         </FormPageWrapper>
       ) : (
@@ -300,9 +301,7 @@ const CreateNotice = ({ onClose }) => {
               onBlur={formik.handleBlur}
               value={formik.values.location}
             ></InputStyled>
-            {formik.touched.location && locationError ? (
-              <FieldError>{locationError} </FieldError>
-            ) : null}
+            <FieldError>{formik.touched.location && locationError} </FieldError>
           </InputLabel>
           {formik.values.category === 'sell' && (
             <InputLabel>
@@ -317,9 +316,7 @@ const CreateNotice = ({ onClose }) => {
                 onBlur={formik.handleBlur}
                 value={formik.values.price}
               ></InputStyled>
-              {formik.touched.price && priceError ? (
-                <FieldError>{priceError} </FieldError>
-              ) : null}
+              <FieldError>{formik.touched.price && priceError}</FieldError>
             </InputLabel>
           )}
           <InputImageLabel>
@@ -353,11 +350,10 @@ const CreateNotice = ({ onClose }) => {
               name="comment"
               placeholder="Type comment"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.comment}
             ></CommentInput>
-            {formik.touched.comment && commentError ? (
-              <FieldError>{commentError} </FieldError>
-            ) : null}
+            <FieldError>{formik.touched.comment && commentError} </FieldError>
           </InputLabel>
         </FormPageWrapper>
       )}

@@ -8,6 +8,7 @@ export const TrashBtn = styled.button`
   background: ${p => p.theme.color.secondatyBtnText};
   border: 2px solid ${p => p.theme.color.accent};
   border-radius: 40px;
+
   cursor: pointer;
   width: 248px;
   height: 38px;

@@ -1,34 +1,33 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
-
-
 export const UserDataForm = styled(Form)`
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-flex-direction: row;
-padding: 0;
-width:100%;
-@media ${p => p.theme.media.tabletDesktop}{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: row;
+  padding: 0;
+  width: 100%;
+  @media ${p => p.theme.media.tabletDesktop} {
     width: 370px;
-}
-`
-export const  UserDataLabel = styled.label`
-font-size: 12px;
-text-transform: capitalize;
-width: 56px;
-// margin-right: 8px;
-@media ${p => p.theme.media.tabletDesktop}{
+  }
+`;
+export const UserDataLabel = styled.label`
+color: ${p => p.theme.color.text};
+  font-size: 12px;
+  text-transform: capitalize;
+  width: 56px;
+  // margin-right: 8px;
+  @media ${p => p.theme.media.tabletDesktop} {
     font-size: 18px;
-    lineHeights: ${p => p.theme.lineHeights.s}
-}
-`
+    lineheights: ${p => p.theme.lineHeights.s};
+  }
+`;
 
 export const UserDataInput = styled(Field)`
 display: block;
 width: 160px;
-border-radius: 5px;
+border-radius: 40px;
 padding: 4px 18px;
 margin-bottom: 8px;
 margin-right: 8px;
@@ -55,10 +54,9 @@ border-radius: 40px;
 }
 
 &::placeholder {
-     color: black;
+     color: ${p => p.theme.color.primaryText};
      font-size: 12px;
-     font-weight: 400;
-     opacity: 1;
+     opacity: 0.8;
 @media ${p => p.theme.media.tabletDesktop}{
     
     font-size: 18px;
@@ -66,4 +64,4 @@ border-radius: 40px;
      
 }
 
-`
+`;
