@@ -16,38 +16,36 @@ import {
   SmallHeartBox,
 } from './NoticeCategoryItemStyled';
 import {
-  useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
   useDeleteUserNoticeByIdMutation,
 } from '../../redux/fetchNotice';
 import { useAuth } from 'hooks/useAuth';
-import { useUser } from 'hooks/useUser';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
 import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
 
-export const NoticeCategoryItem = ({ id }) => {
-  const { data } = useGetNoticeByIdQuery(id);
+export const NoticeCategoryItem = ({ pet }) => {
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
   const { isLoggedIn } = useAuth();
-  const { userData } = useUser();
 
   const fav = useMemo(() => {
-    if (data) {
-      return data.favorite;
+    if (pet) {
+      return pet.favorite;
     }
-  }, [data]);
+  }, [pet]);
 
-  if (!data) {
+  if (!pet) {
     return;
   }
+  console.log('pet', pet);
 
   const {
+    _id,
     title,
     category,
     dateOfBirth,
@@ -56,17 +54,17 @@ export const NoticeCategoryItem = ({ id }) => {
     price,
     imageUrl,
     favorite,
-    email,
-  } = data;
+    myads,
+  } = pet;
 
   const handleFavoriteClick = () => {
     if (!favorite) {
-      addToFavorite(id).unwrap();
+      addToFavorite(_id).unwrap();
       return;
     }
 
     if (favorite) {
-      deleteFromFavorite(id).unwrap();
+      deleteFromFavorite(_id).unwrap();
     }
   };
 
@@ -83,7 +81,7 @@ export const NoticeCategoryItem = ({ id }) => {
   };
 
   const handleNoticeClick = () => {
-    deleteFromNotises(id).unwrap();
+    deleteFromNotises(_id).unwrap();
     return;
   };
 
@@ -118,7 +116,7 @@ export const NoticeCategoryItem = ({ id }) => {
   }
 
   const deleteButton = () => {
-    if (userData.email === email) {
+    if (myads === true) {
       return true;
     } else {
       return false;
@@ -172,7 +170,7 @@ export const NoticeCategoryItem = ({ id }) => {
             ) : null}
           </NoticeInfoList>
           <LearnBtnWrap>
-            <LearnMoreButtonComponent id={id} />
+            <LearnMoreButtonComponent id={_id} />
             {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
         </ListInfoWrap>
