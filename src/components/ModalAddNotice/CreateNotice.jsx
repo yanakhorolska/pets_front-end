@@ -207,7 +207,7 @@ const CreateNotice = ({ onClose }) => {
             </RadioCaregoryLabel>
           </RadioGroupCategories>
           <InputLabel>
-            <span>Title of ad</span>
+            <span>Title of ad:</span>
             <InputStyled
               type="text"
               name="title"
@@ -231,7 +231,7 @@ const CreateNotice = ({ onClose }) => {
             <FieldError>{formik.touched.petName && petNameError} </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Date of birth</span>
+            <span>Date of birth:</span>
             <InputStyled
               type="text"
               name="dateOfBirth"
@@ -245,7 +245,7 @@ const CreateNotice = ({ onClose }) => {
             </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Breed</span>
+            <span>Breed:</span>
             <InputStyled
               type="text"
               name="breed"
@@ -260,7 +260,7 @@ const CreateNotice = ({ onClose }) => {
       ) : (
         <FormPageWrapper>
           <InputLabel>
-            <span>The sex</span>
+            <span>The sex:</span>
           </InputLabel>
           <RadioGroupSex role="group" aria-labelledby="radio-sex-group">
             <RadioSexLabel>
