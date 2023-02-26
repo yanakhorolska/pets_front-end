@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pets_front-end/static/css/main.465eadc1.css",
-    "main.js": "/pets_front-end/static/js/main.6fdc8263.js",
+    "main.js": "/pets_front-end/static/js/main.8a8161e5.js",
     "static/js/390.151e94d8.chunk.js": "/pets_front-end/static/js/390.151e94d8.chunk.js",
     "static/css/300.99d5ad1e.chunk.css": "/pets_front-end/static/css/300.99d5ad1e.chunk.css",
     "static/js/300.c9794cd4.chunk.js": "/pets_front-end/static/js/300.c9794cd4.chunk.js",
@@ -17,7 +17,7 @@
     "static/js/264.abd0683e.chunk.js": "/pets_front-end/static/js/264.abd0683e.chunk.js",
     "static/js/494.610da857.chunk.js": "/pets_front-end/static/js/494.610da857.chunk.js",
     "static/js/686.4d50619d.chunk.js": "/pets_front-end/static/js/686.4d50619d.chunk.js",
-    "static/js/491.9551eb37.chunk.js": "/pets_front-end/static/js/491.9551eb37.chunk.js",
+    "static/js/491.08d39383.chunk.js": "/pets_front-end/static/js/491.08d39383.chunk.js",
     "static/js/560.b91e6287.chunk.js": "/pets_front-end/static/js/560.b91e6287.chunk.js",
     "static/media/home-woman-desk-2x.png": "/pets_front-end/static/media/home-woman-desk-2x.3a4a1712c497a476ea11.png",
     "static/media/home-woman-tab-2x.png": "/pets_front-end/static/media/home-woman-tab-2x.13788976cc5230dc87d3.png",
@@ -58,7 +58,7 @@
     "static/media/add.svg": "/pets_front-end/static/media/add.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "static/media/burger.svg": "/pets_front-end/static/media/burger.88629bdfdfe59988d8cdff1458c8acad.svg",
     "main.465eadc1.css.map": "/pets_front-end/static/css/main.465eadc1.css.map",
-    "main.6fdc8263.js.map": "/pets_front-end/static/js/main.6fdc8263.js.map",
+    "main.8a8161e5.js.map": "/pets_front-end/static/js/main.8a8161e5.js.map",
     "390.151e94d8.chunk.js.map": "/pets_front-end/static/js/390.151e94d8.chunk.js.map",
     "300.99d5ad1e.chunk.css.map": "/pets_front-end/static/css/300.99d5ad1e.chunk.css.map",
     "300.c9794cd4.chunk.js.map": "/pets_front-end/static/js/300.c9794cd4.chunk.js.map",
@@ -74,11 +74,11 @@
     "264.abd0683e.chunk.js.map": "/pets_front-end/static/js/264.abd0683e.chunk.js.map",
     "494.610da857.chunk.js.map": "/pets_front-end/static/js/494.610da857.chunk.js.map",
     "686.4d50619d.chunk.js.map": "/pets_front-end/static/js/686.4d50619d.chunk.js.map",
-    "491.9551eb37.chunk.js.map": "/pets_front-end/static/js/491.9551eb37.chunk.js.map",
+    "491.08d39383.chunk.js.map": "/pets_front-end/static/js/491.08d39383.chunk.js.map",
     "560.b91e6287.chunk.js.map": "/pets_front-end/static/js/560.b91e6287.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.465eadc1.css",
-    "static/js/main.6fdc8263.js"
+    "static/js/main.8a8161e5.js"
   ]
 }
