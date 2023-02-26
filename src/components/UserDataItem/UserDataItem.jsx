@@ -1,11 +1,8 @@
 import React from 'react';
-// import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useUpdateUserMutation } from '../../redux/fetchUser';
 import { setUpdatedUser } from 'redux/authSlice';
-// import { EditButton } from '../../styles/Buttons/EditButton/EditButton';
-// import { CheckButton } from '../../styles/Buttons/CheckButton/CheckButton';
 import {
   UserDataForm,
   UserDataInput,
@@ -34,45 +31,20 @@ const UserDataItem = ({ item }) => {
     setNewValue(value);
     setInputType();
     const values = { [name]: newValue };
-    console.log(values);
+    // console.log(values);
     if (value === newValue) {
       return;
     }
     if (focus) {
       try {
-        const user = await updateUser(values);
+        const user = await updateUser(values).unwrap();
         dispatch(setUpdatedUser(user));
-        console.log(values);
+        // console.log(values);
       } catch (error) {
         console.log(error);
       }
     }
   };
-
-  // const [disabled, setDisabled] = useState(true);
-  // const dispatch = useDispatch();
-  // const [updateUser] = useUpdateUserMutation();
-  // const [inputeData, setInputData] = useState('');
-
-  // const handleSubmit = async values => {
-  //   console.log(values);
-  //   values[text] = inputeData;
-  //   try {
-  //     if (!disabled);
-  //     const user = await updateUser({ values }).unwrap();
-  //     dispatch(setUpdatedUser(user));
-  //     setInputData('');
-  //     setDisabled(true);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const changeInput = e => {
-  //   const data = e.currentTarget.value;
-  //   setInputData(data);
-  //   console.log(data);
-  // };
 
   return (
     <UserDataForm>
@@ -93,38 +65,6 @@ const UserDataItem = ({ item }) => {
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>
     </UserDataForm>
-
-    // <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-    //   <UserDataForm>
-    //     <UserDataLabel htmlFor={name}>{name}: </UserDataLabel>
-    //     {disabled ? (
-    //       <UserDataInput
-    //         type={type}
-    //         onChange={changeInput}
-    //         value={inputeData}
-    //         name={name}
-    //         id={name}
-    //         placeholder={placeholder}
-    //         disabled={disabled}
-    //       />
-    //     ) : (
-    //       <UserDataInput
-    //         type={type}
-    //         onChange={changeInput}
-    //         value={value}
-    //         name={name}
-    //         id={name}
-    //       />
-    //     )}
-    //     {disabled ? (
-    //       <EditButton onClick={() => setDisabled(!disabled)} />
-    //     ) : (
-    //       // <button type="button" onClick={() => setDisabled(!disabled)}>Edit</button>
-    //       // :<button type="submit" disabled={disabled}>Submit</button>}
-    //       <CheckButton disabled={disabled} type="submit" />
-    //     )}
-    //   </UserDataForm>
-    // </Formik>
   );
 };
 

@@ -38,46 +38,6 @@ const UserData = () => {
               <UserDataItem key={item} item={item} />
             ))}
           </ul>
-          {/* <UserDataItem
-            initialValues={{ name: name }}
-            name="name"
-            text="name"
-            type="text"
-            value={name}
-            placeholder={name}
-          />
-          <UserDataItem
-            initialValues={{ email: email }}
-            name="email"
-            text="email"
-            type="email"
-            value={email}
-            placeholder={email}
-          />
-          <UserDataItem
-            initialValues={{ birthday: birthday }}
-            name="birthday"
-            text="birthday"
-            type="text"
-            placeholder={ date === "Invalid Date" ? "00.00.0000" :  date}
-          />
-          <UserDataItem
-            initialValues={{ phone: phone }}
-            name="phone"
-            text="phone"
-            type="tel"
-            value={phone}
-            placeholder={phone}
-          />
-          <UserDataItem
-            initialValues={{ city: city }}
-            name="city"
-            text="city"
-            type="text"
-            value={city}
-            placeholder={city}
-          /> */}
-
           <LogoutButton />
         </UserDataItemsBox>
       </UserDataBox>
