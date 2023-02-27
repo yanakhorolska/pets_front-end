@@ -11,11 +11,7 @@ import {
   AuthInput,
   AuthButton,
 } from '../AuthForm/AuthFormStyled';
-<<<<<<< Updated upstream
 import { useTranslation } from 'react-i18next';
-=======
-
->>>>>>> Stashed changes
 const RegisterForm = () => {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
@@ -138,7 +134,7 @@ const RegisterForm = () => {
             <AuthInput
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={t('email')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={email}
@@ -208,11 +204,7 @@ const RegisterForm = () => {
               {formik.touched.phone && phoneError && phoneError}
             </AuthErrorLast>
             <AuthButton accent={true} last={false} type="submit">
-<<<<<<< Updated upstream
               {t('register')}
-=======
-              Register
->>>>>>> Stashed changes
             </AuthButton>
           </>
         )}
