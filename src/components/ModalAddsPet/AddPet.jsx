@@ -119,7 +119,7 @@ export const AddPet = ({ onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      nickname: 'fsgdshgkjshgdf dskgfjhdkjfdsh fj',
+      nickname: "",
       birthday: "",
       birthday2:"",
       breed: '',
