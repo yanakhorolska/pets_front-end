@@ -49,7 +49,7 @@ const Header = () => {
         <BurgerMenu>
           <Container>
             <MenuHeader>
-              <Logotype to="/" />
+              <Logotype to="/" click={() => setBurg(false)} />
               <ToggleButtonBurg onClick={() => setBurg(!burg)}>
                 <Icon.FatClose />
               </ToggleButtonBurg>
