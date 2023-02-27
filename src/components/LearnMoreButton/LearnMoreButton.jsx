@@ -5,9 +5,11 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import { LearnMoreButton } from 'styles/Buttons/index';
 
 import { useAuth } from 'hooks/useAuth';
+
 import { useTranslation } from 'react-i18next';
 const LearnMoreButtonComponent = ({ _id }) => {
   const { t } = useTranslation();
+
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
