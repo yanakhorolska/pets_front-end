@@ -20,8 +20,10 @@ import UserNav from '../UserNav/UserNav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import Icon from 'styles/Buttons/icons/index';
 import { useAuth } from 'hooks/useAuth';
-
+import { useTranslation } from 'react-i18next';
+import { LangSwitcher } from 'components/CustomComponents/Switcher/Switcher';
 const Header = () => {
+  const { t } = useTranslation();
   const [burg, setBurg] = useState(false);
   const { isLoggedIn } = useAuth();
   return (
@@ -31,7 +33,9 @@ const Header = () => {
           <Logotype />
           <Nav />
         </HeadNav>
+
         <ToggleButton />
+        <LangSwitcher />
         <HeaderWrap>
           <ButtonsContainer>
             {isLoggedIn ? <UserNav /> : <AuthNav />}
@@ -60,13 +64,13 @@ const Header = () => {
                 )}
               </BurgerLinksWrap>
               <Link to="/news" onClick={() => setBurg(!burg)}>
-                News
+                {t('titleNews')}
               </Link>
               <Link to="/notices" onClick={() => setBurg(!burg)}>
-                Find pet
+                {t('noticesHeaderTitle')}
               </Link>
               <Link to="/friends" onClick={() => setBurg(!burg)}>
-                Our friends
+                {t('friendsTitle')}
               </Link>
             </BurgerLinks>
           </Container>

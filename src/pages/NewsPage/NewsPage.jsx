@@ -2,12 +2,14 @@ import { useGetNewsQuery } from 'redux/newsSlice';
 import { SearchField } from 'components/CustomComponents/NewsSearch/NewsSearch';
 import { NewsBoard } from 'components/CustomComponents/NewsBoard/NewsBoard';
 import { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NewsWrap, NewsBtn, NewsButtonsWrap } from './NewsPageStyled';
 import { Container } from 'styles/Container/Container.styled';
 import { FirstHeader } from '../../styles/Headers/Headers.styled';
 import { Loader } from 'components/Loader/Loader';
 import { SearchPuppy } from 'components/CustomComponents/searchPuppy/SearchPuppy';
 const NewsPage = () => {
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const { data, error, isLoading } = useGetNewsQuery({ query, page });
@@ -22,7 +24,7 @@ const NewsPage = () => {
   return (
     <Container>
       <NewsWrap>
-        <FirstHeader>News</FirstHeader>
+        <FirstHeader>{t('titleNews')}</FirstHeader>
         <div ref={newsStart} />
         <SearchField onSearch={searchNews} />
         {error ? (
@@ -40,7 +42,7 @@ const NewsPage = () => {
                 }}
                 disabled={page === 1}
               >
-                Prev
+                {t('prev')}
               </NewsBtn>
               <NewsBtn
                 onClick={() => {
@@ -49,7 +51,7 @@ const NewsPage = () => {
                 }}
                 disabled={page * 6 >= data.total}
               >
-                Next
+                {t('next')}
               </NewsBtn>
             </NewsButtonsWrap>
           </>

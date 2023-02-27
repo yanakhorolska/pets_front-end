@@ -7,12 +7,13 @@ import { FirstHeader } from 'styles/Headers/Headers.styled';
 import { Container } from 'styles/Container/Container.styled';
 import { NoticesBox, NavBox } from './NoticesPage.styled';
 import { Outlet } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 const NoticesPage = () => {
+  const { t } = useTranslation();
   return (
     <Container>
       <NoticesBox>
-        <FirstHeader>Find your favorite pet</FirstHeader>
+        <FirstHeader>{t('noticesTitle')}</FirstHeader>
         <NoticesSearch />
 
         <NavBox>

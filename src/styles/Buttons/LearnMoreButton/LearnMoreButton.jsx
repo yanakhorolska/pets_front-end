@@ -1,5 +1,6 @@
 import { LearnMoreBtn } from './LearnMoreButton.styled';
-
+import { useTranslation } from 'react-i18next';
 export const LearnMoreButton = ({ onClick }) => {
-  return <LearnMoreBtn onClick={onClick}>Learn more</LearnMoreBtn>;
+  const { t } = useTranslation();
+  return <LearnMoreBtn onClick={onClick}>{t('learnMore')}</LearnMoreBtn>;
 };

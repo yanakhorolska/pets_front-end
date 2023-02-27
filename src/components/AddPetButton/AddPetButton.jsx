@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import ModalWindow from 'components/ModalWindow';
 import {
@@ -9,12 +9,12 @@ import {
 } from './AddPetButton.styled';
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 
 const AddPetButton = ({ component: Component }) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -40,15 +40,16 @@ const AddPetButton = ({ component: Component }) => {
   return (
     <>
       <AddButtonWrapper>
-        <AddButtonTitle>Add pet</AddButtonTitle>
-      <AddButtonStyled  type="button"
+        <AddButtonTitle>{t('addPet')}</AddButtonTitle>
+        <AddButtonStyled
+          type="button"
           onClick={() => {
             openModalWindow();
-          }}>
+          }}
+        >
           <StyledIconAdd />
         </AddButtonStyled>
       </AddButtonWrapper>
-      
 
       {/* <AddButtonWrapper>
         <AddButtonTitle>Add pet</AddButtonTitle> 
@@ -70,10 +71,10 @@ const AddPetButton = ({ component: Component }) => {
       )}
     </>
     // <div>AddPetButton</div>
-  )
-}
+  );
+};
 
-export default AddPetButton
+export default AddPetButton;
 
 /*import { useCallback, useEffect, useState } from 'react';
 import ModalWindow from 'components/ModalWindow';
