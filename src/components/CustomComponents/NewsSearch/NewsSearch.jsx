@@ -9,7 +9,14 @@ export const SearchField = ({ onSearch }) => {
   const [value, setValue] = useState('');
 
   const handleChange = e => {
-    onSearch(e.target.value.trim(' '));
+    const searchQuery = e.target.value.trim();
+    if (e.target.value === ' ') {
+      Notify.warning('Incorrect search');
+    }
+    if (searchQuery.length >= 60) {
+      Notify.warning('Incorrect search');
+    }
+    onSearch(searchQuery);
     if (e.target.value !== '') {
       setInputUsed(true);
     }
