@@ -14,8 +14,8 @@ const NoticesCategoriesNav = () => {
   ];
 
   const linkAuth = [
-    { to: '/notices/favorite', text: t('myAds') },
-    { to: '/notices/myNotices', text: t('myFavAds') },
+    { to: '/notices/favorite', text: t('myFavAds') },
+    { to: '/notices/myNotices', text: t('myAds') },
   ];
   const isLogged = useSelector(getIsLogged);
 
