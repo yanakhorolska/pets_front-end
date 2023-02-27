@@ -12,8 +12,9 @@ import {
   DataBox,
   TitleWrapperData,
 } from './UserData.styled';
-
+import { useTranslation } from 'react-i18next';
 const UserData = () => {
+  const { t } = useTranslation();
   const { name, email, birthday, phone, city } = useSelector(getUser);
 
   const convertDate = date => {
@@ -32,7 +33,7 @@ const UserData = () => {
   return (
     <DataBox>
       <TitleWrapperData>
-        <UserPageTitle title={'My information:'} />
+        <UserPageTitle title={t('myInfo')} />
       </TitleWrapperData>
       <UserDataBox>
         <UserAvatar />

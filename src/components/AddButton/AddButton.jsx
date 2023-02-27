@@ -9,13 +9,13 @@ import {
 } from './AddButton.styled';
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 const AddButton = ({ component: Component }) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { t } = useTranslation();
   useEffect(() => {
     const body = document.querySelector('body');
     isModalOpen
@@ -39,7 +39,7 @@ const AddButton = ({ component: Component }) => {
   return (
     <>
       <AddButtonWrapper>
-        <AddSpanText>Add pet</AddSpanText>
+        <AddSpanText>{t('addPet')}</AddSpanText>
         <AddButtonStyled
           type="button"
           onClick={() => {
@@ -47,7 +47,7 @@ const AddButton = ({ component: Component }) => {
           }}
         >
           <StyledIconAdd />
-          <AddButtonText>Add pet</AddButtonText>
+          <AddButtonText>{t('addPet')}</AddButtonText>
         </AddButtonStyled>
       </AddButtonWrapper>
 

@@ -4,8 +4,9 @@ import { Box, SearchInput, Button } from './NoticesSearch.styled';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Icon from '../../styles/Buttons/icons/index';
 import { useEffect } from 'react';
-
+import { useTranslation } from 'react-i18next';
 const NoticesSearch = () => {
+  const { t } = useTranslation();
   const [hasClose, setHasClose] = useState(false);
   const [query, setQuery] = useState('');
   const [, setSearchParams] = useSearchParams();
@@ -45,7 +46,7 @@ const NoticesSearch = () => {
           name="findpet"
           type="text"
           value={query}
-          placeholder="Search"
+          placeholder={t('search')}
           onChange={handleInput}
         />
         {!hasClose ? (
@@ -62,7 +63,6 @@ const NoticesSearch = () => {
           <Button type="submit" onClick={onClick}>
             <Icon.ResetQuery
               style={{
-                backgroundColor: 'white',
                 position: 'absolute',
                 top: 5,
                 right: 18,

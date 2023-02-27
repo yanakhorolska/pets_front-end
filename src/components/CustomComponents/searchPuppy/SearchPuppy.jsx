@@ -3,11 +3,13 @@ import {
   SearchPuppyText,
   SearchPuppyWrap,
 } from './SearchPuppyStyled';
+import { useTranslation } from 'react-i18next';
 export const SearchPuppy = () => {
+  const { t } = useTranslation();
   return (
     <SearchPuppyWrap>
       <div>
-        <SearchPuppyText>We couldn't find anything</SearchPuppyText>
+        <SearchPuppyText>{t('noNews')}</SearchPuppyText>
       </div>
       <SearchPuppyImg />
     </SearchPuppyWrap>

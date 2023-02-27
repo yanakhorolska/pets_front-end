@@ -4,12 +4,19 @@ import { getUserAvatarURL } from 'redux/selectors';
 import { useUpdateUserAvatarMutation } from '../../redux/fetchUser';
 import { useDispatch } from 'react-redux';
 import { setAvatarURL } from '../../redux/authSlice';
-import { AvatarInput, AvatarLabel, AvatarImage, AvatarLabelText, AvatarBox } from './UserAvatar.styled';
+import {
+  AvatarInput,
+  AvatarLabel,
+  AvatarImage,
+  AvatarLabelText,
+  AvatarBox,
+} from './UserAvatar.styled';
 import Icon from '../../styles/Buttons/icons';
 import { useState } from 'react';
-import Emptyphoto from "../../images/bgs/EmptyPhoto.png"
-
+import Emptyphoto from '../../images/bgs/EmptyPhoto.png';
+import { useTranslation } from 'react-i18next';
 const UserAvatar = () => {
+  const { t } = useTranslation();
   const avatarURL = useSelector(getUserAvatarURL);
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(avatarURL);
@@ -25,17 +32,21 @@ const UserAvatar = () => {
     }
   };
 
-  useEffect(() => { setAvatar(avatarURL); }, [avatarURL])
-  
+  useEffect(() => {
+    setAvatar(avatarURL);
+  }, [avatarURL]);
+
   return (
     <AvatarBox>
-      {avatar ? <AvatarImage src={avatar} alt="User"  />
-        : <AvatarImage src={Emptyphoto}  />
-      }
-      
+      {avatar ? (
+        <AvatarImage src={avatar} alt="User" />
+      ) : (
+        <AvatarImage src={Emptyphoto} />
+      )}
 
       <AvatarLabel htmlFor="avatar-upload">
-        <Icon.Camera /><AvatarLabelText>Edit photo</AvatarLabelText>
+        <Icon.Camera />
+        <AvatarLabelText>{t('editPhoto')}</AvatarLabelText>
       </AvatarLabel>
       <AvatarInput
         name="avatar"

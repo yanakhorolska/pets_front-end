@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
 import { getMode } from './styles/theme/theme';
 import { mode } from './components/ToggleButton/ToggleButton';
-
+import './i18n';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
