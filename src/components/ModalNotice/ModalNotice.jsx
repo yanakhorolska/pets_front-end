@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
+import moment from 'moment';
 import {
   useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
@@ -83,8 +84,10 @@ const ModalNotice = ({ onClose, _id }) => {
       return 'Lost & Found';
     }
   };
-
-  const date = new Date(dateOfBirth).toLocaleDateString('en-GB');
+  const convertDate = date => {
+    return moment(date).format('DD.MM.YYYY');
+  }; 
+  const date =  convertDate(dateOfBirth)
 
   return (
     <>
