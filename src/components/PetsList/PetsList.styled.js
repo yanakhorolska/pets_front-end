@@ -33,7 +33,7 @@ export const PetPhoto = styled.img`
   height: 240px;
   border-radius: 20px;
   object-fit: contain;
-  filter: drop-shadow( ${p => p.theme.shadows.boxShadow});
+  filter: drop-shadow(${p => p.theme.shadows.boxShadow});
 
   @media ${p => p.theme.media.tabletDesktop} {
     margin-bottom: 0;
@@ -59,7 +59,6 @@ export const PetDescripton = styled.div`
   letter-spacing: 0.04em;
   overflow-wrap: break-word;
   color: ${p => p.theme.color.text};
-
 
   @media ${p => p.theme.media.tabletDesktop} {
     width: 470px;
@@ -103,4 +102,12 @@ export const Button = styled.button`
     top: 20px;
     right: 20px;
   }
+`;
+
+export const Cat = styled.img`
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 250px;
+  object-fit: contain;
 `;

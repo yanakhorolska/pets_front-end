@@ -11,6 +11,7 @@ import {
   PetDescripton,
   Span,
   Button,
+  Cat,
 } from './PetsList.styled';
 import Icon from '../../styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
@@ -55,44 +56,50 @@ const PetsList = () => {
         <Loader />
       ) : (
         <>
-          {data.length > 0
-            ? data.map(pet => (
-                <PetBox key={pet.id}>
-                  <PetPhoto src={pet.avatarURL} alt="Pet Foto" />
+          {data.length > 0 ? (
+            data.map(pet => (
+              <PetBox key={pet.id}>
+                <PetPhoto src={pet.avatarURL} alt="Pet Foto" />
 
-                  <Button type="submit" onClick={() => onClick(pet.id)}>
-                    <Icon.Trash style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
-                  </Button>
-                  <PetList>
-                    <li>
-                      <PetDescripton>
-                        <Span> {t('name')}:</Span> {pet.nickname}
-                      </PetDescripton>
-                    </li>
-                    <li>
-                      <PetDescripton>
-                        <Span> {t('datePet')}:</Span>
-                        {convertDate(pet.birthday)}
-                      </PetDescripton>
-                    </li>
-                    <li>
-                      <PetDescripton>
-                        <Span> {t('breed')}:</Span> {pet.breed}
-                      </PetDescripton>
-                    </li>
-                    <li>
-                      <PetDescripton>
-                        <Span> {t('comments')}:</Span>
-                        {pet.comment}
-                      </PetDescripton>
-                    </li>
-                  </PetList>
-                </PetBox>
-              ))
-            : null}
+                <Button type="submit" onClick={() => onClick(pet.id)}>
+                  <Icon.Trash style={{ color: 'rgba(17, 17, 17, 0.6)' }} />
+                </Button>
+                <PetList>
+                  <li>
+                    <PetDescripton>
+                      <Span> {t('name')}:</Span> {pet.nickname}
+                    </PetDescripton>
+                  </li>
+                  <li>
+                    <PetDescripton>
+                      <Span> {t('datePet')}:</Span>
+                      {convertDate(pet.birthday)}
+                    </PetDescripton>
+                  </li>
+                  <li>
+                    <PetDescripton>
+                      <Span> {t('breed')}:</Span> {pet.breed}
+                    </PetDescripton>
+                  </li>
+                  <li>
+                    <PetDescripton>
+                      <Span> {t('comments')}:</Span>
+                      {pet.comment}
+                    </PetDescripton>
+                  </li>
+                </PetList>
+              </PetBox>
+            ))
+          ) : (
+            <PetBox>
+              <Cat src={require('../../images/bgs/cards.JPG')} alt={'Card'} />
+            </PetBox>
+          )}
         </>
       )}
     </div>
+    // )}
+    // </>
   );
 };
 
