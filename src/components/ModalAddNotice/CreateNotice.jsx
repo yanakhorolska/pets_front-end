@@ -36,8 +36,13 @@ const validationSchemas = [
     title: Yup.string()
       .min(2, 'Too Short!')
       .max(48, 'Too long!')
+      .matches(/^[a-zA-Z]+$/, 'Only letters!')
       .required('Title is required field'),
-    petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!').required(),
+    petName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(16, 'Too long!')
+      .matches(/^[a-zA-Z]+$/, 'Only letters!')
+      .required(),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
       .required()
@@ -53,7 +58,11 @@ const validationSchemas = [
         }
         return true;
       }),
-    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too long!').required(),
+    breed: Yup.string()
+      .min(2, 'Too Short!')
+      .max(24, 'Too long!')
+      .matches(/^[a-zA-Z]+$/, 'Only letters!')
+      .required(),
   }),
   Yup.object().shape({
     sex: Yup.string()
