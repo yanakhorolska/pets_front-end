@@ -6,10 +6,11 @@ import { LearnMoreButton } from 'styles/Buttons/index';
 
 import { useAuth } from 'hooks/useAuth';
 import { useTranslation } from 'react-i18next';
-const LearnMoreButtonComponent = ({ id }) => {
+const LearnMoreButtonComponent = ({ _id }) => {
+  const { t } = useTranslation();
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t } = useTranslation();
+
   const body = document.querySelector('body');
   if (isModalOpen === true) {
     body.classList.add('is-hidden');
@@ -37,7 +38,7 @@ const LearnMoreButtonComponent = ({ id }) => {
       )}
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
-          <ModalNotice onClose={toggleModal} id={id} />
+          <ModalNotice onClose={toggleModal} _id={_id} />
         </ModalWindow>
       )}
     </>

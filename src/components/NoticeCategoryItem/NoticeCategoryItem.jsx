@@ -170,7 +170,7 @@ export const NoticeCategoryItem = ({ pet }) => {
             ) : null}
           </NoticeInfoList>
           <LearnBtnWrap>
-            <LearnMoreButtonComponent id={_id} />
+            <LearnMoreButtonComponent _id={_id} />
             {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
         </ListInfoWrap>
