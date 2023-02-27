@@ -3,19 +3,20 @@ import { AnchorElem } from 'styles/Buttons/Anchor/Anchor';
 import { LinksItem, LinksList } from './NoticesCategoriesNav.styled';
 import { useSelector } from 'react-redux';
 import { getIsLogged } from 'redux/selectors';
-
-const link = [
-  { to: '/notices/lost-found', text: 'Lost/Found' },
-  { to: '/notices/for-free', text: 'In good hands' },
-  { to: '/notices/sell', text: 'Sell' },
-];
-
-const linkAuth = [
-  { to: '/notices/favorite', text: 'Favorite ads' },
-  { to: '/notices/myNotices', text: 'My ads' },
-];
-
+import { useTranslation } from 'react-i18next';
 const NoticesCategoriesNav = () => {
+  const { t } = useTranslation();
+
+  const link = [
+    { to: '/notices/lost-found', text: t('lostFoundUp') },
+    { to: '/notices/for-free', text: t('inGoodHandsUp') },
+    { to: '/notices/sell', text: t('sellUp') },
+  ];
+
+  const linkAuth = [
+    { to: '/notices/favorite', text: t('myAds') },
+    { to: '/notices/myNotices', text: t('myFavAds') },
+  ];
   const isLogged = useSelector(getIsLogged);
 
   const renderLinks = () => {
