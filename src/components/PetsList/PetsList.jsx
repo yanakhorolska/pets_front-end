@@ -3,6 +3,7 @@ import {
   useGetUserPetsQuery,
   useRemovePetByIdMutation,
 } from '../../redux/fetchUser';
+import moment from 'moment';
 import {
   PetBox,
   PetPhoto,
@@ -19,6 +20,9 @@ import Notiflix from 'notiflix';
 const PetsList = () => {
   const [removePet] = useRemovePetByIdMutation();
   let { data, isLoading } = useGetUserPetsQuery();
+  const convertDate = date => {
+    return moment(date).format('DD.MM.YYYY');
+  }; 
 
   const onClick = idPet => {
     Notiflix.Confirm.show(
@@ -66,7 +70,7 @@ const PetsList = () => {
                     <li>
                       <PetDescripton>
                         <Span> Date of birth:</Span>
-                        {new Date(pet.birthday).toLocaleDateString('en-GB')}
+                        {convertDate(pet.birthday)}
                       </PetDescripton>
                     </li>
                     <li>
