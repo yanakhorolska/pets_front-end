@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpets_front_end=self.webpackChunkpets_front_end||[]).push([[175],{7175:function(n,e,t){t.r(e),t.d(e,{default:function(){return f}});var r=t(3876),u=t(2172),s=t(184),f=function(){return(0,s.jsx)(u.P,{children:(0,s.jsx)(r.Z,{title:"Login"})})}}}]);
-//# sourceMappingURL=175.71fdc491.chunk.js.map

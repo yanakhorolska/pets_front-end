@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpets_front_end=self.webpackChunkpets_front_end||[]).push([[644],{7644:function(t,n,e){e.r(n),e.d(n,{default:function(){return i}});var r=e(3876),s=e(2172),u=e(9230),f=e(184),i=function(){var t=(0,u.$G)().t;return(0,f.jsx)(s.P,{children:(0,f.jsx)(r.Z,{title:t("registration")})})}}}]);
+//# sourceMappingURL=644.9f2f7e88.chunk.js.map
