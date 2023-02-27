@@ -26,8 +26,9 @@ import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMore
 import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
-
+import { useTranslation } from 'react-i18next';
 export const NoticeCategoryItem = ({ pet }) => {
+  const { t } = useTranslation();
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
@@ -162,22 +163,30 @@ export const NoticeCategoryItem = ({ pet }) => {
         <ListInfoWrap>
           <NoticeInfoList>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Breed:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('breed')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{breed}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Place:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('place')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{location}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Age:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('age')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>
                 {timeSinceCurrentDate(dateOfBirth)}
               </NoticeInfoListItemData>
             </NoticeInfoListItem>
             {price ? (
               <NoticeInfoListItem>
-                <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
+                <NoticeInfoListItemCategory>
+                  {t('price')}:
+                </NoticeInfoListItemCategory>
                 <NoticeInfoListItemData>{price} $</NoticeInfoListItemData>
               </NoticeInfoListItem>
             ) : null}

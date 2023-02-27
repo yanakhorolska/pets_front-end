@@ -11,7 +11,7 @@ import {
 } from './UserDataItem.styled';
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
-
+import { useTranslation } from 'react-i18next';
 const UserDataItem = ({ item }) => {
   const [name, value] = item;
   const dispatch = useDispatch();
@@ -45,10 +45,15 @@ const UserDataItem = ({ item }) => {
       }
     }
   };
+  const { t } = useTranslation();
+  const getName = value => {
+    const name = value.toLowerCase();
+    return t(`${name}`);
+  };
 
   return (
     <UserDataForm>
-      <UserDataLabel>{name}</UserDataLabel>
+      <UserDataLabel>{getName(name)}</UserDataLabel>
       {!focus ? (
         <UserDataPar onDoubleClick={() => setFocus(prev => !prev)}>
           {value}
