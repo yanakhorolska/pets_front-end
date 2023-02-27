@@ -1,16 +1,30 @@
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 
-// import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 import { useAddPetMutation } from 'redux/fetchUser';
 
 import * as Yup from 'yup';
 
-import { ModalAddPet, FormPageWrapper, FormDescription, FormTitle, InputLabel, InputStyled, InputImageWrapper, InputImageLabel, InputImage, CommentInput, ButtonsWrapper, FieldError, CloseFormButton } from './AddPet.styled';
+import {
+  ModalAddPet,
+  FormPageWrapper,
+  FormDescription,
+  FormTitle,
+  InputLabel,
+  InputStyled,
+  InputImageWrapper,
+  InputImageLabel,
+  InputImage,
+  CommentInput,
+  ButtonsWrapper,
+  FieldError,
+  CloseFormButton,
+} from './AddPet.styled';
 import { ModalButton, NextButton } from 'styles/Buttons'
 
 import Icon from '../ModalAddNotice/svg';
@@ -61,6 +75,9 @@ export const AddPet = ({ onClose }) => {
 
   const [currentPage, setCurrentPage] = useState(0); 
 
+  const [isOpen, setIsOpen] = useState(false);
+
+
   const onChangeAvatarImage = event => {
     if (event.target?.files) {
       formik.setFieldValue('avatar', event.target.files[0]);
@@ -102,8 +119,9 @@ export const AddPet = ({ onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      nickname: '',
+      nickname: 'fsgdshgkjshgdf dskgfjhdkjfdsh fj',
       birthday: "",
+      birthday2:"",
       breed: '',
       avatar: '',
       comment: '',
@@ -171,8 +189,8 @@ export const AddPet = ({ onClose }) => {
                     onBlur={formik.handleBlur}
                   />
                  */}
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <MobileDatePicker
+                  {/*<LocalizationProvider dateAdapter={AdapterDayjs}>
+                     <DesktopDatePicker
                       label="Date of birth "
                       inputFormat="DD.MM.YYYY"
                       value={formik.values.birthday}
@@ -181,12 +199,66 @@ export const AddPet = ({ onClose }) => {
                         console.log(value);
                         formik.setFieldValue('birthday', value);
                         }}
-                      renderInput={(params) => {console.log("params", params); return <InputStyled {...params.inputProps}/>}}
+                      onClick={formik.onClick}
+                      //renderInput={({}) => {<InputStyledDate/>}}
+                      // renderInput={(params) => {console.log("params", ({...params})); return <div><InputStyled {...params.inputProps}/><button type='button' onClick={params.onClick}></button></div>}}
+                      renderInput={(params) => {console.log("params", ({...params})); return <div><InputStyled {...params.inputProps}/><button type='button' {...params.inpurProps}></button></div>}}
                     />
-                </LocalizationProvider>
+                  </LocalizationProvider> */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DesktopDatePicker
+                      label="Date of birth "
+                      inputFormat="DD.MM.YYYY"
+                      value={formik.values.birthday}
+                      //onChange={handleChangeDate}
+                      open={isOpen}
+                      onChange={(value) => {
+                        console.log(value);
+                        formik.setFieldValue('birthday', value);
+                        }}
+                      onClose={() => {setIsOpen(false);}}
+                      renderInput={({
+                          ref,
+                          inputProps,
+                          disabled,
+                          onChange,
+                          value,
+                          ...other
+                        }) => (
+                          <div ref={ref}>
+                            <InputStyled
+                              //style={{ display: 'none' }}
+                              value={value}
+                              onChange={onChange}
+                              // disabled={disabled}
+                              ref={ref}
+                              {...inputProps}
+                            />
+                            <button onClick={() => {setIsOpen(!isOpen);}}>
+                              OPEN
+                            </button>
+                          </div>)} />
+                  </LocalizationProvider>
+                  
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
                   ) : <FieldError/>}
+                </InputLabel>
+                <InputLabel>
+                  Date of birth 2
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <MobileDatePicker
+                      label="Date of birth 2"
+                      inputFormat="DD/MM/YYYY"
+                      value={formik.values.birthday2}
+                      //onChange={handleChangeDate}
+                      onChange={(value) => {
+                        console.log(value);
+                        formik.setFieldValue('birthday2', value);
+                        }}
+                      renderInput={(params) => {console.log("birthday2", params); return <InputStyled {...params}/>}}
+                    />
+                  </LocalizationProvider>
                 </InputLabel>
                 <InputLabel>
                   Breed
