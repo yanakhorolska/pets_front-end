@@ -57,6 +57,8 @@ export const NoticeCategoryItem = ({ pet }) => {
     myads,
   } = pet;
 
+  console.log(_id, 'id items');
+
   const handleFavoriteClick = () => {
     if (!favorite) {
       addToFavorite(_id).unwrap();
@@ -69,20 +71,31 @@ export const NoticeCategoryItem = ({ pet }) => {
   };
 
   const onAddToButtonClickLogin = () => {
-    Notiflix.Notify.warning('Please login to add', {
-      background: '#000000',
-      textColor: '#fff',
-      childClassName: 'notiflix-notify-warning',
-      notiflixIconColor: 'rgba(0,0,0,0.2)',
-      fontAwesomeClassName: 'fas fa-exclamation-circle',
-      fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-      backOverlayColor: '#31ee8657',
-    });
+    Notiflix.Notify.warning('Please login to add');
   };
 
   const handleNoticeClick = () => {
-    deleteFromNotises(_id).unwrap();
-    return;
+    Notiflix.Confirm.show(
+      'Аnimal is the best friend!',
+      'Are you sure you want to delete this ad??',
+      'Yes',
+      'No',
+      async function okCb() {
+        await deleteFromNotises(_id).unwrap();
+        return;
+      },
+      function cancelCb() {
+        return;
+      },
+      {
+        width: '250px',
+        okButtonColor: '#f8f8f8',
+        okButtonBackground: '#F59256',
+        titleColor: '#F59256',
+        titleFontSize: '22px',
+        messageFontSize: '20px',
+      }
+    );
   };
 
   const changeTextOfCategory = category => {
@@ -170,7 +183,7 @@ export const NoticeCategoryItem = ({ pet }) => {
             ) : null}
           </NoticeInfoList>
           <LearnBtnWrap>
-            <LearnMoreButtonComponent id={_id} />
+            <LearnMoreButtonComponent _id={_id} />
             {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
         </ListInfoWrap>

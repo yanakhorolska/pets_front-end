@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from 'redux/selectors';
 import { setCurrentUser } from 'redux/authSlice';
 import { useGetCurrentUserQuery } from 'redux/authApi';
+import NoInternetConnection from './NointernetConnection/NoInternetConnection';
 
 const Home = lazy(() => import('pages/Home'));
 const NewsPage = lazy(() => import('pages/NewsPage'));
@@ -34,7 +35,7 @@ export const App = () => {
   }, [data, dispatch]);
 
   return (
-    <>
+    <NoInternetConnection>
       <Suspense>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
@@ -53,8 +54,9 @@ export const App = () => {
               <Route path="/user" element={<UserPage />} />
             </Route>
           </Route>
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
-    </>
+    </NoInternetConnection>
   );
 };

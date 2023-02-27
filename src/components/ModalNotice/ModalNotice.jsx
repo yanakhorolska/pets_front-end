@@ -7,7 +7,6 @@ import {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
-import { Loader } from 'components/Loader/Loader';
 import Icon from 'styles/Buttons/icons/index';
 import {
   ModalBox,
@@ -28,14 +27,14 @@ import {
   CommentBox,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ onClose, id }) => {
-  const { data, isLoading } = useGetNoticeByIdQuery(id);
+const ModalNotice = ({ onClose, _id }) => {
+  const { data } = useGetNoticeByIdQuery(_id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const { isLoggedIn } = useAuth();
 
   const favText = useMemo(
-    () => (data.favorite ? 'Delete from' : 'Add to'),
+    () => (!data ? '' : data.favorite ? 'Delete from' : 'Add to'),
     [data]
   );
 
@@ -61,12 +60,12 @@ const ModalNotice = ({ onClose, id }) => {
 
   const handleFavoriteClick = () => {
     if (!favorite) {
-      addToFavorite(id).unwrap();
+      addToFavorite(_id).unwrap();
       return;
     }
 
     if (favorite) {
-      deleteFromFavorite(id).unwrap();
+      deleteFromFavorite(_id).unwrap();
     }
   };
 
@@ -92,104 +91,98 @@ const ModalNotice = ({ onClose, id }) => {
 
   return (
     <>
-      {isLoading ? (
-        <ModalBox>
-          <Loader />
-        </ModalBox>
-      ) : (
-        <ModalBox>
-          <CloseButtonTop onClick={onClose} />
+      <ModalBox>
+        <CloseButtonTop onClick={onClose} />
 
-          <ColumnBox>
-            <PhotoBox>
-              <PetPhoto src={imageUrl} alt="photoPets" />
-              <Category>{changeTextOfCategory(category)}</Category>
-            </PhotoBox>
-            <Descriptions>
-              <li>
-                <TitleCard>{title}</TitleCard>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Name:</DescrCategory>
-                  <DescrData>{petName}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Birthday:</DescrCategory>
-                  <DescrData>{date}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Breed:</DescrCategory>
-                  <DescrData>{breed}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Place: </DescrCategory>
-                  <DescrData>{location}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>The sex:</DescrCategory>
-                  <DescrData>{sex}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionLink href={`mailto:${email}`}>
-                  <DescrCategory>Email:</DescrCategory>
-                  <DescrData>{email}</DescrData>
-                </DescriptionLink>
-              </li>
-              <li>
-                <DescriptionLink href={`tel:${phone}`}>
-                  <DescrCategory>Phone:</DescrCategory>
-                  <DescrData>{phone}</DescrData>
-                </DescriptionLink>
-              </li>
-              {category === 'sell' && (
-                <li>
-                  <DescriptionItems>
-                    <DescrCategory>Price:</DescrCategory>
-                    <DescrData>{price} $</DescrData>
-                  </DescriptionItems>
-                </li>
-              )}
-            </Descriptions>
-          </ColumnBox>
-          <CommentBox>
-            <DescrCategory>Comments:</DescrCategory>
-            <DescrData>{comment}</DescrData>
-          </CommentBox>
-          <ButtonBox>
+        <ColumnBox>
+          <PhotoBox>
+            <PetPhoto src={imageUrl} alt="photoPets" />
+            <Category>{changeTextOfCategory(category)}</Category>
+          </PhotoBox>
+          <Descriptions>
             <li>
-              <a href={`tel:${phone}`}>
-                <ContactButton type="button">Contact</ContactButton>
-              </a>
+              <TitleCard>{title}</TitleCard>
             </li>
-            {isLoggedIn ? (
+            <li>
+              <DescriptionItems>
+                <DescrCategory>Name:</DescrCategory>
+                <DescrData>{petName}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>Birthday:</DescrCategory>
+                <DescrData>{date}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>Breed:</DescrCategory>
+                <DescrData>{breed}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>Place: </DescrCategory>
+                <DescrData>{location}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>The sex:</DescrCategory>
+                <DescrData>{sex}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionLink href={`mailto:${email}`}>
+                <DescrCategory>Email:</DescrCategory>
+                <DescrData>{email}</DescrData>
+              </DescriptionLink>
+            </li>
+            <li>
+              <DescriptionLink href={`tel:${phone}`}>
+                <DescrCategory>Phone:</DescrCategory>
+                <DescrData>{phone}</DescrData>
+              </DescriptionLink>
+            </li>
+            {category === 'sell' && (
               <li>
-                <AddButton type="button" onClick={handleFavoriteClick}>
-                  {favText}
-                  {<Icon.Heart style={{ fill: '#f59256' }} />}
-                </AddButton>
-              </li>
-            ) : (
-              <li>
-                <NavLink to="/login">
-                  <AddButton type="button">
-                    Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
-                  </AddButton>
-                </NavLink>
+                <DescriptionItems>
+                  <DescrCategory>Price:</DescrCategory>
+                  <DescrData>{price} $</DescrData>
+                </DescriptionItems>
               </li>
             )}
-          </ButtonBox>
-        </ModalBox>
-      )}
+          </Descriptions>
+        </ColumnBox>
+        <CommentBox>
+          <DescrCategory>Comments:</DescrCategory>
+          <DescrData>{comment}</DescrData>
+        </CommentBox>
+        <ButtonBox>
+          <li>
+            <a href={`tel:${phone}`}>
+              <ContactButton type="button">Contact</ContactButton>
+            </a>
+          </li>
+          {isLoggedIn ? (
+            <li>
+              <AddButton type="button" onClick={handleFavoriteClick}>
+                {favText}
+                {<Icon.Heart style={{ fill: '#f59256' }} />}
+              </AddButton>
+            </li>
+          ) : (
+            <li>
+              <NavLink to="/login">
+                <AddButton type="button">
+                  Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
+                </AddButton>
+              </NavLink>
+            </li>
+          )}
+        </ButtonBox>
+      </ModalBox>
     </>
   );
 };
