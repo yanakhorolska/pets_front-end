@@ -26,16 +26,16 @@ import {
   CloseButtonTop,
   CommentBox,
 } from './ModalNotice.styled';
-
+import { useTranslation } from 'react-i18next';
 const ModalNotice = ({ onClose, _id }) => {
   const { data } = useGetNoticeByIdQuery(_id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const { isLoggedIn } = useAuth();
-
+  const { t } = useTranslation();
   const favText = useMemo(
-    () => (!data ? '' : data.favorite ? 'Delete from' : 'Add to'),
-    [data]
+    () => (!data ? '' : data.favorite ? t('deleteFrom') : t('addTo')),
+    [data, t]
   );
 
   if (!data) {
@@ -75,13 +75,13 @@ const ModalNotice = ({ onClose, _id }) => {
 
   const changeTextOfCategory = category => {
     if (category === 'sell') {
-      return 'Sell';
+      return t('sellUp');
     }
     if (category === 'inGoodHands') {
-      return 'In good hands';
+      return t('inGoodHandsUp');
     }
     if (category === 'lostFound') {
-      return 'Lost & Found';
+      return t('lostFoundUp');
     }
   };
   const convertDate = date => {
@@ -105,50 +105,50 @@ const ModalNotice = ({ onClose, _id }) => {
             </li>
             <li>
               <DescriptionItems>
-                <DescrCategory>Name:</DescrCategory>
+                <DescrCategory>{t('name')}:</DescrCategory>
                 <DescrData>{petName}</DescrData>
               </DescriptionItems>
             </li>
             <li>
               <DescriptionItems>
-                <DescrCategory>Birthday:</DescrCategory>
+                <DescrCategory>{t('birthday')}:</DescrCategory>
                 <DescrData>{date}</DescrData>
               </DescriptionItems>
             </li>
             <li>
               <DescriptionItems>
-                <DescrCategory>Breed:</DescrCategory>
+                <DescrCategory>{t('breed')}:</DescrCategory>
                 <DescrData>{breed}</DescrData>
               </DescriptionItems>
             </li>
             <li>
               <DescriptionItems>
-                <DescrCategory>Place: </DescrCategory>
+                <DescrCategory>{t('place')}: </DescrCategory>
                 <DescrData>{location}</DescrData>
               </DescriptionItems>
             </li>
             <li>
               <DescriptionItems>
-                <DescrCategory>The sex:</DescrCategory>
+                <DescrCategory>{t('sex')}:</DescrCategory>
                 <DescrData>{sex}</DescrData>
               </DescriptionItems>
             </li>
             <li>
               <DescriptionLink href={`mailto:${email}`}>
-                <DescrCategory>Email:</DescrCategory>
+                <DescrCategory>{t('email')}:</DescrCategory>
                 <DescrData>{email}</DescrData>
               </DescriptionLink>
             </li>
             <li>
               <DescriptionLink href={`tel:${phone}`}>
-                <DescrCategory>Phone:</DescrCategory>
+                <DescrCategory>{t('phone')}:</DescrCategory>
                 <DescrData>{phone}</DescrData>
               </DescriptionLink>
             </li>
             {category === 'sell' && (
               <li>
                 <DescriptionItems>
-                  <DescrCategory>Price:</DescrCategory>
+                  <DescrCategory>{t('price')}:</DescrCategory>
                   <DescrData>{price} $</DescrData>
                 </DescriptionItems>
               </li>
@@ -156,13 +156,13 @@ const ModalNotice = ({ onClose, _id }) => {
           </Descriptions>
         </ColumnBox>
         <CommentBox>
-          <DescrCategory>Comments:</DescrCategory>
+          <DescrCategory>{t('comments')}:</DescrCategory>
           <DescrData>{comment}</DescrData>
         </CommentBox>
         <ButtonBox>
           <li>
             <a href={`tel:${phone}`}>
-              <ContactButton type="button">Contact</ContactButton>
+              <ContactButton type="button">{t('contact')}</ContactButton>
             </a>
           </li>
           {isLoggedIn ? (
@@ -176,7 +176,7 @@ const ModalNotice = ({ onClose, _id }) => {
             <li>
               <NavLink to="/login">
                 <AddButton type="button">
-                  Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
+                  {t('addTo')} {<Icon.Heart style={{ fill: '#f59256' }} />}
                 </AddButton>
               </NavLink>
             </li>
