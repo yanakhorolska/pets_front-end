@@ -1,10 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useUpdateUserMutation } from '../../redux/fetchUser';
-import { setUpdatedUser } from 'redux/authSlice';
 import {
-  // UserDataForm,
   UserDataInput,
   UserDataLabel,
   UserDataPar,
@@ -14,7 +10,7 @@ import Icon from '../../styles/Buttons/icons/index';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UserDataItem = ({ item, formik }) => {
-  const [name, value] = item;
+  const [name] = item;
   const [focus, setFocus] = useState(false);
 
   const setInputType = () => {
