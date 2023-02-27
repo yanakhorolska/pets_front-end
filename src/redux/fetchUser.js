@@ -32,8 +32,9 @@ export const userApi = createApi({
       // query: (token) => '/users/current',
       // providesTags: ['User'],
       // transformResponse: response => response.data
-      query: token => `/users/current`,
+      query: () => `/users/current`,
       transformResponse: response => response.data,
+      invalidatesTags: ['User'],
     }),
     logOut: builder.mutation({
       query: token => ({

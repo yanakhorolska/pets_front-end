@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useUpdateUserMutation } from '../../redux/fetchUser';
 import { setUpdatedUser } from 'redux/authSlice';
 import {
-  UserDataForm,
+  // UserDataForm,
   UserDataInput,
   UserDataLabel,
   UserDataPar,
@@ -12,12 +12,14 @@ import {
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
 
-const UserDataItem = ({ item }) => {
+const UserDataItem = ({ item, formik }) => {
   const [name, value] = item;
   const dispatch = useDispatch();
   const [focus, setFocus] = useState(false);
   const [newValue, setNewValue] = useState('');
   const [updateUser] = useUpdateUserMutation();
+
+  console.log(formik);
 
   const setInputType = () => {
     if (name === 'birthday') {
@@ -27,44 +29,54 @@ const UserDataItem = ({ item }) => {
   };
 
   const onEdit = async () => {
-    setFocus(prev => !prev);
-    setNewValue(value);
-    setInputType();
-    const values = { [name]: newValue };
-    // console.log(values);
-    if (value === newValue) {
-      return;
-    }
-    if (focus) {
-      try {
-        const user = await updateUser(values).unwrap();
-        dispatch(setUpdatedUser(user));
-        // console.log(values);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    console.log('ON EDIT________');
+
+    // setFocus(prev => !prev);
+    // setNewValue(value);
+    // setInputType();
+    // const values = { [name]: newValue };
+
+    // if (value === newValue) {
+    //   return;
+    // }
+    // if (focus) {
+    //   try {
+    //     const user = await updateUser(values).unwrap();
+    //     dispatch(setUpdatedUser(user));
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
   };
 
   return (
-    <UserDataForm>
+    // <UserDataForm>
+    <>
       <UserDataLabel>{name}</UserDataLabel>
       {!focus ? (
-        <UserDataPar onDoubleClick={() => setFocus(prev => !prev)}>
-          {value}
-        </UserDataPar>
+        <UserDataPar
+          onDoubleClick={() => setFocus(prev => !prev)}
+          value={formik.values[name]}
+          onChange={() => {}}
+        />
       ) : (
         <UserDataInput
           type={setInputType()}
-          value={newValue}
-          onChange={evt => setNewValue(evt.target.value)}
+          // value={newValue}
+          name={name}
+          value={formik.values[name]}
+          // onChange={evt => {
+          //   setNewValue(evt.target.value);
+          // }}
+          onChange={formik.handleChange}
           autoFocus
         />
       )}
-      <EditBtn type="button" onClick={onEdit}>
+      <EditBtn type={focus ? 'button' : 'submit'} onClick={onEdit}>
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>
-    </UserDataForm>
+    </>
+    // </UserDataForm>
   );
 };
 
