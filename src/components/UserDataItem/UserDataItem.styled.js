@@ -2,16 +2,16 @@ import styled from 'styled-components';
 // import { Form, Field } from 'formik';
 
 export const UserDataForm = styled.ul`
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-flex-direction: row;
-padding: 0;
-width:100%;
-@media ${p => p.theme.media.tabletDesktop}{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: row;
+  padding: 0;
+  width: 100%;
+  @media ${p => p.theme.media.tabletDesktop} {
     width: 370px;
-}
-`
+  }
+`;
 export const UserDataLabel = styled.h3`
   color: ${p => p.theme.color.text};
   font-size: 12px;
@@ -25,22 +25,23 @@ export const UserDataLabel = styled.h3`
 `;
 
 export const UserDataPar = styled.p`
-display: block;
-width: 160px;
-border-radius: 5px;
-padding: 4px 18px;
-margin-bottom: 8px;
-margin-right: 8px;
-background-color: ${p => p.theme.color.white};
-border: none;
-color: black;
-font-weight: 400;
-@media ${p => p.theme.media.tabletDesktop}{
+  display: block;
+  width: 160px;
+  border-radius: 5px;
+  padding: 4px 18px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  background-color: ${p => p.theme.color.white};
+  border: none;
+  color: black;
+  font-weight: 400;
+  overflow: hidden;
+  @media ${p => p.theme.media.tabletDesktop} {
     width: 216px;
     font-size: 18px;
-    lineHeights: ${p => p.theme.lineHeights.s}
-}
-`
+    lineheights: ${p => p.theme.lineHeights.s};
+  }
+`;
 
 export const UserDataInput = styled.input`
 display: block;
