@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HomeStyled, HomeImg, HomeText, BoxHome } from './home.styled';
 import { Container } from 'styles/Container/Container.styled';
