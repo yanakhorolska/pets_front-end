@@ -57,6 +57,8 @@ export const NoticeCategoryItem = ({ pet }) => {
     myads,
   } = pet;
 
+  console.log(_id, 'id items');
+
   const handleFavoriteClick = () => {
     if (!favorite) {
       addToFavorite(_id).unwrap();
@@ -170,7 +172,7 @@ export const NoticeCategoryItem = ({ pet }) => {
             ) : null}
           </NoticeInfoList>
           <LearnBtnWrap>
-            <LearnMoreButtonComponent id={_id} />
+            <LearnMoreButtonComponent _id={_id} />
             {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
         </ListInfoWrap>

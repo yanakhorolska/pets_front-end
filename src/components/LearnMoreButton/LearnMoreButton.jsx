@@ -5,7 +5,7 @@ import ModalNotice from 'components/ModalNotice/ModalNotice';
 import { LearnMoreButton } from 'styles/Buttons/index';
 
 import { useAuth } from 'hooks/useAuth';
-const LearnMoreButtonComponent = ({ id }) => {
+const LearnMoreButtonComponent = ({ _id }) => {
   const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -36,7 +36,7 @@ const LearnMoreButtonComponent = ({ id }) => {
       )}
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
-          <ModalNotice onClose={toggleModal} id={id} />
+          <ModalNotice onClose={toggleModal} _id={_id} />
         </ModalWindow>
       )}
     </>
