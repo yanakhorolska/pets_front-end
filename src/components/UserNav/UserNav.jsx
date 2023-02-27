@@ -5,6 +5,7 @@ import { getUserAvatarURL } from 'redux/selectors';
 import { useSelector } from 'react-redux';
 import { UserAvatar } from './UserNav.styled';
 import { useTranslation } from 'react-i18next';
+
 const UserNav = click => {
   const avatarURL = useSelector(getUserAvatarURL);
   const [avatar, setAvatar] = useState(avatarURL);

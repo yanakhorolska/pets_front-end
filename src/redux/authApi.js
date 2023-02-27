@@ -28,7 +28,7 @@ export const authApi = createApi({
       }),
     }),
     getUser: builder.query({
-      query: token => `/users/current`,
+      query: () => `/users/current`,
       transformResponse: response => response.data,
     }),
     getCurrentUser: builder.query({
