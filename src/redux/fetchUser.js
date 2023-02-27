@@ -58,11 +58,14 @@ export const userApi = createApi({
       }),
     }),
     updateUser: builder.mutation({
-      query: values => ({
-        url: '/users/update',
-        method: 'PATCH',
-        body: values,
-      }),
+      query: values => {
+        console.log(values);
+        return {
+          url: '/users/update',
+          method: 'PATCH',
+          body: values,
+        };
+      },
       invalidatesTags: ['User'],
     }),
 

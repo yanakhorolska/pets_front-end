@@ -11,15 +11,11 @@ import {
 } from './UserDataItem.styled';
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UserDataItem = ({ item, formik }) => {
   const [name, value] = item;
-  const dispatch = useDispatch();
   const [focus, setFocus] = useState(false);
-  const [newValue, setNewValue] = useState('');
-  const [updateUser] = useUpdateUserMutation();
-
-  console.log(formik);
 
   const setInputType = () => {
     if (name === 'birthday') {
@@ -29,54 +25,47 @@ const UserDataItem = ({ item, formik }) => {
   };
 
   const onEdit = async () => {
-    console.log('ON EDIT________');
+    if (formik.errors[name]) {
+      Notify.warning(formik.errors[name], {
+        position: 'center-center',
+        pauseOnHover: true,
+        fontSize: '16px',
+        timeout: 6000,
+      });
+      return;
+    }
 
-    // setFocus(prev => !prev);
-    // setNewValue(value);
-    // setInputType();
-    // const values = { [name]: newValue };
-
-    // if (value === newValue) {
-    //   return;
-    // }
-    // if (focus) {
-    //   try {
-    //     const user = await updateUser(values).unwrap();
-    //     dispatch(setUpdatedUser(user));
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
+    setFocus(prev => !prev);
+    setInputType();
+    if (focus) {
+      formik.handleSubmit();
+    }
   };
 
   return (
-    // <UserDataForm>
     <>
       <UserDataLabel>{name}</UserDataLabel>
       {!focus ? (
         <UserDataPar
           onDoubleClick={() => setFocus(prev => !prev)}
           value={formik.values[name]}
-          onChange={() => {}}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
         />
       ) : (
         <UserDataInput
           type={setInputType()}
-          // value={newValue}
           name={name}
           value={formik.values[name]}
-          // onChange={evt => {
-          //   setNewValue(evt.target.value);
-          // }}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           autoFocus
         />
       )}
-      <EditBtn type={focus ? 'button' : 'submit'} onClick={onEdit}>
+      <EditBtn type="button" onClick={onEdit}>
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>
     </>
-    // </UserDataForm>
   );
 };
 
