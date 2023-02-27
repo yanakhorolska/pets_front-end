@@ -217,6 +217,7 @@ export const AddPet = ({ onClose }) => {
                         formik.setFieldValue('birthday', value);
                         }}
                       onClose={() => {setIsOpen(false);}}
+                      onBlur={() => formik.onBlur('birthday')}
                       renderInput={({
                           ref,
                           inputProps,
@@ -227,11 +228,11 @@ export const AddPet = ({ onClose }) => {
                         }) => (
                           <div ref={ref}>
                             <InputStyled
-                              //style={{ display: 'none' }}
+                              // style={{ display: 'none' }}
                               value={value}
                               onChange={onChange}
                               // disabled={disabled}
-                              ref={ref}
+                              //ref={ref}
                               {...inputProps}
                             />
                             <button onClick={() => {setIsOpen(!isOpen);}}>
