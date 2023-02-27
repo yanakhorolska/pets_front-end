@@ -8,7 +8,7 @@ import {
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { useTranslation } from '../../../node_modules/react-i18next/index';
+import { useTranslation } from 'react-i18next';
 
 const UserDataItem = ({ item, formik }) => {
   const [name] = item;

@@ -1,5 +1,5 @@
 import { Navigate, useLocation, Outlet } from 'react-router-dom';
-import { getToken, getIsLogged } from '../redux/selectors';
+import { getIsLogged } from '../redux/selectors';
 import { useSelector } from 'react-redux';
 
 const PrivateRoutes = () => {
