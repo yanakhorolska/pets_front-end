@@ -72,6 +72,7 @@ export const HomeImg = styled('div')`
   }
   @media (min-width: 768px) {
     background-image: url(${bgWomanTab1});
+
     @media screen and (min-device-pixel-ratio: 2),
       screen and (-moz-min-device-pixel-ratio: 2),
       screen and (-o-min-device-pixel-ratio: 2/1),
@@ -104,9 +105,11 @@ export const HomeText = styled('h2')`
   margin-top: 60px;
 
   @media (min-width: 768px) {
+    align-content: center;
     align-self: flex-start;
     max-width: 588px;
-    margin-top: 88px;
+    margin-top: auto;
+    margin-bottom: auto;
     text-align: left;
     font-size: 68px;
     line-height: 1.47;
@@ -123,7 +126,7 @@ export const BoxHome = styled('div')`
   flex-grow: 1;
   justify-content: space-between;
   height: calc(100vh - 56px);
-  @media (min-width: 768px) {
+  @media (min-width: 651px) {
     height: calc(100vh - 64px);
     flex-direction: row;
 
