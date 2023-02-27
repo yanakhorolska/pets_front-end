@@ -1,6 +1,11 @@
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 
+// import dayjs, { Dayjs } from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+
 import { useAddPetMutation } from 'redux/fetchUser';
 
 import * as Yup from 'yup';
@@ -64,11 +69,11 @@ export const AddPet = ({ onClose }) => {
  
   const customOnSubmit = async (values, actions) => {
     const { birthday, ...reqValue } = values
-    const status = await addPet({
-      birthday: getDateFromString(birthday).toJSON().slice(0, 10),
-      ...reqValue,
-    }).unwrap();
-    if (status === 'success')  onClose()
+    // const status = await addPet({
+    //   birthday: getDateFromString(birthday).toJSON().slice(0, 10),
+    //   ...reqValue,
+    // }).unwrap();
+    //if (status === 'success')  onClose()
     actions.setSubmitting(false);
   }
  
@@ -98,7 +103,7 @@ export const AddPet = ({ onClose }) => {
   const formik = useFormik({
     initialValues: {
       nickname: '',
-      birthday: '',
+      birthday: "",
       breed: '',
       avatar: '',
       comment: '',
@@ -117,6 +122,10 @@ export const AddPet = ({ onClose }) => {
     avatar: avatarError,
     comment: commentError,
   } = formik.errors;
+
+  const handleChangeDate = newValue => {
+    formik.setFieldValue("birthday", newValue);
+  };
 
   return (
     <ModalAddPet onSubmit={formik.handleSubmit} autoComplete="off">
@@ -144,7 +153,7 @@ export const AddPet = ({ onClose }) => {
                 </InputLabel>
                 <InputLabel>
                   Date of birth
-                  <InputStyled
+                 {/*  <InputStyled
                     //type="date"
                     type="nunber"
                     name="birthday"
@@ -161,6 +170,20 @@ export const AddPet = ({ onClose }) => {
                     }}
                     onBlur={formik.handleBlur}
                   />
+                 */}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <MobileDatePicker
+                      label="Date of birth "
+                      inputFormat="DD.MM.YYYY"
+                      value={formik.values.birthday}
+                      //onChange={handleChangeDate}
+                      onChange={(value) => {
+                        console.log(value);
+                        formik.setFieldValue('birthday', value);
+                        }}
+                      renderInput={(params) => {console.log("params", params); return <InputStyled {...params.inputProps}/>}}
+                    />
+                </LocalizationProvider>
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
                   ) : <FieldError/>}
