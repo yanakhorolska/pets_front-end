@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Header, Img } from './NoInternetConnection.styled';
-import Picture from '../../images/nointerne.png';
+import Picture from 'images/nointerne.png';
 
 const NoInternetConnection = props => {
   // state variable holds the state of the internet connection
