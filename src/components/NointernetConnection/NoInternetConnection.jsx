@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Header, Img } from './NoInternetConnection.styled';
-import Picture from 'images/nointerne.png';
 
 const NoInternetConnection = props => {
   // state variable holds the state of the internet connection
@@ -27,7 +26,7 @@ const NoInternetConnection = props => {
     return (
       <Box>
         <Header>No Interner Connection. Please try again later.</Header>
-        <Img src={Picture} alt="nointernet" />
+        <Img />
       </Box>
     );
   }
