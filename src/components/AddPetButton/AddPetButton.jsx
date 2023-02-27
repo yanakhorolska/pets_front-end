@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const AddPetButton = ({ component: Component }) => {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);

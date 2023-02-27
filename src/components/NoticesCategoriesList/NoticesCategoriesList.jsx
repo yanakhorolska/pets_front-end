@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import {
   useGetNoticeQuery,
@@ -8,7 +7,6 @@ import {
   useGetUserNoticesQuery,
 } from 'redux/fetchNotice';
 
-import { getIsLogged } from 'redux/selectors';
 import { ListBox } from 'pages/NoticesPage/NoticesPage.styled';
 import { Loader } from 'components/Loader/Loader';
 import {
@@ -16,6 +14,7 @@ import {
   SearchPuppyWrap,
   SearchPuppyText,
 } from 'components/CustomComponents/searchPuppy/SearchPuppyStyled';
+import { useAuth } from 'hooks/useAuth';
 
 const NoticesCategoriesList = () => {
   const [usersPets, setUsersPets] = useState(null);
@@ -23,7 +22,7 @@ const NoticesCategoriesList = () => {
   let search = searchParams.get('search');
   if (!search) search = '';
 
-  const isLogged = useSelector(getIsLogged);
+  const isLogged = useAuth();
 
   const { pathname } = useLocation();
   const renderCategory = () => {

@@ -16,46 +16,49 @@ export const userApi = createApi({
   endpoints: builder => ({
     registrationUser: builder.mutation({
       query: payload => ({
-        url: '/auth/register',
+        url: '/users/register',
         method: 'POST',
         body: payload,
       }),
+      invalidatesTags: ['User']
     }),
-    logIn: builder.mutation({
+    logInUser: builder.mutation({
       query: payload => ({
-        url: '/auth/login',
+        url: '/users/login',
         method: 'POST',
         body: payload,
       }),
+      invalidatesTags: ['User']
     }),
     getCurrentUser: builder.query({
       // query: (token) => '/users/current',
       // providesTags: ['User'],
       // transformResponse: response => response.data
-      query: token => `/users/current`,
+      query: () => `/users/current`,
       transformResponse: response => response.data,
+      providesTags: ['User']
     }),
-    logOut: builder.mutation({
-      query: token => ({
+    logOutUser: builder.mutation({
+      query: () => ({
         url: '/users/logout',
         method: 'GET',
       }),
       invalidatesTags: ['User'],
     }),
-    forgotPassword: builder.mutation({
-      query: ({ email }) => ({
-        url: '/auth/forgotPassword',
-        method: 'PATCH',
-        body: { email },
-      }),
-    }),
-    updatePassword: builder.mutation({
-      query: ({ id, password }) => ({
-        url: '/auth/recoverPassword',
-        method: 'PATCH',
-        body: { id, password },
-      }),
-    }),
+    // forgotPassword: builder.mutation({
+    //   query: ({ email }) => ({
+    //     url: '/auth/forgotPassword',
+    //     method: 'PATCH',
+    //     body: { email },
+    //   }),
+    // }),
+    // updatePassword: builder.mutation({
+    //   query: ({ id, password }) => ({
+    //     url: '/auth/recoverPassword',
+    //     method: 'PATCH',
+    //     body: { id, password },
+    //   }),
+    // }),
     updateUser: builder.mutation({
       query: values => ({
         url: '/users/update',
@@ -64,7 +67,6 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-
     updateUserAvatar: builder.mutation({
       query: file => {
         const formData = new FormData();
@@ -77,6 +79,7 @@ export const userApi = createApi({
       },
       invalidatesTags: ['User'],
     }),
+
     getUserPets: builder.query({
       query: () => '/users/pets',
       transformResponse: response => response.data,
@@ -109,10 +112,10 @@ export const userApi = createApi({
 
 export const {
   useRegistrationUserMutation,
-  useLogInMutation,
-  useLogOutMutation,
-  useForgotPasswordMutation,
-  useUpdatePasswordMutation,
+  useLogInUserMutation,
+  useLogOutUserMutation,
+  //useForgotPasswordMutation,
+  //useUpdatePasswordMutation,
   useGetCurrentUserQuery,
   useUpdateUserMutation,
   useUpdateUserAvatarMutation,

@@ -15,6 +15,7 @@ import Icon from '../../styles/Buttons/icons/index';
 
 import { Loader } from 'components/Loader/Loader';
 import { useTranslation } from 'react-i18next';
+
 const PetsList = () => {
   const { t } = useTranslation();
   const [removePet] = useRemovePetByIdMutation();

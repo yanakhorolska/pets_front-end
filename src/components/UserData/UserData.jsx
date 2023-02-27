@@ -12,6 +12,7 @@ import {
   TitleWrapperData,
 } from './UserData.styled';
 import { useTranslation } from 'react-i18next';
+
 const UserData = () => {
   const { t } = useTranslation();
   const { name, email, birthday, phone, city } = useSelector(getUser);
