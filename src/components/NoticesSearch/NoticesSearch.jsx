@@ -62,7 +62,6 @@ const NoticesSearch = () => {
           <Button type="submit" onClick={onClick}>
             <Icon.ResetQuery
               style={{
-                backgroundColor: 'white',
                 position: 'absolute',
                 top: 5,
                 right: 18,
