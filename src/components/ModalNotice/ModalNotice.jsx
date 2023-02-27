@@ -30,7 +30,7 @@ const ModalNotice = ({ onClose, _id }) => {
   const { data } = useGetNoticeByIdQuery(_id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
 
   const favText = useMemo(
     () => (!data ? '' : data.favorite ? 'Delete from' : 'Add to'),

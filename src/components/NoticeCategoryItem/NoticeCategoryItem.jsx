@@ -31,7 +31,7 @@ export const NoticeCategoryItem = ({ pet }) => {
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
 
   const fav = useMemo(() => {
     if (pet) {
