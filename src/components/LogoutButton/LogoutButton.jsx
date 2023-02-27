@@ -10,12 +10,12 @@ import { Button, ButtonText } from './LogoutButton.styled';
 import { useTranslation } from 'react-i18next';
 
 function LogoutButton() {
-  
+
   const [logout, { isLoading }] = useLogOutUserMutation();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const handleLogoutClick = () => {
-    // logout(token);
+    logout();
     dispatch(setLogoutUser());
   };
 
