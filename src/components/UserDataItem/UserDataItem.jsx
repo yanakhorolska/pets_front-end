@@ -8,6 +8,7 @@ import {
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useTranslation } from '../../../node_modules/react-i18next/index';
 
 const UserDataItem = ({ item, formik }) => {
   const [name] = item;
@@ -37,10 +38,15 @@ const UserDataItem = ({ item, formik }) => {
       formik.handleSubmit();
     }
   };
+  const { t } = useTranslation();
+  const getName = value => {
+    const name = value.toLowerCase();
+    return t(`${name}`);
+  };
 
   return (
     <>
-      <UserDataLabel>{name}</UserDataLabel>
+      <UserDataLabel>{getName(name)}</UserDataLabel>
       {!focus ? (
         <UserDataPar
           onDoubleClick={() => setFocus(prev => !prev)}
