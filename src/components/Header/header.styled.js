@@ -33,11 +33,11 @@ export const BurgerMenu = styled('div')`
   width: 100vw;
   height: 100vh;
   display: flex;
-  padding-top: 19px;
+  padding-top: 17px;
 
   flex-direction: column;
   @media (min-width: 768px) {
-    padding-top: 27px;
+    padding-top: 26px;
   }
 `;
 export const BurgerLinks = styled('div')`
@@ -48,11 +48,12 @@ export const BurgerLinks = styled('div')`
 `;
 export const ToggleButtonBurg = styled('button')`
   fill: ${p => p.theme.color.text};
- stroke:${p => p.theme.color.text};
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: transparent;
   border: 1px solid transparent;
-  width: 40px;
-  height: 40px;
+ 
   @media (min-width: 768px) {
     margin-left: 20px;
   }
