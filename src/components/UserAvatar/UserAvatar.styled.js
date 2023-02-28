@@ -34,7 +34,11 @@ export const AvatarLabel = styled('label')`
   cursor: pointer;
 `;
 
-export const AvatarLabelText = styled.span``;
+export const AvatarLabelText = styled.span`
+&:hover{
+  color: ${p =>p.theme.color.accent}
+}
+`;
 
 
 
