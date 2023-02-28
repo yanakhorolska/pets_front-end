@@ -21,8 +21,14 @@ export const Link = styled(NavLink)`
   letter-spacing: 0.04em;
   color: ${p => p.theme.color.text};
   cursor: pointer;
+  transition: transform .25s;
   &:first-of-type {
     margin-top: 46px;
+  }
+  &:hover,
+  &:focus{
+    transform: scale(1.05);
+    color: ${p => p.theme.color.accent};
   }
   &.active {
     text-decoration-line: underline;

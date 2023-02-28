@@ -12,10 +12,12 @@ import {
   TitleWrapperData,
 } from './UserData.styled';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
 import { useFormik } from 'formik';
 import { useUpdateUserMutation, useGetCurrentUserQuery} from 'redux/fetchUser';
 import { setUpdatedUser, setCurrentUser } from 'redux/authSlice';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UserData = () => {
   const { t } = useTranslation();
@@ -40,10 +42,14 @@ const UserData = () => {
     city = '',
   } = userFields;
 
+  const convertDate = date => {
+    return moment(date).format('DD.MM.YYYY');
+  };
+
   const info = {
     name,
     email,
-    birthday,
+    birthday: convertDate(birthday),
     phone,
     city,
   };
@@ -57,8 +63,11 @@ const UserData = () => {
       await updateUser(userData);
       dispatch(setUpdatedUser(userData));
     } catch (error) {
-      alert(error);
-      console.log(error);
+      Notify.error(formik.errors[name], {
+        pauseOnHover: true,
+        fontSize: '16px',
+        timeout: 5000,
+      });
     }
   };
 

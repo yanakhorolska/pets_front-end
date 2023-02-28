@@ -5,7 +5,8 @@ export const friendsCard = styled.div`
   width: 280px;
   height: 192px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 20px;
+  border-radius: 20px;transition: transform .25s;
+
   @media ${p => p.theme.media.tablet} {
     width: 336px;
     height: 246px;

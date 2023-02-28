@@ -51,6 +51,7 @@ const UserDataItem = ({ item, formik }) => {
       {!focus ? (
         <UserDataPar
           onDoubleClick={() => setFocus(prev => !prev)}
+          name={name}
           value={formik.values[name]}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}

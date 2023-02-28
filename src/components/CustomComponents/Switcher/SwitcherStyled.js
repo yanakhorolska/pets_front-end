@@ -7,6 +7,7 @@ export const SwitcherWrapper = styled.div`
 
   width: auto;
   gap: 8px;
+  transition: transform 0.25s;
 `;
 export const SwitcherLabel = styled.label`
   top: 0;
@@ -15,7 +16,12 @@ export const SwitcherLabel = styled.label`
   height: 26px;
   border-radius: 15px;
   background: ${p => p.theme.color.accent};
+  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  &:hover,
+  &:focus {
+    background: ${p => p.theme.color.hoverBtn};
+  }
   &::after {
     content: '';
     display: block;
@@ -25,9 +31,9 @@ export const SwitcherLabel = styled.label`
     margin: 3px;
     background: #ffffff;
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
   }
 `;
+
 export const Switcher = styled.input`
   position: absolute;
   opacity: 0;
@@ -35,6 +41,7 @@ export const Switcher = styled.input`
   border-radius: 15px;
   width: 42px;
   height: 26px;
+
   &:checked + ${SwitcherLabel} {
     &::after {
       content: '';
