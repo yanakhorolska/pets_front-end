@@ -16,6 +16,7 @@ import { userProfileValidation } from '../../helpers/validation/userProfileValid
 import { useFormik } from 'formik';
 import { useUpdateUserMutation } from 'redux/fetchUser';
 import { setUpdatedUser } from 'redux/authSlice';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UserData = () => {
   const { t } = useTranslation();
@@ -41,17 +42,18 @@ const UserData = () => {
 
   const _handleSubmit = async values => {
     try {
-      console.log(values);
       const userData = Object.keys(values).reduce(
         (acc, key) => (values[key] ? { ...acc, [key]: values[key] } : acc),
         {}
       );
-      console.log(userData);
       await updateUser(userData);
       dispatch(setUpdatedUser(userData));
     } catch (error) {
-      alert(error);
-      console.log(error);
+      Notify.error(formik.errors[name], {
+        pauseOnHover: true,
+        fontSize: '16px',
+        timeout: 5000,
+      });
     }
   };
 
