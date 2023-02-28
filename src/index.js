@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/pets_front-end">
+        <BrowserRouter>
           <Provider store={store}>
             <ThemeProvider theme={getMode(mode)}>
               <App />
