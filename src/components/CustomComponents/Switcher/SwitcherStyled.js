@@ -7,6 +7,12 @@ export const SwitcherWrapper = styled.div`
 
   width: auto;
   gap: 8px;
+  transition: transform .25s;
+  &:hover,
+  &:focus{
+    transform: scale(1.05);
+   
+  }
 `;
 export const SwitcherLabel = styled.label`
   top: 0;
@@ -35,6 +41,7 @@ export const Switcher = styled.input`
   border-radius: 15px;
   width: 42px;
   height: 26px;
+ 
   &:checked + ${SwitcherLabel} {
     &::after {
       content: '';

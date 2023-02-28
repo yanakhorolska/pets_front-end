@@ -122,8 +122,13 @@ export const DescriptionItems = styled.p`
   display: ${p => p.theme.display.flex};
 `;
 
-export const DescriptionLink = styled.a`
+export const DescriptionLink = styled('a')`
   display: ${p => p.theme.display.flex};
+   transition: transform .25s;
+  &:hover,
+  &:focus{   
+    color: ${p => p.theme.color.accent};
+  }
 `;
 
 export const DescrCategory = styled.span`
@@ -132,8 +137,7 @@ export const DescrCategory = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.s};
-  color: ${p => p.theme.color.text};
-
+  color: ${p => p.theme.color.text};  
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.5;

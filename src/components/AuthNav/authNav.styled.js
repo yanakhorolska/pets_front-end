@@ -11,9 +11,15 @@ export const RoundLink = styled(NavLink)`
   letter-spacing: 0.04em;
   font-size: 14px;
   line-height: 0.74;
+   transition: transform .25s;
+  &:hover,
+  &:focus{
+    transform: scale(1.05);   
+  }
   &:first-of-type {
     margin-right: 12px;
   }
+ 
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 0.72;

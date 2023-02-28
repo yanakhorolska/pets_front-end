@@ -9,6 +9,11 @@ export const NewsWrap = styled.div`
 `;
 
 export const NewsBtn = styled.button`
+transition: transform .25s;
+  &:hover,
+  &:focus{   
+     transform: scale(1.05);
+  }
   @media (min-width: 768px) {
     width: 248px;
     height: 38px;
