@@ -5,12 +5,10 @@ export const LinksList = styled.ul`
   flex-wrap: wrap;
   gap: 12px;
   @media screen and (min-width: 768px) {
-    width:420px;
-   
+    width: 420px;
   }
-    @media screen and (min-width: 1280px) {
-    width:750px;
- 
+  @media screen and (min-width: 1280px) {
+    width: 780px;
   }
 `;
 

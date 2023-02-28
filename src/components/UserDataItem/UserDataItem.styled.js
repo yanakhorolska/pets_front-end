@@ -24,6 +24,7 @@ export const UserDataLabel = styled.h3`
   }
 `;
 
+
 export const UserDataPar = styled.input`
   display: block;
   width: 160px;
@@ -35,6 +36,7 @@ export const UserDataPar = styled.input`
   border: none;
   color: black;
   font-weight: 400;
+
   @media ${p => p.theme.media.tabletDesktop} {
     width: 216px;
     font-size: 18px;
