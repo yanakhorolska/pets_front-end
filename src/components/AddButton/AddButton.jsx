@@ -10,8 +10,9 @@ import {
 import { useAuth } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 const AddButton = ({ component: Component }) => {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);

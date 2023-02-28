@@ -6,6 +6,7 @@ export const AvatarInput = styled('input')`
   position: absolute;
 `;
 export const AvatarBox = styled.div`
+
   margin-bottom: 36px;
   margin: 0 auto;
   margin-bottom: 34px;
@@ -32,7 +33,10 @@ export const AvatarLabel = styled('label')`
   padding: 0;
   cursor: pointer;
 `;
+
 export const AvatarLabelText = styled.span``;
+
+
 
 export const AvatarImage = styled('img')`
   border-radius: 50%;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useLogInUserMutation, useRegisterUserMutation } from 'redux/authApi';
+import { useLogInUserMutation, useRegistrationUserMutation } from 'redux/fetchUser';
 import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
@@ -12,10 +12,11 @@ import {
   AuthButton,
 } from '../AuthForm/AuthFormStyled';
 import { useTranslation } from 'react-i18next';
+
 const RegisterForm = () => {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
-  const [registerUser] = useRegisterUserMutation();
+  const [registerUser] = useRegistrationUserMutation();
   const [loginUser] = useLogInUserMutation();
   const dispatch = useDispatch();
 
