@@ -42,7 +42,7 @@ const UserData = () => {
   const _handleSubmit = async values => {
     try {
       await updateUser(values);
-      const userData = { data: { ...values } };
+      const userData = { ...values };
       dispatch(setUpdatedUser(userData));
     } catch (error) {
       alert(error);
