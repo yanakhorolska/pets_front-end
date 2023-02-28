@@ -3,7 +3,6 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import storage from 'redux-persist/lib/storage';
 import { newsApi } from './newsSlice.js';
 import authReducer from './authSlice';
-// import { authApi } from './authApi.js';
 import { ourFriendsApi } from './ourFriendsApi';
 import { userApi } from '../redux/fetchUser';
 import { fetchNotice } from './fetchNotice';
