@@ -6,20 +6,24 @@ export const AvatarInput = styled('input')`
   position: absolute;
 `;
 export const AvatarBox = styled.div`
-  // display: flex;
+
   margin-bottom: 36px;
-  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 34px;
+
   @media ${p => p.theme.media.tabletDesktop} {
-    margin-bottom: 0;
-    margin-left: 21px;
+    margin-right: 0;
+    margin-bottom: 8px;
   }
   @media ${p => p.theme.media.desktop} {
+    margin: 0 auto;
+    width: 100%;
     margin-bottom: 36px;
   }
 `;
 
 export const AvatarLabel = styled('label')`
-  color: ${p => p.theme.color.greyTransp};
+  color: ${p => p.theme.color.text};
   font-size: ${p => p.theme.fontSizes.xs};
   display: flex;
   width: 86px;
@@ -29,15 +33,15 @@ export const AvatarLabel = styled('label')`
   padding: 0;
   cursor: pointer;
 `;
-export const AvatarLabelText = styled.span`
-  margin-left: 4px;
-`;
+
+export const AvatarLabelText = styled.span``;
+
+
 
 export const AvatarImage = styled('img')`
   border-radius: 50%;
   margin-bottom: 12px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   width: 233px;
   height: 233px;
   filter: drop-shadow(${p => p.theme.shadows.boxShadow}); ;
