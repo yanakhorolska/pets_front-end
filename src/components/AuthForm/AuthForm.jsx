@@ -8,6 +8,7 @@ import {
   AuthLink,
 } from './AuthFormStyled';
 import { useTranslation } from 'react-i18next';
+
 const AuthForm = ({ title }) => {
   const { pathname } = useLocation();
   const { t } = useTranslation();

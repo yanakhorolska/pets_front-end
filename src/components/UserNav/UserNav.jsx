@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { RoundLink } from 'components/AuthNav/authNav.styled';
 import Icon from 'styles/Buttons/icons/index';
 import { getUserAvatarURL } from 'redux/selectors';
@@ -6,13 +6,9 @@ import { useSelector } from 'react-redux';
 import { UserAvatar } from './UserNav.styled';
 import { useTranslation } from 'react-i18next';
 
-const UserNav = click => {
-  const avatarURL = useSelector(getUserAvatarURL);
-  const [avatar, setAvatar] = useState(avatarURL);
+const UserNav = () => {
+  const avatar = useSelector(getUserAvatarURL);
   const { t } = useTranslation();
-  useEffect(() => {
-    setAvatar(avatarURL);
-  }, [avatarURL]);
 
   return (
     <RoundLink
@@ -24,7 +20,6 @@ const UserNav = click => {
         marginRight: '0',
       }}
       to="/user"
-      onClick={click}
     >
       {avatar ? (
         <UserAvatar src={avatar} alt="avatar" />

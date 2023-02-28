@@ -28,7 +28,7 @@ export const App = () => {
 
   useEffect(() => {
     if (!data) {
-      return;
+       return;
     }
     dispatch(setCurrentUser(data));
   }, [data, dispatch]);

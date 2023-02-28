@@ -27,6 +27,12 @@ const Header = () => {
   const { t } = useTranslation();
   const [burg, setBurg] = useState(false);
   const isLoggedIn = useAuth();
+
+  const handleClick = event => {
+    setBurg(!burg);
+    event.stopPropagation();
+  };
+
   return (
     <>
       <Head>
@@ -39,19 +45,19 @@ const Header = () => {
         <LangSwitcher />
         <HeaderWrap>
           <ButtonsContainer>
-            {isLoggedIn ? <UserNav /> : <AuthNav />}
+            {isLoggedIn ? <UserNav/>:<AuthNav />}
           </ButtonsContainer>
-          <ToggleButtonBurg onClick={() => setBurg(!burg)}>
+          <ToggleButtonBurg onClick={handleClick}>
             <Icon.Burger />
           </ToggleButtonBurg>
         </HeaderWrap>
       </Head>
       {burg ? (
-        <BurgerMenu>
+        <BurgerMenu onClick={handleClick}>
           <Container>
             <MenuHeader>
-              <Logotype to="/" click={() => setBurg(false)} />
-              <ToggleButtonBurg onClick={() => setBurg(!burg)}>
+              <Logotype to="/" click={handleClick} />
+              <ToggleButtonBurg onClick={handleClick}>
                 <Icon.FatClose />
               </ToggleButtonBurg>
             </MenuHeader>
@@ -59,18 +65,23 @@ const Header = () => {
             <BurgerLinks>
               <BurgerLinksWrap>
                 {isLoggedIn ? (
-                  <UserNav click={() => setBurg(false)} />
+                  <div onClick={handleClick}>
+                    <UserNav/>
+                  </div>
                 ) : (
-                  <AuthNav click={() => setBurg(false)} />
+                  <div onClick={handleClick}>
+                    <AuthNav/>
+                  </div>
+                  
                 )}
               </BurgerLinksWrap>
-              <Link to="/news" onClick={() => setBurg(!burg)}>
+              <Link to="/news" onClick={handleClick}>
                 {t('titleNews')}
               </Link>
-              <Link to="/notices" onClick={() => setBurg(!burg)}>
+              <Link to="/notices" onClick={handleClick}>
                 {t('noticesHeaderTitle')}
               </Link>
-              <Link to="/friends" onClick={() => setBurg(!burg)}>
+              <Link to="/friends" onClick={handleClick}>
                 {t('friendsTitle')}
               </Link>
             </BurgerLinks>

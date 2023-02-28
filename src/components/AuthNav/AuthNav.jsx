@@ -7,13 +7,13 @@ const AuthNav = click => {
   return (
     <div>
       <RoundLink
-        onClick={click}
+        
         style={{ color: '#FFFFFF', background: '#F59256' }}
         to="/login"
       >
         {t('login')}
       </RoundLink>
-      <RoundLink onClick={click} to="/register">
+      <RoundLink to="/register">
         {t('registration')}
       </RoundLink>
     </div>
