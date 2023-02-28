@@ -41,8 +41,13 @@ const UserData = () => {
 
   const _handleSubmit = async values => {
     try {
-      await updateUser(values);
-      const userData = { ...values };
+      console.log(values);
+      const userData = Object.keys(values).reduce(
+        (acc, key) => (values[key] ? { ...acc, [key]: values[key] } : acc),
+        {}
+      );
+      console.log(userData);
+      await updateUser(userData);
       dispatch(setUpdatedUser(userData));
     } catch (error) {
       alert(error);
