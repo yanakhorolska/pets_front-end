@@ -32,6 +32,7 @@ export const PetPhoto = styled.img`
   border-radius: 20px;
   object-fit: contain;
   filter: drop-shadow(${p => p.theme.shadows.boxShadow});
+  
   @media ${p => p.theme.media.tabletDesktop} {
     margin-bottom: 0;
     width: 161px;
@@ -56,6 +57,7 @@ export const PetDescripton = styled.div`
   letter-spacing: 0.04em;
   overflow-wrap: break-word;
   color: ${p => p.theme.color.text};
+  
   @media ${p => p.theme.media.tabletDesktop} {
     width: 470px;
     font-size: 16px;

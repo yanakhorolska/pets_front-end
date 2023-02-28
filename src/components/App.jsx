@@ -6,7 +6,7 @@ import PublicRoutes from './PublicRotes';
 import { useDispatch } from 'react-redux';
 // import { getToken } from 'redux/selectors';
 import { setCurrentUser } from 'redux/authSlice';
-import { useGetCurrentUserQuery } from 'redux/authApi';
+import { useGetCurrentUserQuery } from 'redux/fetchUser';
 import NoInternetConnection from './NointernetConnection/NoInternetConnection';
 
 const Home = lazy(() => import('pages/Home'));

@@ -15,6 +15,7 @@ import {
   LearnBtnWrap,
   SmallHeartBox,
 } from './NoticeCategoryItemStyled';
+import { useTranslation } from 'react-i18next';
 import {
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
@@ -32,6 +33,7 @@ export const NoticeCategoryItem = ({ pet }) => {
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
   const isLoggedIn = useAuth();
+  const { t } = useTranslation();
 
   const fav = useMemo(() => {
     if (pet) {

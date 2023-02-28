@@ -22,10 +22,11 @@ import Icon from 'styles/Buttons/icons/index';
 import { useAuth } from 'hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { LangSwitcher } from 'components/CustomComponents/Switcher/Switcher';
+
 const Header = () => {
   const { t } = useTranslation();
   const [burg, setBurg] = useState(false);
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
   return (
     <>
       <Head>

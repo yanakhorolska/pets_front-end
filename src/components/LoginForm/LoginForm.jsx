@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useLogInUserMutation } from 'redux/authApi';
+import { useLogInUserMutation } from 'redux/fetchUser';
 import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
@@ -11,6 +11,7 @@ import {
   AuthButton,
 } from '../AuthForm/AuthFormStyled';
 import { useTranslation } from 'react-i18next';
+
 const LoginForm = () => {
   const { t } = useTranslation();
   const [loginUser] = useLogInUserMutation();
