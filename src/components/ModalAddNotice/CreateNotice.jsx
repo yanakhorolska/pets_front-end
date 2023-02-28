@@ -37,12 +37,12 @@ const validationSchemas = [
     title: Yup.string()
       .min(2, 'Too Short!')
       .max(48, 'Too long!')
-      .matches(/^[a-zа-яA-ZА-Я\s]+$/, 'Only letters!')
+      .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'Only letters!')
       .required('Title is required field'),
     petName: Yup.string()
       .min(2, 'Too Short!')
       .max(16, 'Too long!')
-      .matches(/^[a-zа-яA-ZА-Я\s]+$/, 'Only letters!')
+      .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'Only letters!')
       .required(),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
@@ -84,6 +84,7 @@ const validationSchemas = [
         return true;
       })
       .required(),
+    imageUrl: Yup.mixed().required('Photo is required'),
     comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!').required(),
   }),
 ];
@@ -167,6 +168,7 @@ const CreateNotice = ({ onClose }) => {
     location: locationError,
     price: priceError,
     comment: commentError,
+    imageUrl: imageError,
   } = formik.errors;
 
   return (
@@ -326,6 +328,7 @@ const CreateNotice = ({ onClose }) => {
                 type="file"
                 name="imageUrl"
                 accept="image/*"
+                onBlur={formik.handleBlur}
                 onChange={event =>
                   formik.setFieldValue('imageUrl', event.currentTarget.files[0])
                 }
@@ -340,6 +343,7 @@ const CreateNotice = ({ onClose }) => {
                 <StyledIconAdd />
               )}
             </InputImageWrapper>
+            <FieldError>{!formik.values.imageUrl && imageError}</FieldError>
           </InputImageLabel>
           <InputLabel>
             <span>{t('comments')}:</span>
