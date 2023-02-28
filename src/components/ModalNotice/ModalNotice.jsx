@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import {
   useGetNoticeByIdQuery,
@@ -26,6 +26,7 @@ import {
   CommentBox,
 } from './ModalNotice.styled';
 import { useTranslation } from 'react-i18next';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const ModalNotice = ({ onClose, _id }) => {
   const { t } = useTranslation();
@@ -60,6 +61,10 @@ const ModalNotice = ({ onClose, _id }) => {
   } = data;
 
   const handleFavoriteClick = () => {
+    if (!isLoggedIn) {
+      Notify.warning('To add to favorites, please login or register.');
+      return;
+    }
     if (!favorite) {
       addToFavorite(_id).unwrap();
       return;
@@ -164,7 +169,13 @@ const ModalNotice = ({ onClose, _id }) => {
               <ContactButton type="button">{t('contact')}</ContactButton>
             </a>
           </li>
-          {isLoggedIn ? (
+          <li>
+            <AddButton type="button" onClick={handleFavoriteClick}>
+              {favText}
+              {<Icon.Heart style={{ fill: '#f59256' }} />}
+            </AddButton>
+          </li>
+          {/* {isLoggedIn ? (
             <li>
               <AddButton type="button" onClick={handleFavoriteClick}>
                 {favText}
@@ -179,7 +190,7 @@ const ModalNotice = ({ onClose, _id }) => {
                 </AddButton>
               </NavLink>
             </li>
-          )}
+          )} */}
         </ButtonBox>
       </ModalBox>
     </>

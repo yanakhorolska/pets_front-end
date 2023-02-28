@@ -73,7 +73,9 @@ export const NoticeCategoryItem = ({ pet }) => {
   };
 
   const onAddToButtonClickLogin = () => {
-    Notiflix.Notify.warning('Please login to add');
+    Notiflix.Notify.warning(
+      'To add to favorites, please login or register.Please login to add'
+    );
   };
 
   const handleNoticeClick = () => {
