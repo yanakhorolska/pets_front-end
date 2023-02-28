@@ -55,7 +55,8 @@ export const HomeStyled = styled('section')`
 `;
 export const HomeImg = styled('div')`
   width: 100%;
-  height: 100%;
+  //height:100%;
+  height: 56vh;
   align-self: center;
   background-image: url(${bgWomanMob1});
   background-repeat: no-repeat;
@@ -72,6 +73,8 @@ export const HomeImg = styled('div')`
   }
   @media (min-width: 768px) {
     background-image: url(${bgWomanTab1});
+    height: 60vh;
+
     @media screen and (min-device-pixel-ratio: 2),
       screen and (-moz-min-device-pixel-ratio: 2),
       screen and (-o-min-device-pixel-ratio: 2/1),
@@ -118,17 +121,16 @@ export const HomeText = styled('h2')`
 
 export const BoxHome = styled('div')`
   display: flex;
-
+ 
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
   height: calc(100vh - 56px);
   @media (min-width: 768px) {
     height: calc(100vh - 64px);
+   
+  @media (min-width: 1280px) {
+    height: calc(100vh - 70px);
     flex-direction: row;
-
-    @media (min-width: 1280px) {
-      height: calc(100vh - 70px);
-    }
   }
 `;
