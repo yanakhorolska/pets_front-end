@@ -12,6 +12,7 @@ import {
   TitleWrapperData,
 } from './UserData.styled';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
 import { useFormik } from 'formik';
 import { useUpdateUserMutation } from 'redux/fetchUser';
@@ -32,10 +33,14 @@ const UserData = () => {
     city = '',
   } = userFields;
 
+  const convertDate = date => {
+    return moment(date).format('DD.MM.YYYY');
+  };
+
   const info = {
     name,
     email,
-    birthday,
+    birthday: convertDate(birthday),
     phone,
     city,
   };
