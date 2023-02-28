@@ -24,7 +24,8 @@ export const UserDataLabel = styled.h3`
   }
 `;
 
-export const UserDataPar = styled.p`
+
+export const UserDataPar = styled.input`
   display: block;
   width: 160px;
   border-radius: 5px;
@@ -35,7 +36,7 @@ export const UserDataPar = styled.p`
   border: none;
   color: black;
   font-weight: 400;
-  overflow: hidden;
+
   @media ${p => p.theme.media.tabletDesktop} {
     width: 216px;
     font-size: 18px;
@@ -44,43 +45,41 @@ export const UserDataPar = styled.p`
 `;
 
 export const UserDataInput = styled.input`
-display: block;
-width: 160px;
-border-radius: 40px;
-padding: 4px 18px;
-margin-bottom: 8px;
-margin-right: 8px;
-background-color: ${p => p.theme.color.white};
-border: none;
-color: black;
-font-weight: 400;
-@media ${p => p.theme.media.tabletDesktop}{
+  display: block;
+  width: 160px;
+  border-radius: 40px;
+  padding: 4px 18px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  background-color: ${p => p.theme.color.white};
+  border: none;
+  color: black;
+  font-weight: 400;
+  @media ${p => p.theme.media.tabletDesktop} {
     width: 216px;
     font-size: 18px;
-    lineHeights: ${p => p.theme.lineHeights.s}
-}
+    lineheights: ${p => p.theme.lineHeights.s};
+  }
 
-&:active{
-background: #FDF7F2;
-border: 1px solid rgba(245, 146, 86, 0.5);
-border-radius: 40px;
-}
+  &:active {
+    background: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+  }
 
-&:not(:disabled){
-    background: #FDF7F2;
-border: 1px solid rgba(245, 146, 86, 0.5);
-border-radius: 40px;
-}
+  &:not(:disabled) {
+    background: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+  }
 
-&::placeholder {
-     color: ${p => p.theme.color.primaryText};
-     font-size: 12px;
-     opacity: 0.8;
-@media ${p => p.theme.media.tabletDesktop}{
-    
+  &::placeholder {
+    color: ${p => p.theme.color.primaryText};
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  @media ${p => p.theme.media.tabletDesktop} {
     font-size: 18px;
-    lineHeights: ${p => p.theme.lineHeights.s}
-     
-}
-
+    lineheights: ${p => p.theme.lineHeights.s};
+  }
 `;
