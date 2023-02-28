@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { getUser } from 'redux/selectors';
@@ -15,14 +15,23 @@ import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
 import { useFormik } from 'formik';
-import { useUpdateUserMutation } from 'redux/fetchUser';
-import { setUpdatedUser } from 'redux/authSlice';
+import { useUpdateUserMutation, useGetCurrentUserQuery} from 'redux/fetchUser';
+import { setUpdatedUser, setCurrentUser } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UserData = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [updateUser] = useUpdateUserMutation();
+ 
+  const { data } = useGetCurrentUserQuery();
+
+  useEffect(() => {
+    if (!data) {
+       return;
+    }
+    dispatch(setCurrentUser(data));
+  }, [data, dispatch]);
 
   const userFields = useSelector(getUser);
   const {
