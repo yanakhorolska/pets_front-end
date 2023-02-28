@@ -8,6 +8,12 @@ const AddButtonStyled = styled.button`
   border: 0;
   border-radius: ${p => p.theme.radii.borderRadius.round};
   cursor: pointer;
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+    }
+    transition: transform 250ms ease-out;
+
 `;
 
 const AddButtonTitle = styled.span`
@@ -22,30 +28,13 @@ height: 40px
 gap: 12px;
 align-items: baseline;
 justify-content: space-between;
-// //   @media ${p => p.theme.media.tabletDesktop} {
-// //     // position: static;
-// //     display: flex;
-// //     gap: 12px;
-// //     align-items: center;
-// //     // top: auto;
-// //     // right: auto;
-// //   }
+
 `;
 
 const StyledIconAdd = styled(Icon.Add)`
   width: 16px;
   height: 16px;
-  //   position: absolute;
-  //   top: 10px;
-  //   left: 30px;
-
-  //   @media ${p => p.theme.media.tabletDesktop} {
-  //     position: relative;
-  //     // width: 16px;
-  //     // height: 16px;
-  //     top: auto;
-  //     left: auto;
-  //   }
+  
 `;
 
 export { AddButtonStyled, AddButtonTitle, AddButtonWrapper, StyledIconAdd };
