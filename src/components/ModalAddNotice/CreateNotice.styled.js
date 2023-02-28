@@ -169,9 +169,8 @@ const InputImageWrapper = styled.div`
   width: 116px;
   height: 116px;
   margin-top: 12px;
-  margin-bottom: 12px;
   border: ${p => p.theme.borders.inputBorder};
-  background: ${p => p.theme.color.background};
+  background: ${p => p.theme.color.inputModal};
   border-radius: 20px;
   overflow: hidden;
   & > img {
