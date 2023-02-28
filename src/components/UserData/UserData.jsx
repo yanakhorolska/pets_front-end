@@ -42,8 +42,12 @@ const UserData = () => {
     city = '',
   } = userFields;
 
-  const convertDate = date => {
-    return moment(date).format('DD.MM.YYYY');
+  const convertDate = dateString => {
+    const date = new Date(dateString)
+    return [date.toLocaleString("default", { day: '2-digit'}),
+            date.toLocaleString("default", { month: '2-digit'}),
+            date.toLocaleString("default", { year: 'numeric'})].join(".")
+    //return moment(date).format('DD.MM.YYYY');
   };
 
   const info = {
