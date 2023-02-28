@@ -75,10 +75,6 @@ const ModalNotice = ({ onClose, _id }) => {
     }
   };
 
-  // const onAddToButtonClickLogin = () => {
-  //   console.log('login');
-  // };
-
   const changeTextOfCategory = category => {
     if (category === 'sell') {
       return t('sellUp');

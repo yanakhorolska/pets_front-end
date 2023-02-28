@@ -44,7 +44,6 @@ export const NoticeCategoryItem = ({ pet }) => {
   if (!pet) {
     return;
   }
-  console.log('pet', pet);
 
   const {
     _id,
@@ -59,8 +58,6 @@ export const NoticeCategoryItem = ({ pet }) => {
     myads,
   } = pet;
 
-  console.log(_id, 'id items');
-
   const handleFavoriteClick = () => {
     if (!favorite) {
       addToFavorite(_id).unwrap();
@@ -73,9 +70,7 @@ export const NoticeCategoryItem = ({ pet }) => {
   };
 
   const onAddToButtonClickLogin = () => {
-    Notiflix.Notify.warning(
-      'To add to favorites, please login or register.'
-    );
+    Notiflix.Notify.warning('To add to favorites, please login or register.');
   };
 
   const handleNoticeClick = () => {

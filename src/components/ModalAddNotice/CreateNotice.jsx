@@ -117,7 +117,6 @@ const CreateNotice = ({ onClose }) => {
 
   const _submitForm = async (values, actions) => {
     const { ...formValues } = values;
-    console.log(formValues);
     if (formValues.dateOfBirth.length) {
       formValues.dateOfBirth = reverceDate(formValues.dateOfBirth);
     }
