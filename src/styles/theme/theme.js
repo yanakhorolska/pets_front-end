@@ -57,7 +57,7 @@ export const getMode = mode => {
       one: '1',
     },
     transition: {
-      backdrop: 'opacity 250ms cubic - bezier(0.4, 0, 0.2, 1)',
+      backdrop: 'opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)',
       modal: 'transform 250ms cubic-bezier(0.4, 0, 0.2, 1)',
     },
     transform: {
