@@ -1,23 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useUpdateUserMutation } from '../../redux/fetchUser';
-import { setUpdatedUser } from 'redux/authSlice';
 import {
-  UserDataForm,
   UserDataInput,
   UserDataLabel,
   UserDataPar,
 } from './UserDataItem.styled';
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useTranslation } from 'react-i18next';
 
-const UserDataItem = ({ item }) => {
-  const [name, value] = item;
-  const dispatch = useDispatch();
+const UserDataItem = ({ item, formik }) => {
+  const [name] = item;
   const [focus, setFocus] = useState(false);
-  const [newValue, setNewValue] = useState('');
-  const [updateUser] = useUpdateUserMutation();
 
   const setInputType = () => {
     if (name === 'birthday') {
@@ -27,44 +22,52 @@ const UserDataItem = ({ item }) => {
   };
 
   const onEdit = async () => {
-    setFocus(prev => !prev);
-    setNewValue(value);
-    setInputType();
-    const values = { [name]: newValue };
-    // console.log(values);
-    if (value === newValue) {
+    if (formik.errors[name]) {
+      Notify.warning(formik.errors[name], {
+        position: 'center-center',
+        pauseOnHover: true,
+        fontSize: '16px',
+        timeout: 6000,
+      });
       return;
     }
+
+    setFocus(prev => !prev);
+    setInputType();
     if (focus) {
-      try {
-        const user = await updateUser(values).unwrap();
-        dispatch(setUpdatedUser(user));
-        // console.log(values);
-      } catch (error) {
-        console.log(error);
-      }
+      formik.handleSubmit();
     }
+  };
+  const { t } = useTranslation();
+  const getName = value => {
+    const name = value.toLowerCase();
+    return t(`${name}`);
   };
 
   return (
-    <UserDataForm>
-      <UserDataLabel>{name}</UserDataLabel>
+    <>
+      <UserDataLabel>{getName(name)}</UserDataLabel>
       {!focus ? (
-        <UserDataPar onDoubleClick={() => setFocus(prev => !prev)}>
-          {value}
-        </UserDataPar>
+        <UserDataPar
+          onDoubleClick={() => setFocus(prev => !prev)}
+          value={formik.values[name]}
+          onBlur={formik.handleBlur}
+          onChange={formik.handleChange}
+        />
       ) : (
         <UserDataInput
           type={setInputType()}
-          value={newValue}
-          onChange={evt => setNewValue(evt.target.value)}
+          name={name}
+          value={formik.values[name]}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           autoFocus
         />
       )}
       <EditBtn type="button" onClick={onEdit}>
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>
-    </UserDataForm>
+    </>
   );
 };
 

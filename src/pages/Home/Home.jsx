@@ -11,7 +11,7 @@ const Home = () => {
       <Container>
         <BoxHome>
           <HomeText>{t('titleMain')}</HomeText>
-          <HomeImg />
+          <HomeImg/>
         </BoxHome>
       </Container>
     </HomeStyled>

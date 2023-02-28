@@ -14,19 +14,17 @@ export const NoticesBox = styled.div`
   }
 `;
 export const NavBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-     
-    align-items: flex-start;
-  
-  
+  display: flex;
+  justify-content: space-between;
+
+  align-items: flex-start;
 `;
 
 export const ListBox = styled('section')`
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  width:100%;
+  width: 100%;
   gap: 32px;
   margin-top: 30px;
   justify-content: center;

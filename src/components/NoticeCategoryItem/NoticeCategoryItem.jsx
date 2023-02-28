@@ -100,13 +100,13 @@ export const NoticeCategoryItem = ({ pet }) => {
 
   const changeTextOfCategory = category => {
     if (category === 'sell') {
-      return 'Sell';
+      return t('sellUp');
     }
     if (category === 'inGoodHands') {
-      return 'In good hands';
+      return t('inGoodHandsUp');
     }
     if (category === 'lostFound') {
-      return 'Lost & Found';
+      return t('lostFoundUp');
     }
   };
 

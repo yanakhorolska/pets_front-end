@@ -3,8 +3,8 @@ import { lazy, Suspense, useEffect } from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRotes';
-import { useDispatch, useSelector } from 'react-redux';
-import { getToken } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
+// import { getToken } from 'redux/selectors';
 import { setCurrentUser } from 'redux/authSlice';
 import { useGetCurrentUserQuery } from 'redux/fetchUser';
 import NoInternetConnection from './NointernetConnection/NoInternetConnection';
@@ -22,13 +22,9 @@ const NoticesCategoriesList = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(getToken);
+  // const token = useSelector(getToken);
 
-  //const mockQuery = '';
-  // const { data, isLoading } = useGetCurrentUserQuery(mockQuery, { skip: !token });
-  const { data, isLoading } = useGetCurrentUserQuery("", { skip: !token });
-
-  console.log("App", isLoading, Date.now());
+  const { data } = useGetCurrentUserQuery();
 
   useEffect(() => {
     if (!data) {
