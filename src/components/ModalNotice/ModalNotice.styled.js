@@ -124,9 +124,9 @@ export const DescriptionItems = styled.p`
 
 export const DescriptionLink = styled('a')`
   display: ${p => p.theme.display.flex};
-   transition: transform .25s;
+  transition: transform 0.25s;
   &:hover,
-  &:focus{   
+  &:focus {
     color: ${p => p.theme.color.accent};
   }
 `;
@@ -137,7 +137,7 @@ export const DescrCategory = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.s};
-  color: ${p => p.theme.color.text};  
+  color: ${p => p.theme.color.text};
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.5;
@@ -151,6 +151,12 @@ export const DescrData = styled.span`
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1.36;
   color: ${p => p.theme.color.text};
+  transition: color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.color.hoverBtn};
+  }
 
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: ${p => p.theme.fontSizes.m};
