@@ -15,6 +15,7 @@ import Icon from '../../styles/Buttons/icons';
 import { useState } from 'react';
 import Emptyphoto from '../../images/bgs/EmptyPhoto.png';
 import { useTranslation } from 'react-i18next';
+
 const UserAvatar = () => {
   const { t } = useTranslation();
   const avatarURL = useSelector(getUserAvatarURL);

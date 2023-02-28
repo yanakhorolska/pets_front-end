@@ -33,7 +33,7 @@ export const userApi = createApi({
     getCurrentUser: builder.query({
       query: () => `/users/current`,
       transformResponse: response => response.data,
-      invalidatesTags: ['User'],
+      providesTags: ['User'],
     }),
     logOutUser: builder.mutation({
       query: () => ({

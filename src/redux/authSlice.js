@@ -39,11 +39,11 @@ const authSlice = createSlice({
       state.isLogged = false;
     },
     setUpdatedUser: (state, action) => {
-      state.user.name = action.payload.data.name;
-      state.user.email = action.payload.data.email;
-      state.user.phone = action.payload.data.phone;
-      state.user.city = action.payload.data.city;
-      state.user.birthday = action.payload.data.birthday;
+      state.user.name = action.payload.name;
+      state.user.email = action.payload.email;
+      state.user.phone = action.payload.phone;
+      state.user.city = action.payload.city;
+      state.user.birthday = action.payload.birthday;
     },
     setAvatarURL: (state, action) => {
       state.user.avatarURL = action.payload;

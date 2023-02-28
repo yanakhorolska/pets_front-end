@@ -27,7 +27,6 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    //[authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     auth: persistReducer(persistConfig, authReducer),
     [fetchNotice.reducerPath]: fetchNotice.reducer,
