@@ -37,12 +37,12 @@ const validationSchemas = [
     title: Yup.string()
       .min(2, 'Too Short!')
       .max(48, 'Too long!')
-      .matches(/^[a-zA-Z]+$/, 'Only letters!')
+      .matches(/^[a-zа-яA-ZА-Я\s]+$/, 'Only letters!')
       .required('Title is required field'),
     petName: Yup.string()
       .min(2, 'Too Short!')
       .max(16, 'Too long!')
-      .matches(/^[a-zA-Z]+$/, 'Only letters!')
+      .matches(/^[a-zа-яA-ZА-Я\s]+$/, 'Only letters!')
       .required(),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
@@ -62,7 +62,7 @@ const validationSchemas = [
     breed: Yup.string()
       .min(2, 'Too Short!')
       .max(24, 'Too long!')
-      .matches(/^[a-zA-Z]+$/, 'Only letters!')
+      .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'Only letters!')
       .required(),
   }),
   Yup.object().shape({
@@ -70,10 +70,7 @@ const validationSchemas = [
       .oneOf(['male', 'female'])
       .required('sex of pet is required'),
     location: Yup.string()
-      .matches(
-        /[A-Za-z]+, [A-Za-z]+/,
-        'Format is "region, city" (only latin letters)'
-      )
+      .matches(/[a-zA-Zа-яА-Я]+, [a-zA-Zа-яА-Я]+/, 'Format is "region, city"')
       .required('This is a required field'),
     price: Yup.number()
       .min(0)
