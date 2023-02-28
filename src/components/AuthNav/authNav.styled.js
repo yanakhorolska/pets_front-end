@@ -11,7 +11,11 @@ export const RoundLink = styled(NavLink)`
   letter-spacing: 0.04em;
   font-size: 14px;
   line-height: 0.74;
-   transition: transform .25s;
+  height:35px;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  transition: transform 250ms ease-out;
   &:hover,
   &:focus{
     transform: scale(1.05);   
@@ -23,9 +27,22 @@ export const RoundLink = styled(NavLink)`
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 0.72;
+    height:44px;
   }
   @media (min-width: 1280px) {
     font-size: 20px;
     line-height: 0.74;
+    height: 48px;
+
   }
+
 `;
+
+
+export const AuthBox = styled.div`
+display: flex;
+align-items: center;
+
+`
+
+
