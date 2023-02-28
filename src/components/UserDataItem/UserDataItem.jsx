@@ -4,6 +4,7 @@ import {
   UserDataInput,
   UserDataLabel,
   UserDataPar,
+  UserDataItemBox,
 } from './UserDataItem.styled';
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
 import Icon from '../../styles/Buttons/icons/index';
@@ -45,7 +46,7 @@ const UserDataItem = ({ item, formik }) => {
   };
 
   return (
-    <>
+    <UserDataItemBox>
       <UserDataLabel>{getName(name)}</UserDataLabel>
       {!focus ? (
         <UserDataPar
@@ -61,13 +62,12 @@ const UserDataItem = ({ item, formik }) => {
           value={formik.values[name]}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          autoFocus
         />
       )}
       <EditBtn type="button" onClick={onEdit}>
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>
-    </>
+    </UserDataItemBox>
   );
 };
 

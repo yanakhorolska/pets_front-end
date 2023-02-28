@@ -44,7 +44,10 @@ const UserAvatar = () => {
         <AvatarImage src={Emptyphoto} />
       )}
 
-      <AvatarLabel htmlFor="avatar-upload">
+      <AvatarLabel
+        style={{ display: 'flex', gap: '5px' }}
+        htmlFor="avatar-upload"
+      >
         <Icon.Camera />
         <AvatarLabelText>{t('editPhoto')}</AvatarLabelText>
       </AvatarLabel>
