@@ -164,22 +164,30 @@ export const NoticeCategoryItem = ({ pet }) => {
         <ListInfoWrap>
           <NoticeInfoList>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Breed:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('breed')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{breed}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Place:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('place')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{location}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Age:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('age')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>
                 {timeSinceCurrentDate(dateOfBirth)}
               </NoticeInfoListItemData>
             </NoticeInfoListItem>
             {price ? (
               <NoticeInfoListItem>
-                <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
+                <NoticeInfoListItemCategory>
+                  {t('price')}:
+                </NoticeInfoListItemCategory>
                 <NoticeInfoListItemData>{price} $</NoticeInfoListItemData>
               </NoticeInfoListItem>
             ) : null}

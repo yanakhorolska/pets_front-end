@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // import { Form, Field } from 'formik';
 
-export const UserDataForm = styled.ul`
+export const UserDataItemBox = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -9,7 +9,7 @@ export const UserDataForm = styled.ul`
   padding: 0;
   width: 100%;
   @media ${p => p.theme.media.tabletDesktop} {
-    width: 370px;
+    width: 378px;
   }
 `;
 export const UserDataLabel = styled.h3`
@@ -17,7 +17,7 @@ export const UserDataLabel = styled.h3`
   font-size: 12px;
   text-transform: capitalize;
   width: 56px;
-  // margin-right: 8px;
+
   @media ${p => p.theme.media.tabletDesktop} {
     font-size: 18px;
     lineheights: ${p => p.theme.lineHeights.s};
@@ -51,6 +51,7 @@ export const UserDataInput = styled.input`
   padding: 4px 18px;
   margin-bottom: 8px;
   margin-right: 8px;
+  outline: none;
   background-color: ${p => p.theme.color.white};
   border: none;
   color: black;
