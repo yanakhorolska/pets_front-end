@@ -56,6 +56,11 @@ export const AuthLink = styled(Link)`
   letter-spacing: 0.04em;
   text-decoration-line: underline;
   color: ${p => p.theme.color.textRegister};
+  transition: transform .25s;
+  &:hover,
+  &:focus{   
+     transform: scale(1.05);
+  }
 `;
 
 export const AuthError = styled.p`
@@ -90,6 +95,11 @@ export const AuthInput = styled.input`
   border-radius: 40px;
   outline: none;
   padding: 9px 14px 10px;
+  transition: transform .25s;
+  &:hover,
+  &:focus{   
+     transform: scale(1.05);
+  }
   &:placeholder-shown {
     color: ${p => p.theme.color.greyTransp};
   }
@@ -122,4 +132,9 @@ export const AuthButton = styled.button`
   border: ${props =>
     props.accent ? 'none' : `2px solid ${props.theme.color.accent}`};
   margin-bottom: ${props => (props.last ? '40px' : '16px')};
+  transition: transform .25s;
+  &:hover,
+  &:focus{   
+     transform: scale(1.05);
+  }
 `;

@@ -8,8 +8,14 @@ export const Button = styled.button`
   padding: ${p => p.theme.space.p.zero};
   border-radius: ${p => p.theme.radii.borderRadius.half};
   cursor: pointer;
+  transition: transform .25s;
   & > svg {
     inline-size: 100%;
     block-size: 100%;
+  }
+   &:hover,
+  &:focus{
+    transform: scale(1.05);
+   
   }
 `;
