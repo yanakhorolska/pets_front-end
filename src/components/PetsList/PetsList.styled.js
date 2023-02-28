@@ -12,7 +12,6 @@ export const PetBox = styled.div`
   background: ${p => p.theme.color.cards};
   box-shadow: ${p => p.theme.shadows.boxShadow};
   border-radius: 20px;
-
   @media ${p => p.theme.media.tabletDesktop} {
     display: flex;
     gap: 32px;
@@ -21,7 +20,6 @@ export const PetBox = styled.div`
     width: 704px;
     border-radius: 40px;
   }
-
   @media ${p => p.theme.media.desktop} {
     width: 821px;
   }
@@ -34,7 +32,6 @@ export const PetPhoto = styled.img`
   border-radius: 20px;
   object-fit: contain;
   filter: drop-shadow(${p => p.theme.shadows.boxShadow});
-
   @media ${p => p.theme.media.tabletDesktop} {
     margin-bottom: 0;
     width: 161px;
@@ -59,7 +56,6 @@ export const PetDescripton = styled.div`
   letter-spacing: 0.04em;
   overflow-wrap: break-word;
   color: ${p => p.theme.color.text};
-
   @media ${p => p.theme.media.tabletDesktop} {
     width: 470px;
     font-size: 16px;
@@ -88,16 +84,13 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: ${p => p.theme.color.buttonOW};
   backdrop-filter: blur(2px);
-
   transition: background-color transform scale3d 0.25s
     cubic-bezier(0.4, 0, 0.2, 1);
-
   &:hover,
   &:focus {
     transform: rotate(-45deg) scale3d(1.1, 1.1, 1.1);
     background-color: #f59256;
   }
-
   @media ${p => p.theme.media.tabletDesktop} {
     top: 20px;
     right: 20px;
