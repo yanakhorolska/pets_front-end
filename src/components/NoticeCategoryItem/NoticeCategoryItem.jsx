@@ -26,13 +26,12 @@ import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMore
 import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
-import { useTranslation } from 'react-i18next';
+
 export const NoticeCategoryItem = ({ pet }) => {
-  const { t } = useTranslation();
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
 
   const fav = useMemo(() => {
     if (pet) {
@@ -163,30 +162,22 @@ export const NoticeCategoryItem = ({ pet }) => {
         <ListInfoWrap>
           <NoticeInfoList>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>
-                {t('breed')}:
-              </NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>Breed:</NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{breed}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>
-                {t('place')}:
-              </NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>Place:</NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{location}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>
-                {t('age')}:
-              </NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>Age:</NoticeInfoListItemCategory>
               <NoticeInfoListItemData>
                 {timeSinceCurrentDate(dateOfBirth)}
               </NoticeInfoListItemData>
             </NoticeInfoListItem>
             {price ? (
               <NoticeInfoListItem>
-                <NoticeInfoListItemCategory>
-                  {t('price')}:
-                </NoticeInfoListItemCategory>
+                <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
                 <NoticeInfoListItemData>{price} $</NoticeInfoListItemData>
               </NoticeInfoListItem>
             ) : null}
