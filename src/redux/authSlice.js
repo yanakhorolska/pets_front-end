@@ -24,7 +24,7 @@ const authSlice = createSlice({
       state.isLogged = true;
     },
     setUser: (state, action) => {
-      state.user.name = action.payload.action.name;
+      state.user.name = action.payload.name;
       state.user.email = action.payload.email;
       state.user.phone = action.payload.phone;
       state.user.city = action.payload.city;
