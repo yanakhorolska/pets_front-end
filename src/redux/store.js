@@ -26,8 +26,8 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    [userApi.reducerPath]: userApi.reducer,
     auth: persistReducer(persistConfig, authReducer),
+    [userApi.reducerPath]: userApi.reducer,
     [fetchNotice.reducerPath]: fetchNotice.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [ourFriendsApi.reducerPath]: ourFriendsApi.reducer,
@@ -39,7 +39,6 @@ export const store = configureStore({
       },
     }).concat(
       newsApi.middleware,
-      // authApi.middleware,
       ourFriendsApi.middleware,
       userApi.middleware,
       fetchNotice.middleware
