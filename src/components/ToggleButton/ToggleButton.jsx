@@ -22,11 +22,7 @@ const ToggleButton = () => {
 
   return (
     <Button onClick={onClick}>
-      {currentTheme === 'dark' ? (
-        <Icon.Moon style={{ fill: '#F59256' }} />
-      ) : (
-        <Icon.Sun style={{ fill: '#F59256' }} />
-      )}
+      {currentTheme === 'dark' ? <Icon.Moon /> : <Icon.Sun />}
     </Button>
   );
 };
