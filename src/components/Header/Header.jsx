@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import Logotype from 'components/Logo/logo';
 import { Container } from 'styles/Container/Container.styled';
-import { Link } from 'components/Nav/nav.styled';
 import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 import {
   Head,
@@ -20,11 +19,9 @@ import UserNav from '../UserNav/UserNav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import Icon from 'styles/Buttons/icons/index';
 import { useAuth } from 'hooks/useAuth';
-import { useTranslation } from 'react-i18next';
 import { LangSwitcher } from 'components/CustomComponents/Switcher/Switcher';
 
-const Header = () => {
-  const { t } = useTranslation();
+const Header = () => {  
   const [burg, setBurg] = useState(false);
   const isLoggedIn = useAuth();
 
