@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
 import { getUser } from 'redux/selectors';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import UserPageTitle from '../UserPageTitle/UserPageTitle';
 import {
@@ -14,25 +14,17 @@ import {
 import { useTranslation } from 'react-i18next';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
 import { useFormik } from 'formik';
-import { useUpdateUserMutation, useGetCurrentUserQuery } from 'redux/fetchUser';
-import { setUpdatedUser, setCurrentUser } from 'redux/authSlice';
+import { useUpdateUserMutation } from 'redux/fetchUser';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const UserData = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const [updateUser] = useUpdateUserMutation();
-
-  const { data } = useGetCurrentUserQuery();
-
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-    dispatch(setCurrentUser(data));
-  }, [data, dispatch]);
+  const [updateUser] = useUpdateUserMutation(); 
 
   const userFields = useSelector(getUser);
+
+  //useEffect( console.log("update fields"), [userFields])
+
   const {
     name = '',
     email = '',
@@ -42,13 +34,13 @@ const UserData = () => {
   } = userFields;
 
   const convertDate = dateString => {
+    if (!dateString) return ""
     const date = new Date(dateString);
     return [
       date.toLocaleString('default', { day: '2-digit' }),
       date.toLocaleString('default', { month: '2-digit' }),
       date.toLocaleString('default', { year: 'numeric' }),
     ].join('.');
-    //return moment(date).format('DD.MM.YYYY');
   };
 
   const info = {
@@ -65,8 +57,7 @@ const UserData = () => {
         (acc, key) => (values[key] ? { ...acc, [key]: values[key] } : acc),
         {}
       );
-      await updateUser(userData);
-      dispatch(setUpdatedUser(userData));
+      await updateUser(userData).unwrap();
     } catch (error) {
       Notify.error(formik.errors[name], {
         pauseOnHover: true,

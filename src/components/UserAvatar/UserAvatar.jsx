@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAvatarURL } from 'redux/selectors';
 import { useUpdateUserAvatarMutation } from '../../redux/fetchUser';
-import { useDispatch } from 'react-redux';
-import { setAvatarURL } from '../../redux/authSlice';
 import {
   AvatarInput,
   AvatarLabel,
@@ -19,15 +17,13 @@ import { useTranslation } from 'react-i18next';
 const UserAvatar = () => {
   const { t } = useTranslation();
   const avatarURL = useSelector(getUserAvatarURL);
-  const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(avatarURL);
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
 
   const handleAvatarChange = async event => {
     try {
       const file = event.target.files[0];
-      const { avatarURL } = await updateUserAvatar(file).unwrap();
-      dispatch(setAvatarURL(avatarURL));
+      await updateUserAvatar(file).unwrap();
     } catch (err) {
       console.log(err);
     }

@@ -1,14 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect} from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRotes';
-import { useDispatch } from 'react-redux';
-// import { getToken } from 'redux/selectors';
-import { setCurrentUser } from 'redux/authSlice';
+import { getToken } from 'redux/selectors';
 import { useGetCurrentUserQuery } from 'redux/fetchUser';
 import NoInternetConnection from './NointernetConnection/NoInternetConnection';
-
+import { useSelector } from 'react-redux';
 const Home = lazy(() => import('pages/Home'));
 const NewsPage = lazy(() => import('pages/NewsPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
@@ -21,17 +19,10 @@ const NoticesCategoriesList = lazy(() =>
 );
 
 export const App = () => {
-  const dispatch = useDispatch();
-  // const token = useSelector(getToken);
 
-  const { data } = useGetCurrentUserQuery();
-
-  useEffect(() => {
-    if (!data) {
-       return;
-    }
-    dispatch(setCurrentUser(data));
-  }, [data, dispatch]);
+  const token = useSelector (getToken);
+  useGetCurrentUserQuery()
+  
 
   return (
     <NoInternetConnection>

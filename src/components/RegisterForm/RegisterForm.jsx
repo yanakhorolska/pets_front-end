@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegistrationUserMutation } from 'redux/fetchUser';
-import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   AuthError,
@@ -18,7 +16,6 @@ const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegistrationUserMutation();
   const [loginUser] = useLogInUserMutation();
-  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -120,8 +117,8 @@ const RegisterForm = () => {
         city,
         phone,
       }).unwrap();
-      const user = await loginUser({ email, password }).unwrap();
-      dispatch(setCredentials(user));
+      await loginUser({ email, password }).unwrap();
+      
     } catch (error) {
       Notify.failure(error.data.message);
     }
