@@ -30,6 +30,7 @@ const Header = () => {
 
   const handleClick = event => {
     setBurg(!burg);
+    console.log(event);
     event.stopPropagation();
   };
 
@@ -56,8 +57,8 @@ const Header = () => {
         <BurgerMenu onClick={handleClick}>
           <Container>
             <MenuHeader>
-              <Logotype to="/" click={handleClick} />
-              <ToggleButtonBurg onClick={handleClick}>
+              <Logotype to="/" />
+              <ToggleButtonBurg>
                 <Icon.FatClose />
               </ToggleButtonBurg>
             </MenuHeader>
@@ -65,25 +66,14 @@ const Header = () => {
             <BurgerLinks>
               <BurgerLinksWrap>
                 {isLoggedIn ? (
-                  <div onClick={handleClick}>
-                    <UserNav/>
-                  </div>
+                  <UserNav/>
                 ) : (
-                  <div onClick={handleClick}>
-                    <AuthNav/>
-                  </div>
-                  
+                  <AuthNav/>
                 )}
               </BurgerLinksWrap>
-              <Link to="/news" onClick={handleClick}>
-                {t('titleNews')}
-              </Link>
-              <Link to="/notices" onClick={handleClick}>
-                {t('noticesHeaderTitle')}
-              </Link>
-              <Link to="/friends" onClick={handleClick}>
-                {t('friendsTitle')}
-              </Link>
+              <HeadNav>
+                <Nav display={"flex"}/>
+              </HeadNav>
             </BurgerLinks>
           </Container>
         </BurgerMenu>

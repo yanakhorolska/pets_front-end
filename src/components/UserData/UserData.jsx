@@ -12,7 +12,7 @@ import {
   TitleWrapperData,
 } from './UserData.styled';
 import { useTranslation } from 'react-i18next';
-import moment from 'moment';
+// import moment from 'moment';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
 import { useFormik } from 'formik';
 import { useUpdateUserMutation, useGetCurrentUserQuery} from 'redux/fetchUser';
