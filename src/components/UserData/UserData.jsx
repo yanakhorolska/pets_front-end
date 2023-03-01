@@ -12,10 +12,9 @@ import {
   TitleWrapperData,
 } from './UserData.styled';
 import { useTranslation } from 'react-i18next';
-// import moment from 'moment';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
 import { useFormik } from 'formik';
-import { useUpdateUserMutation, useGetCurrentUserQuery} from 'redux/fetchUser';
+import { useUpdateUserMutation, useGetCurrentUserQuery } from 'redux/fetchUser';
 import { setUpdatedUser, setCurrentUser } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -23,12 +22,12 @@ const UserData = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [updateUser] = useUpdateUserMutation();
- 
+
   const { data } = useGetCurrentUserQuery();
 
   useEffect(() => {
     if (!data) {
-       return;
+      return;
     }
     dispatch(setCurrentUser(data));
   }, [data, dispatch]);
@@ -43,10 +42,12 @@ const UserData = () => {
   } = userFields;
 
   const convertDate = dateString => {
-    const date = new Date(dateString)
-    return [date.toLocaleString("default", { day: '2-digit'}),
-            date.toLocaleString("default", { month: '2-digit'}),
-            date.toLocaleString("default", { year: 'numeric'})].join(".")
+    const date = new Date(dateString);
+    return [
+      date.toLocaleString('default', { day: '2-digit' }),
+      date.toLocaleString('default', { month: '2-digit' }),
+      date.toLocaleString('default', { year: 'numeric' }),
+    ].join('.');
     //return moment(date).format('DD.MM.YYYY');
   };
 
