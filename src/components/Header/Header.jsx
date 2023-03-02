@@ -27,7 +27,6 @@ const Header = () => {
 
   const handleClick = event => {
     setBurg(!burg);
-    console.log(event);
     event.stopPropagation();
   };
 

@@ -16,8 +16,8 @@ import { useTranslation } from 'react-i18next';
 
 const UserAvatar = () => {
   const { t } = useTranslation();
-  const avatarURL = useSelector(getUserAvatarURL);
-  const [avatar, setAvatar] = useState(avatarURL);
+  const avatar = useSelector(getUserAvatarURL);
+  // const [avatar, setAvatar] = useState(avatarURL);
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
 
   const handleAvatarChange = async event => {
@@ -29,9 +29,9 @@ const UserAvatar = () => {
     }
   };
 
-  useEffect(() => {
-    setAvatar(avatarURL);
-  }, [avatarURL]);
+  // useEffect(() => {
+  //   setAvatar(avatarURL);
+  // }, [avatarURL]);
 
   return (
     <AvatarBox>
@@ -43,7 +43,6 @@ const UserAvatar = () => {
 
       <AvatarLabel
         style={{ display: 'flex', gap: '5px' }}
-        htmlFor="avatar-upload"
       >
         <Icon.Camera />
         <AvatarLabelText>{t('editPhoto')}</AvatarLabelText>

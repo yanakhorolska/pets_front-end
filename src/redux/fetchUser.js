@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+//import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const userApi = createApi({
   reducerPath: 'userApi',

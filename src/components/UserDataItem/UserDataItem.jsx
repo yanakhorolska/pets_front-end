@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
   UserDataInput,
   UserDataLabel,
-  UserDataPar,
+  // UserDataPar,
   UserDataItemBox,
 } from './UserDataItem.styled';
 import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
@@ -48,7 +48,7 @@ const UserDataItem = ({ item, formik }) => {
   return (
     <UserDataItemBox>
       <UserDataLabel>{getName(name)}</UserDataLabel>
-      {!focus ? (
+      {/* {!focus ? (
         <UserDataPar
           onDoubleClick={() => setFocus(prev => !prev)}
           name={name}
@@ -56,15 +56,15 @@ const UserDataItem = ({ item, formik }) => {
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
         />
-      ) : (
-        <UserDataInput
+      ) : ( */}
+        <UserDataInput disabled={!focus}
           type={setInputType()}
           name={name}
           value={formik.values[name]}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-      )}
+      {/* } */}
       <EditBtn type="button" onClick={onEdit}>
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>

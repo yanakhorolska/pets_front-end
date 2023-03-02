@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense, useEffect} from 'react';
+import { lazy, Suspense} from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRotes';
@@ -21,8 +21,7 @@ const NoticesCategoriesList = lazy(() =>
 export const App = () => {
 
   const token = useSelector (getToken);
-  useGetCurrentUserQuery()
-  
+  useGetCurrentUserQuery({skip : !token})
 
   return (
     <NoInternetConnection>

@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import UserDataItem from 'components/UserDataItem/UserDataItem';
-import { getUser } from 'redux/selectors';
-import { useSelector } from 'react-redux';
+// import { getUser } from 'redux/selectors';
+// import { useSelector } from 'react-redux';
 import LogoutButton from '../LogoutButton/LogoutButton';
 import UserPageTitle from '../UserPageTitle/UserPageTitle';
 import {
@@ -13,15 +12,16 @@ import {
 } from './UserData.styled';
 import { useTranslation } from 'react-i18next';
 import { userProfileValidation } from '../../helpers/validation/userProfileValidation';
-import { useFormik } from 'formik';
+import { useFormik, useField } from 'formik';
 import { useUpdateUserMutation } from 'redux/fetchUser';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useUser } from 'hooks/useUser';
 
 const UserData = () => {
   const { t } = useTranslation();
   const [updateUser] = useUpdateUserMutation(); 
 
-  const userFields = useSelector(getUser);
+  const userFields = useUser();
 
   //useEffect( console.log("update fields"), [userFields])
 
@@ -33,23 +33,30 @@ const UserData = () => {
     city = '',
   } = userFields;
 
+  console.log("UserData", userFields, Date.now());
+
   const convertDate = dateString => {
     if (!dateString) return ""
     const date = new Date(dateString);
-    return [
-      date.toLocaleString('default', { day: '2-digit' }),
-      date.toLocaleString('default', { month: '2-digit' }),
-      date.toLocaleString('default', { year: 'numeric' }),
-    ].join('.');
+    // return [
+    //   date.toLocaleString('default', { day: '2-digit' }),
+    //   date.toLocaleString('default', { month: '2-digit' }),
+    //   date.toLocaleString('default', { year: 'numeric' }),
+    // ].join('.');
+    return new Date(date.getFullYear, date.getMonth, date.getDay)
   };
+
+  console.log(new Date(birthday));
 
   const info = {
     name,
     email,
-    birthday: convertDate(birthday),
+    birthday: new Date(birthday),
     phone,
     city,
   };
+
+  console.log("UserData info", info, Date.now());
 
   const _handleSubmit = async values => {
     try {
@@ -74,11 +81,17 @@ const UserData = () => {
     validationSchema: userProfileValidation,
   });
 
+  // useField()
+
   return (
     <DataBox>
       <TitleWrapperData>
         <UserPageTitle title={t('myInfo')} />
       </TitleWrapperData>
+      
+      <div sx={{ display: "flex", flexdirrection:"column" }}>
+        {Object.keys(userFields).map(key => <p>`userFields {key} = {userFields[key]}`</p>)}
+      </div>
 
       <UserDataBox>
         <UserAvatar />
