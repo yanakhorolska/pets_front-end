@@ -87,17 +87,8 @@ const authSlice = createSlice({
         state.user.city = payload.city;
         state.user.birthday = payload.birthday;
         state.user.avatarURL = payload.avatarURL;
+        state.user = {...state.user, ...payload.user}
         state.isLogged = true;
-      }
-    )
-    .addMatcher(//"setUpdatedUser",
-      userApi.endpoints.updateUser.matchFulfilled,
-      (state, {payload}) => {
-        state.user.name = payload.name;
-        state.user.email = payload.email;
-        state.user.phone = payload.phone;
-        state.user.city = payload.city;
-        state.user.birthday = payload.birthday;
       }
     )
     .addMatcher(//"setAvatarURL",
@@ -108,14 +99,5 @@ const authSlice = createSlice({
     )
   }
 });
-
-// export const {
-//   setUser,
-//   setCredentials,
-//   setLogoutUser,
-//   setAvatarURL,
-//   setUpdatedUser,
-//   setCurrentUser,
-// } = authSlice.actions;
 
 export default authSlice.reducer;

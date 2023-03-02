@@ -47,10 +47,11 @@ export const UserDataPar = styled.input`
 export const UserDataInput = styled.input`
   display: block;
   width: 160px;
+  height: ${p => p.theme.space.m};
   border-radius: 40px;
   padding: 4px 18px;
-  margin-bottom: 8px;
-  margin-right: 8px;
+  // margin-bottom: 8px;
+  // margin-right: 8px;
   outline: none;
   background-color: ${p => p.theme.color.white};
   border: none;
@@ -62,16 +63,11 @@ export const UserDataInput = styled.input`
     lineheights: ${p => p.theme.lineHeights.s};
   }
 
-  &:active {
-    background: #fdf7f2;
-    border: 1px solid rgba(245, 146, 86, 0.5);
-    border-radius: 40px;
-  }
-
   &:not(:disabled) {
     background: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
+    padding: 3px 17px;
   }
 
   &::placeholder {
@@ -84,4 +80,19 @@ export const UserDataInput = styled.input`
     lineheights: ${p => p.theme.lineHeights.s};
   }
 
+`;
+
+export const FieldError = styled.p`
+  padding-top: 2px;
+  //${p => p.theme.space.p.xs};
+  height: ${p => p.theme.space.p.xxs};
+  font-size: ${p => p.theme.fontSizes.xs};
+  color: ${p => p.theme.color.accent};
+  text-align: center;
+
+  @media ${p => p.theme.media.tabletDesktop} {
+    //padding-top : 4px;
+    height: ${p => p.theme.space.m.s};
+    font-size: ${p => p.theme.fontSizes.s};
+  }
 `;

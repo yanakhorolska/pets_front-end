@@ -7,7 +7,6 @@ const AuthNav = () => {
   return (
     <AuthBox>
       <RoundLink
-        
         style={{ color: '#FFFFFF', background: '#F59256' }}
         to="/login"
       >
