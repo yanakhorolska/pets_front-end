@@ -1,26 +1,18 @@
-import React from 'react';
 import { useState } from 'react';
 import {
   UserDataInput,
   UserDataLabel,
-  UserDataPar,
   UserDataItemBox,
+  FieldError
 } from './UserDataItem.styled';
-import { EditBtn } from '../../styles/Buttons/EditButton/EditButton.styled';
-import Icon from '../../styles/Buttons/icons/index';
+import { EditBtn } from 'styles/Buttons/EditButton/EditButton.styled';
+import Icon from 'styles/Buttons/icons/index';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { useTranslation } from 'react-i18next';
 
-const UserDataItem = ({ item, formik }) => {
-  const [name] = item;
+
+const UserDataItem = ({ label, name, type, formik }) => {
+
   const [focus, setFocus] = useState(false);
-
-  const setInputType = () => {
-    if (name === 'birthday') {
-      return 'date';
-    }
-    return 'text';
-  };
 
   const onEdit = async () => {
     if (formik.errors[name]) {
@@ -33,38 +25,28 @@ const UserDataItem = ({ item, formik }) => {
       return;
     }
 
-    setFocus(prev => !prev);
-    setInputType();
+  setFocus(prev => !prev);
     if (focus) {
       formik.handleSubmit();
     }
   };
-  const { t } = useTranslation();
-  const getName = value => {
-    const name = value.toLowerCase();
-    return t(`${name}`);
-  };
-
+  
   return (
     <UserDataItemBox>
-      <UserDataLabel>{getName(name)}</UserDataLabel>
-      {!focus ? (
-        <UserDataPar
-          onDoubleClick={() => setFocus(prev => !prev)}
-          name={name}
-          value={formik.values[name]}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-        />
-      ) : (
+      <UserDataLabel>{label}</UserDataLabel>
+      <div display={'flex'}>
         <UserDataInput
-          type={setInputType()}
+          disabled={!focus}
+          type={type}
           name={name}
-          value={formik.values[name]}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          {...formik.getFieldProps(name)}
         />
-      )}
+        {formik.touched[name] && formik.errors[name] ? (
+          <FieldError>{formik.errors[name]} </FieldError>
+        ) : (
+          <FieldError />
+        )}
+      </div>
       <EditBtn type="button" onClick={onEdit}>
         {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
       </EditBtn>

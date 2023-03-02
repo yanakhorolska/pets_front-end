@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+//import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -20,7 +21,7 @@ export const userApi = createApi({
         method: 'POST',
         body: payload,
       }),
-      invalidatesTags: ['User']
+      //invalidatesTags: ['User']
     }),
     logInUser: builder.mutation({
       query: payload => ({
@@ -28,19 +29,54 @@ export const userApi = createApi({
         method: 'POST',
         body: payload,
       }),
+      // async onQueryStarted( payload , { dispatch, queryFulfilled }) {
+      //  
+      //   // const patchResult = dispatch(
+      //   //   userApi.util.updateQueryData('getCurrentUser', payload, (draft) => {
+      //   //     Object.assign(draft)
+      //   //   })
+      //   // )
+      //   //dispatch(Notify.info('Fetching login...'))
+      //   try {
+      //     const result = await queryFulfilled
+      //     //console.log(result);
+      //     dispatch(result)
+      //     //dispatch(setCredentials(result.data))
+      //     //setCredentials({data} = result)
+      //     // if (!data) {
+      //     //   return;
+      //     // }
+      //     // //console.log("login data", data, Date.now())
+      //     // dispatch(setCredentials(data));
+      //     // //throw Error("Not enter")
+      //     dispatch(Notify.info('login received!'))
+      //   } catch (err) {
+      //     // dispatch(err)
+      //     dispatch(Notify.warning('Error fetching login!'))
+      //     //patchResult.undo()
+      //   }
+      // },
       invalidatesTags: ['User']
     }),
     getCurrentUser: builder.query({
-      query: () => `/users/current`,
-      transformResponse: response => response.data,
+      query: (payload) => `/users/current`,      
       providesTags: ['User'],
+      transformResponse: response => response.data,
     }),
     logOutUser: builder.mutation({
       query: () => ({
         url: '/users/logout',
         method: 'GET',
       }),
-      invalidatesTags: ['User'],
+      // async onQueryStarted(_, { dispatch, queryFulfilled }) {
+      //   try {
+      //     await queryFulfilled
+      //     dispatch(setLogoutUser())
+      //   } catch (err) {
+      //     dispatch(Notify.warning(`Error fetching logout! ${err.error.data.message}`))
+      //   }
+      // },
+      // invalidatesTags: ['User'],
     }),
     // forgotPassword: builder.mutation({
     //   query: ({ email }) => ({

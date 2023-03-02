@@ -8,7 +8,7 @@ export const Head = styled('header')`
 
   align-items: center;
   justify-content: space-between;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tabletDesktop} {
     padding-top: 24px;
   }
   @media (min-width: 1280px) {
@@ -36,8 +36,12 @@ export const BurgerMenu = styled('div')`
   padding-top: 17px;
 
   flex-direction: column;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tabletDesktop} {
     padding-top: 26px;
+  }
+
+  @media ${p => p.theme.media.desktop} {
+    display:none;
   }
 `;
 export const BurgerLinks = styled('div')`
@@ -54,7 +58,7 @@ export const ToggleButtonBurg = styled('button')`
   background-color: transparent;
   border: 1px solid transparent;
  
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tabletDesktop} {
     margin-left: 20px;
   }
   @media (min-width: 1280px) {
@@ -68,7 +72,7 @@ export const MenuHeader = styled('div')`
 `;
 export const ButtonsContainer = styled('div')`
   display: none;
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tabletDesktop} {
     display: block;
   }
 `;
@@ -77,7 +81,7 @@ export const HeaderWrap = styled('div')`
   align-items: center;
 `;
 export const BurgerLinksWrap = styled('div')`
-  @media (min-width: 768px) {
+  @media ${p => p.theme.media.tabletDesktop} {
     display: none;
   }
 `;

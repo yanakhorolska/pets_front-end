@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const List = styled('nav')`
-  display: none;
+  display: ${p => p.display ? p.display : "none"};
+  align-items: center;
+  flex-direction: column;
 
-  @media (min-width: 1280px) {
+  @media (${p => p.theme.media.desktop}) {
     display: flex;
-    align-items: center;
-    flex-diracion: row;
+    flex-direction: row;
   }
 `;
+
 export const Link = styled(NavLink)`
   font-family: 'Manrope', sans-serif;
   margin-bottom: 40px;

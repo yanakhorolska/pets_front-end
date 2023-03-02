@@ -1,8 +1,6 @@
-import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation } from 'redux/fetchUser';
-import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   AuthError,
@@ -15,7 +13,6 @@ import { useTranslation } from 'react-i18next';
 const LoginForm = () => {
   const { t } = useTranslation();
   const [loginUser] = useLogInUserMutation();
-  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -61,8 +58,7 @@ const LoginForm = () => {
     }
 
     try {
-      const user = await loginUser({ email, password }).unwrap();
-      dispatch(setCredentials(user));
+      await loginUser({ email, password }).unwrap();
     } catch (error) {
       Notify.failure(error.data.message);
     }

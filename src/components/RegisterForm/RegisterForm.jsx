@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useLogInUserMutation, useRegistrationUserMutation } from 'redux/fetchUser';
-import { setCredentials } from 'redux/authSlice';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   AuthError,
@@ -18,7 +16,6 @@ const RegisterForm = () => {
   const [page, setPage] = useState(1);
   const [registerUser] = useRegistrationUserMutation();
   const [loginUser] = useLogInUserMutation();
-  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -120,105 +117,99 @@ const RegisterForm = () => {
         city,
         phone,
       }).unwrap();
-      const user = await loginUser({ email, password }).unwrap();
-      dispatch(setCredentials(user));
+      await loginUser({ email, password }).unwrap();
+      
     } catch (error) {
       Notify.failure(error.data.message);
     }
   };
 
   return (
-    <>
-      <form onSubmit={onFormSubmit}>
-        {page === 1 && (
-          <>
-            <AuthInput
-              type="email"
-              name="email"
-              placeholder={t('email')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={email}
-            />
-            <AuthError>
-              {formik.touched.email && emailError && emailError}
-            </AuthError>
-            <AuthInput
-              type="password"
-              name="password"
-              placeholder={t('password')}
-              onChange={event => {
-                formik.setFieldValue('password', event.target.value.trim());
-              }}
-              onBlur={formik.handleBlur}
-              value={password}
-            />
-            <AuthError>
-              {formik.touched.password && passwordError && passwordError}
-            </AuthError>
-            <AuthInput
-              type="password"
-              name="confirm_password"
-              placeholder={t('confirmPassword')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={confirm_password}
-            />
-            <AuthErrorLast>
-              {formik.touched.confirm_password && confirmError && confirmError}
-            </AuthErrorLast>
-          </>
-        )}
-        {page === 2 && (
-          <>
-            <AuthInput
-              type="text"
-              name="name"
-              placeholder={t('name')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={name}
-            />
-            <AuthError>
-              {formik.touched.name && nameError && nameError}
-            </AuthError>
-            <AuthInput
-              type="text"
-              name="city"
-              placeholder={t('city')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={city}
-            />
-            <AuthError>
-              {formik.touched.city && cityError && cityError}
-            </AuthError>
-            <AuthInput
-              type="tel"
-              name="phone"
-              placeholder={t('mobilePhone')}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={phone}
-            />
-            <AuthErrorLast>
-              {formik.touched.phone && phoneError && phoneError}
-            </AuthErrorLast>
-            <AuthButton accent={true} last={false} type="submit">
-              {t('register')}
-            </AuthButton>
-          </>
-        )}
-        <AuthButton
-          accent={page === 1 ? true : false}
-          last={true}
-          type="button"
-          onClick={onPageChange}
-        >
-          {page === 1 ? t('next') : t('back')}
-        </AuthButton>
-      </form>
-    </>
+    <form onSubmit={onFormSubmit}>
+      {page === 1 && (
+        <>
+          <AuthInput
+            type="email"
+            name="email"
+            placeholder={t('email')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={email}
+          />
+          <AuthError>
+            {formik.touched.email && emailError && emailError}
+          </AuthError>
+          <AuthInput
+            type="password"
+            name="password"
+            placeholder={t('password')}
+            onChange={event => {
+              formik.setFieldValue('password', event.target.value.trim());
+            }}
+            onBlur={formik.handleBlur}
+            value={password}
+          />
+          <AuthError>
+            {formik.touched.password && passwordError && passwordError}
+          </AuthError>
+          <AuthInput
+            type="password"
+            name="confirm_password"
+            placeholder={t('confirmPassword')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={confirm_password}
+          />
+          <AuthErrorLast>
+            {formik.touched.confirm_password && confirmError && confirmError}
+          </AuthErrorLast>
+        </>
+      )}
+      {page === 2 && (
+        <>
+          <AuthInput
+            type="text"
+            name="name"
+            placeholder={t('name')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={name}
+          />
+          <AuthError>{formik.touched.name && nameError && nameError}</AuthError>
+          <AuthInput
+            type="text"
+            name="city"
+            placeholder={t('city')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={city}
+          />
+          <AuthError>{formik.touched.city && cityError && cityError}</AuthError>
+          <AuthInput
+            type="tel"
+            name="phone"
+            placeholder={t('mobilePhone')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={phone}
+          />
+          <AuthErrorLast>
+            {formik.touched.phone && phoneError && phoneError}
+          </AuthErrorLast>
+          <AuthButton accent={true} last={false} type="submit">
+            {t('register')}
+          </AuthButton>
+        </>
+      )}
+      <AuthButton
+        accent={page === 1 ? true : false}
+        last={true}
+        type="button"
+        onClick={onPageChange}
+      >
+        {page === 1 ? t('next') : t('back')}
+      </AuthButton>
+    </form>
   );
 };
 

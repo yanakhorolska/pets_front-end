@@ -3,6 +3,7 @@ import PetsData from 'components/PetsData/PetsData';
 import { Container } from '../../styles/Container/Container.styled';
 import { MainUserPageBox } from '../../components/UserData/UserData.styled';
 
+
 const UserPage = () => {
   return (
     <Container>

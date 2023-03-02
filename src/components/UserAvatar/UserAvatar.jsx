@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAvatarURL } from 'redux/selectors';
 import { useUpdateUserAvatarMutation } from '../../redux/fetchUser';
-import { useDispatch } from 'react-redux';
-import { setAvatarURL } from '../../redux/authSlice';
 import {
   AvatarInput,
   AvatarLabel,
@@ -12,30 +9,22 @@ import {
   AvatarBox,
 } from './UserAvatar.styled';
 import Icon from '../../styles/Buttons/icons';
-import { useState } from 'react';
 import Emptyphoto from '../../images/bgs/EmptyPhoto.png';
 import { useTranslation } from 'react-i18next';
 
 const UserAvatar = () => {
   const { t } = useTranslation();
-  const avatarURL = useSelector(getUserAvatarURL);
-  const dispatch = useDispatch();
-  const [avatar, setAvatar] = useState(avatarURL);
+  const avatar = useSelector(getUserAvatarURL);
   const [updateUserAvatar] = useUpdateUserAvatarMutation();
 
   const handleAvatarChange = async event => {
     try {
       const file = event.target.files[0];
-      const { avatarURL } = await updateUserAvatar(file).unwrap();
-      dispatch(setAvatarURL(avatarURL));
+      await updateUserAvatar(file).unwrap();
     } catch (err) {
       console.log(err);
     }
   };
-
-  useEffect(() => {
-    setAvatar(avatarURL);
-  }, [avatarURL]);
 
   return (
     <AvatarBox>
@@ -47,18 +36,17 @@ const UserAvatar = () => {
 
       <AvatarLabel
         style={{ display: 'flex', gap: '5px' }}
-        htmlFor="avatar-upload"
       >
         <Icon.Camera />
         <AvatarLabelText>{t('editPhoto')}</AvatarLabelText>
+        <AvatarInput
+          name="avatar"
+          id="avatar-upload"
+          type="file"
+          accept="image/*"
+          onChange={e => handleAvatarChange(e)}
+        />
       </AvatarLabel>
-      <AvatarInput
-        name="avatar"
-        id="avatar-upload"
-        type="file"
-        accept="image/*"
-        onChange={e => handleAvatarChange(e)}
-      />
     </AvatarBox>
   );
 };
