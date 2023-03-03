@@ -1,13 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense} from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRotes';
-import { useDispatch, useSelector } from 'react-redux';
 import { getToken } from 'redux/selectors';
-import { setCurrentUser } from 'redux/authSlice';
-import { useGetCurrentUserQuery } from 'redux/authApi';
-
+import { useGetCurrentUserQuery } from 'redux/fetchUser';
+import NoInternetConnection from './NointernetConnection/NoInternetConnection';
+import { useSelector } from 'react-redux';
 const Home = lazy(() => import('pages/Home'));
 const NewsPage = lazy(() => import('pages/NewsPage'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
@@ -20,21 +19,12 @@ const NoticesCategoriesList = lazy(() =>
 );
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const token = useSelector(getToken);
 
-  const mockQuery = '';
-  const { data } = useGetCurrentUserQuery(mockQuery, { skip: !token });
-
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-    dispatch(setCurrentUser(data));
-  }, [data, dispatch]);
+  const token = useSelector (getToken);
+  useGetCurrentUserQuery({skip : !token})
 
   return (
-    <>
+    <NoInternetConnection>
       <Suspense>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
@@ -53,8 +43,9 @@ export const App = () => {
               <Route path="/user" element={<UserPage />} />
             </Route>
           </Route>
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
-    </>
+    </NoInternetConnection>
   );
 };

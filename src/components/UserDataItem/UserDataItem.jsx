@@ -1,62 +1,57 @@
-import React from 'react';
-import { Formik } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useUpdateUserMutation } from '../../redux/fetchUser';
-import { setUpdatedUser } from 'redux/authSlice';
-import { EditButton } from '../../styles/Buttons/EditButton/EditButton'
-import { CheckButton } from '../../styles/Buttons/CheckButton/CheckButton'
-import {UserDataForm, UserDataInput, UserDataLabel} from './UserDataItem.styled'
+import {
+  UserDataInput,
+  UserDataLabel,
+  UserDataItemBox,
+  FieldError
+} from './UserDataItem.styled';
+import { EditBtn } from 'styles/Buttons/EditButton/EditButton.styled';
+import Icon from 'styles/Buttons/icons/index';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const UserDataItem = ({ initialValues, text, name, placeholder, type }) => {
-  const [disabled, setDisabled] = useState(true);
-  const dispatch = useDispatch();
-  const [updateUser] = useUpdateUserMutation();
-  const [inputeData, setInputData] = useState('');
 
-  const handleSubmit = async values => {
-    console.log(values);
-    values[text] = inputeData;
-    try {
-      if (!disabled);
-      const user = await updateUser({ values }).unwrap();
-      dispatch(setUpdatedUser(user));
-      setInputData('');
-      setDisabled(true);
-    } catch (error) {
-      console.log(error);
+const UserDataItem = ({ label, name, type, formik }) => {
+
+  const [focus, setFocus] = useState(false);
+
+  const onEdit = async () => {
+    if (formik.errors[name]) {
+      Notify.warning(formik.errors[name], {
+        position: 'center-center',
+        pauseOnHover: true,
+        fontSize: '16px',
+        timeout: 6000,
+      });
+      return;
+    }
+
+  setFocus(prev => !prev);
+    if (focus) {
+      formik.handleSubmit();
     }
   };
-
-  const changeInput = e => {
-    const data = e.currentTarget.value;
-    setInputData(data);
-    console.log(data);
-  };
-
+  
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <UserDataForm >
-        <UserDataLabel htmlFor={name}>{name}: </ UserDataLabel>
+    <UserDataItemBox>
+      <UserDataLabel>{label}</UserDataLabel>
+      <div display={'flex'}>
         <UserDataInput
+          disabled={!focus}
           type={type}
-          onChange={changeInput}
-          value={inputeData}
           name={name}
-          id={name}
-          placeholder={placeholder}
-          disabled={disabled}
+          {...formik.getFieldProps(name)}
         />
-        {disabled ? <EditButton onClick={() => setDisabled(!disabled)} />
-          // <button type="button" onClick={() => setDisabled(!disabled)}>Edit</button>
-          // :<button type="submit" disabled={disabled}>Submit</button>}
-          : <CheckButton disabled={disabled} type="submit"/>}
-        
-      </UserDataForm>
-    </Formik>
+        {formik.touched[name] && formik.errors[name] ? (
+          <FieldError>{formik.errors[name]} </FieldError>
+        ) : (
+          <FieldError />
+        )}
+      </div>
+      <EditBtn type="button" onClick={onEdit}>
+        {!focus ? <Icon.Edit /> : <Icon.CheckMark />}
+      </EditBtn>
+    </UserDataItemBox>
   );
 };
 
 export default UserDataItem;
-
-

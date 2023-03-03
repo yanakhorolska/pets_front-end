@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+//import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
@@ -16,55 +17,89 @@ export const userApi = createApi({
   endpoints: builder => ({
     registrationUser: builder.mutation({
       query: payload => ({
-        url: '/auth/register',
+        url: '/users/register',
         method: 'POST',
         body: payload,
       }),
+      //invalidatesTags: ['User']
     }),
-    logIn: builder.mutation({
+    logInUser: builder.mutation({
       query: payload => ({
-        url: '/auth/login',
+        url: '/users/login',
         method: 'POST',
         body: payload,
       }),
+      // async onQueryStarted( payload , { dispatch, queryFulfilled }) {
+      //  
+      //   // const patchResult = dispatch(
+      //   //   userApi.util.updateQueryData('getCurrentUser', payload, (draft) => {
+      //   //     Object.assign(draft)
+      //   //   })
+      //   // )
+      //   //dispatch(Notify.info('Fetching login...'))
+      //   try {
+      //     const result = await queryFulfilled
+      //     //console.log(result);
+      //     dispatch(result)
+      //     //dispatch(setCredentials(result.data))
+      //     //setCredentials({data} = result)
+      //     // if (!data) {
+      //     //   return;
+      //     // }
+      //     // //console.log("login data", data, Date.now())
+      //     // dispatch(setCredentials(data));
+      //     // //throw Error("Not enter")
+      //     dispatch(Notify.info('login received!'))
+      //   } catch (err) {
+      //     // dispatch(err)
+      //     dispatch(Notify.warning('Error fetching login!'))
+      //     //patchResult.undo()
+      //   }
+      // },
+      invalidatesTags: ['User']
     }),
     getCurrentUser: builder.query({
-      // query: (token) => '/users/current',
-      // providesTags: ['User'],
-      // transformResponse: response => response.data
-      query: token => `/users/current`,
+      query: (payload) => `/users/current`,      
+      providesTags: ['User'],
       transformResponse: response => response.data,
     }),
-    logOut: builder.mutation({
-      query: token => ({
+    logOutUser: builder.mutation({
+      query: () => ({
         url: '/users/logout',
         method: 'GET',
       }),
-      invalidatesTags: ['User'],
+      // async onQueryStarted(_, { dispatch, queryFulfilled }) {
+      //   try {
+      //     await queryFulfilled
+      //     dispatch(setLogoutUser())
+      //   } catch (err) {
+      //     dispatch(Notify.warning(`Error fetching logout! ${err.error.data.message}`))
+      //   }
+      // },
+      // invalidatesTags: ['User'],
     }),
-    forgotPassword: builder.mutation({
-      query: ({ email }) => ({
-        url: '/auth/forgotPassword',
-        method: 'PATCH',
-        body: { email },
-      }),
-    }),
-    updatePassword: builder.mutation({
-      query: ({ id, password }) => ({
-        url: '/auth/recoverPassword',
-        method: 'PATCH',
-        body: { id, password },
-      }),
-    }),
+    // forgotPassword: builder.mutation({
+    //   query: ({ email }) => ({
+    //     url: '/auth/forgotPassword',
+    //     method: 'PATCH',
+    //     body: { email },
+    //   }),
+    // }),
+    // updatePassword: builder.mutation({
+    //   query: ({ id, password }) => ({
+    //     url: '/auth/recoverPassword',
+    //     method: 'PATCH',
+    //     body: { id, password },
+    //   }),
+    // }),
     updateUser: builder.mutation({
-      query: ({ values }) => ({
+      query: values => ({
         url: '/users/update',
         method: 'PATCH',
         body: values,
       }),
       invalidatesTags: ['User'],
     }),
-
     updateUserAvatar: builder.mutation({
       query: file => {
         const formData = new FormData();
@@ -77,6 +112,7 @@ export const userApi = createApi({
       },
       invalidatesTags: ['User'],
     }),
+
     getUserPets: builder.query({
       query: () => '/users/pets',
       transformResponse: response => response.data,
@@ -109,10 +145,10 @@ export const userApi = createApi({
 
 export const {
   useRegistrationUserMutation,
-  useLogInMutation,
-  useLogOutMutation,
-  useForgotPasswordMutation,
-  useUpdatePasswordMutation,
+  useLogInUserMutation,
+  useLogOutUserMutation,
+  //useForgotPasswordMutation,
+  //useUpdatePasswordMutation,
   useGetCurrentUserQuery,
   useUpdateUserMutation,
   useUpdateUserAvatarMutation,

@@ -4,7 +4,6 @@ import {
   ModalCreateNotice,
   RadioGroupSex,
   RadioSex,
-  StyledStar,
   InputLabel,
   InputStyled,
   CommentInput,
@@ -28,6 +27,7 @@ import { useMemo, useState } from 'react';
 import Icon from './svg/index';
 import { ModalButton, ModalStyledButton } from 'styles/Buttons/index';
 import { useAddNoticeMutation } from 'redux/fetchNotice';
+import { useTranslation } from 'react-i18next';
 
 const validationSchemas = [
   Yup.object().shape({
@@ -37,10 +37,16 @@ const validationSchemas = [
     title: Yup.string()
       .min(2, 'Too Short!')
       .max(48, 'Too long!')
+      .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'Only letters!')
       .required('Title is required field'),
-    petName: Yup.string().min(2, 'Too Short!').max(16, 'Too long!'),
+    petName: Yup.string()
+      .min(2, 'Too Short!')
+      .max(16, 'Too long!')
+      .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'Only letters!')
+      .required(),
     dateOfBirth: Yup.string()
       .matches(/^\d{2}([./-])\d{2}\1\d{4}$/, 'must have DD.MM.YYYY format')
+      .required()
       .test('', '', (value, context) => {
         if (!value) return true;
         const currDate = new Date();
@@ -53,17 +59,18 @@ const validationSchemas = [
         }
         return true;
       }),
-    breed: Yup.string().min(2, 'Too Short!').max(24, 'Too long!'),
+    breed: Yup.string()
+      .min(2, 'Too Short!')
+      .max(24, 'Too long!')
+      .matches(/^[a-zA-Zа-яА-Я\s]+$/, 'Only letters!')
+      .required(),
   }),
   Yup.object().shape({
     sex: Yup.string()
       .oneOf(['male', 'female'])
       .required('sex of pet is required'),
     location: Yup.string()
-      .matches(
-        /[A-Za-z]+, [A-Za-z]+/,
-        'Format is "region, city" (only latin letters)'
-      )
+      .matches(/[a-zA-Zа-яА-Я]+, [a-zA-Zа-яА-Я]+/, 'Format is "region, city"')
       .required('This is a required field'),
     price: Yup.number()
       .min(0)
@@ -75,12 +82,15 @@ const validationSchemas = [
           });
         }
         return true;
-      }),
+      })
+      .required(),
+    imageUrl: Yup.mixed().required('Photo is required'),
     comment: Yup.string().min(8, 'Too Short!').max(120, 'Too long!').required(),
   }),
 ];
 
 const CreateNotice = ({ onClose }) => {
+  const { t } = useTranslation();
   const { pathname } = useLocation();
   const [pageNumber, setPageNumber] = useState(1);
   const [addNotice] = useAddNoticeMutation();
@@ -107,7 +117,6 @@ const CreateNotice = ({ onClose }) => {
 
   const _submitForm = async (values, actions) => {
     const { ...formValues } = values;
-    console.log(formValues);
     if (formValues.dateOfBirth.length) {
       formValues.dateOfBirth = reverceDate(formValues.dateOfBirth);
     }
@@ -158,18 +167,17 @@ const CreateNotice = ({ onClose }) => {
     location: locationError,
     price: priceError,
     comment: commentError,
+    imageUrl: imageError,
   } = formik.errors;
 
   return (
     <ModalCreateNotice onSubmit={formik.handleSubmit}>
       <CloseButtonAbsolute onClick={onClose} />
-      <FormTitle>Add pet</FormTitle>
+      <FormTitle>{t('addPet')}</FormTitle>
 
       {pageNumber === 1 ? (
         <FormPageWrapper>
-          <FormDescription>
-            This announcement may make someone even happier!
-          </FormDescription>
+          <FormDescription>{t('addTextCard')}</FormDescription>
           <RadioGroupCategories
             role="group"
             aria-labelledby="radio-categories-group"
@@ -182,7 +190,7 @@ const CreateNotice = ({ onClose }) => {
                 checked={formik.values.category === 'lostFound'}
                 onChange={formik.handleChange}
               />
-              lost/found
+              {t('lostFound')}
             </RadioCaregoryLabel>
             <RadioCaregoryLabel>
               <RadioCaregory
@@ -192,7 +200,7 @@ const CreateNotice = ({ onClose }) => {
                 checked={formik.values.category === 'inGoodHands'}
                 onChange={formik.handleChange}
               />
-              in good hands
+              {t('inGoodHands')}
             </RadioCaregoryLabel>
             <RadioCaregoryLabel>
               <RadioCaregory
@@ -202,17 +210,15 @@ const CreateNotice = ({ onClose }) => {
                 checked={formik.values.category === 'sell'}
                 onChange={formik.handleChange}
               />
-              sell
+              {t('sell')}
             </RadioCaregoryLabel>
           </RadioGroupCategories>
           <InputLabel>
-            <span>
-              Title of ad<StyledStar>*</StyledStar>
-            </span>
+            <span>{t('addTitle')}:</span>
             <InputStyled
               type="text"
               name="title"
-              placeholder="Type title of ad"
+              placeholder={t('titleAddPlaceholder')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.title}
@@ -220,11 +226,11 @@ const CreateNotice = ({ onClose }) => {
             <FieldError>{formik.touched.title && titleError} </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Name pet:</span>
+            <span>{t('namePet')}:</span>
             <InputStyled
               type="text"
               name="petName"
-              placeholder="Type name pet"
+              placeholder={t('namePetPlaceholder')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.petName}
@@ -232,11 +238,11 @@ const CreateNotice = ({ onClose }) => {
             <FieldError>{formik.touched.petName && petNameError} </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Date of birth</span>
+            <span>{t('datePet')}:</span>
             <InputStyled
               type="text"
               name="dateOfBirth"
-              placeholder="DD.MM.YYYY"
+              placeholder={t('ddmmyy')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.dateOfBirth}
@@ -246,11 +252,11 @@ const CreateNotice = ({ onClose }) => {
             </FieldError>
           </InputLabel>
           <InputLabel>
-            <span>Breed</span>
+            <span>{t('breed')}:</span>
             <InputStyled
               type="text"
               name="breed"
-              placeholder="Type breed"
+              placeholder={t('typeBreed')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.breed}
@@ -261,9 +267,7 @@ const CreateNotice = ({ onClose }) => {
       ) : (
         <FormPageWrapper>
           <InputLabel>
-            <span>
-              The sex<StyledStar>*</StyledStar>
-            </span>
+            <span>{t('sex')}:</span>
           </InputLabel>
           <RadioGroupSex role="group" aria-labelledby="radio-sex-group">
             <RadioSexLabel>
@@ -275,7 +279,7 @@ const CreateNotice = ({ onClose }) => {
                 checked={formik.values.sex === 'male'}
                 onChange={formik.handleChange}
               />
-              Male
+              {t('male')}
             </RadioSexLabel>
             <RadioSexLabel>
               <Icon.Female />
@@ -286,17 +290,15 @@ const CreateNotice = ({ onClose }) => {
                 checked={formik.values.sex === 'female'}
                 onChange={formik.handleChange}
               />
-              Female
+              {t('female')}
             </RadioSexLabel>
           </RadioGroupSex>
           <InputLabel>
-            <span>
-              Location<StyledStar>*</StyledStar>:
-            </span>
+            <span>{t('location')}:</span>
             <InputStyled
               type="text"
               name="location"
-              placeholder="Type location"
+              placeholder={t('typeLocation')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.location}
@@ -305,13 +307,11 @@ const CreateNotice = ({ onClose }) => {
           </InputLabel>
           {formik.values.category === 'sell' && (
             <InputLabel>
-              <span>
-                Price<StyledStar>*</StyledStar>:
-              </span>
+              <span>{t('price')}:</span>
               <InputStyled
                 type="number"
                 name="price"
-                placeholder="Type price"
+                placeholder={t('typePrice')}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.price}
@@ -320,13 +320,14 @@ const CreateNotice = ({ onClose }) => {
             </InputLabel>
           )}
           <InputImageLabel>
-            <span>Load the pet's image</span>
+            <span>{t('loadImage')}</span>
             <InputImageWrapper>
               <InputImage
                 id="imageUrl"
                 type="file"
                 name="imageUrl"
                 accept="image/*"
+                onBlur={formik.handleBlur}
                 onChange={event =>
                   formik.setFieldValue('imageUrl', event.currentTarget.files[0])
                 }
@@ -341,14 +342,15 @@ const CreateNotice = ({ onClose }) => {
                 <StyledIconAdd />
               )}
             </InputImageWrapper>
+            <FieldError>{!formik.values.imageUrl && imageError}</FieldError>
           </InputImageLabel>
           <InputLabel>
-            <span>Comments:</span>
+            <span>{t('comments')}:</span>
             <CommentInput
               as="textarea"
               type="text"
               name="comment"
-              placeholder="Type comment"
+              placeholder={t('typeComments')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.comment}
@@ -360,17 +362,17 @@ const CreateNotice = ({ onClose }) => {
       {pageNumber === 1 && (
         <ButtonsWrapper>
           <ModalButton type="button" onClick={onClose}>
-            Cancel
+            {t('cancel')}
           </ModalButton>
-          <ModalStyledButton type="submit">Next</ModalStyledButton>
+          <ModalStyledButton type="submit">{t('next')}</ModalStyledButton>
         </ButtonsWrapper>
       )}
       {pageNumber === 2 && (
         <ButtonsWrapper>
           <ModalButton type="button" onClick={() => setPageNumber(1)}>
-            Back
+            {t('back')}
           </ModalButton>
-          <ModalStyledButton type="submit">Done</ModalStyledButton>
+          <ModalStyledButton type="submit">{t('done')}</ModalStyledButton>
         </ButtonsWrapper>
       )}
     </ModalCreateNotice>

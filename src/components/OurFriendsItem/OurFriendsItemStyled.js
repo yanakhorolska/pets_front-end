@@ -19,7 +19,7 @@ export const FriendsItem = styled.li`
   } ;
 `;
 
-export const ItemTitle = styled.a`
+export const ItemTitle = styled('a')`
   display: inline-block;
   text-transform: uppercase;
   width: 100%;
@@ -93,9 +93,13 @@ export const ContactsWrap = styled.span`
   font-weight: 600;
 `;
 
-export const ContactsLink = styled.a`
+export const ContactsLink = styled('a')`
+  display: block;
+  word-wrap: break-word;
+  word-break: keep-all;
   color: inherit;
-  &:hover {
+  &:hover,
+  &:focus: {
     color: ${p => p.theme.color.accent};
   }
   &:hover ~ ${ContactsWrap}:first-child {
@@ -115,6 +119,7 @@ export const NoInfo = styled.span`
 `;
 
 export const Wrap = styled.div`
- &:hover span {
+  &:hover span {
     color: ${p => p.theme.color.accent};
+  }
 `;

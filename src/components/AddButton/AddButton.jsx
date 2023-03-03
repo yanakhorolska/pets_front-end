@@ -8,14 +8,16 @@ import {
   AddSpanText,
 } from './AddButton.styled';
 import { useAuth } from 'hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const AddButton = ({ component: Component }) => {
-  const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
+  const isLoggedIn = useAuth();
+  // const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { t } = useTranslation();
   useEffect(() => {
     const body = document.querySelector('body');
     isModalOpen
@@ -31,7 +33,9 @@ const AddButton = ({ component: Component }) => {
 
   const openModalWindow = () => {
     if (!isLoggedIn) {
-      navigate('/login');
+      Notify.warning('To add an ad, please login or register.');
+      return;
+      // navigate('/login');
     }
     setIsModalOpen(true);
   };
@@ -39,7 +43,7 @@ const AddButton = ({ component: Component }) => {
   return (
     <>
       <AddButtonWrapper>
-        <AddSpanText>Add pet</AddSpanText>
+        <AddSpanText>{t('addPet')}</AddSpanText>
         <AddButtonStyled
           type="button"
           onClick={() => {
@@ -47,7 +51,7 @@ const AddButton = ({ component: Component }) => {
           }}
         >
           <StyledIconAdd />
-          <AddButtonText>Add pet</AddButtonText>
+          <AddButtonText>{t('addPet')}</AddButtonText>
         </AddButtonStyled>
       </AddButtonWrapper>
 

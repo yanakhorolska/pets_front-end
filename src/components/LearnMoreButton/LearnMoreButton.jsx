@@ -1,12 +1,14 @@
 import React, { useCallback, useState } from 'react';
-
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
 import { LearnMoreButton } from 'styles/Buttons/index';
+//import { useAuth } from 'hooks/useAuth';
+import { useTranslation } from 'react-i18next';
 
-import { useAuth } from 'hooks/useAuth';
-const LearnMoreButtonComponent = ({ id }) => {
-  const isLoggedIn = useAuth();
+const LearnMoreButtonComponent = ({ _id }) => {
+  const { t } = useTranslation();
+
+  // const isLoggedIn = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const body = document.querySelector('body');
@@ -24,19 +26,19 @@ const LearnMoreButtonComponent = ({ id }) => {
 
   return (
     <>
-      {isLoggedIn && (
-        <LearnMoreButton
-          type="button"
-          onClick={() => {
-            setIsModalOpen(true);
-          }}
-        >
-          Learn more
-        </LearnMoreButton>
-      )}
+      {/* {isLoggedIn && ( */}
+      <LearnMoreButton
+        type="button"
+        onClick={() => {
+          setIsModalOpen(true);
+        }}
+      >
+        {t('learnMore')}
+      </LearnMoreButton>
+      {/* )} */}
       {isModalOpen && (
         <ModalWindow onClose={toggleModal}>
-          <ModalNotice onClose={toggleModal} id={id} />
+          <ModalNotice onClose={toggleModal} _id={_id} />
         </ModalWindow>
       )}
     </>

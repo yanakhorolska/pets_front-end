@@ -1,14 +1,18 @@
-import { useDispatch} from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useLogInUserMutation } from 'redux/authApi';
-import { setCredentials } from 'redux/authSlice';
+import { useLogInUserMutation } from 'redux/fetchUser';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { AuthError, AuthErrorLast, AuthInput, AuthButton } from "../AuthForm/AuthFormStyled"
+import {
+  AuthError,
+  AuthErrorLast,
+  AuthInput,
+  AuthButton,
+} from '../AuthForm/AuthFormStyled';
+import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const [loginUser] = useLogInUserMutation();
-  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -54,8 +58,7 @@ const LoginForm = () => {
     }
 
     try {
-      const user = await loginUser({ email, password }).unwrap();
-      dispatch(setCredentials(user));
+      await loginUser({ email, password }).unwrap();
     } catch (error) {
       Notify.failure(error.data.message);
     }
@@ -66,18 +69,16 @@ const LoginForm = () => {
       <AuthInput
         type="email"
         name="email"
-        placeholder="Email"
+        placeholder={t('email')}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={email}
       />
-      <AuthError>
-        {formik.touched.email && emailError && emailError}
-        </AuthError>
+      <AuthError>{formik.touched.email && emailError && emailError}</AuthError>
       <AuthInput
         type="password"
         name="password"
-        placeholder="Password"
+        placeholder={t('password')}
         onChange={event => {
           formik.setFieldValue('password', event.target.value.trim());
         }}
@@ -88,9 +89,9 @@ const LoginForm = () => {
         {formik.touched.password && passwordError && passwordError}
       </AuthErrorLast>
       <AuthButton type="submit" accent={true} last={true}>
-        Login
-        </AuthButton>
-      </form>
+        {t('login')}
+      </AuthButton>
+    </form>
   );
 };
 

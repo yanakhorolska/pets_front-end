@@ -1,8 +1,8 @@
 import { Logo, LogoAccent } from './logo.styled';
 
-const Logotype = () => {
+const Logotype = click => {
   return (
-    <Logo to="/" >
+    <Logo to="/" onClick={click}>
       pe<LogoAccent>t</LogoAccent>ly
     </Logo>
   );

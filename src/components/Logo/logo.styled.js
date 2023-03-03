@@ -10,7 +10,12 @@ export const Logo = styled(Link)`
   line-height: 0.66;
   letter-spacing: 0.07em;
   color: ${p => p.theme.color.text};
-
+  transition: transform .25s;
+  &:hover,
+  &:focus{
+    transform: scale(1.05);
+   // color: ${p => p.theme.color.accent};
+  }
   @media (min-width: 768px) {
     font-size: 32px;
   }

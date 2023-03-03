@@ -11,15 +11,32 @@ export const RoundLink = styled(NavLink)`
   letter-spacing: 0.04em;
   font-size: 14px;
   line-height: 0.74;
+   height:35px;
+  display: flex;
+  // vertical-align: middle;
+  align-items: center;
+  transition: transform 250ms ease-out;
+  &:hover,
+  &:focus{
+    transform: scale(1.05);   
+  }
   &:first-of-type {
     margin-right: 12px;
   }
+ 
   @media (min-width: 768px) {
     font-size: 16px;
     line-height: 0.72;
+    height: 44px;
   }
   @media (min-width: 1280px) {
     font-size: 20px;
     line-height: 0.74;
+    height: 47px;
   }
 `;
+
+export const AuthBox = styled.div`
+display: flex;
+align-items: center;
+`

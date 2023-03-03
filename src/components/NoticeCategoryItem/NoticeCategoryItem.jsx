@@ -15,42 +15,38 @@ import {
   LearnBtnWrap,
   SmallHeartBox,
 } from './NoticeCategoryItemStyled';
+import { useTranslation } from 'react-i18next';
 import {
-  useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
   useDeleteUserNoticeByIdMutation,
 } from '../../redux/fetchNotice';
 import { useAuth } from 'hooks/useAuth';
-import { useUser } from 'hooks/useUser';
 import { HeartButton } from '../../styles/Buttons/HeartButton/HeartButton';
 import LearnMoreButtonComponent from '../../components/LearnMoreButton/LearnMoreButton';
 import { TrashButton } from 'styles/Buttons/index';
 import Icon from 'styles/Buttons/icons/index';
 import Notiflix from 'notiflix';
 
-export const NoticeCategoryItem = ({ id }) => {
-  const { data } = useGetNoticeByIdQuery(id);
+export const NoticeCategoryItem = ({ pet }) => {
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
   const [deleteFromNotises] = useDeleteUserNoticeByIdMutation();
-  const { isLoggedIn } = useAuth();
-  const { userData } = useUser();
-  // const [del, setfirst] = useState(second);
-  console.log(data);
-  console.log(userData, 'user data');
+  const isLoggedIn = useAuth();
+  const { t } = useTranslation();
 
   const fav = useMemo(() => {
-    if (data) {
-      return data.favorite;
+    if (pet) {
+      return pet.favorite;
     }
-  }, [data]);
+  }, [pet]);
 
-  if (!data) {
+  if (!pet) {
     return;
   }
 
   const {
+    _id,
     title,
     category,
     dateOfBirth,
@@ -59,56 +55,57 @@ export const NoticeCategoryItem = ({ id }) => {
     price,
     imageUrl,
     favorite,
-    email,
-  } = data;
+    myads,
+  } = pet;
 
   const handleFavoriteClick = () => {
     if (!favorite) {
-      console.log('favourite add');
-      // del const
-      const data = addToFavorite(id).unwrap();
-      console.log(data, 'data add');
+      addToFavorite(_id).unwrap();
       return;
     }
 
     if (favorite) {
-      console.log('favourite delete');
-      // del const
-      const data = deleteFromFavorite(id).unwrap();
-      console.log(data, 'data delete');
+      deleteFromFavorite(_id).unwrap();
     }
   };
 
   const onAddToButtonClickLogin = () => {
-    console.log('login');
-    Notiflix.Notify.warning('Please login to add', {
-      background: '#000000',
-      textColor: '#fff',
-      childClassName: 'notiflix-notify-warning',
-      notiflixIconColor: 'rgba(0,0,0,0.2)',
-      fontAwesomeClassName: 'fas fa-exclamation-circle',
-      fontAwesomeIconColor: 'rgba(0,0,0,0.2)',
-      backOverlayColor: '#31ee8657',
-    });
+    Notiflix.Notify.warning('To add to favorites, please login or register.');
   };
 
   const handleNoticeClick = () => {
-    console.log('notice dell');
-    // del const
-    const data = deleteFromNotises(id).unwrap();
-    console.log(data, 'data dell');
-    return;
+    Notiflix.Confirm.show(
+      'Аnimal is the best friend!',
+      'Are you sure you want to delete this ad??',
+      'Yes',
+      'No',
+      async function okCb() {
+        await deleteFromNotises(_id).unwrap();
+        return;
+      },
+      function cancelCb() {
+        return;
+      },
+      {
+        width: '250px',
+        okButtonColor: '#f8f8f8',
+        okButtonBackground: '#F59256',
+        titleColor: '#F59256',
+        titleFontSize: '22px',
+        messageFontSize: '20px',
+      }
+    );
   };
 
   const changeTextOfCategory = category => {
     if (category === 'sell') {
-      return 'Sell';
+      return t('sellUp');
     }
     if (category === 'inGoodHands') {
-      return 'In good hands';
+      return t('inGoodHandsUp');
     }
     if (category === 'lostFound') {
-      return 'Lost & Found';
+      return t('lostFoundUp');
     }
   };
 
@@ -131,14 +128,12 @@ export const NoticeCategoryItem = ({ id }) => {
   }
 
   const deleteButton = () => {
-    if (userData.email === email) {
+    if (myads === true) {
       return true;
     } else {
       return false;
     }
   };
-
-  console.log(deleteButton(), 'deletebtn');
 
   return (
     <NoticeItem>
@@ -166,28 +161,36 @@ export const NoticeCategoryItem = ({ id }) => {
         <ListInfoWrap>
           <NoticeInfoList>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Breed:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('breed')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{breed}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Place:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('place')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>{location}</NoticeInfoListItemData>
             </NoticeInfoListItem>
             <NoticeInfoListItem>
-              <NoticeInfoListItemCategory>Age:</NoticeInfoListItemCategory>
+              <NoticeInfoListItemCategory>
+                {t('age')}:
+              </NoticeInfoListItemCategory>
               <NoticeInfoListItemData>
                 {timeSinceCurrentDate(dateOfBirth)}
               </NoticeInfoListItemData>
             </NoticeInfoListItem>
             {price ? (
               <NoticeInfoListItem>
-                <NoticeInfoListItemCategory>Price:</NoticeInfoListItemCategory>
+                <NoticeInfoListItemCategory>
+                  {t('price')}:
+                </NoticeInfoListItemCategory>
                 <NoticeInfoListItemData>{price} $</NoticeInfoListItemData>
               </NoticeInfoListItem>
             ) : null}
           </NoticeInfoList>
           <LearnBtnWrap>
-            <LearnMoreButtonComponent id={id} />
+            <LearnMoreButtonComponent _id={_id} />
             {deleteButton() && <TrashButton onClick={handleNoticeClick} />}
           </LearnBtnWrap>
         </ListInfoWrap>

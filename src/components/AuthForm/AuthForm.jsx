@@ -7,23 +7,22 @@ import {
   AuthQuestion,
   AuthLink,
 } from './AuthFormStyled';
+import { useTranslation } from 'react-i18next';
 
 const AuthForm = ({ title }) => {
   const { pathname } = useLocation();
-
+  const { t } = useTranslation();
   return (
     <AuthContainer>
       <AuthTitle>{title}</AuthTitle>
       {pathname === '/login' && <LoginForm />}
       {pathname === '/register' && <RegisterForm />}
       <AuthQuestion>
-          {pathname === '/register'
-            ? 'Already have an account?'
-            : "Don't have an account?"}
-          &nbsp;
+        {pathname === '/register' ? t('alreadyQuestion') : t('dontQuestion')}
+        &nbsp;
       </AuthQuestion>
       <AuthLink to={pathname === '/register' ? '/login' : '/register'}>
-          {pathname === '/register' ? 'Login' : 'Register'}
+        {pathname === '/register' ? t('login') : t('register')}
       </AuthLink>
     </AuthContainer>
   );

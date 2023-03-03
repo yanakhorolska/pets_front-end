@@ -25,18 +25,27 @@ import {
   FieldError,
   CloseFormButton,
 } from './AddPet.styled';
-import { ModalButton, NextButton } from 'styles/Buttons'
+import { ModalButton, NextButton } from 'styles/Buttons';
 
 import Icon from '../ModalAddNotice/svg';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = [
   Yup.object().shape({
     nickname: Yup.string().min(2).max(16).required().label('Name pet'),
-    breed: Yup.string().min(2).max(16).required('Breed is required').label("Breed"),
+    breed: Yup.string()
+      .min(2)
+      .max(16)
+      .required('Breed is required')
+      .label('Breed'),
     birthday: Yup.date()
       .typeError(({ label }) => `${label} invalid format DD.MM.YYYY`)
-      .min(new Date("1900.01.01"), ({ label, min }) => `${label} field must be later than ${min.toLocaleDateString()}`)
-      .max(new Date(),  ({ label }) => `${label} future date not allowed`)
+      .min(
+        new Date('1900.01.01'),
+        ({ label, min }) =>
+          `${label} field must be later than ${min.toLocaleDateString()}`
+      )
+      .max(new Date(), ({ label }) => `${label} future date not allowed`)
       .transform((value, originalValue) => {
         try {
           return getDateFromString(originalValue);
@@ -44,22 +53,24 @@ const validationSchema = [
           return null;
         }
       })
-      .required(({label}) => `${label} is a required field in format DD.MM.YYYY`)
+      .required(
+        ({ label }) => `${label} is a required field in format DD.MM.YYYY`
+      )
       .label('Date of birth'),
   }),
   Yup.object().shape({
     avatar: Yup.mixed().required('Image pet is required'),
-    comment: Yup.string().min(8).max(120).required().label("Comments"),
+    comment: Yup.string().min(8).max(120).required().label('Comments'),
   }),
 ];
 
 const getDateFromString = dateString => {
   const date = dateString.split('.');
-  if (date.length === 3 ) {
+  if (date.length === 3) {
     return new Date(`${date[2]}-${date[1]}-${date[0]}`);
   }
-  return null
-}
+  return null;
+};
 
 // const formatDate = date => {
 //   return [
@@ -70,10 +81,10 @@ const getDateFromString = dateString => {
 // }
 
 export const AddPet = ({ onClose }) => {
-
+  const { t } = useTranslation();
   const [addPet] = useAddPetMutation();
 
-  const [currentPage, setCurrentPage] = useState(0); 
+  const [currentPage, setCurrentPage] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -83,17 +94,17 @@ export const AddPet = ({ onClose }) => {
       formik.setFieldValue('avatar', event.target.files[0]);
     }
   };
- 
+
   const customOnSubmit = async (values, actions) => {
-    const { birthday, ...reqValue } = values
-    // const status = await addPet({
-    //   birthday: getDateFromString(birthday).toJSON().slice(0, 10),
-    //   ...reqValue,
-    // }).unwrap();
-    //if (status === 'success')  onClose()
+    const { birthday, ...reqValue } = values;
+    const status = await addPet({
+      birthday: getDateFromString(birthday).toJSON().slice(0, 10),
+      ...reqValue,
+    }).unwrap();
+    if (status === 'success') onClose();
     actions.setSubmitting(false);
-  }
- 
+  };
+
   const customHandleSubmit = (values, actions) => {
     if (currentPage === 1) {
       customOnSubmit(values, actions);
@@ -105,13 +116,19 @@ export const AddPet = ({ onClose }) => {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", function (event) {
-      if ((event.charCode || event.keyCode === 13) && event.target.nodeName === "INPUT") {
+    document.addEventListener('keydown', function (event) {
+      if (
+        (event.charCode || event.keyCode === 13) &&
+        event.target.nodeName === 'INPUT'
+      ) {
         const form = event.target.form;
-        const arrayFormInput = Array.prototype.filter.call(form, elem => elem.nodeName === "INPUT")
+        const arrayFormInput = Array.prototype.filter.call(
+          form,
+          elem => elem.nodeName === 'INPUT'
+        );
         const index = arrayFormInput.indexOf(event.target);
-        const newFocusElem  = arrayFormInput[index + 1]
-        if (newFocusElem) newFocusElem.focus()
+        const newFocusElem = arrayFormInput[index + 1];
+        if (newFocusElem) newFocusElem.focus();
         event.preventDefault();
       }
     });
@@ -126,9 +143,9 @@ export const AddPet = ({ onClose }) => {
       avatar: '',
       comment: '',
     },
-    validationSchema : validationSchema[currentPage],
+    validationSchema: validationSchema[currentPage],
     onSubmit: customHandleSubmit,
-    onChangeAvatarImage : async values => {
+    onChangeAvatarImage: async values => {
       formik.setFieldValue('avatar', values.files[0]);
     },
   });
@@ -148,18 +165,18 @@ export const AddPet = ({ onClose }) => {
   return (
     <ModalAddPet onSubmit={formik.handleSubmit} autoComplete="off">
       <CloseFormButton onClick={onClose} />
-      <FormTitle>Add pet</FormTitle>
+      <FormTitle>{t('addPet')}</FormTitle>
       {(() => {
         switch (currentPage) {
           case 0:
             return (
               <FormPageWrapper>
                 <InputLabel>
-                  Name pet
+                  {t('namePet')}
                   <InputStyled
                     type="text"
                     name="nickname"
-                    placeholder="Type name pet"
+                    placeholder={t('namePetPlaceholder')}
                     autoFocus={true}
                     value={formik.values.nickname}
                     onChange={formik.handleChange}
@@ -167,15 +184,17 @@ export const AddPet = ({ onClose }) => {
                   />
                   {formik.touched.nickname && nicknameError ? (
                     <FieldError>{nicknameError} </FieldError>
-                  ) : <FieldError/>}
+                  ) : (
+                    <FieldError />
+                  )}
                 </InputLabel>
                 <InputLabel>
-                  Date of birth
-                 {/*  <InputStyled
+                  {t('datePet')}
+                  {/*<InputStyled
                     //type="date"
                     type="nunber"
                     name="birthday"
-                    placeholder="Type date of birth"
+                    placeholder={t('datePetPlaceholder')}
                     value={formik.values.birthday}
                     onChange={e => {
                       formik.handleChange(e);
@@ -243,7 +262,9 @@ export const AddPet = ({ onClose }) => {
                   
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
-                  ) : <FieldError/>}
+                  ) : (
+                    <FieldError />
+                  )}
                 </InputLabel>
                 <InputLabel>
                   Date of birth 2
@@ -266,27 +287,29 @@ export const AddPet = ({ onClose }) => {
                   <InputStyled
                     type="text"
                     name="breed"
-                    placeholder="Type breed"
+                    placeholder={t('breedPetPlaceholder')}
                     value={formik.values.breed}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.breed && breedError ? (
                     <FieldError>{breedError} </FieldError>
-                  ) : <FieldError/>}
+                  ) : (
+                    <FieldError />
+                  )}
                 </InputLabel>
                 <ButtonsWrapper>
                   <ModalButton type="button" tabindex="-1" onClick={onClose}>
-                    Cancel
+                    {t('cancel')}
                   </ModalButton>
-                  <NextButton type="submit">Next</NextButton>
+                  <NextButton type="submit"> {t('next')}</NextButton>
                 </ButtonsWrapper>
               </FormPageWrapper>
             );
           case 1:
             return (
               <>
-                <FormDescription>Add photo and some comments</FormDescription>
+                <FormDescription>{t('addText')}</FormDescription>
                 <FormPageWrapper>
                   <InputImageWrapper sx={{ margin: 'auto' }}>
                     <InputImageLabel>
@@ -308,31 +331,35 @@ export const AddPet = ({ onClose }) => {
                     </InputImageLabel>
                   </InputImageWrapper>
                   {formik.touched.avatar && avatarError ? (
-                      <FieldError>{avatarError} </FieldError>
-                    ) : <FieldError/>}
+                    <FieldError>{avatarError} </FieldError>
+                  ) : (
+                    <FieldError />
+                  )}
                   <InputLabel>
-                    Comments:
+                    {t('comments')}
                     <CommentInput
                       as="textarea"
                       type="text"
                       name="comment"
-                      placeholder="Type comments"
+                      placeholder={t('typeComments')}
                       value={formik.values.comment}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     ></CommentInput>
                     {formik.touched.comment && commentError ? (
                       <FieldError>{commentError} </FieldError>
-                    ) : <FieldError/>}
+                    ) : (
+                      <FieldError />
+                    )}
                   </InputLabel>
                   <ButtonsWrapper>
                     <ModalButton
                       type="button"
                       onClick={() => setCurrentPage(0)}
                     >
-                      Back
+                      {t('back')}
                     </ModalButton>
-                    <NextButton type="submit">Done</NextButton>
+                    <NextButton type="submit"> {t('done')}</NextButton>
                   </ButtonsWrapper>
                 </FormPageWrapper>
               </>

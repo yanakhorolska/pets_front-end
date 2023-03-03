@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import {
   useGetNoticeByIdQuery,
   useAddToFavoritesMutation,
   useDeleteFromFavoritesMutation,
 } from '../../redux/fetchNotice';
-import { Loader } from 'components/Loader/Loader';
 import Icon from 'styles/Buttons/icons/index';
 import {
   ModalBox,
@@ -26,16 +25,19 @@ import {
   CloseButtonTop,
   CommentBox,
 } from './ModalNotice.styled';
+import { useTranslation } from 'react-i18next';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const ModalNotice = ({ onClose, id }) => {
-  const { data, isLoading } = useGetNoticeByIdQuery(id);
+const ModalNotice = ({ onClose, _id }) => {
+  const { t } = useTranslation();
+  const { data } = useGetNoticeByIdQuery(_id);
   const [addToFavorite] = useAddToFavoritesMutation();
   const [deleteFromFavorite] = useDeleteFromFavoritesMutation();
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
 
   const favText = useMemo(
-    () => (data.favorite ? 'Delete from' : 'Add to'),
-    [data]
+    () => (!data ? '' : data.favorite ? t('deleteFrom') : t('addTo')),
+    [data, t]
   );
 
   if (!data) {
@@ -59,35 +61,29 @@ const ModalNotice = ({ onClose, id }) => {
   } = data;
 
   const handleFavoriteClick = () => {
+    if (!isLoggedIn) {
+      Notify.warning('To add to favorites, please login or register.');
+      return;
+    }
     if (!favorite) {
-      console.log('favourite add');
-      // del const
-      const data = addToFavorite(id).unwrap();
-      console.log(data, 'data add');
+      addToFavorite(_id).unwrap();
       return;
     }
 
     if (favorite) {
-      console.log('favourite delete');
-      // del const
-      const data = deleteFromFavorite(id).unwrap();
-      console.log(data, 'data delete');
+      deleteFromFavorite(_id).unwrap();
     }
-  };
-
-  const onAddToButtonClickLogin = () => {
-    console.log('login');
   };
 
   const changeTextOfCategory = category => {
     if (category === 'sell') {
-      return 'Sell';
+      return t('sellUp');
     }
     if (category === 'inGoodHands') {
-      return 'In good hands';
+      return t('inGoodHandsUp');
     }
     if (category === 'lostFound') {
-      return 'Lost & Found';
+      return t('lostFoundUp');
     }
   };
 
@@ -95,104 +91,104 @@ const ModalNotice = ({ onClose, id }) => {
 
   return (
     <>
-      {isLoading ? (
-        <ModalBox>
-          <Loader />
-        </ModalBox>
-      ) : (
-        <ModalBox>
-          <CloseButtonTop onClick={onClose} />
+      <ModalBox>
+        <CloseButtonTop onClick={onClose} />
 
-          <ColumnBox>
-            <PhotoBox>
-              <PetPhoto src={imageUrl} alt="photoPets" />
-              <Category>{changeTextOfCategory(category)}</Category>
-            </PhotoBox>
-            <Descriptions>
-              <li>
-                <TitleCard>{title}</TitleCard>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Name:</DescrCategory>
-                  <DescrData>{petName}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Birthday:</DescrCategory>
-                  <DescrData>{date}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Breed:</DescrCategory>
-                  <DescrData>{breed}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>Place: </DescrCategory>
-                  <DescrData>{location}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionItems>
-                  <DescrCategory>The sex:</DescrCategory>
-                  <DescrData>{sex}</DescrData>
-                </DescriptionItems>
-              </li>
-              <li>
-                <DescriptionLink href={`mailto:${email}`}>
-                  <DescrCategory>Email:</DescrCategory>
-                  <DescrData>{email}</DescrData>
-                </DescriptionLink>
-              </li>
-              <li>
-                <DescriptionLink href={`tel:${phone}`}>
-                  <DescrCategory>Phone:</DescrCategory>
-                  <DescrData>{phone}</DescrData>
-                </DescriptionLink>
-              </li>
-              {category === 'sell' && (
-                <li>
-                  <DescriptionItems>
-                    <DescrCategory>Price:</DescrCategory>
-                    <DescrData>{price} $</DescrData>
-                  </DescriptionItems>
-                </li>
-              )}
-            </Descriptions>
-          </ColumnBox>
-          <CommentBox>
-            <DescrCategory>Comments:</DescrCategory>
-            <DescrData>{comment}</DescrData>
-          </CommentBox>
-          <ButtonBox>
+        <ColumnBox>
+          <PhotoBox>
+            <PetPhoto src={imageUrl} alt="photoPets" />
+            <Category>{changeTextOfCategory(category)}</Category>
+          </PhotoBox>
+          <Descriptions>
             <li>
-              <a href={`tel:${phone}`}>
-                <ContactButton type="button">Contact</ContactButton>
-              </a>
+              <TitleCard>{title}</TitleCard>
             </li>
-            {isLoggedIn ? (
+            <li>
+              <DescriptionItems>
+                <DescrCategory>{t('name')}:</DescrCategory>
+                <DescrData>{petName}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>{t('birthday')}:</DescrCategory>
+                <DescrData>{date}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>{t('breed')}:</DescrCategory>
+                <DescrData>{breed}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>{t('place')}: </DescrCategory>
+                <DescrData>{location}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionItems>
+                <DescrCategory>{t('sex')}:</DescrCategory>
+                <DescrData>{sex}</DescrData>
+              </DescriptionItems>
+            </li>
+            <li>
+              <DescriptionLink href={`mailto:${email}`}>
+                <DescrCategory>{t('email')}:</DescrCategory>
+                <DescrData>{email}</DescrData>
+              </DescriptionLink>
+            </li>
+            <li>
+              <DescriptionLink href={`tel:${phone}`}>
+                <DescrCategory>{t('phone')}:</DescrCategory>
+                <DescrData>{phone}</DescrData>
+              </DescriptionLink>
+            </li>
+            {category === 'sell' && (
               <li>
-                <AddButton type="button" onClick={handleFavoriteClick}>
-                  {favText}
-                  {<Icon.Heart style={{ fill: '#f59256' }} />}
-                </AddButton>
-              </li>
-            ) : (
-              <li>
-                <NavLink to="/login">
-                  <AddButton type="button" onClick={onAddToButtonClickLogin}>
-                    Add to {<Icon.Heart style={{ fill: '#f59256' }} />}
-                  </AddButton>
-                </NavLink>
+                <DescriptionItems>
+                  <DescrCategory>{t('price')}:</DescrCategory>
+                  <DescrData>{price} $</DescrData>
+                </DescriptionItems>
               </li>
             )}
-          </ButtonBox>
-        </ModalBox>
-      )}
+          </Descriptions>
+        </ColumnBox>
+        <CommentBox>
+          <DescrCategory>{t('comments')}:</DescrCategory>
+          <DescrData>{comment}</DescrData>
+        </CommentBox>
+        <ButtonBox>
+          <li>
+            <a href={`tel:${phone}`}>
+              <ContactButton type="button">{t('contact')}</ContactButton>
+            </a>
+          </li>
+          <li>
+            <AddButton type="button" onClick={handleFavoriteClick}>
+              {favText}
+              {<Icon.Heart style={{ fill: '#f59256' }} />}
+            </AddButton>
+          </li>
+          {/* {isLoggedIn ? (
+            <li>
+              <AddButton type="button" onClick={handleFavoriteClick}>
+                {favText}
+                {<Icon.Heart style={{ fill: '#f59256' }} />}
+              </AddButton>
+            </li>
+          ) : (
+            <li>
+              <NavLink to="/login">
+                <AddButton type="button">
+                  {t('addTo')} {<Icon.Heart style={{ fill: '#f59256' }} />}
+                </AddButton>
+              </NavLink>
+            </li>
+          )} */}
+        </ButtonBox>
+      </ModalBox>
     </>
   );
 };

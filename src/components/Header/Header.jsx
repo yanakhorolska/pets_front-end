@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import Logotype from 'components/Logo/logo';
 import { Container } from 'styles/Container/Container.styled';
-import { Link } from 'components/Nav/nav.styled';
 import { ToggleButton } from 'components/ToggleButton/ToggleButton';
 import {
   Head,
@@ -20,10 +19,17 @@ import UserNav from '../UserNav/UserNav';
 import AuthNav from 'components/AuthNav/AuthNav';
 import Icon from 'styles/Buttons/icons/index';
 import { useAuth } from 'hooks/useAuth';
+import { LangSwitcher } from 'components/CustomComponents/Switcher/Switcher';
 
-const Header = () => {
+const Header = () => {  
   const [burg, setBurg] = useState(false);
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useAuth();
+
+  const handleClick = event => {
+    setBurg(!burg);
+    event.stopPropagation();
+  };
+
   return (
     <>
       <Head>
@@ -31,22 +37,24 @@ const Header = () => {
           <Logotype />
           <Nav />
         </HeadNav>
+
         <ToggleButton />
+        <LangSwitcher />
         <HeaderWrap>
           <ButtonsContainer>
-            {isLoggedIn ? <UserNav /> : <AuthNav />}
+            {isLoggedIn ? <UserNav/>:<AuthNav />}
           </ButtonsContainer>
-          <ToggleButtonBurg onClick={() => setBurg(!burg)}>
+          <ToggleButtonBurg onClick={handleClick}>
             <Icon.Burger />
           </ToggleButtonBurg>
         </HeaderWrap>
       </Head>
       {burg ? (
-        <BurgerMenu>
+        <BurgerMenu onClick={handleClick}>
           <Container>
             <MenuHeader>
               <Logotype to="/" />
-              <ToggleButtonBurg onClick={() => setBurg(!burg)}>
+              <ToggleButtonBurg>
                 <Icon.FatClose />
               </ToggleButtonBurg>
             </MenuHeader>
@@ -54,20 +62,14 @@ const Header = () => {
             <BurgerLinks>
               <BurgerLinksWrap>
                 {isLoggedIn ? (
-                  <UserNav click={() => setBurg(false)} />
+                  <UserNav/>
                 ) : (
-                  <AuthNav click={() => setBurg(false)} />
+                  <AuthNav/>
                 )}
               </BurgerLinksWrap>
-              <Link to="/news" onClick={() => setBurg(!burg)}>
-                News
-              </Link>
-              <Link to="/notices" onClick={() => setBurg(!burg)}>
-                Find pet
-              </Link>
-              <Link to="/friends" onClick={() => setBurg(!burg)}>
-                Our friends
-              </Link>
+              <HeadNav>
+                <Nav display={"flex"}/>
+              </HeadNav>
             </BurgerLinks>
           </Container>
         </BurgerMenu>
