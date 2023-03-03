@@ -85,6 +85,7 @@ const InputStyled = styled.input`
   font-family: inherit;
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1;
+  width: 100%;
   height: ${p => p.theme.fontSizes.xxl};
   background-color: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};

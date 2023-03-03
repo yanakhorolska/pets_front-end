@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import {
+  LocalizationProvider,
+  MobileDatePicker,
+  DesktopDatePicker,
+} from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 import { useAddPetMutation } from 'redux/fetchUser';
 
@@ -26,8 +28,8 @@ import {
   CloseFormButton,
 } from './AddPet.styled';
 import { ModalButton, NextButton } from 'styles/Buttons';
-
 import Icon from '../ModalAddNotice/svg';
+import { CalendarButton } from 'styles/Buttons';
 import { useTranslation } from 'react-i18next';
 
 const validationSchema = [
@@ -47,11 +49,9 @@ const validationSchema = [
       )
       .max(new Date(), ({ label }) => `${label} future date not allowed`)
       .transform((value, originalValue) => {
-        try {
-          return getDateFromString(originalValue);
-        } catch (e) {
-          return null;
-        }
+        console.log("transform YUP", originalValue);
+        if (!originalValue) return null
+        return originalValue
       })
       .required(
         ({ label }) => `${label} is a required field in format DD.MM.YYYY`
@@ -138,7 +138,7 @@ export const AddPet = ({ onClose }) => {
     initialValues: {
       nickname: "",
       birthday: "",
-      birthday2:"",
+      birthday2: "",
       breed: '',
       avatar: '',
       comment: '',
@@ -158,9 +158,9 @@ export const AddPet = ({ onClose }) => {
     comment: commentError,
   } = formik.errors;
 
-  const handleChangeDate = newValue => {
-    formik.setFieldValue("birthday", newValue);
-  };
+  // const handleChangeDate = newValue => {
+  //   formik.setFieldValue("birthday", newValue);
+  // };
 
   return (
     <ModalAddPet onSubmit={formik.handleSubmit} autoComplete="off">
@@ -190,97 +190,50 @@ export const AddPet = ({ onClose }) => {
                 </InputLabel>
                 <InputLabel>
                   {t('datePet')}
-                  {/*<InputStyled
-                    //type="date"
-                    type="nunber"
-                    name="birthday"
-                    placeholder={t('datePetPlaceholder')}
-                    value={formik.values.birthday}
-                    onChange={e => {
-                      formik.handleChange(e);
-                      formik.setFieldValue(
-                        'birthday',
-                        e.currentTarget.value
-                          .replace(/\D/g, '')
-                          .replace(/(\d{2})(\d{2})(\d*)/, '$1.$2.$3')
-                      );
-                    }}
-                    onBlur={formik.handleBlur}
-                  />
-                 */}
-                  {/*<LocalizationProvider dateAdapter={AdapterDayjs}>
-                     <DesktopDatePicker
-                      label="Date of birth "
-                      inputFormat="DD.MM.YYYY"
-                      value={formik.values.birthday}
-                      //onChange={handleChangeDate}
-                      onChange={(value) => {
-                        console.log(value);
-                        formik.setFieldValue('birthday', value);
-                        }}
-                      onClick={formik.onClick}
-                      //renderInput={({}) => {<InputStyledDate/>}}
-                      // renderInput={(params) => {console.log("params", ({...params})); return <div><InputStyled {...params.inputProps}/><button type='button' onClick={params.onClick}></button></div>}}
-                      renderInput={(params) => {console.log("params", ({...params})); return <div><InputStyled {...params.inputProps}/><button type='button' {...params.inpurProps}></button></div>}}
-                    />
-                  </LocalizationProvider> */}
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DesktopDatePicker
-                      label="Date of birth "
-                      inputFormat="DD.MM.YYYY"
-                      value={formik.values.birthday}
-                      //onChange={handleChangeDate}
-                      open={isOpen}
-                      onChange={(value) => {
-                        console.log(value);
-                        formik.setFieldValue('birthday', value);
+                    <DesktopDatePicker
+                        label="Date of birth "
+                        inputFormat="DD.MM.YYYY"
+                        value={formik.values.birthday}
+                        open={isOpen}
+                        onChange={(value) => {
+                          formik.setFieldValue('birthday', value);
                         }}
-                      onClose={() => {setIsOpen(false);}}
-                      onBlur={() => formik.onBlur('birthday')}
-                      renderInput={({
-                          ref,
-                          inputProps,
-                          disabled,
-                          onChange,
-                          value,
-                          ...other
-                        }) => (
-                          <div ref={ref}>
-                            <InputStyled
-                              // style={{ display: 'none' }}
-                              value={value}
-                              onChange={onChange}
-                              // disabled={disabled}
-                              //ref={ref}
-                              {...inputProps}
-                            />
-                            <button onClick={() => {setIsOpen(!isOpen);}}>
-                              OPEN
-                            </button>
-                          </div>)} />
+                        onClose={() => {setIsOpen(false);}}
+                        minDate={new Date("1900-01-01")}
+                        maxDate={new Date()}
+                        componentsProps={{
+                          actionBar: {
+                            actions: ["cancel", "accept"]
+                          },
+                        }}
+                        renderInput={({
+                            ref,
+                            inputProps,
+                            onChange,
+                            value,
+                            ...other
+                          }) => 
+                            (
+                            <div sx={{"position":"relative"}} ref={ref}>
+                              <InputStyled
+                                name="birthday"
+                                value={value}
+                                onChange={onChange}
+                                onBlur={formik.handleBlur('birthday')}
+                                {...inputProps}
+                              />
+                                {/* <button ref={other.inputRef} type={"button"} onClick={() => {setIsOpen(!isOpen);}}>
+                                OPEN
+                                </button> */}
+                                <CalendarButton ref={other.inputRef} onClick={() => {setIsOpen(!isOpen);}}/>
+                            </div>)} />
                   </LocalizationProvider>
-                  
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
                   ) : (
                     <FieldError />
                   )}
-                </InputLabel>
-                <InputLabel>
-                  Date of birth 2
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <MobileDatePicker
-                      label="Date of birth 2"
-                      inputFormat="DD/MM/YYYY"
-                      value={formik.values.birthday2}
-                      //onChange={handleChangeDate}
-                      onChange={(value) => {
-                        console.log(value);
-                        formik.setFieldValue('birthday2', value);
-                        }}
-                      renderInput={(params) => {console.log("birthday2", params); return <InputStyled {...params}/>}}
-                    />
-                  </LocalizationProvider>
                 </InputLabel>
                 <InputLabel>
                   Breed

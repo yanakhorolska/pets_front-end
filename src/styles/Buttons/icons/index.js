@@ -14,6 +14,7 @@ import { ReactComponent as Moon } from './moon.svg';
 import { ReactComponent as FatClose } from './fatclose.svg';
 import { ReactComponent as ResetQuery } from './x-circle.svg';
 import { ReactComponent as LogOut } from './logout.svg';
+import { ReactComponent as Calendar } from './calendar.svg';
 
 
 const Icon = {
@@ -32,7 +33,8 @@ const Icon = {
   Moon,
   FatClose,
   ResetQuery,
-  LogOut
+  LogOut,
+  Calendar
 };
 
 export default Icon;
