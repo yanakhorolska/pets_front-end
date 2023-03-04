@@ -1,3 +1,4 @@
+import { DatePicker } from '@mui/x-date-pickers';
 import styled from 'styled-components';
 import { CloseButton } from 'styles/Buttons';
 
@@ -203,5 +204,5 @@ export {
   CommentInput,
   FieldError,
   ButtonsWrapper,
-  CloseFormButton,
+  CloseFormButton
 };

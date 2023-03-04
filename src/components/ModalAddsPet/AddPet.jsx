@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import {
   LocalizationProvider,
   // MobileDatePicker,
-  DesktopDatePicker,
+  DesktopDatePicker
 } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -25,7 +25,7 @@ import {
   CommentInput,
   ButtonsWrapper,
   FieldError,
-  CloseFormButton,
+  CloseFormButton
 } from './AddPet.styled';
 import { ModalButton, NextButton } from 'styles/Buttons';
 import Icon from '../ModalAddNotice/svg';
@@ -49,9 +49,8 @@ const validationSchema = [
       )
       .max(new Date(), ({ label }) => `${label} future date not allowed`)
       .transform((value, originalValue) => {
-        console.log("transform YUP", originalValue);
         if (!originalValue) return null
-        return originalValue
+        return value
       })
       .required(
         ({ label }) => `${label} is a required field in format DD.MM.YYYY`
@@ -81,7 +80,7 @@ const getDateFromString = dateString => {
 // }
 
 export const AddPet = ({ onClose }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [addPet] = useAddPetMutation();
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -190,7 +189,7 @@ export const AddPet = ({ onClose }) => {
                 </InputLabel>
                 <InputLabel>
                   {t('datePet')}
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <LocalizationProvider adapterLocale={i18n?.language} dateAdapter={AdapterDayjs} >
                     <DesktopDatePicker
                         label="Date of birth "
                         inputFormat="DD.MM.YYYY"
@@ -203,30 +202,59 @@ export const AddPet = ({ onClose }) => {
                         minDate={new Date("1900-01-01")}
                         maxDate={new Date()}
                         componentsProps={{
+                          "data-popper-placement":"top",
                           actionBar: {
                             actions: ["cancel", "accept"]
                           },
                         }}
+                        popperPlacement="bottom-end"
+                        popperProps={{
+                          //positionFixed: true,
+                          sx: {
+                            top: "50% !important" // use this to make the popper position: fixed\
+                          }
+                        }}
+                        // PaperProps={{
+                        //   sx: {
+                        //     top:"50%",
+                        //     color: "red !important",
+                        //     //background: "red !important",
+                        //     // "&.MuiPaper-root": {
+                        //     //   background: "red !important"
+                        //     // },
+                        //     // "& .MuiPickersPopper-root":{
+                        //     //   style: {top: "50%"}
+                        //     // }
+
+                        //     // "& .MuiPaper-root": {
+                        //     //   background: "red !important"
+                        //     // }
+                        //   }
+                        // }}
+                        // inputProps={{
+                        //   sx: {
+                        //     //top:"50% !important",
+                        //     "&.MuiPickersPopper-root":{
+                        //       style: {top: "50% !important"}
+                        //     }
+                        //   }}
+                        // }
                         renderInput={({
                             ref,
                             inputProps,
                             onChange,
                             value,
                             ...other
-                          }) => 
-                            (
-                            <div sx={{"position":"relative"}} ref={ref}>
+                          }) => (
+                            <div style={{ position:"relative"}} ref={ref}>
                               <InputStyled
                                 name="birthday"
                                 value={value}
                                 onChange={onChange}
-                                onBlur={formik.handleBlur('birthday')}
+                                onBlur={formik.handleBlur}
                                 {...inputProps}
                               />
-                                {/* <button ref={other.inputRef} type={"button"} onClick={() => {setIsOpen(!isOpen);}}>
-                                OPEN
-                                </button> */}
-                                <CalendarButton ref={other.inputRef} onClick={() => {setIsOpen(!isOpen);}}/>
+                              <CalendarButton onClick={() => {setIsOpen(!isOpen);}}/>
                             </div>)} />
                   </LocalizationProvider>
                   {formik.touched.birthday && birthdayError ? (
