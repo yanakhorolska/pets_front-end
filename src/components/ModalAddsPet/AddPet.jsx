@@ -138,10 +138,6 @@ export const AddPet = ({ onClose }) => {
     comment: commentError,
   } = formik.errors;
 
-  // const handleChangeDate = newValue => {
-  //   formik.setFieldValue("birthday", newValue);
-  // };
-
   return (
     <ModalAddPet onSubmit={formik.handleSubmit} autoComplete="off">
       <CloseFormButton onClick={onClose} />
