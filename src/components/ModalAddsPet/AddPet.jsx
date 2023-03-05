@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 
 import {
   LocalizationProvider,
-  // MobileDatePicker,
-  DesktopDatePicker
+  DatePicker,
 } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -190,8 +189,9 @@ export const AddPet = ({ onClose }) => {
                 <InputLabel>
                   {t('datePet')}
                   <LocalizationProvider adapterLocale={i18n?.language} dateAdapter={AdapterDayjs} >
-                    <DesktopDatePicker
+                    <DatePicker
                         label="Date of birth "
+                        views={["year", "month", "day"]}
                         inputFormat="DD.MM.YYYY"
                         value={formik.values.birthday}
                         open={isOpen}
@@ -202,50 +202,30 @@ export const AddPet = ({ onClose }) => {
                         minDate={new Date("1900-01-01")}
                         maxDate={new Date()}
                         componentsProps={{
-                          "data-popper-placement":"top",
-                          actionBar: {
+                            actionBar: {
                             actions: ["cancel", "accept"]
                           },
                         }}
-                        popperPlacement="bottom-end"
-                        popperProps={{
-                          //positionFixed: true,
+                        PopperProps={{
+                          style: { bottom: 0, right: 0, "backdrop-filter": "brightness(0.5)"},                          
+                        }}
+                        PaperProps={{
                           sx: {
-                            top: "50% !important" // use this to make the popper position: fixed\
+                            position:"fixed",
+                            top: "50%", 
+                            left: "50%", 
+                            transform: "translate(-50%, -50%) !important"
                           }
                         }}
-                        // PaperProps={{
-                        //   sx: {
-                        //     top:"50%",
-                        //     color: "red !important",
-                        //     //background: "red !important",
-                        //     // "&.MuiPaper-root": {
-                        //     //   background: "red !important"
-                        //     // },
-                        //     // "& .MuiPickersPopper-root":{
-                        //     //   style: {top: "50%"}
-                        //     // }
-
-                        //     // "& .MuiPaper-root": {
-                        //     //   background: "red !important"
-                        //     // }
-                        //   }
-                        // }}
-                        // inputProps={{
-                        //   sx: {
-                        //     //top:"50% !important",
-                        //     "&.MuiPickersPopper-root":{
-                        //       style: {top: "50% !important"}
-                        //     }
-                        //   }}
-                        // }
                         renderInput={({
                             ref,
                             inputProps,
                             onChange,
                             value,
                             ...other
-                          }) => (
+                          }) => {
+                            console.log(other); 
+                            return (
                             <div style={{ position:"relative"}} ref={ref}>
                               <InputStyled
                                 name="birthday"
@@ -253,9 +233,10 @@ export const AddPet = ({ onClose }) => {
                                 onChange={onChange}
                                 onBlur={formik.handleBlur}
                                 {...inputProps}
+                                fullWidth {...other}
                               />
                               <CalendarButton onClick={() => {setIsOpen(!isOpen);}}/>
-                            </div>)} />
+                            </div>)}}/>
                   </LocalizationProvider>
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>

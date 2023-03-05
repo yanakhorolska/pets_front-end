@@ -1,4 +1,3 @@
-import { DatePicker } from '@mui/x-date-pickers';
 import styled from 'styled-components';
 import { CloseButton } from 'styles/Buttons';
 
@@ -15,6 +14,8 @@ const ModalAddPet = styled.form`
   transform: ${p => p.theme.transform.modal};
   transition: ${p => p.theme.transition.modal};
   height: ${p => p.theme.sizes.height.auto};
+
+  overflow-y: scroll;
 
   @media ${p => p.theme.media.tabletDesktop} {
     width: ${p => p.theme.sizes.width.modalM};

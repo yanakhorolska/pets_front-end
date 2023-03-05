@@ -4,10 +4,9 @@ export const AvatarInput = styled('input')`
   opacity: 0;
   visibility: hidden;
   position: absolute;
+  width: inherit;
 `;
 export const AvatarBox = styled.div`
-
-  margin-bottom: 36px;
   margin: 0 auto;
   margin-bottom: 34px;
 
@@ -26,7 +25,7 @@ export const AvatarLabel = styled('label')`
   color: ${p => p.theme.color.text};
   font-size: ${p => p.theme.fontSizes.xs};
   display: flex;
-  width: 86px;
+  gap: 5px;
   align-items: center;
   margin-top: 12px;
   margin-left: auto;
