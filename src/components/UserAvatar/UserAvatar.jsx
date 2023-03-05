@@ -35,7 +35,7 @@ const UserAvatar = () => {
       )}
 
       <AvatarLabel>
-        <Icon.Camera style={{ "margin-left": "auto"}}/>
+        <Icon.Camera style={{ marginLeft: "auto"}}/>
         <AvatarLabelText>{t('editPhoto')}</AvatarLabelText>
         <AvatarInput
           name="avatar"

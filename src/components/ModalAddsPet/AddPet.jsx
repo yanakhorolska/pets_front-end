@@ -223,9 +223,7 @@ export const AddPet = ({ onClose }) => {
                             onChange,
                             value,
                             ...other
-                          }) => {
-                            console.log(other); 
-                            return (
+                          }) => (
                             <div style={{ position:"relative"}} ref={ref}>
                               <InputStyled
                                 name="birthday"
@@ -236,7 +234,7 @@ export const AddPet = ({ onClose }) => {
                                 fullWidth {...other}
                               />
                               <CalendarButton onClick={() => {setIsOpen(!isOpen);}}/>
-                            </div>)}}/>
+                            </div>)}/>
                   </LocalizationProvider>
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
