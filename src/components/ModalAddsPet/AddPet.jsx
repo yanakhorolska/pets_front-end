@@ -62,22 +62,6 @@ const validationSchema = [
   }),
 ];
 
-const getDateFromString = dateString => {
-  const date = dateString.split('.');
-  if (date.length === 3) {
-    return new Date(`${date[2]}-${date[1]}-${date[0]}`);
-  }
-  return null;
-};
-
-// const formatDate = date => {
-//   return [
-//     date.toLocaleDateString('default', { year: 'numeric' }),
-//     date.toLocaleDateString('default', { month: '2-digit' }),
-//     date.toLocaleDateString('default', { day: '2-digit' }),
-//   ].join('-');
-// }
-
 export const AddPet = ({ onClose }) => {
   const { t, i18n } = useTranslation();
   const [addPet] = useAddPetMutation();
@@ -85,7 +69,6 @@ export const AddPet = ({ onClose }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
-
 
   const onChangeAvatarImage = event => {
     if (event.target?.files) {
@@ -96,7 +79,7 @@ export const AddPet = ({ onClose }) => {
   const customOnSubmit = async (values, actions) => {
     const { birthday, ...reqValue } = values;
     const status = await addPet({
-      birthday: getDateFromString(birthday).toJSON().slice(0, 10),
+      birthday: birthday.toJSON().slice(0, 10),
       ...reqValue,
     }).unwrap();
     if (status === 'success') onClose();
@@ -136,7 +119,6 @@ export const AddPet = ({ onClose }) => {
     initialValues: {
       nickname: "",
       birthday: "",
-      birthday2: "",
       breed: '',
       avatar: '',
       comment: '',
@@ -207,7 +189,7 @@ export const AddPet = ({ onClose }) => {
                           },
                         }}
                         PopperProps={{
-                          style: { bottom: 0, right: 0, "backdrop-filter": "brightness(0.5)"},                          
+                          style: { bottom: 0, right: 0, "backdrop-filter": "brightness(0.5)"},
                         }}
                         PaperProps={{
                           sx: {
