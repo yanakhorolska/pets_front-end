@@ -15,6 +15,8 @@ const ModalAddPet = styled.form`
   transition: ${p => p.theme.transition.modal};
   height: ${p => p.theme.sizes.height.auto};
 
+  overflow-y: scroll;
+
   @media ${p => p.theme.media.tabletDesktop} {
     width: ${p => p.theme.sizes.width.modalM};
     padding: ${p => p.theme.space.p.m} 107px;
@@ -85,6 +87,7 @@ const InputStyled = styled.input`
   font-family: inherit;
   font-size: ${p => p.theme.fontSizes.s};
   line-height: 1;
+  width: 100%;
   height: ${p => p.theme.fontSizes.xxl};
   background-color: ${p => p.theme.color.inputModal};
   border: ${p => p.theme.borders.inputBorder};
@@ -202,5 +205,5 @@ export {
   CommentInput,
   FieldError,
   ButtonsWrapper,
-  CloseFormButton,
+  CloseFormButton
 };

@@ -6,8 +6,10 @@ export const Backdrop = styled.div`
   position: ${p => p.theme.position.f};
   top: ${p => p.theme.sizes.top.zero};
   left: ${p => p.theme.sizes.left.zero};
-  width: ${p => p.theme.sizes.width.max};
-  height: ${p => p.theme.sizes.height.max};
+  // width: ${p => p.theme.sizes.width.max};
+  // height: ${p => p.theme.sizes.height.max};
+  width: 100vw;
+  height : 100vh;
   background: rgba(17, 17, 17, 0.6);
   opacity: ${p => p.theme.opacity.one};
   transition: ${p => p.theme.transition.backdrop};

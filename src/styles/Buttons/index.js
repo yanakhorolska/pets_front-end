@@ -7,3 +7,4 @@ export { CameraButton } from './CameraButton/CameraButton';
 export { CloseButton } from './CloseButton/CloseButton';
 export { EditButton } from './EditButton/EditButton';
 export { ModalStyledButton } from './ModalButton/ModalButton';
+export { CalendarButton } from './CalendarButton/CalendarButton';

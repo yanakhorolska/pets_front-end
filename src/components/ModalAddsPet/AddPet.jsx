@@ -1,6 +1,12 @@
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 
+import {
+  LocalizationProvider,
+  DatePicker,
+} from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 import { useAddPetMutation } from 'redux/fetchUser';
 
 import * as Yup from 'yup';
@@ -18,11 +24,11 @@ import {
   CommentInput,
   ButtonsWrapper,
   FieldError,
-  CloseFormButton,
+  CloseFormButton
 } from './AddPet.styled';
 import { ModalButton, NextButton } from 'styles/Buttons';
-
 import Icon from '../ModalAddNotice/svg';
+import { CalendarButton } from 'styles/Buttons';
 import { useTranslation } from 'react-i18next';
 
 const validationSchema = [
@@ -42,11 +48,8 @@ const validationSchema = [
       )
       .max(new Date(), ({ label }) => `${label} future date not allowed`)
       .transform((value, originalValue) => {
-        try {
-          return getDateFromString(originalValue);
-        } catch (e) {
-          return null;
-        }
+        if (!originalValue) return null
+        return value
       })
       .required(
         ({ label }) => `${label} is a required field in format DD.MM.YYYY`
@@ -59,27 +62,13 @@ const validationSchema = [
   }),
 ];
 
-const getDateFromString = dateString => {
-  const date = dateString.split('.');
-  if (date.length === 3) {
-    return new Date(`${date[2]}-${date[1]}-${date[0]}`);
-  }
-  return null;
-};
-
-// const formatDate = date => {
-//   return [
-//     date.toLocaleDateString('default', { year: 'numeric' }),
-//     date.toLocaleDateString('default', { month: '2-digit' }),
-//     date.toLocaleDateString('default', { day: '2-digit' }),
-//   ].join('-');
-// }
-
 export const AddPet = ({ onClose }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [addPet] = useAddPetMutation();
 
   const [currentPage, setCurrentPage] = useState(0);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const onChangeAvatarImage = event => {
     if (event.target?.files) {
@@ -90,7 +79,7 @@ export const AddPet = ({ onClose }) => {
   const customOnSubmit = async (values, actions) => {
     const { birthday, ...reqValue } = values;
     const status = await addPet({
-      birthday: getDateFromString(birthday).toJSON().slice(0, 10),
+      birthday: birthday.toJSON().slice(0, 10),
       ...reqValue,
     }).unwrap();
     if (status === 'success') onClose();
@@ -128,8 +117,8 @@ export const AddPet = ({ onClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      nickname: '',
-      birthday: '',
+      nickname: "",
+      birthday: "",
       breed: '',
       avatar: '',
       comment: '',
@@ -177,23 +166,54 @@ export const AddPet = ({ onClose }) => {
                 </InputLabel>
                 <InputLabel>
                   {t('datePet')}
-                  <InputStyled
-                    //type="date"
-                    type="nunber"
-                    name="birthday"
-                    placeholder={t('datePetPlaceholder')}
-                    value={formik.values.birthday}
-                    onChange={e => {
-                      formik.handleChange(e);
-                      formik.setFieldValue(
-                        'birthday',
-                        e.currentTarget.value
-                          .replace(/\D/g, '')
-                          .replace(/(\d{2})(\d{2})(\d*)/, '$1.$2.$3')
-                      );
-                    }}
-                    onBlur={formik.handleBlur}
-                  />
+                  <LocalizationProvider adapterLocale={i18n?.language} dateAdapter={AdapterDayjs} >
+                    <DatePicker
+                        label="Date of birth "
+                        views={["year", "month", "day"]}
+                        inputFormat="DD.MM.YYYY"
+                        value={formik.values.birthday}
+                        open={isOpen}
+                        onChange={(value) => {
+                          formik.setFieldValue('birthday', value);
+                        }}
+                        onClose={() => {setIsOpen(false);}}
+                        minDate={new Date("1900-01-01")}
+                        maxDate={new Date()}
+                        componentsProps={{
+                            actionBar: {
+                            actions: ["cancel", "accept"]
+                          },
+                        }}
+                        PopperProps={{
+                          style: { bottom: 0, right: 0, "backdrop-filter": "brightness(0.5)"},
+                        }}
+                        PaperProps={{
+                          sx: {
+                            position:"fixed",
+                            top: "50%", 
+                            left: "50%", 
+                            transform: "translate(-50%, -50%) !important"
+                          }
+                        }}
+                        renderInput={({
+                            ref,
+                            inputProps,
+                            onChange,
+                            value,
+                            ...other
+                          }) => (
+                            <div style={{ position:"relative"}} ref={ref}>
+                              <InputStyled
+                                name="birthday"
+                                value={value}
+                                onChange={onChange}
+                                onBlur={formik.handleBlur}
+                                {...inputProps}
+                                fullWidth {...other}
+                              />
+                              <CalendarButton onClick={() => {setIsOpen(!isOpen);}}/>
+                            </div>)}/>
+                  </LocalizationProvider>
                   {formik.touched.birthday && birthdayError ? (
                     <FieldError>{birthdayError} </FieldError>
                   ) : (
@@ -201,7 +221,7 @@ export const AddPet = ({ onClose }) => {
                   )}
                 </InputLabel>
                 <InputLabel>
-                  {t('breed')}
+                  Breed
                   <InputStyled
                     type="text"
                     name="breed"

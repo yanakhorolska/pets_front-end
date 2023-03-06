@@ -34,10 +34,8 @@ const UserAvatar = () => {
         <AvatarImage src={Emptyphoto} />
       )}
 
-      <AvatarLabel
-        style={{ display: 'flex', gap: '5px' }}
-      >
-        <Icon.Camera />
+      <AvatarLabel>
+        <Icon.Camera style={{ marginLeft: "auto"}}/>
         <AvatarLabelText>{t('editPhoto')}</AvatarLabelText>
         <AvatarInput
           name="avatar"
